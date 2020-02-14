@@ -1,10 +1,12 @@
-#main_content {
+#login_main_content {
   width: 400px;
   margin: 0 auto;
 }
 
 #title_login {
+  width: 400px;
   text-align: center;
+  margin: 0 auto;
 }
 
 #login_form input {

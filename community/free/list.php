@@ -1,12 +1,11 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/db_connector.php";
-include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/create_table.php";
-
-create_table($conn, 'free');//자유게시판테이블생성
-create_table($conn, 'free_ripple');//자유게시판덧글테이블생성
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+// include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
+// include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_ini_insert.php";
 
 define('SCALE', 10);
+
 //*****************************************************
 $sql=$result=$total_record=$total_page=$start="";
 $row="";
@@ -45,12 +44,13 @@ $number = $total_record - $start;
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/greet.css">
-    <script type="text/javascript" src="./js/member_form.js"></script>
+    <!-- <script type="text/javascript" src="./js/member_form.js"></script> -->
     <title></title>
   </head>
   <body>
     <div id="wrap">
       <div id="header">
+        <?php include "../lib/header.php"; ?>
       </div><!--end of header  -->
       <div id="menu">
       </div><!--end of menu  -->

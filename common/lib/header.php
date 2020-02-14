@@ -61,7 +61,7 @@
       <a href="index.php"><img src="./common/img/helf_logo.png" alt="헬프 로고"></a>
       </li>
       <li><a href='#'><span>소개</span></a></li>
-      <li><a href='#'><span>프로그램</span></a></li>
+      <li><a href='./program/program.php'><span>프로그램</span></a></li>
       <li><a href='#'><span>커뮤니티</span></a></li>
       <li><a href="#"><span>건강정보</span></a></li>
       <li><a href="#"><span>같이할건강</span></a></li>

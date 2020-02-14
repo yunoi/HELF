@@ -20,7 +20,7 @@
     <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/main.php";?>
     </section>
     <aside>
-    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>    
+    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
   </aside>
     <footer>
     <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>

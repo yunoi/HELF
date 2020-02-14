@@ -1,6 +1,5 @@
 <?php
-session_start();
-include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+// include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 // include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
 // include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_ini_insert.php";
 
@@ -42,15 +41,17 @@ $number = $total_record - $start;
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/greet.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <!-- <script type="text/javascript" src="./js/member_form.js"></script> -->
     <title></title>
   </head>
   <body>
     <div id="wrap">
       <div id="header">
-        <?php include "../lib/header.php"; ?>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       </div><!--end of header  -->
       <div id="menu">
       </div><!--end of menu  -->

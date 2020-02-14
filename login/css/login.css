@@ -1,3 +1,9 @@
+input {
+  box-sizing: border-box;
+  border: 0.5px solid lightgray;
+  border-radius: 2px;
+}
+
 #login_main_content {
   width: 400px;
   margin: 0 auto;

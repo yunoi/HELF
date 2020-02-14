@@ -62,7 +62,7 @@
       </li>
       <li><a href='#'><span>소개</span></a></li>
       <li><a href='#'><span>프로그램</span></a></li>
-      <li><a href='#'><span>커뮤니티</span></a></li>
+      <li><a href='./community/free/list.php'><span>커뮤니티</span></a></li>
       <li><a href="#"><span>건강정보</span></a></li>
       <li><a href="#"><span>같이할건강</span></a></li>
     </ul>

@@ -28,9 +28,9 @@
 <?php
   if(!$userId) {
 ?>
-      <li><a href="member_form.php">회원가입</a></li>
+      <li><a href="./member/member_form.php">회원가입</a></li>
       <li> | </li>
-      <li><a href="login_form.php">로그인</a></li>
+      <li><a href="./login/login_form.php">로그인</a></li>
 <?php
   } else {
     $logged = $userName."(".$userId.")";
@@ -58,7 +58,7 @@
   <nav id="menu_bar">
     <ul>
       <li id="li_first">
-      <a href="index.php"><img src="./common/img/helf_logo.png" alt="헬프 로고"></a>
+      <a href="./index.php"><img src="./common/img/helf_logo.png" alt="헬프 로고"></a>
       </li>
       <li><a href='#'><span>소개</span></a></li>
       <li><a href='#'><span>프로그램</span></a></li>

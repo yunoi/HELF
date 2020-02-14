@@ -10,6 +10,12 @@ a:link { text-decoration:none; color: #222222; }
 a:hover { text-decoration:none; color: #222222; }
 a:visited { text-decoration:none; color: #222222; }
 a:active { text-decoration:none; color: #222222; }
+/* 상위 div: container */
+#container{
+  padding: 80px 0 90px;
+  width: 1000px;
+  margin: 0 auto;
+}
 /* 상단 헤더 */
 #top { position: relative; background-color: #e0e0e0; width: 100%; height: 40px; margin: 0 auto; }
 #top #top_menu { float: right;}
@@ -118,6 +124,25 @@ height: 100%;
 #slideshow_indi a.active{
   background: url(../img/sprites.png) no-repeat -134px -4px;
 
+}
+/* aside */
+#aside_menu {
+  float: left;
+  background: none;
+  padding: 0;
+}
+#aside_shortcut{
+    height: 258px;
+    width: 231px;
+    height: 244px;
+    padding: 4px 0 0 0;
+    overflow: hidden;
+}
+#aside_shortcut li {
+  width: 125px;
+    margin: 0;
+    height: 129px;
+    float: left;
 }
 /* 하단 푸터 */
 footer { height: 100px; background-color: #2c2a29; z-index: 1;}

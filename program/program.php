@@ -59,6 +59,13 @@
             <input type="button" name="" value="초기화">&nbsp&nbsp
             <input type="button" name="" value="확인">
           </li>
+          <br><br>&nbsp
+          <li>
+            <em>가격</em>
+            <input type="number" name="" value="">~
+            <input type="number" name="" value="">
+
+          </li>
         </ul>
 
       </div>

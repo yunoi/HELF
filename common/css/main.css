@@ -1,5 +1,9 @@
 /* 메인 콘텐트 */
-#main_content { position: relative; width: 100%; min-width: 1000px; height: 240px; margin: 0 auto; 
+#main_content { 
+    width: 716px;
+    min-height: 615px;
+    float: left;
+    position: relative;
     background: url(../img/main_background.gif) repeat-x; 
 }
 #latest { position: absolute; top: 30px; left: 50px; }

@@ -1,6 +1,6 @@
 <?php
   session_start();
-  // include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
+  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
 
   if(isset($_SESSION["userId"])){
     $userId = $_SESSION["userId"];
@@ -58,7 +58,7 @@
   <nav id="menu_bar">
     <ul>
       <li id="li_first">
-      <a href="index.php"><img src="./common/img/helf_logo.png" alt="헬프 로고"></a>
+      <a href="index.php"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/helf_logo.png" alt="헬프 로고"></a>
       </li>
       <li><a href='#'><span>소개</span></a></li>
       <li><a href='#'><span>프로그램</span></a></li>

@@ -119,6 +119,25 @@ height: 100%;
   background: url(../img/sprites.png) no-repeat -134px -4px;
 
 }
+/* aside */
+#aside_menu {
+  float: left;
+  background: none;
+  padding: 0;
+}
+#aside_shortcut{
+    height: 258px;
+    width: 231px;
+    height: 244px;
+    padding: 4px 0 0 0;
+    overflow: hidden;
+}
+#aside_shortcut li {
+  width: 125px;
+    margin: 0;
+    height: 129px;
+    float: left;
+}
 /* 하단 푸터 */
 footer { height: 100px; background-color: #2c2a29; z-index: 1;}
 #footer_content { position: relative; width: 1000px; margin: 0 auto; color: #dddddd; }

@@ -1,0 +1,88 @@
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  display: inline-block;
+  vertical-align: top;
+}
+
+a{
+  text-decoration: none;
+}
+
+.div_program{
+
+}
+
+/* 카타고리 선택 */
+.div_program_category{
+  width: 250px;
+  height: 600px;
+  border: 1px solid black;
+  float: left;
+  margin-left: 10%;
+  vertical-align: top;
+}
+
+
+/* 리스트 */
+.div_program_list{
+  width: 900px;
+  height: 600px;
+  border: 1px solid black;
+  float: left;
+  vertical-align: top;
+}
+
+.div_program_list_top{
+  position: relative;
+  height: 60px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.div_program_list_main{
+  margin: 30px;
+  margin-top: 30px;
+
+}
+
+.li_order{
+  position: absolute;
+  top:20px;
+  left: 50px;
+}
+
+.li_search{
+  position: absolute;
+  top:20px;
+  right: 50px;
+}
+
+.div_list{
+  height: 150px;
+  border: 1px solid gray;
+}
+
+.pro1{
+  float:left;
+  margin-right: 10px;
+  width:25%;
+  height:150px;
+
+}
+.pro2{
+  float:left;
+  width:50%;
+  height:150px;
+
+}
+.pro3{
+  float:left;
+  width:20%;
+  height:150px;
+  text-align: center;
+  line-height: 140px;
+}

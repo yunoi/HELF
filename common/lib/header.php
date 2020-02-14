@@ -28,16 +28,15 @@
 <?php
   if(!$userId) {
 ?>
-      <li><a href="./member/member_form.php">회원가입</a></li>
+      <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/member/member_form.php">회원가입</a></li>
       <li> | </li>
-      <li><a href="./login/login_form.php">로그인</a></li>
+      <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/login/login_form.php">로그인</a></li>
 <?php
   } else {
     $logged = $userName."(".$userId.")";
     $logged_etc = "님 [Level: ".$userLevel.", Point: ".$userPoint."]";
 ?>
       <li><span><?=$logged?></span><span><?=$logged_etc?></span></li>
-      <!-- onclick="window.open('message_box.php?mode=receive','메시지함', 'width=200,height=600,scrollbars=no,resizable=yes')" -->
       <li> | </li>
       <li><a href="logout.php">로그아웃</a></li>
       <li> | </li>

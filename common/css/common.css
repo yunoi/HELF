@@ -10,6 +10,12 @@ a:link { text-decoration:none; color: #222222; }
 a:hover { text-decoration:none; color: #222222; }
 a:visited { text-decoration:none; color: #222222; }
 a:active { text-decoration:none; color: #222222; }
+/* 상위 div: container */
+#container{
+  padding: 80px 0 90px;
+  width: 1000px;
+  margin: 0 auto;
+}
 /* 상단 헤더 */
 #top { position: relative; background-color: #e0e0e0; width: 100%; height: 40px; margin: 0 auto; }
 #top #top_menu { float: right;}

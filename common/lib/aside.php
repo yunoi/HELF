@@ -13,7 +13,7 @@
                 <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/link_shortcut03.gif" alt="다이어트신 어플리케이션"></a>
         </li>
         <li class="right">
-            <a href="#">
+            <a href="./map/map.php">
                 <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/link_shortcut04.gif" alt="인바디 측정 보건소 찾기"></a>
         </li>
     </ul>

@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title>HELF :: Health friends, healthier life</title>
     <link rel="stylesheet" href="./css/member.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="./js/member_form.js" charset="utf-8"></script>
+
     <link rel="stylesheet" type="text/css" href="../common/css/common.css">
     <link rel="stylesheet" type="text/css" href="../common/css/main.css">
     <link rel="stylesheet" type="text/css" href="../carousel.css">
@@ -11,6 +14,7 @@
     <script src="../js/vendor/jquery-1.10.2.min.js"></script>
     <script src="../js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="../main.js"></script>
+
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
       function address_input() {
@@ -27,6 +31,10 @@
           e.value = e.value.slice(0, e.maxLength);
         }
       }
+
+      function mail_address_setting(e) {
+        document.getElementById("email_two").value= e.value;
+      }
     </script>
   </head>
   <body>
@@ -39,49 +47,46 @@
           <h1>회원가입</h1>
         </div>
         <div id="member_form">
-          <form name="member_form" action="member_insert.php" method="post">
+          <form name="member_form" id="input_member_form" action="member_insert.php" method="post">
             <input type="text" name="id" id="input_id" placeholder=" 아이디 입력 "> <br>
             <p id="input_id_confirm"></p>
             <input type="password" name="password" id="input_password" placeholder=" 비밀번호 입력 "> <br>
             <p id="input_password_confirm"></p>
-            <input type="password" name="password_check" id="input_password_check" placeholder=" 비밀번호 재입력 "> <br>
+            <input type="password" id="input_password_check" placeholder=" 비밀번호 재입력 "> <br>
             <p id="input_password_check_confirm"></p>
             <input type="text" name="name" id="input_name" placeholder=" 이름 "> <br>
             <p id="input_name_confirm"></p>
             <div id="phone">
               <div id="phone_input">
                 <select name="phone_one">
-                  <option value="010">010</option>
-                  <option value="011">011</option>
+                  <option value="010" selected>010</option>
+                  <option value="011" >011</option>
                 </select> -
-                <input type="number" name="phone_two" maxlength="4" placeholder=" 0000 " oninput="numberMaxLength(this);"> -
-                <input type="number" name="phone_three" maxlength="4" placeholder=" 0000 " oninput="numberMaxLength(this);">
+                <input type="number" name="phone_two" id="phone_two" maxlength="4" placeholder=" 0000 " oninput="numberMaxLength(this);"> -
+                <input type="number" name="phone_three" id="phone_three" maxlength="4" placeholder=" 0000 " oninput="numberMaxLength(this);">
               </div>
               <div id="phone_certification">
                 <a href="#" onclick="">
                   <p>인증 요청</p>
                 </a>
               </div>
-            </div>
-            <div id="address">
-              <input type="number" name="address_one" id="address_one" placeholder=" 우편번호 " onclick="address_input();">
-              <input type="text" name="address_two" id="address_two" placeholder=" 주소 " onclick="address_input();">
-              <input type="text" name="address_three" id="address_three" placeholder=" 상세주소 ">
+              <p id="input_phone_confirm"></p>
             </div>
             <div id="email">
               <div id="email_input">
-                <input type="text" id="email_one" name="email_one" placeholder=" 이메일 입력 "> @
-                <input type="text" name="email_two">
-                <select name="email_option">
-                  <option value="gmail.com">gmail.com</option>
+                <input type="text"  name="email_one" id="email_one" placeholder=" 이메일 입력 "> @
+                <input type="text" name="email_two" id="email_two">
+                <select name="email_option" onchange="mail_address_setting(this);">
+                  <option value="gmail.com" selected>gmail.com</option>
                   <option value="naver.com">naver.com</option>
                   <option value="daum.net">daum.net</option>
                   <option value="nate.com">nate.com</option>
                   <option value="">직접 입력</option>
                 </select> <br>
+                <p id="input_email_confirm"></p>
               </div>
               <div id="email_certification_check">
-                <input type="text" name="" placeholder=" 인증 번호 입력 ">
+                <input type="text" id="input_email_certification" placeholder=" 인증 번호 입력 ">
                 <div id="email_certification_check_button">
                   <a href="#" onclick="">
                     <p>확 인</p>
@@ -92,7 +97,14 @@
                     <p>인증 요청</p>
                   </a>
                 </div>
+                <p id="input_email_certification_confirm"></p>
               </div>
+            </div>
+            <div id="address">
+              <input type="number" name="address_one" id="address_one" placeholder=" 우편번호 " onclick="address_input();">
+              <input type="text" name="address_two" id="address_two" placeholder=" 주소 " onclick="address_input();">
+              <input type="text" name="address_three" id="address_three" placeholder=" 상세주소 "> <br>
+              <p id="input_address_confirm"></p>
             </div>
             <div id="check_box">
               <input type="checkbox" name=""> <span id="all_agree"> 전체 동의 (필수, 선택 모두 포함) </span><br>
@@ -110,7 +122,7 @@
                 </a>
               </div>
               <div id="signup">
-                <a href="#" onclick="">
+                <a href="#" onclick="document.getElementById('input_member_form').submit();">
                   <p>가 입</p>
                 </a>
               </div>

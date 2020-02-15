@@ -1,12 +1,9 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/db_connector.php";
-include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/create_table.php";
-
-create_table($conn, 'free');//자유게시판테이블생성
-create_table($conn, 'free_ripple');//자유게시판덧글테이블생성
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
 define('SCALE', 10);
+
 //*****************************************************
 $sql=$result=$total_record=$total_page=$start="";
 $row="";
@@ -15,16 +12,18 @@ $total_record=0;
 //*****************************************************
 if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
     //제목, 내용, 아이디
-    $find = test_input($_POST["find"]);
-    $search = test_input($_POST["search"]);
+    $find = $_POST["find"];
+    $search = $_POST["search"];
     $q_search = mysqli_real_escape_string($conn, $search);
-    $sql="SELECT * from `free` where $find like '%$q_search%' order by num desc;";
+    $sql="SELECT * from `community` where $find like '%$q_search%' AND b_code='자유게시판' order by num desc;";
 } else {
-    $sql="SELECT * from `free` order by num desc";
+    $sql="SELECT * from `community` where b_code='자유게시판' order by num desc;";
 }
 
 $result=mysqli_query($conn, $sql);
+
 $total_record=mysqli_num_rows($result);
+// echo "<script>alert('{$total_record}');</script>";
 
 $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
 
@@ -43,14 +42,17 @@ $number = $total_record - $start;
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/greet.css">
-    <script type="text/javascript" src="./js/member_form.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
+    <!-- <script type="text/javascript" src="./js/member_form.js"></script> -->
     <title></title>
   </head>
   <body>
     <div id="wrap">
       <div id="header">
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       </div><!--end of header  -->
       <div id="menu">
       </div><!--end of menu  -->
@@ -85,8 +87,8 @@ $number = $total_record - $start;
              <li id="list_title5">조회</li>
            </ul>
          </div><!--end of list_top_title  -->
-
          <div id="list_content">
+
          <?php
           for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++) {
               mysqli_data_seek($result, $i);
@@ -102,7 +104,7 @@ $number = $total_record - $start;
             <div id="list_item">
               <div id="list_item1"><?=$number?></div>
               <div id="list_item2">
-                  <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
+                  <a href="./list.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
               </div>
               <div id="list_item3"><?=$name?></div>
               <div id="list_item4"><?=$date?></div>

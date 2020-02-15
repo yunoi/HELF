@@ -1,6 +1,6 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/session_call.php";
-include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/db_connector.php";
+session_start();
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
 $num=$id=$subject=$content=$day=$hit="";
 $mode="insert";
@@ -12,7 +12,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
     $num = test_input($_GET["num"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    $sql="SELECT * from `free` where num ='$q_num';";
+    $sql="SELECT * from `community` where num ='$q_num';";
     $result = mysqli_query($conn,$sql);
 
     if (!$result) alert_back("Error: " . mysqli_error($conn));
@@ -28,8 +28,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
     $file_name_0=$row['file_name_0'];
     $file_copied_0=$row['file_copied_0'];
     $day=$row['regist_day'];
-    $is_html=$row['is_html'];
-    $checked=($is_html=="y")? ("checked"):("");
     $hit=$row['hit'];
     mysqli_close($conn);
 }
@@ -40,20 +38,19 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/greet.css">
-    <script type="text/javascript" src="./js/member_form.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <title></title>
   </head>
   <body>
     <div id="wrap">
       <div id="header">
-
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       </div><!--end of header  -->
-      <div id="menu">
-
-      </div><!--end of menu  -->
       <div id="content">
        <div id="col2">
-         <div id="title">커뮤니터>후기</div>
+         <div id="title">자유게시판</div>
          <div class="clear"></div>
          <div id="write_form_title">글쓰기</div>
          <div class="clear"></div>
@@ -65,6 +62,8 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
               <div id="write_row1">
                 <div class="col1">아이디</div>
                 <div class="col2"><?=$id?></div>
+                <div class="col3">
+                </div>
               </div><!--end of write_row1  -->
               <div class="write_line"></div>
               <div id="write_row2">
@@ -79,7 +78,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
               </div><!--end of write_row3  -->
               <div class="write_line"></div>
               <div id="write_row4">
-                <div class="col1">파일 업로드</div>
+                <div class="col1">파일업로드</div>
                 <div class="col2">
                   <?php
                     if($mode=="insert"){
@@ -100,15 +99,13 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
                 </div><!--end of col2  -->
               </div><!--end of write_row4  -->
               <div class="clear"></div>
-
               <div class="write_line"></div>
               <div class="clear"></div>
             </div><!--end of write_form  -->
 
             <div id="write_button">
               <input type="button" onclick='document.getElementById("del_file").disabled=false' value="완료">
-              <a href="./list.php"> <button type="button">목록</button> </a>
-              <input type="reset" value="초기화">
+              <a href="./list.php"><button type="button">목록</button></a>
             </div><!--end of write_button-->
          </form>
 

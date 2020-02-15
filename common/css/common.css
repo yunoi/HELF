@@ -10,24 +10,33 @@ a:link { text-decoration:none; color: #222222; }
 a:hover { text-decoration:none; color: #222222; }
 a:visited { text-decoration:none; color: #222222; }
 a:active { text-decoration:none; color: #222222; }
+/* 상위 div: container */
+#container{
+  width: 100%;
+  min-width: 1000px;
+  background: url(../img/main_background.gif) repeat-x;
+    height: 100%;
+    min-height: 615px;
+}
+#section_aside{
+  margin: 0 auto;
+  padding: 80px 0 90px;
+  width: 1100px;
+}
 /* 상단 헤더 */
 #top { position: relative; background-color: #e0e0e0; width: 100%; height: 40px; margin: 0 auto; }
 #top #top_menu { float: right;}
 #top #top_menu li { display: inline; position: relative; right: 146px; top: 10px;}
 #top #top_menu a { color: #6b6b6b;}
-#menu_bar { position: relative; width: 100%; height: 120px; background-color: #fff; font-size: 16px; text-align: center;}
-#menu_bar img { display: inline-block; padding-bottom: 8px;}
-#menu_bar ul { position: relative; width: 100%; height: 100%; display: inline-block; margin: 0 auto;}
-#menu_bar li { position: relative; display: inline-block; width: 100px; height: 100%; margin-left: 90px; color: white;}
-#menu_bar #li_first {margin: 0; width: 256px; height: 106px;}
-#menu_bar a {
-  position: relative;
-  height: 100%;
-  display: block;
-}
-#menu_bar span { 
+#menu_bar { width: 100%; height: 120px; background-color: #fff; font-size: 16px; text-align: center;}
+#menu_bar img { float:left; padding-bottom: 8px;}
+#menu_bar ul { height: 100%; display: inline-block; margin: 0 auto;}
+#menu_bar li { display: inline-block; width: 100px; height: 100%; margin-left: 32px; color: white;}
+#menu_bar #li_img {margin: 0; width: 256px; height: 106px;}
+#menu_bar #li_first_menu {margin: 0; }
+#menu_bar a { 
   color: #222;
-  position: absolute;
+  float: left;
   font-weight: 700;
   left: 50%;
   top: 50%;
@@ -41,96 +50,18 @@ a:active { text-decoration:none; color: #222222; }
 #menu_bar a:hover { color: #000; }
 #menu_bar a:visited { color: #000; }
 #menu_bar a:active { color: #000; }
-/* 상단 이미지 */
-#top_img_bar {
-  width: 100%;
-  height: 174px;
-  overflow: hidden;
-  text-align: center;
-  background-color: #fff;
-  margin-bottom: 30px;
-}
 
-#top_img_bar img{
-  opacity: 50%;
-}
-
-#img_title{
-  height: 174px;
-  opacity: 50%;
-}
-/* 메인 이미지 슬라이드 */
-.slideshow{
-  position: relative;
-  background-color: #fff;
-  overflow: hidden;
-  height: 640px;
-}
-#main_img_bar img{
-  width: 100%;
-}
-#main_img_bar {
-   margin-bottom: 30px;
-position: absolute;
-width: 100%;
-height: 100%;
- }
-#main_img_bar a {position: absolute; width: 100%; height: 100%;
- left:0; top: 0;
-  text-align: center;
-}
-/* 양쪽 화살표를 중앙에 배치시키기 */
-/* 이미지 스프라이트 */
-#slideshow_nav a{
-  position: absolute;
-  width: 71px;
-  height: 71px;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%);
-  transform: translateY(-50%);
-  text-indent: -99999em;
-}
-#slideshow_nav a.prev{
-  background: url(../img/sprites.png) no-repeat 0 -20px;
-  margin-left: -640px;
-}
-#slideshow_nav a.next{
-  background: url(../img/sprites.png) no-repeat -81px -20px;
-  margin-left: 569px;
-}
-#slideshow_nav a.disabled{ display: none;}
-#slideshow_indi{
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 20px;
-  text-align: center;
-}
-#slideshow_indi a{
-  width: 8px;
-  height: 8px;
-  background: url(../img/sprites.png) no-repeat -114px -4px;
-  margin: 4px;
-  text-decoration: none;
-  display: inline-block;
-}
-#slideshow_indi a.active{
-  background: url(../img/sprites.png) no-repeat -134px -4px;
-
-}
 /* aside */
 #aside_menu {
   float: left;
   background: none;
   padding: 0;
+  width: 250px;
 }
 #aside_shortcut{
-    height: 258px;
-    width: 231px;
-    height: 244px;
-    padding: 4px 0 0 0;
-    overflow: hidden;
+  padding: 0;
+  width: 100%;
+  height: 258px;
 }
 #aside_shortcut li {
   width: 125px;
@@ -138,8 +69,9 @@ height: 100%;
     height: 129px;
     float: left;
 }
+
 /* 하단 푸터 */
-footer { height: 100px; background-color: #2c2a29; z-index: 1;}
+footer { height: 100px; background-color: #2c2a29; z-index: 1; clear: both;}
 #footer_content { position: relative; width: 1000px; margin: 0 auto; color: #dddddd; }
 #footer_logo { position: absolute; top: 30px; left: 50px; font-size: 16px; }
 #footer_logo span { color: yellow; }

@@ -1,7 +1,6 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/ansisung/lib/db_connector.php";
-include $_SERVER['DOCUMENT_ROOT']."/ansisung/free/lib/free_func.php";
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 $num=$id=$subject=$content=$day=$hit=$image_width=$q_num="";
 
 if(empty($_GET['page'])){
@@ -56,6 +55,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       $image_height=0;
       $image_type="";
     }
+
 }
 
 ?>
@@ -63,10 +63,10 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/greet.css">
-    <link rel="stylesheet" href="./css/memo.css">
-    <script type="text/javascript" src="./js/member_form.js?ver=1"></script>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/greet.css">
+    <link rel="stylesheet" href="../css/memo.css">
+    <script type="text/javascript" src="../js/member_form.js?ver=1"></script>
     <title></title>
   </head>
   <body>

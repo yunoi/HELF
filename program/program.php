@@ -1,11 +1,3 @@
-
-<?php
-  include $_SERVER['DOCUMENT_ROOT']."/source/team_project/common/db_connector.php";
-  include $_SERVER['DOCUMENT_ROOT']."/source/team_project/common/create_table.php";
-  create_table($conn, 'program');
-
- ?>
-
  <!DOCTYPE html>
  <html>
  <head>
@@ -13,12 +5,13 @@
  <title>같이할건강</title>
  <!-- <link rel="stylesheet" type="text/css" href="../css/common.css?ver=1"> -->
  <!-- <link rel="stylesheet" type="text/css" href="../css/board.css?ver=1"> -->
- <link rel="stylesheet" type="text/css" href="../css/program.css">
+ <link rel="stylesheet" type="text/css" href="./css/program.css">
  </head>
  <body>
  <header>
-     <!-- ?php include "header.php";?> -->
- </header>
+     <?php include "../common/lib/header.php";?>
+     <?php create_table($conn, 'program'); ?>
+    </header>
  <section>
    <section>
        <!-- ?php include "slide.php";?> -->
@@ -54,6 +47,18 @@
             개인:<input type="radio" name="gender" value="개인">
             그룹:<input type="radio" name="gender" value="그룹">
           </li>
+          <br><br>&nbsp
+          <li>
+            <em> 가격:&nbsp</em>
+            <input type="number" name="" value="" style="width:100px;">원~<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" name="" value=""style="width:100px;">원
+          </li>
+          <br><br>&nbsp
+          <li class="li_ok">
+            <input type="button" name="" value="초기화">&nbsp
+            <input type="button" name="" value="확인">
+          </li>
+
         </ul>
 
       </div>
@@ -76,7 +81,7 @@
         <div class="div_program_list_main">
           <div class="div_list">
             <div class="pro1">
-              <img src="../image/workout1.jpg" alt="" style="max-width:200px">
+              <img src="./image/workout1.jpg" alt="" style="max-width:200px">
             </div>
             <div class="pro2">
               <h5 class="tit_list_block" style="font-size:16px">집, 헬스장 모두에서 가능한 "개인 맞춤형" 다이어트/운동 프로그램을 설계해 드립니다</h5>

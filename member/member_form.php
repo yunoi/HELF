@@ -2,40 +2,60 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>HELF :: Health friends, healthier life</title>
     <link rel="stylesheet" href="./css/member.css">
+    <link rel="stylesheet" type="text/css" href="../common/css/common.css">
+    <link rel="stylesheet" type="text/css" href="../common/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../carousel.css">
+    <script src="../js/vendor/modernizr.custom.min.js"></script>
+    <script src="../js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="../js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../main.js"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-    function address_input() {
-      new daum.Postcode({
-          oncomplete: function(data) {
-            document.getElementById("address_one").value = data.zonecode;
-            document.getElementById("address_two").value = data.roadAddress;
-          }
-      }).open();
-    }
+      function address_input() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+              document.getElementById("address_one").value = data.zonecode;
+              document.getElementById("address_two").value = data.roadAddress;
+            }
+        }).open();
+      }
+
+      function numberMaxLength(e) {
+      if(e.value.length > e.maxLength){
+          e.value = e.value.slice(0, e.maxLength);
+        }
+      }
     </script>
   </head>
   <body>
+    <header>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
+    </header>
     <section>
-      <div id="main_content">
+      <div id="member_main_content">
         <div id="title_member">
           <h1>회원가입</h1>
         </div>
         <div id="member_form">
           <form name="member_form" action="member_insert.php" method="post">
-            <input type="text" name="id" placeholder=" 아이디 입력 "> <br>
-            <input type="password" name="password" placeholder=" 비밀번호 입력 "> <br>
-            <input type="password" name="password_check" placeholder=" 비밀번호 재입력 "> <br>
-            <input type="text" name="name" placeholder=" 이름 "> <br>
+            <input type="text" name="id" id="input_id" placeholder=" 아이디 입력 "> <br>
+            <p id="input_id_confirm"></p>
+            <input type="password" name="password" id="input_password" placeholder=" 비밀번호 입력 "> <br>
+            <p id="input_password_confirm"></p>
+            <input type="password" name="password_check" id="input_password_check" placeholder=" 비밀번호 재입력 "> <br>
+            <p id="input_password_check_confirm"></p>
+            <input type="text" name="name" id="input_name" placeholder=" 이름 "> <br>
+            <p id="input_name_confirm"></p>
             <div id="phone">
               <div id="phone_input">
                 <select name="phone_one">
                   <option value="010">010</option>
                   <option value="011">011</option>
                 </select> -
-                <input type="number" name="phone_two" placeholder=" 0000 "> -
-                <input type="number" name="phone_three" placeholder=" 0000 ">
+                <input type="number" name="phone_two" maxlength="4" placeholder=" 0000 " oninput="numberMaxLength(this);"> -
+                <input type="number" name="phone_three" maxlength="4" placeholder=" 0000 " oninput="numberMaxLength(this);">
               </div>
               <div id="phone_certification">
                 <a href="#" onclick="">
@@ -99,5 +119,8 @@
         </div>
       </div>
     </section>
+    <footer>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+    </footer>
   </body>
 </html>

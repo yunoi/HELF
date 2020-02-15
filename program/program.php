@@ -1,11 +1,3 @@
-
-<?php
-  include $_SERVER['DOCUMENT_ROOT']."/HELF/program/common/db_connector.php";
-  include $_SERVER['DOCUMENT_ROOT']."/HELF/program/common/create_table.php";
-  create_table($conn, 'program');
-
- ?>
-
  <!DOCTYPE html>
  <html>
  <head>
@@ -17,8 +9,9 @@
  </head>
  <body>
  <header>
-     <!-- ?php include "header.php";?> -->
- </header>
+     <?php include "../common/lib/header.php";?>
+     <?php create_table($conn, 'program'); ?>
+    </header>
  <section>
    <section>
        <!-- ?php include "slide.php";?> -->
@@ -55,17 +48,17 @@
             그룹:<input type="radio" name="gender" value="그룹">
           </li>
           <br><br>&nbsp
-          <li class="li_ok">
-            <input type="button" name="" value="초기화">&nbsp&nbsp
-            <input type="button" name="" value="확인">
+          <li>
+            <em> 가격:&nbsp</em>
+            <input type="number" name="" value="" style="width:100px;">원~<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" name="" value=""style="width:100px;">원
           </li>
           <br><br>&nbsp
-          <li>
-            <em>가격</em>
-            <input type="number" name="" value="">~
-            <input type="number" name="" value="">
-
+          <li class="li_ok">
+            <input type="button" name="" value="초기화">&nbsp
+            <input type="button" name="" value="확인">
           </li>
+
         </ul>
 
       </div>

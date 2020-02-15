@@ -1,5 +1,5 @@
 <form name="form1">
-  <select name="h_area1" onChange="cat1_change(this.value,h_area2)" >
+  <select name="h_area1" onChange="cat1_change(this.value,h_area2)" style="width:80px; height:20px;">
     <option selected>-선택-</option>
     <option value='0'>전체</option>
     <option value='1'>서울</option>
@@ -21,7 +21,7 @@
     <option value='17'>세종</option>
   </select>
   &nbsp
-  <select name="h_area2">
+  <select name="h_area2" style="width:80px; height:20px;">
     <option selected>-선택-</option>
   </select>
 <script language=javascript>

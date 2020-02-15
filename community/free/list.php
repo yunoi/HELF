@@ -1,11 +1,11 @@
 <?php
 // session_start();
-// include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 // include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
 // include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_ini_insert.php";
 
 define('SCALE', 10);
-//
+
 // $servername = "localhost";
 // $username = "root";
 // $password = "123456";

@@ -53,15 +53,15 @@
   </div>
   <nav id="menu_bar">
     <ul>
-      <li id="li_first">
+      <li id="li_img">
       <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/index.php">
         <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/helf_logo.png" alt="헬프 로고">
       </a>
       </li>
-      <li><a href='#'><span>소개</span></a></li>
-      <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/program.php"><span>프로그램</span></a></li>
-      <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php"><span>커뮤니티</span></a></li>
-      <li><a href="#"><span>건강정보</span></a></li>
-      <li><a href="#"><span>같이할건강</span></a></li>
+      <li id="li_first_menu"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php">소개</a></li>
+      <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/program.php">프로그램</a></li>
+      <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">커뮤니티</a></li>
+      <li><a href="#">건강정보</a></li>
+      <li><a href="#">같이할건강</a></li>
     </ul>
   </nav>

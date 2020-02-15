@@ -1,23 +1,23 @@
 
 $(document).ready(function(){
 
-    var slideShow;
-var time; // 슬라이드 넘어가는 시간
-var $carouselLi;
-var carouselCount; // 캐러셀 사진 갯수
-var currentIndex; // 현재 보여지는 슬라이드 인덱스 값
-var caInterval;
-var indicator; // 도트 인디케이터
-var nav;
-var prev;
-var next;
+  var slideShow;
+  var time; // 슬라이드 넘어가는 시간
+  var $carouselLi;
+  var carouselCount; // 캐러셀 사진 갯수
+  var currentIndex; // 현재 보여지는 슬라이드 인덱스 값
+  var caInterval;
+  var indicator; // 도트 인디케이터
+  var nav;
+  var prev;
+  var next;
 
-//사진 연결
-var imgW; // 사진 한장의 너비	
-    carouselInit(500, 2000);
-    $(window).resize(function(){
+  //사진 연결
+  var imgW; // 사진 한장의 너비	
+  carouselInit(258, 2000);
+  $(window).resize(function(){
         carousel_setImgPosition();
-    });
+  });
     
     /* 초기 설정 */
     function carouselInit( height, t ){

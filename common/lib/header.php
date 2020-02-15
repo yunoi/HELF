@@ -1,7 +1,4 @@
 ﻿<?php
-  session_start();
-  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
-
   if(isset($_SESSION["userId"])){
     $userId = $_SESSION["userId"];
   } else {

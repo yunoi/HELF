@@ -1,3 +1,7 @@
+<?php
+  session_start();
+ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>

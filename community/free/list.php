@@ -1,9 +1,15 @@
 <?php
+// session_start();
 // include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 // include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
 // include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_ini_insert.php";
 
 define('SCALE', 10);
+//
+// $servername = "localhost";
+// $username = "root";
+// $password = "123456";
+// $conn = mysqli_connect($servername, $username, $password, "helf");
 
 //*****************************************************
 $sql=$result=$total_record=$total_page=$start="";
@@ -13,16 +19,18 @@ $total_record=0;
 //*****************************************************
 if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
     //제목, 내용, 아이디
-    $find = test_input($_POST["find"]);
-    $search = test_input($_POST["search"]);
+    $find = $_POST["find"];
+    $search = $_POST["search"];
     $q_search = mysqli_real_escape_string($conn, $search);
-    $sql="SELECT * from `free` where $find like '%$q_search%' order by num desc;";
+    $sql="SELECT * from `community` where $find like '%$q_search%' order by num desc;";
 } else {
-    $sql="SELECT * from `free` order by num desc";
+    $sql="SELECT * from `community` order by num desc;";
 }
 
 $result=mysqli_query($conn, $sql);
+
 $total_record=mysqli_num_rows($result);
+// echo "<script>alert('{$total_record}');</script>";
 
 $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
 
@@ -88,10 +96,12 @@ $number = $total_record - $start;
          </div><!--end of list_top_title  -->
 
          <div id="list_content">
+
          <?php
           for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++) {
               mysqli_data_seek($result, $i);
               $row=mysqli_fetch_array($result);
+
               $num=$row['num'];
               $id=$row['id'];
               $name=$row['name'];
@@ -103,7 +113,7 @@ $number = $total_record - $start;
             <div id="list_item">
               <div id="list_item1"><?=$number?></div>
               <div id="list_item2">
-                  <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
+                  <a href="./list.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
               </div>
               <div id="list_item3"><?=$name?></div>
               <div id="list_item4"><?=$date?></div>
@@ -133,7 +143,7 @@ $number = $total_record - $start;
           <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button>&nbsp;</a>
           <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
             if (!empty($_SESSION['userid'])) { //login에서 저장한 세션값을 가져옴
-                echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
+                echo '<a href="list.php"><button type="button">글쓰기</button></a>';
             }
           ?>
         </div><!--end of button -->

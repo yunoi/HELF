@@ -15,7 +15,14 @@
 
   $phone = $phone_one."-".$phone_two."-".$phone_three;
   $email = $email_one."@".$email_two;
-  $address = $address_one."/".$address_two."/".$address_three;
+  $address = $address_one."$".$address_two."$".$address_three;
+
+  $id = mysqli_real_escape_string($conn, $id);
+  $password = mysqli_real_escape_string($conn, $password);
+  $name = mysqli_real_escape_string($conn, $name);
+  $phone = mysqli_real_escape_string($conn, $phone);
+  $email = mysqli_real_escape_string($conn, $email);
+  $address = mysqli_real_escape_string($conn, $address);
 
 	$sql = "insert into members (id, password, name, phone, email, address, grade) ";
 	$sql .= "values('$id', '$password', '$name', '$phone', '$email', '$address', null)";
@@ -25,8 +32,9 @@
   mysqli_close($conn);
 
   echo "
-      <script>
-          location.href = '../index.php';
-      </script>
+    <script>
+      alert('가입되셨습니다.');
+      location.href = '../index.php';
+    </script>
   ";
 ?>

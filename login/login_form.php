@@ -12,6 +12,10 @@
     <script src="../js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="../main.js"></script>
     <script type="text/javascript" src="./js/login.js"></script>
+
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
   </head>
   <body>
     <header>
@@ -31,7 +35,7 @@
                 <p>로그인</p>
               </a>
             </div>
-            <!-- <input type="button" value="로그인" onclick="check_input();"> -->
+            <input type="button" value="로그인" onclick="check_input();">
           </form>
         </div>
         <div id="find_info">
@@ -44,13 +48,21 @@
               <p>카카오톡으로 로그인</p>
             </a>
           </div>
-          <div id="naver_login">
-            <a href="naver_login.php">
-              <p>네이버로 로그인</p>
-            </a>
+          <!-- <div id="naver_login">
+            <! 네이버아이디로로그인 버튼 노출 영역 -->
+            <div id="naver_id_login"></div>
+            <!-- //네이버아이디로로그인 버튼 노출 영역 -->
+            <script type="text/javascript">
+            	var naver_id_login = new naver_id_login("imJpReP1ZuJ368WTaKMU", "http://localhost/helf/member/member_form.php");
+            	var state = naver_id_login.getUniqState();
+            	naver_id_login.setButton("white", 2,40);
+            	naver_id_login.setDomain("./login_form.php");
+            	naver_id_login.setState(state);
+            	naver_id_login.init_naver_id_login();
+            </script>
           </div>
           <div id="member_form">
-            <a href="member_form.php">
+            <a href="../member/member_form.php">
               <p>회원가입</p>
             </a>
           </div>

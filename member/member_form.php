@@ -16,7 +16,12 @@
     <script type="text/javascript" src="../main.js"></script>
 
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
     <script>
+      // 우편번호 api
       function address_input() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -25,19 +30,38 @@
             }
         }).open();
       }
-
-      function numberMaxLength(e) {
-      if(e.value.length > e.maxLength){
-          e.value = e.value.slice(0, e.maxLength);
-        }
-      }
-
+      // 이메일 주소 선택시 세팅해주기
       function mail_address_setting(e) {
         document.getElementById("email_two").value= e.value;
+        document.getElementById("email_two").focus();
       }
     </script>
   </head>
   <body>
+    <script type="text/javascript">
+      var naver_id_login = new naver_id_login("imJpReP1ZuJ368WTaKMU", "http://localhost/helf/member/member_form.php");
+      // 접근 토큰 값 출력
+      // alert(naver_id_login.oauthParams.access_token);
+      // 네이버 사용자 프로필 조회
+      naver_id_login.get_naver_userprofile("naverSignInCallback()");
+      // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+      function naverSignInCallback() {
+        // alert(naver_id_login.getProfileData('email'));
+        // alert(naver_id_login.getProfileData('name'));
+
+        var naver_name = naver_id_login.getProfileData('name');
+        var naver_email = naver_id_login.getProfileData('email');
+        var naver_email_arr = naver_email.split('@');
+
+        alert(naver_email_arr[0]);
+        alert(naver_email_arr[1]);
+
+        document.getElementById("input_name").value = naver_name;
+        document.getElementById("email_one").value = naver_email_arr[0];
+        document.getElementById("email_two").value = naver_email_arr[1];
+
+      }
+    </script>
     <header>
       <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
     </header>
@@ -62,8 +86,8 @@
                   <option value="010" selected>010</option>
                   <option value="011" >011</option>
                 </select> -
-                <input type="number" name="phone_two" id="phone_two" maxlength="4" placeholder=" 0000 " oninput="numberMaxLength(this);"> -
-                <input type="number" name="phone_three" id="phone_three" maxlength="4" placeholder=" 0000 " oninput="numberMaxLength(this);">
+                <input type="number" name="phone_two" id="phone_two" placeholder=" 0000 "> -
+                <input type="number" name="phone_three" id="phone_three" placeholder=" 0000 ">
               </div>
               <div id="phone_certification">
                 <a href="#" onclick="">
@@ -122,9 +146,7 @@
                 </a>
               </div>
               <div id="signup">
-                <a href="#" onclick="document.getElementById('input_member_form').submit();">
-                  <p>가 입</p>
-                </a>
+                <input type="submit" id="button_submit" value="가입">
               </div>
             </div>
           </form>

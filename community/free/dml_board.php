@@ -1,11 +1,12 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+// include $_SERVER['DOCUMENT_ROOT']."/helf/login/login.php";
 ?>
 <meta charset="utf-8">
 <?php
 $content= $q_content = $sql= $result = $userid="";
-$userid = $_SESSION['userid'];
-$username = $_SESSION['username'];
+$userid = $_SESSION['user_id'];
+$username = $_SESSION['user_name'];
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $content = trim($_POST["content"]);
@@ -15,7 +16,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     }
     $subject = test_input($_POST["subject"]);
     $content = test_input($_POST["content"]);
-    $userid = test_input($userid);
+    $userid = test_input($user_id);
     $hit = 0;
     $q_subject = mysqli_real_escape_string($conn, $subject);
     $q_content = mysqli_real_escape_string($conn, $content);
@@ -26,7 +27,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     include  "./lib/file_upload.php";
 
     //8 파일의 실제명과 저장되는 명을 삽입한다.
-    $sql="INSERT INTO `free` VALUES (null,'$q_userid','$username','$usernick','$q_subject','$q_content','$regist_day',0,'$is_html','$upfile_name','$copied_file_name','$type[0]');";
+    $sql="INSERT INTO `community` VALUES (null,'$q_userid','$username','$q_subject','$q_content','$regist_day',0,'$upfile_name', '$upfile_type','$copied_file_name',0,'자유게시판');";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       alert_back('Error:5 ' . mysqli_error($conn));
@@ -34,7 +35,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     }
 
     //등록된사용자가 최근 입력한 이미지게시판을 보여주기 위하여 num 찾아서 전달하기 위함이다.
-    $sql="SELECT num from `free` where id ='$userid' order by num desc limit 1;";
+    $sql="SELECT num from `community` where id ='$userid' order by num desc limit 1;";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       alert_back('Error: 6' . mysqli_error($conn));
@@ -113,7 +114,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
       unlink("./data/".$file_copied_0);
     }
 
-    $sql="UPDATE `free` SET `file_name_0`='', `file_copied_0` ='', `file_type_0` =''  WHERE `num`=$q_num;";
+    $sql="UPDATE `community` SET `file_name_0`='', `file_copied_0` ='', `file_type_0` =''  WHERE `num`=$q_num;";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));

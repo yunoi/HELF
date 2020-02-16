@@ -70,10 +70,8 @@
         type="text/css"
         href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/css/calcuator.css">
-    <script src="./js/vendor/modernizr.custom.min.js"></script>
-    <script src="./js/vendor/jquery-1.10.2.min.js"></script>
-    <script src="./js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
-    <script type="text/javascript" src="./common/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/js/bmi.js" charset="utf-8"></script>
   </head>
   <body>
     <header>
@@ -108,7 +106,25 @@ if($mode==="bmi"){
         </tr>
       </table>
   </div>
+  <div class="bmi-wrap r5">
+				<div class="bmi">
+					<p class="tit"><span class="p-red">비만도(BMI)</span> 검사 결과</p>
+					<div class="graph">
+						<div class="inner">
+							<img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/img/img_bmi.png" alt="">
+							<a href="javascript:;" id="grapnavi" class="btn-point">
+								<img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/img/btn_point.png" alt="">
+								<span id="bmicnt"></span>
+							</a>
+						</div>
+					</div>
+					<ul class="bul-arr-list">
+						<li id="bmi_text"></li>
+					</ul>
+				</div>
+			</div>
   <?php
+  echo ("<script>bmi_fun($bmi)</script>");
 }else{
    ?>
    <div class="div-kcal">
@@ -154,7 +170,6 @@ if($mode==="bmi"){
    <?php
 }
  ?>
-
 </div>
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>

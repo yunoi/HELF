@@ -1,15 +1,16 @@
 <?php
+//도시 = 서울,경기등등 city
+//지역 = 구 용산구,성동구 area
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/create_table.php";
-create_table($conn, 'carecenter');//자유게시판테이블생성
+create_table($conn, 'carecenter');
 define('SCALE', 10);
 //*****************************************************
 $sql=$result=$total_record=$total_page=$start="";
 $row="";
 $memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
 $total_record=0;
-$sql="select * from carecenter"
+$sql="select * from carecenter";
 $result=mysqli_query($conn, $sql);
 $total_record=mysqli_num_rows($result);
 $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
@@ -29,8 +30,10 @@ $number = $total_record - $start;
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="HELF/css/common.css">
-    <link rel="stylesheet" href="HELF/css/greet.css">
+    <link rel="stylesheet" href="./css/greet.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <script type="text/javascript" src="./js/member_form.js"></script>
     <title></title>
   </head>
@@ -51,10 +54,10 @@ $number = $total_record - $start;
              <div id="list_search2"><span>SELECT</span></div>
              <div id="list_search3">
                <select  name="find">
-                 <option value="subject">제목</option>
-                 <option value="content">내용</option>
+                 <option value="city">지역</option>
+                 <option value="area">구</option>
                  <option value="name">이름</option>
-                 <option value="id">아이디</option>
+                 <option value="adderrs">주소</option>
                </select>
              </div><!--end of list_search3  -->
              <div id="list_search4"><input type="text" name="search"></div>
@@ -64,11 +67,13 @@ $number = $total_record - $start;
          <div id="clear"></div>
          <div id="list_top_title">
            <ul>
-             <li id="list_title1">번호</li>
-             <li id="list_title2">제목</li>
-             <li id="list_title3">글쓴이</li>
-             <li id="list_title4">등록일</li>
-             <li id="list_title5">조회</li>
+             <li id="list_title1">지역</li>
+             <li id="list_title2">구</li>
+             <li id="list_title3">측정장소</li>
+             <li id="list_title4">이름</li>
+             <li id="list_title5">주소</li>
+             <li id="list_title6">연락처</li>
+             <li id="list_title7">링크</li>
            </ul>
          </div><!--end of list_top_title  -->
 
@@ -85,20 +90,19 @@ $number = $total_record - $start;
               $adderrs=$row['adderrs'];
               $tel=$row['tel'];?>
             <div id="list_item">
-              <div id="list_item1"><?=$city?></div>  <!-- 지역 구 OOO보건소 (진료소,보건소) 이름 주소 번호-->
+              <!-- 지역 구 OOO보건소 (진료소,보건소) 이름 주소 번호 지도(링크)-->
+              <div id="list_item1"><?=$city?></div>
               <div id="list_item2"><?=$area?></div>
               <div id="list_item3"><?=$areahealth?></div>
-              <div id="list_item4"><?=$type?></div>
-              <div id="list_item5"><?=$name?></div>
+              <div id="list_item4"><?=$name?></div>
               <div id="list_item5"><?=$adderrs?></div>
-              <div id="list_item5"><?=$tel?></div>
-              <div id="list_item5">
+              <div id="list_item6"><?=$tel?></div>
+              <div id="list_item7">
                 <a href="https://www.google.com/maps/search/?api=1&query=<?=$name?>">
-                  <img src="btn_spot.gif" width="18" height="24" alt="">
+                  <img src="./img/btn_spot.gif" width="18" height="24" alt="">
                 </a>
               </div>
             </div><!--end of list_item -->
-            <div id="memo_content"><?=$memo_content?></div>
         <?php
             $number--;
           }//end of for

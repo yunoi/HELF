@@ -35,15 +35,14 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
     $subject=str_replace(" ", "&nbsp;",$subject);
     $content=str_replace("\n", "<br>",$content);
     $content=str_replace(" ", "&nbsp;",$content);
-    $file_name_0=$row['file_name_0'];
-    $file_copied_0=$row['file_copied_0'];
-    $file_type_0=$row['file_type_0'];
+    $file_name=$row['file_name'];
+    $file_copied=$row['file_copied'];
+    $file_type=$row['file_type'];
     $day=$row['regist_day'];
 
-    //숫자 0 " " '0' null 0.0   $a = array()
-    if(!empty($file_copied_0)&&$file_type_0 =="image"){
+    if(!empty($file_copied)&&$file_type =="image"){
       //이미지 정보를 가져오기 위한 함수 width, height, type
-      $image_info=getimagesize("./data/".$file_copied_0);
+      $image_info=getimagesize("./data/".$file_copied);
       $image_width=$image_info[0];
       $image_height=$image_info[1];
       $image_type=$image_info[2];
@@ -61,28 +60,23 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/greet.css">
-    <link rel="stylesheet" href="../css/memo.css">
-    <script type="text/javascript" src="../js/member_form.js?ver=1"></script>
+    <link rel="stylesheet" href="./css/greet.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <title></title>
   </head>
   <body>
     <div id="wrap">
       <div id="header">
-          <?php include "../lib/top_login2.php"; ?>
+          <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       </div><!--end of header  -->
-      <div id="menu">
-        <?php include "../lib/top_menu2.php"; ?>
-      </div><!--end of menu  -->
       <div id="content">
        <div id="col1">
-         <div id="left_menu">
-           <?php include "../lib/left_menu.php"; ?>
-         </div>
+
        </div><!--end of col1  -->
        <div id="col2">
-         <div id="title"><img src="../img/title_free.gif"></div>
+         <div id="title">자유게시판>글쓰기</div>
          <div class="clear"></div>
          <div id="write_form_title"></div>
          <div class="clear"></div>
@@ -90,7 +84,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
               <div class="write_line"></div>
               <div id="write_row1">
                 <div class="col1">아이디</div>
-                <div class="col2"><?=$id?>
+                <div class="col2"><?=$user_id?>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   조회 : <?=$hit?> &nbsp;&nbsp;&nbsp; 입력날짜: <?=$day?>
                 </div>
@@ -106,7 +100,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
               <div id="view_content">
                 <div class="col2">
                   <?php
-                    if($file_type_0 =="image"){
+                    if($file_type =="image"){
                       echo "<img src='./data/$file_copied_0' width='$image_width'><br>";
                     }elseif(!empty($_SESSION['userid'])&&!empty($file_copied_0)){
                       $file_path = "./data/".$file_copied_0;
@@ -176,7 +170,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
 
   <?php
     //관리자이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
-    if($_SESSION['userid']=="admin" || $_SESSION['userid']==$id){
+    if($_SESSION['user_id']=="admin" || $_SESSION['user_id']==$id){
       echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"><img src="../img/modify.png"></a>&nbsp;');
       echo('<img src="../img/delete.png" onclick="check_delete('.$num.')">&nbsp;');
     }

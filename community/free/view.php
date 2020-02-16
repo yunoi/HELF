@@ -14,13 +14,13 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    $sql="UPDATE `free` SET `hit`=$hit WHERE `num`=$q_num;";
+    $sql="UPDATE `community` SET `hit`=$hit WHERE b_code='자유게시판' and `num`=$q_num;";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
 
-    $sql="SELECT * from `free` where num ='$q_num';";
+    $sql="SELECT * from `community` where b_code='자유게시판' and num ='$q_num';";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
@@ -28,7 +28,6 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
     $row=mysqli_fetch_array($result);
     $id=$row['id'];
     $name=$row['name'];
-    $nick=$row['nick'];
     $hit=$row['hit'];
     $subject= htmlspecialchars($row['subject']);
     $content= htmlspecialchars($row['content']);
@@ -36,7 +35,6 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
     $subject=str_replace(" ", "&nbsp;",$subject);
     $content=str_replace("\n", "<br>",$content);
     $content=str_replace(" ", "&nbsp;",$content);
-    $is_html=$row['is_html'];
     $file_name_0=$row['file_name_0'];
     $file_copied_0=$row['file_copied_0'];
     $file_type_0=$row['file_type_0'];

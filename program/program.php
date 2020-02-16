@@ -1,17 +1,24 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
+
+create_table($conn, 'program');
+
+ ?>
+
  <!DOCTYPE html>
  <html>
  <head>
  <meta charset="utf-8">
  <title>같이할건강</title>
- <!-- <link rel="stylesheet" type="text/css" href="../css/common.css?ver=1"> -->
- <!-- <link rel="stylesheet" type="text/css" href="../css/board.css?ver=1"> -->
+ <link rel="stylesheet" type="text/css" href="../common/css/common.css">
+ <link rel="stylesheet" type="text/css" href="../common/css/main.css">
  <link rel="stylesheet" type="text/css" href="./css/program.css">
+
  </head>
  <body>
  <header>
      <?php include "../common/lib/header.php";?>
-     <?php create_table($conn, 'program'); ?>
-    </header>
+ </header>
  <section>
    <section>
        <!-- ?php include "slide.php";?> -->
@@ -21,7 +28,7 @@
         <ul>
           <br>&nbsp
           <li>
-            <h3>카타고리 상세검색</h2>
+            <h3>카테고리 상세검색</h2>
           </li>
           <br>&nbsp
           <li>
@@ -39,7 +46,7 @@
           </li>
           <br><br>&nbsp
           <li>
-            <em>지역선택:</em><?php include "select_location.php";?>
+            <em>지역선택</em><?php include "select_location.php";?>
           </li>
           <br><br>&nbsp
           <li>
@@ -49,9 +56,9 @@
           </li>
           <br><br>&nbsp
           <li>
-            <em> 가격:&nbsp</em>
-            <input type="number" name="" value="" style="width:100px;">원~<br>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" name="" value=""style="width:100px;">원
+            <em> 가격&nbsp</em><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" name="" value="" style="width:100px;">원~<br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" name="" value=""style="width:100px;">원
           </li>
           <br><br>&nbsp
           <li class="li_ok">

@@ -1,7 +1,7 @@
 
 <div id="main_content">
 <div id="carousel_section">
-<ul>
+<ul class="slider">
     <li>
         <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/img01.png">
     </li>
@@ -19,12 +19,10 @@
     <a href="#" class="prev">prev</a>
     <a href="#" class="next">next</a>
 </div>
-<div id="slideshow_indi">
-    <a href="#" class='active'>&nbsp;&nbsp;</a>
-    <a href="#">&nbsp;&nbsp;</a>
-    <a href="#">&nbsp;&nbsp;</a>
-    <a href="#">&nbsp;&nbsp;</a>
-</div>
+
+<ol class="pagination">
+
+</ol>
 </div>
   <div id=board_preview>
 <div id="latest">

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="./css/label.css">
+    <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/css/label.css">
     <link
         rel="stylesheet"
         type="text/css"
@@ -28,13 +28,14 @@
       }else if($age.value===""){
         alert("나이를 입력해주세요");
         return;
-      }else if($cm.value === ""  == "" || isNaN($cm.value) || $cm.value < 50 || $cm.value > 240){
+      }else if($cm.value === ""|| isNaN($cm.value) || $cm.value < 50 || $cm.value > 240){
         alert("신장(cm)을 입력해주세요");
         return
       }else if($kg.value === ""){
         alert("몸무게(kg)을 입력해주세요");
         return
       }
+      <?php $mode="bmi"?>
       document.form_bmi.submit();
     }
     </script>
@@ -45,8 +46,8 @@
     </header>
 <!--  -->
     <section>
-      <form class="" name="form_bmi" action="index.html" method="post">
-        <div id="div-bmi">
+      <form class="" name="form_bmi" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/calculator.php?mode=<?=$mode?>" method="post">
+        <div class="div-bmi">
           <h3>나의 BMI지수를 재보자</h3>
         <!-- get방식으로 안에 모드(타입)을 넣는다 bmi와 kcal을 한번에 처리한다 -->
         <ul>

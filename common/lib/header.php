@@ -16,15 +16,22 @@
   }
 
 ?>
-  <div id="top">
+<div id="top">
     <ul id="top_menu">
 <?php
   if(!$user_id) {
 ?>
-      <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/member/member_form.php">회원가입</a></li>
-      <li> | </li>
-      <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/login/login_form.php">로그인</a></li>
-<?php
+        <li>
+            <a
+                href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/member/member_form.php">회원가입</a>
+        </li>
+        <li>
+            |
+        </li>
+        <li>
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/login/login_form.php">로그인</a>
+        </li>
+    <?php
   } else {
     $logged = $user_name."(".$user_id.")";
     $logged_etc = "님 [Level: ".$user_grade."]";
@@ -40,24 +47,59 @@
 <?php
     if($user_grade=='admin') {
 ?>
-                <li> | </li>
-                <li><a href="admin.php">관리자페이지</a></li>
-<?php
+        <li>
+            |
+        </li>
+        <li>
+            <a href="admin.php">관리자페이지</a>
+        </li>
+        <?php
     }
 ?>
     </ul>
-  </div>
-  <nav id="menu_bar">
+</div>
+<nav id="menu_bar">
     <ul>
-      <li id="li_img">
-      <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/index.php">
-        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/helf_logo.png" alt="헬프 로고">
-      </a>
-      </li>
-      <li id="li_first_menu"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php">소개</a></li>
-      <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/program.php">프로그램</a></li>
-      <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">커뮤니티</a></li>
-      <li><a href="#">건강정보</a></li>
-      <li><a href="#">같이할건강</a></li>
+        <li id="li_img">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/index.php">
+                <img
+                    src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/helf_logo.png"
+                    alt="헬프 로고">
+            </a>
+        </li>
+        <li class="down_menu">
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php"><span>소개</span></a>
+                <ul class="menu_slide" id="about_slide">
+                  <li><a href="#">HELF</a></li>
+                  <li><a href="#">공지사항</a></li>
+                  <li><a href="#">FAQ</a></li>
+                </ul>
+              </li>
+        <li>
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/program.php">
+                <span>프로그램</span></a>
+        </li>
+        <li class="down_menu">
+            <a
+                href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">
+                <span>커뮤니티</span></a>
+                <ul class="menu_slide" id="community_slide">
+                  <li><a href="#">자유게시판</a></li>
+                  <li><a href="#">후기게시판</a></li>
+                </ul>
+              </li>
+
+        <li class="down_menu">
+            <a href="#">
+                <span>건강정보</span></a>
+                <ul class="menu_slide" id="info_slide">
+                  <li><a href="#">운동</a></li>
+                  <li><a href="#">레시피</a></li>
+                </ul>
+        </li>
+        <li>
+            <a href="#">
+                <span>같이할건강</span></a>
+        </li>
     </ul>
-  </nav>
+</nav>

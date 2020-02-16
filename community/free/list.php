@@ -107,7 +107,7 @@ $number = $total_record - $start;
               <div id="list_item2">
                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
               </div>
-              <div id="list_item3"><?=$name?></div>
+              <div id="list_item3"><?=$user_name?></div>
               <div id="list_item4"><?=$date?></div>
               <div id="list_item5"><?=$hit?></div>
             </div><!--end of list_item -->

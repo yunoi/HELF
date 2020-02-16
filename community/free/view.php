@@ -35,6 +35,8 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
     $subject=str_replace(" ", "&nbsp;",$subject);
     $content=str_replace("\n", "<br>",$content);
     $content=str_replace(" ", "&nbsp;",$content);
+    //b_code
+    $b_code=$row['b_code'];
     $file_name=$row['file_name'];
     $file_copied=$row['file_copied'];
     $file_type=$row['file_type'];
@@ -72,11 +74,8 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       </div><!--end of header  -->
       <div id="content">
-       <div id="col1">
-
-       </div><!--end of col1  -->
        <div id="col2">
-         <div id="title">자유게시판>글쓰기</div>
+         <div id="title">자유게시판</div>
          <div class="clear"></div>
          <div id="write_form_title"></div>
          <div class="clear"></div>
@@ -101,13 +100,15 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
                 <div class="col2">
                   <?php
                     if($file_type =="image"){
-                      echo "<img src='./data/$file_copied_0' width='$image_width'><br>";
-                    }elseif(!empty($_SESSION['userid'])&&!empty($file_copied_0)){
-                      $file_path = "./data/".$file_copied_0;
+                      echo "<img src='./data/$file_copied' width='$image_width'><br>";
+
+                    }elseif(!empty($_SESSION['user_id'])&&!empty($file_copied)){
+                      $file_path = "./data/".$file_copied;
                       $file_size = filesize($file_path);
+
                       //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
                       echo ("
-                        ▷ 첨부파일 : $file_name_0 &nbsp; [ $file_size Byte ]
+                        ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
                       ");
@@ -159,24 +160,24 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       <input type="hidden" name="page" value="<?=$page?>">
       <div id="ripple_insert">
         <div id="ripple_textarea"><textarea name="ripple_content" rows="3" cols="80"></textarea></div>
-        <div id="ripple_button"> <input type="image"  src="../img/memo_ripple_button.png"></div>
+        <div id="ripple_button"> <input type="button"  value="덧글입력"></div>
       </div><!--end of ripple_insert -->
     </form>
   </div><!--end of ripple2  -->
 </div><!--end of ripple  -->
 
 <div id="write_button">
-    <a href="./list.php?page=<?=$page?>"><img src="../img/list.png"></a>
+    <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button></a>
 
   <?php
     //관리자이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
-    if($_SESSION['user_id']=="admin" || $_SESSION['user_id']==$id){
-      echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"><img src="../img/modify.png"></a>&nbsp;');
-      echo('<img src="../img/delete.png" onclick="check_delete('.$num.')">&nbsp;');
+    if($_SESSION['user_id']=="admin" || $_SESSION['user_id']==$user_id){
+      echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
+      echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
     }
     //로그인하는 유저에게 글쓰기 기능을 부여함.
-    if(!empty($_SESSION['userid'])){
-    echo '<a href="write_edit_form.php"><img src="../img/write.png"></a>';
+    if(!empty($_SESSION['user_id'])){
+    echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
     }
   ?>
 </div><!--end of write_button-->

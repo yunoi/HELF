@@ -7,6 +7,8 @@ $upfile_tmp_name= $_FILES['upfile']['tmp_name'];
 $upfile_error= $_FILES['upfile']['error'];
 $upfile_size= $_FILES['upfile']['size'];
 
+echo "<script>alert('upfile_name:{$upfile_name}');</script>";
+
 //2. 파일명과 확장자를 구분해서 저장한다.
 $file = explode(".", $upfile_name); //파일명과 확장자구분에서 배열저장
 $file_name = $file[0];              //파일명
@@ -47,6 +49,8 @@ if($type[0]=='image'){
 
 //7. 임시저장소에 있는 파일을 서버에 지정한 위치로 이동한다.
 if(!move_uploaded_file($upfile_tmp_name, $uploaded_file)){
+  echo "<script>alert('{$upfile_tmp_name}');</script>";
+  echo "<script>alert('{$uploaded_file}');</script>";
   alert_back('4. 서버 전송에러!!');
 }
 

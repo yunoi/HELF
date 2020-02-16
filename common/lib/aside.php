@@ -1,7 +1,7 @@
 <div id="aside_menu">
     <ul id="aside_shortcut">
         <li>
-            <a href="#">
+            <a href="./bmi/bmi.php">
                 <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/link_shortcut01.gif" alt="나의 BMI 지수는?(비만도 계산)"></a>
         </li>
         <li class="right">

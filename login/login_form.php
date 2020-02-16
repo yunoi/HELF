@@ -11,11 +11,7 @@
     <script src="../js/vendor/jquery-1.10.2.min.js"></script>
     <script src="../js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="../main.js"></script>
-    <script>
-      function check_input() {
-        alert("체크인풋!");
-      }
-    </script>
+    <script type="text/javascript" src="./js/login.js"></script>
   </head>
   <body>
     <header>

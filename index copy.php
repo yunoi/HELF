@@ -21,7 +21,7 @@
                     <img src="./img/img03.png">
                 </li>
                 <li>
-                    <img src="./img/img04.png">
+                    <a href="#"><img src="./img/img04.png"></a>
                 </li>
             </ul>
             <div id="slideshow_nav">

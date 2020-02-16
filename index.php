@@ -15,20 +15,15 @@
             rel="stylesheet"
             type="text/css"
             href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
         <script src="./js/vendor/modernizr.custom.min.js"></script>
         <script src="./js/vendor/jquery-1.10.2.min.js"></script>
         <script src="./js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="./main.js"></script>
+        <script type="text/javascript" src="./common/js/main.js"></script>
     </head>
     <body>
 
         <header>
             <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
-            <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/carousel.php";?>
         </header>
         <div id="container">
             <div id="section_aside">

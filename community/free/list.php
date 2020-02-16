@@ -1,15 +1,9 @@
 <?php
-// session_start();
+session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
-// include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
-// include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_ini_insert.php";
+// include $_SERVER['DOCUMENT_ROOT']."/helf/login/login.php";
 
 define('SCALE', 10);
-
-// $servername = "localhost";
-// $username = "root";
-// $password = "123456";
-// $conn = mysqli_connect($servername, $username, $password, "helf");
 
 //*****************************************************
 $sql=$result=$total_record=$total_page=$start="";
@@ -22,9 +16,9 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
     $find = $_POST["find"];
     $search = $_POST["search"];
     $q_search = mysqli_real_escape_string($conn, $search);
-    $sql="SELECT * from `community` where $find like '%$q_search%' order by num desc;";
+    $sql="SELECT * from `community` where $find like '%$q_search%' AND b_code='자유게시판' order by num desc;";
 } else {
-    $sql="SELECT * from `community` order by num desc;";
+    $sql="SELECT * from `community` where b_code='자유게시판' order by num desc;";
 }
 
 $result=mysqli_query($conn, $sql);
@@ -94,14 +88,12 @@ $number = $total_record - $start;
              <li id="list_title5">조회</li>
            </ul>
          </div><!--end of list_top_title  -->
-
          <div id="list_content">
 
          <?php
           for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++) {
               mysqli_data_seek($result, $i);
               $row=mysqli_fetch_array($result);
-
               $num=$row['num'];
               $id=$row['id'];
               $name=$row['name'];
@@ -113,7 +105,7 @@ $number = $total_record - $start;
             <div id="list_item">
               <div id="list_item1"><?=$number?></div>
               <div id="list_item2">
-                  <a href="./list.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
+                  <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
               </div>
               <div id="list_item3"><?=$name?></div>
               <div id="list_item4"><?=$date?></div>
@@ -140,10 +132,11 @@ $number = $total_record - $start;
           <br><br><br><br><br><br><br>
         </div><!--end of page num -->
         <div id="button">
+          <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
           <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button>&nbsp;</a>
           <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
-            if (!empty($_SESSION['userid'])) { //login에서 저장한 세션값을 가져옴
-                echo '<a href="list.php"><button type="button">글쓰기</button></a>';
+            if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
+                echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
             }
           ?>
         </div><!--end of button -->

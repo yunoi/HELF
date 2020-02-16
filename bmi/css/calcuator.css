@@ -5,5 +5,11 @@
 table th{
   background-color: lightgray;
   font-size: 12px;
-  
+
+}
+table{
+  margin: 0px auto;
+}
+table td{
+  padding: 8px;
 }

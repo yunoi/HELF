@@ -1,11 +1,12 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+// include $_SERVER['DOCUMENT_ROOT']."/helf/login/login.php";
 
 $num=$id=$subject=$content=$day=$hit="";
 $mode="insert";
 $checked="";
-$id= $_SESSION['userid'];
+$id= $_SESSION['user_id'];
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
     $mode="update";
@@ -25,8 +26,8 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
     $subject=str_replace(" ", "&nbsp;",$subject);
     $content=str_replace("\n", "<br>",$content);
     $content=str_replace(" ", "&nbsp;",$content);
-    $file_name_0=$row['file_name_0'];
-    $file_copied_0=$row['file_copied_0'];
+    $file_name=$row['file_name'];
+    $file_copied=$row['file_copied'];
     $day=$row['regist_day'];
     $hit=$row['hit'];
     mysqli_close($conn);
@@ -90,8 +91,8 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
                     }
                   ?>
                   <?php
-                    if($mode=="update" && !empty($file_name_0)){
-                      echo "$file_name_0 파일등록";
+                    if($mode=="update" && !empty($file_name)){
+                      echo "$file_name 파일등록";
                       echo '<input type="checkbox" id="del_file" name="del_file" value="1">삭제';
                       echo '<div class="clear"></div>';
                     }
@@ -104,7 +105,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
             </div><!--end of write_form  -->
 
             <div id="write_button">
-              <input type="button" onclick='document.getElementById("del_file").disabled=false' value="완료">
+              <input type="submit" onclick='document.getElementById("del_file").disabled=false' value="완료">
               <a href="./list.php"><button type="button">목록</button></a>
             </div><!--end of write_button-->
          </form>

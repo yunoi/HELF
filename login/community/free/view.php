@@ -14,13 +14,13 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    $sql="UPDATE `free` SET `hit`=$hit WHERE `num`=$q_num;";
+    $sql="UPDATE `community` SET `hit`=$hit WHERE b_code='자유게시판' and `num`=$q_num;";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
 
-    $sql="SELECT * from `free` where num ='$q_num';";
+    $sql="SELECT * from `community` where b_code='자유게시판' and num ='$q_num';";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
@@ -28,7 +28,6 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
     $row=mysqli_fetch_array($result);
     $id=$row['id'];
     $name=$row['name'];
-    $nick=$row['nick'];
     $hit=$row['hit'];
     $subject= htmlspecialchars($row['subject']);
     $content= htmlspecialchars($row['content']);
@@ -36,16 +35,16 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
     $subject=str_replace(" ", "&nbsp;",$subject);
     $content=str_replace("\n", "<br>",$content);
     $content=str_replace(" ", "&nbsp;",$content);
-    $is_html=$row['is_html'];
-    $file_name_0=$row['file_name_0'];
-    $file_copied_0=$row['file_copied_0'];
-    $file_type_0=$row['file_type_0'];
+    //b_code
+    $b_code=$row['b_code'];
+    $file_name=$row['file_name'];
+    $file_copied=$row['file_copied'];
+    $file_type=$row['file_type'];
     $day=$row['regist_day'];
 
-    //숫자 0 " " '0' null 0.0   $a = array()
-    if(!empty($file_copied_0)&&$file_type_0 =="image"){
+    if(!empty($file_copied)&&$file_type =="image"){
       //이미지 정보를 가져오기 위한 함수 width, height, type
-      $image_info=getimagesize("./data/".$file_copied_0);
+      $image_info=getimagesize("./data/".$file_copied);
       $image_width=$image_info[0];
       $image_height=$image_info[1];
       $image_type=$image_info[2];
@@ -63,28 +62,20 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/greet.css">
-    <link rel="stylesheet" href="../css/memo.css">
-    <script type="text/javascript" src="../js/member_form.js?ver=1"></script>
+    <link rel="stylesheet" href="./css/greet.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <title></title>
   </head>
   <body>
     <div id="wrap">
       <div id="header">
-          <?php include "../lib/top_login2.php"; ?>
+          <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       </div><!--end of header  -->
-      <div id="menu">
-        <?php include "../lib/top_menu2.php"; ?>
-      </div><!--end of menu  -->
       <div id="content">
-       <div id="col1">
-         <div id="left_menu">
-           <?php include "../lib/left_menu.php"; ?>
-         </div>
-       </div><!--end of col1  -->
        <div id="col2">
-         <div id="title"><img src="../img/title_free.gif"></div>
+         <div id="title">자유게시판</div>
          <div class="clear"></div>
          <div id="write_form_title"></div>
          <div class="clear"></div>
@@ -92,7 +83,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
               <div class="write_line"></div>
               <div id="write_row1">
                 <div class="col1">아이디</div>
-                <div class="col2"><?=$id?>
+                <div class="col2"><?=$user_id?>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   조회 : <?=$hit?> &nbsp;&nbsp;&nbsp; 입력날짜: <?=$day?>
                 </div>
@@ -108,14 +99,16 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
               <div id="view_content">
                 <div class="col2">
                   <?php
-                    if($file_type_0 =="image"){
-                      echo "<img src='./data/$file_copied_0' width='$image_width'><br>";
-                    }elseif(!empty($_SESSION['userid'])&&!empty($file_copied_0)){
-                      $file_path = "./data/".$file_copied_0;
+                    if($file_type =="image"){
+                      echo "<img src='./data/$file_copied' width='$image_width'><br>";
+
+                    }elseif(!empty($_SESSION['user_id'])&&!empty($file_copied)){
+                      $file_path = "./data/".$file_copied;
                       $file_size = filesize($file_path);
+
                       //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
                       echo ("
-                        ▷ 첨부파일 : $file_name_0 &nbsp; [ $file_size Byte ]
+                        ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
                       ");
@@ -167,24 +160,24 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       <input type="hidden" name="page" value="<?=$page?>">
       <div id="ripple_insert">
         <div id="ripple_textarea"><textarea name="ripple_content" rows="3" cols="80"></textarea></div>
-        <div id="ripple_button"> <input type="image"  src="../img/memo_ripple_button.png"></div>
+        <div id="ripple_button"> <input type="button"  value="덧글입력"></div>
       </div><!--end of ripple_insert -->
     </form>
   </div><!--end of ripple2  -->
 </div><!--end of ripple  -->
 
 <div id="write_button">
-    <a href="./list.php?page=<?=$page?>"><img src="../img/list.png"></a>
+    <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button></a>
 
   <?php
     //관리자이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
-    if($_SESSION['userid']=="admin" || $_SESSION['userid']==$id){
-      echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"><img src="../img/modify.png"></a>&nbsp;');
-      echo('<img src="../img/delete.png" onclick="check_delete('.$num.')">&nbsp;');
+    if($_SESSION['user_id']=="admin" || $_SESSION['user_id']==$user_id){
+      echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
+      echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
     }
     //로그인하는 유저에게 글쓰기 기능을 부여함.
-    if(!empty($_SESSION['userid'])){
-    echo '<a href="write_edit_form.php"><img src="../img/write.png"></a>';
+    if(!empty($_SESSION['user_id'])){
+    echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
     }
   ?>
 </div><!--end of write_button-->

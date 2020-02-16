@@ -1,29 +1,25 @@
 ﻿<?php
-  if(isset($_SESSION["userId"])){
-    $userId = $_SESSION["userId"];
+  if(isset($_SESSION["user_id"])){
+    $user_id = $_SESSION["user_id"];
   } else {
-    $userId = "";
+    $user_id = "";
   }
-  if(isset($_SESSION["userName"])){
-    $userName = $_SESSION["userName"];
+  if(isset($_SESSION["user_name"])){
+    $user_name = $_SESSION["user_name"];
   } else {
-    $userName = "";
+    $user_name = "";
   }
-  if(isset($_SESSION["userLevel"])){
-    $userLevel = $_SESSION["userLevel"];
+  if(isset($_SESSION["user_grade"])){
+    $user_grade = $_SESSION["user_grade"];
   } else {
-    $userLevel = "";
+    $user_grade = "";
   }
-  if(isset($_SESSION["userPoint"])){
-    $userPoint = $_SESSION["userPoint"];
-  } else {
-    $userPoint = "";
-  }
+
 ?>
 <div id="top">
     <ul id="top_menu">
-        <?php
-  if(!$userId) {
+<?php
+  if(!$user_id) {
 ?>
         <li>
             <a
@@ -37,28 +33,19 @@
         </li>
     <?php
   } else {
-    $logged = $userName."(".$userId.")";
-    $logged_etc = "님 [Level: ".$userLevel.", Point: ".$userPoint."]";
+    $logged = $user_name."(".$user_id.")";
+    $logged_etc = "님 [Level: ".$user_grade."]";
 ?>
-        <li>
-            <span><?=$logged?></span><span><?=$logged_etc?></span></li>
-        <li>
-            |
-        </li>
-        <li>
-            <a href="logout.php">로그아웃</a>
-        </li>
-        <li>
-            |
-        </li>
-        <li>
-            <a href="member_modify_form.php">정보수정</a>
-        </li>
-        <?php
+      <li><span><?=$logged?></span><span><?=$logged_etc?></span></li>
+      <li> | </li>
+      <li><a href="logout.php">로그아웃</a></li>.
+      <li> | </li>
+      <li><a href="member_modify_form.php">정보수정</a></li>
+<?php
   }
 ?>
-        <?php
-    if($userLevel==1) {
+<?php
+    if($user_grade=='admin') {
 ?>
         <li>
             |
@@ -81,8 +68,7 @@
             </a>
         </li>
         <li class="down_menu">
-            <a href='#'>
-                <span>소개</span></a>
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php"><span>소개</span></a>
                 <ul class="menu_slide" id="about_slide">
                   <li><a href="#">HELF</a></li>
                   <li><a href="#">공지사항</a></li>

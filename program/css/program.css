@@ -18,7 +18,7 @@ a{
 
 /* 카타고리 선택 */
 .div_program_category{
-  width: 250px;
+  width: 220px;
   height: 600px;
   border: 1px solid black;
   float: left;
@@ -89,5 +89,5 @@ a{
 
 .li_ok{
   float:right;
-  margin-right: 20px;
+  margin-right: 40px;
 }

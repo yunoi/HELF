@@ -69,11 +69,7 @@
         </li>
         <li class="down_menu">
         <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php"><span>소개</span></a>
-                <ul class="menu_slide" id="about_slide">
-                  <li><a href="#">HELF</a></li>
-                  <li><a href="#">공지사항</a></li>
-                  <li><a href="#">FAQ</a></li>
-                </ul>
+            
               </li>
         <li>
             <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/program.php">
@@ -83,19 +79,19 @@
             <a
                 href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">
                 <span>커뮤니티</span></a>
-                <ul class="menu_slide" id="community_slide">
+                <ol class="menu_slide" id="community_slide">
                   <li><a href="#">자유게시판</a></li>
                   <li><a href="#">후기게시판</a></li>
-                </ul>
+                </ol>
               </li>
 
         <li class="down_menu">
             <a href="#">
                 <span>건강정보</span></a>
-                <ul class="menu_slide" id="info_slide">
+                <ol class="menu_slide" id="info_slide">
                   <li><a href="#">운동</a></li>
                   <li><a href="#">레시피</a></li>
-                </ul>
+                </ol>
         </li>
         <li>
             <a href="#">
@@ -103,3 +99,8 @@
         </li>
     </ul>
 </nav>
+<ol class="menu_slide" id="about_slide">
+                  <li><a href="#">HELF</a></li>
+                  <li><a href="#">공지사항</a></li>
+                  <li><a href="#">FAQ</a></li>
+                </ol>

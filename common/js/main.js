@@ -97,8 +97,5 @@ $(function(){
   $('.down_menu').mouseover(function(){
     $('.menu_slide').slideDown(1000);
   });
-  $('.down_menu').mouseleave(function(){
-    $('.menu_slide').slideUp(1000);
-  });
 
 });

@@ -35,6 +35,7 @@
         alert("몸무게(kg)을 입력해주세요");
         return
       }
+      <?php $mode="bmi"?>
       document.form_bmi.submit();
     }
     </script>
@@ -45,7 +46,7 @@
     </header>
 <!--  -->
     <section>
-      <form class="" name="form_bmi" action="index.html" method="post">
+      <form class="" name="form_bmi" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/calculator.php?mode=<?=$mode?>" method="post">
         <div id="div-bmi">
           <h3>나의 BMI지수를 재보자</h3>
         <!-- get방식으로 안에 모드(타입)을 넣는다 bmi와 kcal을 한번에 처리한다 -->

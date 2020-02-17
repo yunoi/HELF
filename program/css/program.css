@@ -22,8 +22,8 @@ a{
   height: 600px;
   border: 1px solid black;
   float: left;
-  margin-left: 10%;
-  vertical-align: top;
+  margin-left: 250px;
+
 }
 
 
@@ -32,8 +32,8 @@ a{
   width: 900px;
   height: 600px;
   border: 1px solid black;
-  float: left;
-  vertical-align: top;
+  margin-left: 520px;
+
 }
 
 .div_program_list_top{

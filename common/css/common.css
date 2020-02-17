@@ -34,7 +34,7 @@ a:active { text-decoration:none; color: #222222; }
 #menu_bar li { display: inline-block; width: 100px; height: 100%; margin-left: 32px; color: white;}
 #menu_bar #li_img {margin: 0; width: 256px; height: 106px;}
 #menu_bar #li_first_menu {margin: 0; }
-#menu_bar a { 
+#menu_bar a {
   color: #222;
   float: left;
   font-weight: 700;

@@ -27,6 +27,14 @@ function insert_init_data($conn, $table_name){
           case 'p_qna' :
             $sql = "insert into p_qna values ('admin', 1, '오늘 점심은 뭔가요?', '2020-02-14',1,1);";
             break;
+            case 'notice' :
+              $sql = "INSERT INTO `notice` (`num` , `subject` , `content` , `regist_day` , `hit` , `file_name` , `file_type` , `file_copied`)
+              VALUES(null,'3월 수료한다','3월에 수료하는데 살빼서 멋진 정장입자','2020-02-17',0,null,null,null);";
+              break;
+              case 'faq' :
+                $sql = "INSERT INTO `faq`(`num` , `subject` , `content`)
+                VALUES(null,'다이어트 비법','꾸준하게 하는것입니다.답변:김OO');";
+                break;
           case 'comment' :
             $sql = "INSERT INTO `comment` (`num`, `parent`, `id`, `name`, `content`, `regist_day`, `b_code`) VALUES (null, '1', 'ysm2678', '유세미', '댓글내용입니다', '2020-02-11 (21:32)', '자유게시판');";
             break;

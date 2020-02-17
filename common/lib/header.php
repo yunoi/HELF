@@ -48,19 +48,9 @@
 <?php
     if($user_grade =='admin') {
 ?>
-<<<<<<< HEAD
                 <li> | </li>
                 <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/admin_page.php">관리자페이지</a></li>
 <?php
-=======
-        <li>
-            |
-        </li>
-        <li>
-            <a href="admin.php">관리자페이지</a>
-        </li>
-        <?php
->>>>>>> 15d987cb7a74de41dafc5e1760cec5604befedde
     }
 ?>
     </ul>
@@ -75,7 +65,7 @@
             </a>
         </li>
         <li class="down_menu">
-        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php"><span>소개</span></a>
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php"><span>&nbsp;&nbsp;&nbsp;소개</span></a>
         <ol class="menu_slide" id="about_slide">
                   <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php">HELF</a></li>
                   <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/notice/notice.php">공지사항</a></li>

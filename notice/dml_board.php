@@ -3,7 +3,7 @@ session_start();
 include $_SERVER['DOCUMENT_ROOT']."/common/lib/db_connector.php";
 ?>
 <?php
-if(!isset($_SESSION['user_id'])){
+if(!isset($_SESSION['user_grade'])==="admin"){
   echo "<script>alert('권한없음!');history.go(-1);</script>";
   exit;
 }

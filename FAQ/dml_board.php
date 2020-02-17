@@ -1,16 +1,18 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT']."/common/lib/session_call.php";
+session_start();
 include $_SERVER['DOCUMENT_ROOT']."/common/lib/db_connector.php";
 ?>
-<meta charset="utf-8">
 <?php
+if(!isset($_SESSION['user_grade'])==="admin"){
+  echo "<script>alert('권한없음!');history.go(-1);</script>";
+  exit;
+}
+?>
+<meta charset="utf-8">
+<?php //faq
 //*****************************************************
 $content= $q_content = $sql= $result = $userid="";
 $group_num = 0;
-//*****************************************************
-$userid = $_SESSION['user_id'];
-$username = $_SESSION['user_name'];
-$usergrade = $_SESSION['user_grade'];
 
 // 삽입하는경우
 if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){

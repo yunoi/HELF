@@ -11,67 +11,118 @@
 
 
 	<header>
-    <?php include "../common/lib/header.php";?>
+    <?php
+    include "../common/lib/header.php";
+    include $_SERVER['DOCUMENT_ROOT']."/helf//common/lib/db_connector.php";
+    ?>
   </header>
-	<!-- //header -->
-	<!-- container -->
-  <div id="admin">
-    <div id="admin_border">
-  		<p>관리자페이지</p>
-  		<!-- snb -->
-  		<div id="snb">
+  <div id="admin"> <!--가운데 정렬을 위해 -->
+
+   <div id="admin_border">
+      <p>관리자페이지</p>
+
+
+      <div id="snb">
         <aside id="left-panel" class="left-panel">
-
-
           <div id="main-menu" class="main-menu collapse navbar-collapse">
-                      <h3 class="menu-title">-회원관리-</h3><!-- /.menu-title -->
-                      <ul>
-                        <li><a href="admin_user.php">회원관리</a></li>
-                      </ul>
-                      <br>
-                      <h3 class="menu-title">-게시글 관리-</h3>
-                      <ul>
-                        <li><a href="admin_board.php">자유게시판 관리</a></li>
-                        <li><a href="admin_board.php">후기게시판 관리</a></li>
-                      </ul>
-                      </ul>
-                      <br>
-                      <h3 class="menu-title">-프로그램 관리-</h3>
-                      <ul>
-                        <li><a href="admin_program.php">프로그램 관리</a></li>
-                      </ul>
-                      <br>
-                      <h3>-통계-</h3>
-                      <ul>
-                        <li><a href="admin_statistics.php">월별매출</a></li>
-                        <li><a href="admin_statistics.php">프로그램별 매출</a></li>
-                        <li><a href="admin_statistics.php">회원별 매출</a></li>
-                      </ul>
+            <h3 class="menu-title">-회원관리-</h3><!-- /.menu-title -->
+            <ul>
+              <li><a href="admin_user.php">회원관리</a></li>
+            </ul>
+            <br>
 
-              </div><!-- /.navbar-collapse -->
+            <h3 class="menu-title">-게시글 관리-</h3>
+            <ul>
+              <li><a href="admin_board.php">자유게시판 관리</a></li>
+              <li><a href="admin_board.php">후기게시판 관리</a></li>
+            </ul>
+            <br>
 
-      </aside><!-- /#left-panel -->
-  		</div>
-  		<!-- //snb -->
-  		<!-- content -->
-  		<div id="content">
-        회원관리
-  			<ul>
-          <li>아이디</li>
-          <li>이름</li>
-          <li>전화번호</li>
-          <li>이메일</li>
-          <li>주소</li>
-          <li>등급</li>
-          <li>아이디</li>
-        </ul>
-  		</div>
-  		<!-- //content -->
-  	</div>
+            <h3 class="menu-title">-프로그램 관리-</h3>
+            <ul>
+              <li><a href="admin_program_regist.php">프로그램 등록</a></li>
+              <li><a href="admin_program_manage.php">프로그램 관리</a></li>
+            </ul>
+            <br>
+
+            <h3 class="menu-title">-통계-</h3>
+            <ul>
+              <li><a href="admin_statistics.php">월별매출</a></li>
+              <li><a href="admin_statistics.php">프로그램별 매출</a></li>
+              <li><a href="admin_statistics.php">회원별 매출</a></li>
+            </ul>
 
 
+           </div>
 
-  </div>
+        </aside>
+     </div><!--  end of sub -->
+
+     <div id="content">
+  			<h3>회원 관리 페이지</h3>
+        <div id="admin_box">
+  	    <h3 id="member_title">
+  	    	관리자 모드 > 회원 관리
+  		</h3>
+  	    <table>
+          <tr>
+            <td>아이디</td>
+            <td>이름</td>
+            <td>전화번호</td>
+            <td>이메일</td>
+            <td>주소</td>
+            <td>등급</td>
+            <td>수정</td>
+            <td>삭제</td>
+          </tr>
+
+
+
+  <?php
+  	$sql = "select * from members";
+  	$result = mysqli_query($conn, $sql);
+  	$total_record = mysqli_num_rows($result); // 전체 회원 수
+
+  	$number = $total_record;
+
+     while ($row = mysqli_fetch_array($result)){
+      $id        = $row["id"];
+  	  $name      = $row["name"];
+  	  $phone     = $row["phone"];
+      $email     = $row["email"];
+      $address     = $row["address"];
+      $grade     = $row["grade"];
+  ?>
+
+  		<tr>
+  		<form method="post" action="admin_member_update.php?num=<?=$num?>">
+        <td><?=$id?></td>
+        <td><?=$name?></td>
+        <td><?=$phone ?></td>
+        <td><?=$email?></td>
+        <td><?=$address?></td>
+        <td><?=$grade?></td>
+        <td><button type="submit">수정</button></td>
+        <td><button type="button" onclick="location.href='admin_member_delete.php?num=<?=$num?>'">삭제</button></td>
+  		</form>
+     </tr>
+
+  <?php
+     	   $number--;
+     }
+  ?>
+  	    </table>
+
+  	</div> <!-- admin_box -->
+
+
+  		</div>		<!-- end of content -->
+
+ </div><!--  end of admin_board -->
+
+
+
+</div><!--  end of admin -->
 
   <div id="footer">
     <p>#footer</p>

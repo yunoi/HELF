@@ -18,9 +18,9 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
     $find = $_POST["find"];
     $search = $_POST["search"];
     $q_search = mysqli_real_escape_string($conn, $search);
-    $sql="SELECT * from `notice` where $find like '%$q_search%' order by num desc";
+    $sql="SELECT * from `faq` where $find like '%$q_search%' order by num desc";
 } else {
-    $sql="SELECT * from `notice` order by num desc";
+    $sql="SELECT * from `faq` order by num desc";
 }
 
 $result=mysqli_query($conn, $sql);
@@ -97,7 +97,7 @@ $number = $total_record - $start;
             <div id="list_item">
               <div id="list_item1"><?=$number?></div>
               <div id="list_item2">
-                  <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
+                  <a href="./view.php?num=<?=$num?>&page=<?=$page?>"><?=$subject?></a>
               </div>
             </div><!--end of list_item -->
             <div id="memo_content"><?=$memo_content?></div>

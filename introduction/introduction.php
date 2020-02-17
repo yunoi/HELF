@@ -30,9 +30,10 @@
         </div>
         <div id="div_introduction">
           <p>안녕하세요 대표자 <b><?=$mater?></b> 입니다. <br/>
-            저희 HELF<br/>
-            eiusmod tempor incididunt ut labore et dolore <br/>
-            magna aliqua. Ut enim ad minim veniam, quis nostrud <br/>
+            저희 HELF는 2020년 2월에 설립이 된 회사입니다.<br/>
+            当 HELFは 2020年 2月 に設立された会社です。 <br/>
+            HELF is a company established in February 2020. <br/>
+            
             exercitation ullamco laboris nisi ut aliquip ex ea commodo <br/>
             consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum <br/>
             dolore eu fugiat nulla pariatur. Excepteur sint occaecat <br/>

@@ -15,9 +15,12 @@
             rel="stylesheet"
             type="text/css"
             href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
-        <script src="./js/vendor/modernizr.custom.min.js"></script>
-        <script src="./js/vendor/jquery-1.10.2.min.js"></script>
-        <script src="./js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
+            <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+
         <script type="text/javascript" src="./common/js/main.js"></script>
     </head>
     <body>

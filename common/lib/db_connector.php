@@ -8,37 +8,45 @@ $password = "123456";
 
 $dbflag = "NO";
 $conn = mysqli_connect($servername, $username, $password);
-if (!$conn){ die("Connection failed: " . mysqli_connect_error());}
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 $sql = "show databases";
-$result = mysqli_query($conn,$sql) or die('Error: ' . mysqli_error($conn));
+$result = mysqli_query($conn, $sql) or die('Error: ' . mysqli_error($conn));
 while ($row = mysqli_fetch_row($result)) {
-  if($row[0]==="helf"){
-    $dbflag="OK";
-    break;
-  }
+    if ($row[0]==="helf") {
+        $dbflag="OK";
+        break;
+    }
 }
 //$name=$sub1=$sub2=$sub3=$sub4=$sub5=$sum=$avg="";
 //$mode=$result="";
 if ($dbflag==="NO") {
-  $sql = "CREATE database helf";
+    $sql = "CREATE database helf";
 
-  if(mysqli_query($conn,$sql)){
-      echo '<script >
+    if (mysqli_query($conn, $sql)) {
+        echo '<script >
         alert("helf 데이터베이스가 생성되었습니다.");
       </script>';
-  }else{
-    //echo "실패원인".mysqli_query($conn,$sql);
-    echo "실패원인".mysqli_error($conn);
-  }
+    } else {
+        //echo "실패원인".mysqli_query($conn,$sql);
+        echo "실패원인".mysqli_error($conn);
+    }
 }
 
 
-$dbconn = mysqli_select_db($conn,"helf") or die('Error:' . mysqli_error($conn));
+$dbconn = mysqli_select_db($conn, "helf") or die('Error:' . mysqli_error($conn));
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
- ?>
+
+function alert_back($data)
+{
+    echo "<script>alert('$data');history.go(-1);</script>";
+    exit;
+}

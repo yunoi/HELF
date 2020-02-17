@@ -1,132 +1,96 @@
+$(function(){
+    
+  //이미지 총 갯수
+  var itemLength = $(".slider li").length;
+  var imgPos = 1;
 
-$(document).ready(function(){
+  //페이지네이션에 이미지 갯수만큼 동그라미 요소 추가
+  for(var i = 1; i<=itemLength; i++){
+    $(".pagination").append('<li><span class="fas fa-circle"></span></li>');
+  }
 
-  var slideShow;
-  var time; // 슬라이드 넘어가는 시간
-  var $carouselLi;
-  var carouselCount; // 캐러셀 사진 갯수
-  var currentIndex; // 현재 보여지는 슬라이드 인덱스 값
-  var caInterval;
-  var indicator; // 도트 인디케이터
-  var nav;
-  var prev;
-  var next;
+  //오토슬라이더 전역변수선언
+  var autoSlider;
 
-  //사진 연결
-  var imgW; // 사진 한장의 너비	
-  carouselInit(258, 2000);
-  $(window).resize(function(){
-        carousel_setImgPosition();
-  });
-    
-    /* 초기 설정 */
-    function carouselInit( height, t ){
-        /*
-         * height : 캐러셀 높이
-         * t : 사진 전환 간격 
-        */
-    
-        time = t;
-        slideShow = $('#carousel_section');
-        slideShow.height(height); // 캐너셀 높이 설정
-        $carouselLi = $("#carousel_section > ul >li");
-        carouselCount = $carouselLi.length; // 캐러셀 사진 갯수
-        currentIndex = 0; // 현재 보여지는 슬라이드 인덱스 값
-        indicator = slideShow.find('#slideshow_indi');// 도트 인디케이터
-        nav = slideShow.find('#slideshow_nav');
-        prev = nav.find('.prev');
-        next = nav.find('.next');
-    
-        carousel_setImgPosition();
-        carousel(currentIndex);
+  //이미지 가로, 세로
+  var imgW, imgH;
+  ////////////////////////////////////////////////////////////////////////////
+
+  //모든 이미지 리스트를 숨김
+  $(".slider li").hide();
+  //첫번째 이미지 요소만 보여줌
+  $(".slider li:first").show();
+  //페이지네이션 첫번째 요소 색상 입히기
+  $(".pagination li:first").css({"color": "#e65553"});
+
+  //이벤트 설정
+  $(".pagination li").click(pagination);
+  $(".prev").click(nextSlider);
+  $(".next").click(prevSlider);
+
+  $("#carousel_selection").mouseenter(function(event){autoSliderStop();});
+  $("#carousel_selection").mouseleave(function(event){autoSliderStart();});
+  autoSliderStart();
+
+//   $(window).resize(function(){
+//     sliderImgResize();
+// });
+
+  //이벤트 정의
+  function pagination(){
+    //클릭한 페이지네이션 요소의 인덱스값을 저장(첫페이지를 1로 하기 위해 1을 더함)
+    var paginatonPos = $(this).index()+1;
+
+    //모든 이미지를 숨기고, 클릭한 페이지의 인덱스 값으로 선택된 이미지만 보여줌.
+    $(".slider li").hide();
+    $(".slider li:nth-child("+paginatonPos+")").fadeIn();
+
+    $(".pagination li").css({"color": "#dddddd"});
+    $(this).css({"color": "#e65553"});
+
+  }
+
+  function nextSlider(){
+    if(imgPos >= itemLength){
+      imgPos = 1;
+    }else{
+      imgPos++;
     }
-    
-    function carousel_setImgPosition(){
-    
-        imgW = $carouselLi.width(); // 사진 한장의 너비	
-        // 이미지 위치 조정
-        for(var i = 0; i < carouselCount; i++)
-        {
-            if( i == currentIndex)
-            {
-                $carouselLi.eq(i).css("left", 0);
-            }
-            else
-            {
-                $carouselLi.eq(i).css("left", imgW);
-            }
-        }
+
+    $(".pagination li").css({"color": "#dddddd"});
+    $(".pagination li:nth-child("+imgPos+")").css({"color": "#e65553"});
+
+    $(".slider li").hide();
+    $(".slider li:nth-child("+imgPos+")").fadeIn();
+  }
+
+  function prevSlider(){
+    if(imgPos <= 1){
+      imgPos = itemLength;
+    }else{
+      imgPos--;
     }
-    
-    function carousel(index){
-        currentIndex = index;
-        // 사진 넘기기
-        // 사진 하나가 넘어간 후 다시 꼬리에 붙어야함
-        // 화면에 보이는 슬라이드만 보이기
-        caInterval = setInterval(function(){
-            var left = "-" + imgW;
-    
-            //현재 슬라이드를 왼쪽으로 이동 ( 마이너스 지점 )
-            $carouselLi.eq(currentIndex).animate( { left: left }, function(){
-                // 다시 오른쪽 (제자리)로 이동
-                $carouselLi.eq(currentIndex).css("left", imgW);
-    
-                if( currentIndex === ( carouselCount - 1 ) )
-                {
-                    currentIndex = 0;
-                }
-                else
-                {
-                    currentIndex ++;
-                }
-                indicator.find('a').removeClass('active');
-                indicator.find('a').eq(currentIndex).addClass('active'); //해당 인덱스의 인디케이터만 검은색으로
-            } );
-    
-            // 다음 슬라이드 화면으로
-            if( currentIndex === ( carouselCount - 1 ) )
-            {
-                // 마지막 슬라이드가 넘어갈땐 처음 슬라이드가 보이도록
-                $carouselLi.eq(0).animate( { left: 0 } );
-            }
-            else
-            {
-                $carouselLi.eq(currentIndex + 1).animate( { left: 0 } );
-            }
-        
-        }, time);
-    }
-    
-      //nav 이벤트 처리: 누를 때 마다 슬라이드 이동
-      prev.click(function(event){
-        event.preventDefault(); //앵커태그 기본 기능 막기
-        if(currentIndex !== 0 ){
-          currentIndex -= 1;
-        }
-        carousel(currentIndex);
-      });
-      next.click(function(event){
-        event.preventDefault(); //앵커태그 기본 기능 막기
-        if(currentIndex !== slidesCount-1 ){
-          currentIndex += 1;
-        }
-        carousel(currentIndex);
-      });
-    
-      indicator.find('a').click(function(event){
-        event.preventDefault();
-        var point = $(this).index(); //현재 누른 위치의 인덱스값을 받는다.
-        carousel(point)
-      });
-    
-      function autoDisplayStop(){
-        clearInterval(caInterval);
-      }
-    
-      slideshow.mouseenter(function(event){
-        autoDisplayStop();
-      });
-      slideshow.mouseleave(function(evnet){
-        carousel(currentIndex);
-      });
+
+    $(".pagination li").css({"color": "#dddddd"});
+    $(".pagination li:nth-child("+imgPos+")").css({"color": "#e65553"});
+
+    $(".slider li").hide();
+    $(".slider li:nth-child("+imgPos+")").fadeIn();
+  }
+
+  function autoSliderStart(){
+    autoSlider = setInterval(function(){nextSlider();},3000);
+  }
+
+  function autoSliderStop(){
+    clearInterval(autoSlider);
+  }
+
+  function sliderImgResize(){
+    imgW = $(".slider li img").width();
+    imgH = $(".slider li img").height();
+
+    $(".slider .caption").height(imgH);
+  }
+
 });

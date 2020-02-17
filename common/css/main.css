@@ -19,13 +19,14 @@
   #carousel_section > ul{
       margin: 0px;
       padding: 0px;
+      display: inline-block;
       width: 100%;
       height: 100%;
       position: relative;
       overflow: hidden;
   }
   
-  #carousel_section > ul > li{
+  #carousel_section > ul > li {
       list-style: none;
       width: 100%;
       height: 100%;
@@ -58,24 +59,22 @@
       margin-left: 35%;
     }
     #slideshow_nav a.disabled{ display: none;}
-    #slideshow_indi{
+
+    .pagination{
       position: absolute;
-      left: 0;
-      right: 0;
       bottom: 20px;
-      text-align: center;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      overflow: auto;
     }
-    #slideshow_indi a{
-      width: 8px;
-      height: 8px;
-      background: url(../img/sprites.png) no-repeat -114px -4px;
-      margin: 4px;
-      text-decoration: none;
-      display: inline-block;
-    }
-    #slideshow_indi a.active{
-      background: url(../img/sprites.png) no-repeat -134px -4px;
     
+    .pagination li{
+      list-style: none;
+      margin: 2px 5px;
+      font-size: 0.7rem;
+      color: #dddddd;
+      cursor: pointer;
     }
 #board_preview {
     width: 100%;

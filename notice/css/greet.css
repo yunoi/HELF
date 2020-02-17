@@ -81,15 +81,11 @@
 }
 
 #list_top_title #list_title3 {
-	margin-left:290px;
+	margin-left:298px;
 }
 
 #list_top_title #list_title4 {
-	margin-left:30px;
-}
-
-#list_top_title #list_title5 {
-	margin-left:14px;
+	margin-left:55px;
 }
 
 #list_content {
@@ -116,21 +112,17 @@
 
 #list_item #list_item3{
 	float:left;
-	width:65px;
+	width:85px;
 	text-align:center;
 }
 
 #list_item #list_item4{
 	float:left;
-	width:80px;
+	width:110px;
 	text-align:center;
 }
 
-#list_item #list_item5{
-	float:left;
-	width:40px;
-	text-align:center;
-}
+
 
 #page_button {
 	margin-top:20px;

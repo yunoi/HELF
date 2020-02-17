@@ -4,7 +4,7 @@ session_start();
 include $_SERVER['DOCUMENT_ROOT']."/common/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/common/lib/create_table.php";
 
-create_table($conn,'notice'); //FAQ
+create_table($conn,'faq'); //FAQ
 
 define('SCALE', 10);
 

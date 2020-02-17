@@ -58,9 +58,26 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     }
 }
 
+
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
+<?php
+function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
+{
+    $message="";
+    if ($_SESSION['user_grade']=="admin"||$_SESSION['user_grade']=="master"||$_SESSION['user_id']==$id1) {
+        $message=
+        '<form style="display:inline" action="'.$page1.'?mode=delete_ripple&page='.$page.'&hit='.$hit.'" method="post">
+          <input type="hidden" name="num" value="'.$num1.'">
+          <input type="hidden" name="parent" value="'.$parent.'">
+          <input type="submit" value="삭제">
+        </form>';
+    }
+    return $message;
+}
+
+ ?>
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/greet.css">
@@ -68,6 +85,15 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <title></title>
+    <script type="text/javascript">
+    function check_delete(num) {
+      var result=confirm("삭제하시겠습니까?");
+      if(result){
+            window.location.href='./dml_board.php?mode=delete&num='+num;
+            window.history.go(-1);
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="wrap">
@@ -75,6 +101,16 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       </div><!--end of header  -->
       <div id="content">
+        <div id="col1">
+         <div id="left_menu">
+           <div id="sub_title"> <span>메뉴</span></div>
+           <ul>
+           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
+           <li><a href="#">다이어트 후기</a></li>
+           </ul>
+         </div>
+       </div><!--end of col1  -->
+
        <div id="col2">
          <div id="title">자유게시판</div>
          <div class="clear"></div>
@@ -123,19 +159,20 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
   <div id="ripple1">덧글</div>
   <div id="ripple2">
     <?php
-      $sql="select * from `free_ripple` where parent='$q_num' ";
+      $sql="select * from `comment` where b_code='자유게시판' and parent='$q_num' ";
       $ripple_result= mysqli_query($conn, $sql);
       while ($ripple_row=mysqli_fetch_array($ripple_result)) {
           $ripple_num=$ripple_row['num'];
           $ripple_id=$ripple_row['id'];
-          $ripple_nick =$ripple_row['nick'];
+          $ripple_name =$ripple_row['name'];
           $ripple_date=$ripple_row['regist_day'];
+          $ripple_b_code=$ripple_row['b_code'];
           $ripple_content=$ripple_row['content'];
           $ripple_content=str_replace("\n", "<br>", $ripple_content);
           $ripple_content=str_replace(" ", "&nbsp;", $ripple_content); ?>
         <div id="ripple_title">
           <ul>
-            <li><?=$ripple_nick."&nbsp;&nbsp;".$ripple_date?></li>
+            <li><?=$ripple_id."&nbsp;&nbsp;".$ripple_date?></li>
             <li id="mdi_del">
             <?php
             $message =free_ripple_delete($ripple_id, $ripple_num, 'dml_board.php', $page, $hit, $q_num);
@@ -150,14 +187,15 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
       }//end of while
       mysqli_close($conn);
     ?>
-
     <form name="ripple_form" action="dml_board.php?mode=insert_ripple" method="post">
       <input type="hidden" name="parent" value="<?=$q_num?>">
       <input type="hidden" name="hit" value="<?=$hit?>">
       <input type="hidden" name="page" value="<?=$page?>">
+      <input type="hidden" name="user_id" value="<?=$user_id?>">
+      <input type="hidden" name="b_code" value="자유게시판">
       <div id="ripple_insert">
         <div id="ripple_textarea"><textarea name="ripple_content" rows="3" cols="80"></textarea></div>
-        <div id="ripple_button"> <input type="button"  value="덧글입력"></div>
+        <div id="ripple_button"><input type="image" src="./lib/memo_ripple_button.png"></div>
       </div><!--end of ripple_insert -->
     </form>
   </div><!--end of ripple2  -->
@@ -165,10 +203,10 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
 
 <div id="write_button">
     <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button></a>
-
   <?php
-    //관리자이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
-    if ($_SESSION['user_id']=="admin" || $_SESSION['user_id']==$user_id) {
+    //master or admin이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
+    // echo "<script>alert('{$_SESSION['user_id']}');</script>";
+    if ($_SESSION['user_grade']=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$user_id) {
         echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
         echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
     }

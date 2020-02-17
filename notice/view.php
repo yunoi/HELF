@@ -1,6 +1,6 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/common/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
 //*****************************************************
 $num=$id=$subject=$content=$day=$hit="";
@@ -14,10 +14,9 @@ if(empty($_GET['page'])){
 
 if(isset($_GET["num"])&&!empty($_GET["num"])){
     $num = test_input($_GET["num"]);
-    $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    $sql="UPDATE `notice` SET `hit`=$hit WHERE `num`=$q_num;";
+    $sql="UPDATE `notice` SET `hit`=hit+1 WHERE `num`=$q_num;";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
@@ -29,8 +28,6 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       die('Error: ' . mysqli_error($conn));
     }
     $row=mysqli_fetch_array($result);
-    $id=$row['id'];
-    $name=$row['name'];
     $subject= htmlspecialchars($row['subject']);
     $content= htmlspecialchars($row['content']);
     $subject=str_replace("\n", "<br>",$subject);
@@ -64,15 +61,30 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/greet.css">
-    <script type="text/javascript" src="../js/member_form.js?ver=1"></script>
     <title></title>
+    <link rel="stylesheet" href="./css/memo.css">
+    <link rel="stylesheet" href="./css/greet.css">
+    <script type="text/javascript" src="../js/member_form.js?ver=1"></script>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   </head>
   <body>
     <div id="wrap">
       <div id="header">
-          <?php include "../lib/top_login2.php"; ?>
+        <header>
+            <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
+        </header>
       </div><!--end of header  -->
       <div id="menu">
         <?php include "../lib/top_menu2.php"; ?>
@@ -127,7 +139,6 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
                       ");
                     }
                   ?>
-                  <?=$content?>
                 </div><!--end of col2  -->
               </div><!--end of view_content  --></div>
             </div><!--end of write_form  -->
@@ -149,5 +160,8 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       </div><!--end of col2  -->
       </div><!--end of content -->
     </div><!--end of wrap  -->
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+    </footer>
   </body>
 </html>

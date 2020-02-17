@@ -8,11 +8,13 @@ $mode="insert";
 $checked="";
 $disabled="";
 //*****************************************************
-$id= $_SESSION['user_id'];
+if(!(isset($_SESSION['user_grade']))||!($_SESSION['user_grade']==="admin")){
+  echo "alert('관리자 접근이 아닙니다.')";
+  exit;
+}
 
-// 수정글쓰기, 답변글쓰기, New글쓰기 세부분으로 분류했음
-if((isset($_GET["mode"])&&$_GET["mode"]=="update")
-  ||(isset($_GET["mode"])&&$_GET["mode"]=="response") ){
+// 수정 추가 삭제 기능만 넣기
+if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
 
     $mode=$_GET["mode"];//$mode="update"or"response"
     $num = test_input($_GET["num"]);
@@ -25,24 +27,12 @@ if((isset($_GET["mode"])&&$_GET["mode"]=="update")
       die('Error: ' . mysqli_error($conn));
     }
     $row=mysqli_fetch_array($result);
-
-    $id=$row['id'];
     $subject= htmlspecialchars($row['subject']);
     $content= htmlspecialchars($row['content']);
     $subject=str_replace("\n", "<br/>",$subject);
     $subject=str_replace(" ", "&nbsp;",$subject);
     $content=str_replace("\n", "<br/>",$content);
     $content=str_replace(" ", "&nbsp;",$content);
-    $day=$row['regist_day'];
-    $is_html=$row['is_html'];
-    $checked=($is_html=="y")? ("checked"):("");
-    $hit=$row['hit'];
-    if($mode == "response"){
-      $subject="[re]".$subject;
-      $content="re)".$content;
-      $content=str_replace("<br>", "<br>▶",$content);
-      $disabled="disabled";
-    }
     mysqli_close($conn);
 }
 ?>

@@ -28,5 +28,5 @@ insert_init_data($conn, 'comment');
 insert_init_data($conn, 'community');
 insert_init_data($conn, 'health_info');
 insert_init_data($conn, 'together');
-
+insert_init_data($conn, 'carecenter');
 ?>

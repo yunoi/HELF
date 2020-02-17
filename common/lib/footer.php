@@ -1,8 +1,10 @@
 <div id="footer_content">
 <div id="footer_top">
 			<ul class="footer_notice">
-				<li><a href="#" target="_blank">개인정보취급방침</a></li> 
-				<li><a href="#" >제휴문의</a></li>
+        <li><a href="#" target="_blank">개인정보취급방침</a></li> 
+        <li> | </li>
+        <li><a href="#" >제휴문의</a></li>
+        <li> | </li>
 				<li class="last"><a href="#" target="_blank">이용약관</a></li>
 			</ul>
         </div>

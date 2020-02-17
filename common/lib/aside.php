@@ -19,6 +19,25 @@
     </ul>
     <div id="aside_notice">
     <p id="notice_title">공지사항</p>
-        <ul id="notice_area"></ul>
+        <ul id="notice_area">
+        <?php
+  $sql = "select * from notice order by num desc limit 10";
+  $result = mysqli_query($conn, $sql);
+
+  if(!$result){
+    echo "공지사항 DB 테이블이 생성 전이거나 아직 게시글이 없습니다.";
+  } else {
+    while($row = mysqli_fetch_array($result)){
+      $regist_day = substr($row["regist_day"], 0, 10);
+?>
+      <li>
+        <span><?= $row["subject"]?></span>
+      </li>
+<?php
+    }
+  }
+  mysqli_close($conn);
+?>
+        </ul>
     </div>
 </div>

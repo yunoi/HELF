@@ -93,9 +93,4 @@ $(function(){
     $(".slider .caption").height(imgH);
   }
 
-  // 하위메뉴
-  $('.down_menu').mouseover(function(){
-    $('.menu_slide').slideDown(1000);
-  });
-
 });

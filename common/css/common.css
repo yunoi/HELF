@@ -1,84 +1,246 @@
+/* font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
+font-family: 'Gothic A1', sans-serif;
+font-family: 'Nanum Gothic Coding', monospace; */
+
 /* 마진 패딩 초기화 */
-* { padding: 0; margin: 0; }
+* {
+    padding: 0;
+    margin: 0;
+}
 /* 페이지 기본 글꼴과 크기 설정 */
-body { font-family: "맑은 고딕";   font-size: 14px; }
-img { border: 0;}
-ul, ol { list-style-type: none; }
+body {
+    font-family: "맑은 고딕";
+    font-size: 14px;
+}
+img {
+    border: 0;
+}
+ol,
+ul {
+    list-style-type: none;
+}
 /* <a> 태그 기본 설정 */
-a { display: inline-block; text-decoration: none; }
-a:link { text-decoration:none; color: #222222; }
-a:hover { text-decoration:none; color: #222222; }
-a:visited { text-decoration:none; color: #222222; }
-a:active { text-decoration:none; color: #222222; }
+a {
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Nanum Gothic', monospace;
+}
+a:link {
+    text-decoration: none;
+    color: #222222;
+}
+a:hover {
+    text-decoration: none;
+    color: #222222;
+}
+a:visited {
+    text-decoration: none;
+    color: #222222;
+}
+a:active {
+    text-decoration: none;
+    color: #222222;
+}
 /* 상위 div: container */
-#container{
-  width: 100%;
-  min-width: 1100px;
-  background: url(../img/main_background.gif) repeat-x;
+#container {
+    width: 100%;
+    min-width: 1100px;
+    background: url("../img/main_background.gif") repeat-x;
     height: 100%;
     min-height: 615px;
 }
-#section_aside{
-  margin: 0 auto;
-  padding: 80px 0 90px;
-  width: 1100px;
+#section_aside {
+    margin: 0 auto;
+    padding: 32px 0 90px;
+    width: 1100px;
 }
 /* 상단 헤더 */
-header{
-  height: 160px;
+header {
+    height: 150px;
 }
-#header_container{
-  position: relative; top: -18px;
+#header_container {
+    position: relative;
+    top: -18px;
 }
-#top { position: relative; background-color: #e0e0e0; width: 100%; height: 40px; margin: 0 auto; }
-#top #top_menu { float: right;}
-#top #top_menu li { display: inline; position: relative; right: 146px; top: 10px;}
-#top #top_menu a { color: #6b6b6b;}
-
-#menu_bar { height: 120px; background-color: #fff; font-size: 16px; margin: 0 auto; min-width: 1100px;}
-#menu_bar > ul { display: table; min-width: 1100px; margin: 0 auto; text-align: center; table-layout: fixed;}
-#menu_bar > ul > li {display:table-cell; width: 120px; height: 100%; color: white; vertical-align: middle; text-align: left; font-weight: 700;
-  /* border: 1px solid gray; */
+#top {
+    position: relative;
+    background-color: #e0e0e0;
+    width: 100%;
+    height: 40px;
+    margin: 0 auto;
 }
-#menu_bar #li_img{
-  text-align: left;
-  width: 260px;
+#top #top_menu {
+    float: right;
 }
-
-#menu_bar a:link { color: #000; }
-#menu_bar a:hover { color: #000; }
-#menu_bar a:visited { color: #000; }
-#menu_bar a:active { color: #000; }
-
-.menu_slide{display: none;   background-color: white;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);width : 100px;cursor:pointer}
-
-.down_menu:hover .menu_slide{
-  display: block; position: absolute;
+#top #top_menu li {
+    display: inline;
+    position: relative;
+    right: 146px;
+    top: 10px;
+}
+#top #top_menu a {
+    color: #6b6b6b;
 }
 
+#menu_bar {
+    height: 110px;
+    background-color: #fff;
+    font-size: 16px;
+    margin: 0 auto;
+    min-width: 1100px;
+}
+#menu_bar > ul {
+    display: table;
+    min-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    table-layout: fixed;
+}
+#menu_bar > ul > li {
+    display: table-cell;
+    width: 120px;
+    height: 100%;
+    color: white;
+    vertical-align: middle;
+    text-align: left;
+    font-weight: 700;
+    /* border: 1px solid gray; */
+}
+#menu_bar #li_img {
+    text-align: left;
+    width: 260px;
+}
+
+#menu_bar > ul > li > a {
+    font-size: 20px;
+}
+#menu_bar a:link {
+    color: #222;
+}
+#menu_bar a:visited {
+    color: #222;
+}
+#menu_bar a:active {
+    color: #222;
+}
+#menu_bar a:hover {
+    color: #f23005;
+}
+#menu_bar a:focus {
+    color: #f23005;
+}
+
+.menu_slide {
+    display: none;
+    background-color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    width: 100px;
+    cursor: pointer;
+    z-index: 110;
+    top: 117px;
+}
+.menu_slide li {
+    padding: 8px 2px;
+    text-align: center;
+}
+.down_menu:hover .menu_slide {
+    display: block;
+    position: absolute;
+}
+#community_slide {
+    right: 520px;
+}
+#info_slide {
+    right: 365px;
+}
 /* aside */
 #aside_menu {
-  float: left;
-  background: none;
-  padding: 0;
-  width: 250px;
+    float: left;
+    background: none;
+    padding: 0;
+    width: 250px;
 }
-#aside_shortcut{
-  padding: 0;
-  width: 100%;
-  height: 258px;
+#aside_shortcut {
+    padding: 0;
+    width: 100%;
+    height: 258px;
 }
 #aside_shortcut li {
-  width: 125px;
+    width: 125px;
     margin: 0;
     height: 129px;
     float: left;
 }
-
+#aside_notice {
+    width: 232px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    position: relative;
+    border: 1px solid #dbdbdb;
+    padding: 10px 0 14px 16px;
+    background: #fff;
+}
+#notice_title{
+  color: #1e1d1d;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 4px 0 21px 0;
+}
+#notice_area {
+  position: relative;
+  width: 250px;
+  text-align: left;
+}
 /* 하단 푸터 */
-footer { height: 100px; background-color: #2c2a29; z-index: 1; clear: both;}
-#footer_content { position: relative; width: 1000px; margin: 0 auto; color: #dddddd; }
-#footer_logo { position: absolute; top: 30px; left: 50px; font-size: 16px; }
-#footer_logo span { color: yellow; }
-#download { position: absolute; top: 20px; left: 400px; }
-#author { position: absolute; top: 20px; left: 700px; }
+footer {
+    border-top: 1px solid #222222;
+    height: 150px;
+    z-index: 1;
+    clear: both;
+}
+#footer_content {
+    position: relative;
+    width: 100%;
+    min-width: 1100px;
+    margin: 0 auto;
+    color: #222222;
+}
+#footer_top{
+    overflow: hidden;
+    width: 100%;
+    margin: 0px auto;
+    height: 48px;
+    border-bottom: 1px solid #eee;
+}
+.footer_notice {
+  overflow: hidden;
+  display: block;
+  width: 1100px;
+  margin: 16px auto;
+}
+.footer_notice li{
+  float: left;
+  padding-right: 16px;
+  font-size: 13px;
+  list-style-type: none;
+}
+#footer_bottom{
+  position: relative;
+}
+#footer_logo {
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    font-size: 16px;
+}
+#download {
+    position: absolute;
+    top: 20px;
+    left: 400px;
+}
+#author {
+    position: absolute;
+    top: 20px;
+    left: 700px;
+}

@@ -17,4 +17,8 @@
                 <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/link_shortcut04.gif" alt="인바디 측정 보건소 찾기"></a>
         </li>
     </ul>
+    <div id="aside_notice">
+    <p id="notice_title">공지사항</p>
+        <ul id="notice_area"></ul>
+    </div>
 </div>

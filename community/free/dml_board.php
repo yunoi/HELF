@@ -21,6 +21,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $subject = trim($_POST["subject"]);
     if(empty($content)||empty($subject)){
       alert_back('내용이나 제목을 입력해주세요.');
+      exit;
     }
     $subject = test_input($_POST["subject"]);
     $content = test_input($_POST["content"]);
@@ -98,20 +99,19 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
   }
   $subject = test_input($_POST["subject"]);
   $content = test_input($_POST["content"]);
-  $userid = test_input($userid);
+  $user_id = test_input($user_id);
   $num = test_input($_POST["num"]);
   $hit = test_input($_POST["hit"]);
-  $is_html=(isset($_POST["is_html"]))?('y'):('n');
   $q_subject = mysqli_real_escape_string($conn, $subject);
   $q_content = mysqli_real_escape_string($conn, $content);
-  $q_userid = mysqli_real_escape_string($conn, $userid);
+  $q_user_id = mysqli_real_escape_string($conn, $user_id);
   $q_num = mysqli_real_escape_string($conn, $num);
   $regist_day=date("Y-m-d (H:i)");
 
   //1번과 2번이 해당이 된다. 파일삭제만 체크한다..
   if(isset($_POST['del_file']) && $_POST['del_file'] =='1'){
     //삭제할 게시물의 이미지파일명을 가져와서 삭제한다.
-    $sql="SELECT `file_copied` from `community` where num ='$q_num' and b_code='자유게시판';";
+    $sql="SELECT `file_copied` from `community` where `num` ='$q_num' and `b_code`='자유게시판';";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       alert_back('Error: 6' . mysqli_error($conn));
@@ -158,9 +158,9 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     exit;
   }
   //"덧글을 다는사람은 로그인을 해야한다." 말한것이다.
-  $userid=$_SESSION['user_id'];
-  $q_userid = mysqli_real_escape_string($conn, $userid);
-  $sql="select * from member where id = '$q_userid'";
+  $user_id=$_SESSION['user_id'];
+  $q_userid = mysqli_real_escape_string($conn, $user_id);
+  $sql="select * from members where id = '$q_userid'";
   $result = mysqli_query($conn,$sql);
   if (!$result) {
     die('Error: ' . mysqli_error($conn));
@@ -175,12 +175,14 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $page = test_input($_POST["page"]);
     $parent = test_input($_POST["parent"]);
     $hit = test_input($_POST["hit"]);
+    $q_id = mysqli_real_escape_string($conn, $_SESSION['user_id']);
     $q_username = mysqli_real_escape_string($conn, $_SESSION['user_name']);
+    $b_code = test_input($_POST["b_code"]);
     $q_content = mysqli_real_escape_string($conn, $content);
     $q_parent = mysqli_real_escape_string($conn, $parent);
     $regist_day=date("Y-m-d (H:i)");
 
-    $sql="INSERT INTO `free_ripple` VALUES (null,'$q_parent','$q_userid','$q_username', '$q_usernick','$q_content','$regist_day')";
+    $sql="INSERT INTO `comment` VALUES (null,'$q_parent','$q_userid','$q_username','$q_content','$regist_day','$b_code')";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
@@ -188,6 +190,8 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     mysqli_close($conn);
     echo "<script>location.href='./view.php?num=$parent&page=$page&hit=$hit';</script>";
   }//end of if rowcount
+
+
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete_ripple"){
   $page= test_input($_GET["page"]);
   $hit= test_input($_GET["hit"]);
@@ -195,7 +199,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
   $parent = test_input($_POST["parent"]);
   $q_num = mysqli_real_escape_string($conn, $num);
 
-  $sql ="DELETE FROM `free_ripple` WHERE num=$q_num";
+  $sql ="DELETE FROM `comment` WHERE `b_code`='자유게시판' and `num` =$q_num";
   $result = mysqli_query($conn,$sql);
   if (!$result) {
     die('Error: ' . mysqli_error($conn));

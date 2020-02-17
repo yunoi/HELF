@@ -21,15 +21,15 @@ $(function(){
   //첫번째 이미지 요소만 보여줌
   $(".slider li:first").show();
   //페이지네이션 첫번째 요소 색상 입히기
-  $(".pagination li:first").css({"color": "#e65553"});
+  $(".pagination li:first").css({"color": "#f23005"});
 
   //이벤트 설정
   $(".pagination li").click(pagination);
-  $(".prev").click(nextSlider);
-  $(".next").click(prevSlider);
+  $(".next").click(nextSlider);
+  $(".prev").click(prevSlider);
 
-  $("#carousel_selection").mouseenter(function(event){autoSliderStop();});
-  $("#carousel_selection").mouseleave(function(event){autoSliderStart();});
+  $(".slider li, .next, .prev").mouseenter(function(){autoSliderStop();});
+  $(".slider li, .next, .prev").mouseleave(function(){autoSliderStart();});
   autoSliderStart();
 
 //   $(window).resize(function(){
@@ -45,8 +45,8 @@ $(function(){
     $(".slider li").hide();
     $(".slider li:nth-child("+paginatonPos+")").fadeIn();
 
-    $(".pagination li").css({"color": "#dddddd"});
-    $(this).css({"color": "#e65553"});
+    $(".pagination li").css({"color": "#ffffff"});
+    $(this).css({"color": "#f23005"});
 
   }
 
@@ -57,8 +57,8 @@ $(function(){
       imgPos++;
     }
 
-    $(".pagination li").css({"color": "#dddddd"});
-    $(".pagination li:nth-child("+imgPos+")").css({"color": "#e65553"});
+    $(".pagination li").css({"color": "#ffffff"});
+    $(".pagination li:nth-child("+imgPos+")").css({"color": "#f23005"});
 
     $(".slider li").hide();
     $(".slider li:nth-child("+imgPos+")").fadeIn();
@@ -71,8 +71,8 @@ $(function(){
       imgPos--;
     }
 
-    $(".pagination li").css({"color": "#dddddd"});
-    $(".pagination li:nth-child("+imgPos+")").css({"color": "#e65553"});
+    $(".pagination li").css({"color": "#ffffff"});
+    $(".pagination li:nth-child("+imgPos+")").css({"color": "#f23005"});
 
     $(".slider li").hide();
     $(".slider li:nth-child("+imgPos+")").fadeIn();

@@ -8,6 +8,8 @@ create_table($conn, 'message');
 create_table($conn, 'program');
 create_table($conn, 'p_review');
 create_table($conn, 'p_qna');
+create_table($conn, 'notice');
+create_table($conn, 'faq');
 create_table($conn, 'community');
 create_table($conn, 'comment');
 create_table($conn, 'health_info');
@@ -20,9 +22,11 @@ insert_init_data($conn, 'members');
 insert_init_data($conn, 'program');
 insert_init_data($conn, 'p_review');
 insert_init_data($conn, 'p_qna');
+insert_init_data($conn, 'notice');
+insert_init_data($conn, 'faq');
 insert_init_data($conn, 'comment');
 insert_init_data($conn, 'community');
 insert_init_data($conn, 'health_info');
 insert_init_data($conn, 'together');
-
+insert_init_data($conn, 'carecenter');
 ?>

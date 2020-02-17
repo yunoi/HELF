@@ -51,7 +51,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
       </div><!--end of header  -->
       <div id="content">
        <div id="col2">
-         <div id="title">자유게시판</div>
+         <div id="title">공지사항</div>
          <div class="clear"></div>
          <div id="write_form_title">글쓰기</div>
          <div class="clear"></div>

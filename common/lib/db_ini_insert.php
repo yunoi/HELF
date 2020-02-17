@@ -27,6 +27,14 @@ function insert_init_data($conn, $table_name){
           case 'p_qna' :
             $sql = "insert into p_qna values ('admin', 1, '오늘 점심은 뭔가요?', '2020-02-14',1,1);";
             break;
+            case 'notice' :
+              $sql = "INSERT INTO `notice` (`num` , `subject` , `content` , `regist_day` , `hit` , `file_name` , `file_type` , `file_copied`)
+              VALUES(null,'3월 수료한다','3월에 수료하는데 살빼서 멋진 정장입자','2020-02-17',0,null,null,null);";
+              break;
+              case 'faq' :
+                $sql = "INSERT INTO `faq`(`num` , `subject` , `content`)
+                VALUES(null,'다이어트 비법','꾸준하게 하는것입니다.답변:김OO');";
+                break;
           case 'comment' :
             $sql = "INSERT INTO `comment` (`num`, `parent`, `id`, `name`, `content`, `regist_day`, `b_code`) VALUES (null, '1', 'ysm2678', '유세미', '댓글내용입니다', '2020-02-11 (21:32)', '자유게시판');";
             break;
@@ -39,7 +47,12 @@ function insert_init_data($conn, $table_name){
           case 'together' :
             $sql = "INSERT INTO `together` (`num`, `id`, `name`, `area`, `subject`, `content`, `regist_day`, `hit`, `file_name`, `file_type`, `file_copied`, `likeit`, `b_code`, `group_num`, `depth`, `ord`) VALUES (null, 'ysm2678', '유세미', '전북', '제목입니다', '내용입니다', '2020-02-11 (21:32)', '2000', 'sleepyHeadCat.png', 'image/png', '2020_02_11_14_43_36.png', '1999', '같이할건강', '0', '0', '0');";
             break;
-         
+          case 'carecenter' :
+            $sql = "LOAD DATA INFILE '../data/carecenter_list.csv' 
+            INTO TABLE carecenter 
+            FIELDS TERMINATED BY ','
+            LINES TERMINATED BY '\n'";
+          break;
       default:
         echo "<script>alert('해당 테이블 이름이 없습니다. ');</script>";
         break;

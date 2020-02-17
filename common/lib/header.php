@@ -16,6 +16,7 @@
   }
 
 ?>
+<div id="header_container">
 <div id="top">
     <ul id="top_menu">
 <?php
@@ -38,22 +39,18 @@
 ?>
       <li><span><?=$logged?></span><span><?=$logged_etc?></span></li>
       <li> | </li>
-      <li><a href="logout.php">로그아웃</a></li>.
+      <li><a href="logout.php">로그아웃</a></li>
       <li> | </li>
       <li><a href="member_modify_form.php">정보수정</a></li>
 <?php
   }
 ?>
 <?php
-    if($user_grade=='admin') {
+    if($user_grade =='admin') {
 ?>
-        <li>
-            |
-        </li>
-        <li>
-            <a href="admin.php">관리자페이지</a>
-        </li>
-        <?php
+                <li> | </li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/admin_page.php">관리자페이지</a></li>
+<?php
     }
 ?>
     </ul>
@@ -68,8 +65,12 @@
             </a>
         </li>
         <li class="down_menu">
-        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php"><span>소개</span></a>
-            
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php"><span>&nbsp;&nbsp;&nbsp;소개</span></a>
+        <ol class="menu_slide" id="about_slide">
+                  <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php">HELF</a></li>
+                  <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/notice/notice.php">공지사항</a></li>
+                  <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/FAQ/list.php">FAQ</a></li>
+                </ol>
               </li>
         <li>
             <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/program.php">
@@ -99,8 +100,4 @@
         </li>
     </ul>
 </nav>
-<ol class="menu_slide" id="about_slide">
-                  <li><a href="#">HELF</a></li>
-                  <li><a href="#">공지사항</a></li>
-                  <li><a href="#">FAQ</a></li>
-                </ol>
+</div>

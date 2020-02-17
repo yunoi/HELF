@@ -4,7 +4,7 @@ session_start();
 include $_SERVER['DOCUMENT_ROOT']."/common/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/common/lib/create_table.php";
 
-create_table($conn,'notice'); //공지사항
+create_table($conn,'notice'); //FAQ
 
 define('SCALE', 10);
 
@@ -63,7 +63,7 @@ $number = $total_record - $start;
       <div id="content">
        <div id="col2">
          <div id="title">
-           <span>공지사항</span>
+           <span>FAQ</span>
          </div>
          <form name="board_form" action="list.php?mode=search" method="post">
            <div id="list_search">

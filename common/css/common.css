@@ -3,7 +3,7 @@
 /* 페이지 기본 글꼴과 크기 설정 */
 body { font-family: "맑은 고딕";   font-size: 14px; }
 img { border: 0;}
-ul { list-style-type: none; }
+ul, ol { list-style-type: none; }
 /* <a> 태그 기본 설정 */
 a { display: inline-block; text-decoration: none; }
 a:link { text-decoration:none; color: #222222; }
@@ -13,7 +13,7 @@ a:active { text-decoration:none; color: #222222; }
 /* 상위 div: container */
 #container{
   width: 100%;
-  min-width: 1000px;
+  min-width: 1100px;
   background: url(../img/main_background.gif) repeat-x;
     height: 100%;
     min-height: 615px;
@@ -24,14 +24,20 @@ a:active { text-decoration:none; color: #222222; }
   width: 1100px;
 }
 /* 상단 헤더 */
+header{
+  height: 160px;
+}
+#header_container{
+  position: relative; top: -18px; 
+}
 #top { position: relative; background-color: #e0e0e0; width: 100%; height: 40px; margin: 0 auto; }
 #top #top_menu { float: right;}
 #top #top_menu li { display: inline; position: relative; right: 146px; top: 10px;}
 #top #top_menu a { color: #6b6b6b;}
 
 #menu_bar { height: 120px; background-color: #fff; font-size: 16px; margin: 0 auto; min-width: 1100px;}
-#menu_bar ul { display: table; min-width: 1100px; margin: 0 auto; text-align: center; table-layout: fixed;}
-#menu_bar li {display:table-cell; width: 120px; height: 100%; color: white; vertical-align: middle; text-align: left; font-weight: 700;
+#menu_bar > ul { display: table; min-width: 1100px; margin: 0 auto; text-align: center; table-layout: fixed;}
+#menu_bar > ul > li {display:table-cell; width: 120px; height: 100%; color: white; vertical-align: middle; text-align: left; font-weight: 700;
   /* border: 1px solid gray; */
 }
 #menu_bar #li_img{
@@ -44,7 +50,12 @@ a:active { text-decoration:none; color: #222222; }
 #menu_bar a:visited { color: #000; }
 #menu_bar a:active { color: #000; }
 
-.menu_slide{background:lightpink;width:300px;height:60px;display:none;cursor:pointer}
+.menu_slide{display: none;   background-color: white;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);width : 100px;cursor:pointer}
+
+.down_menu:hover .menu_slide{
+  display: block; position: absolute;
+}
+
 /* aside */
 #aside_menu {
   float: left;

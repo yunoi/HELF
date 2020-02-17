@@ -102,6 +102,27 @@ function create_table($conn, $table_name){
         )ENGINE=InnoDB DEFAULT CHARSET=utf8;
         ";
             break;
+            case 'notice' :
+              $sql = "create table notice(
+                num int not null auto_increment,
+                subject char(200) not null,
+                content text not null,        
+                regist_day char(20) not null,
+                hit int not null,
+                file_name char(40),
+                file_type char(40),
+                file_copied char(40),
+                primary key(num)
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+              break;
+              case 'faq' :
+                $sql = "create table faq(
+                  num int not null auto_increment,
+                  subject text not null,
+                  content text not null,
+                  primary key(num)
+                  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+                break;
           case 'community' :
             $sql = "create table community (
               num int not null auto_increment,

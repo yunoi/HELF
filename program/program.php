@@ -51,8 +51,8 @@ create_table($conn, 'program');
           <br><br>&nbsp
           <li>
             <em>인원수</em><br>
-            개인:<input type="radio" name="gender" value="개인">
-            그룹:<input type="radio" name="gender" value="그룹">
+            개인 : <input type="radio" name="gender" value="개인">&nbsp&nbsp&nbsp
+            그룹 : <input type="radio" name="gender" value="그룹">
           </li>
           <br><br>&nbsp
           <li>
@@ -77,7 +77,8 @@ create_table($conn, 'program');
               <b>정렬 </b>
               <a href="#">인기순&nbsp|</a>
               <a href="#">&nbsp거리순&nbsp|</a>
-              <a href="#">&nbsp가격순</a>
+              <a href="#">&nbsp가격순&nbsp|</a>
+              <a href="../admin/admin_page.php">&nbsp관리자페이지</a>
             </li>
             <li class="li_search">
               <input type="text" class="pdt_search" placeholder="상품 상세 검색"><button type="button" class="btn_pdt_search"><span>검색</span></button>

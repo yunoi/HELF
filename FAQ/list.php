@@ -1,9 +1,10 @@
 <?php
 //공지사항 게시판 형식으로 만들기
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
+include $_SERVER['DOCUMENT_ROOT']."/common/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/common/lib/create_table.php";
 
-create_table($conn,'notice'); //공지사항
+create_table($conn,'faq'); //FAQ
 
 define('SCALE', 10);
 
@@ -18,11 +19,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
     $find = $_POST["find"];
     $search = $_POST["search"];
     $q_search = mysqli_real_escape_string($conn, $search);
-    if($find==="full"){
-      $sql="SELECT * from `notice` where subject AND content like '%$q_search%' order by num desc";
-    }else{
-      $sql="SELECT * from `notice` where $find  like '%$q_search%' order by num desc";
-    }
+    $sql="SELECT * from `notice` where $find like '%$q_search%' order by num desc";
 } else {
     $sql="SELECT * from `notice` order by num desc";
 }
@@ -66,7 +63,7 @@ $number = $total_record - $start;
       <div id="content">
        <div id="col2">
          <div id="title">
-           <span>공지사항</span>
+           <span>FAQ</span>
          </div>
          <form name="board_form" action="list.php?mode=search" method="post">
            <div id="list_search">
@@ -76,7 +73,6 @@ $number = $total_record - $start;
                <select  name="find">
                  <option value="subject">제목</option>
                  <option value="content">내용</option>
-                 <option value="full">제목+내용</option>
                </select>
              </div><!--end of list_search3  -->
              <div id="list_search4"><input type="text" name="search"></div>
@@ -88,8 +84,9 @@ $number = $total_record - $start;
            <ul>
              <li id="list_title1">번호</li>
              <li id="list_title2">제목</li>
-             <li id="list_title3">등록일</li>
-             <li id="list_title4">조회수</li>
+             <li id="list_title3">글쓴이</li>
+             <li id="list_title4">등록일</li>
+             <li id="list_title5">조회수</li>
            </ul>
          </div><!--end of list_top_title  -->
          <div id="list_content">
@@ -99,6 +96,8 @@ $number = $total_record - $start;
               mysqli_data_seek($result, $i);
               $row=mysqli_fetch_array($result);
               $num=$row['num'];
+              $id=$row['id'];
+              $name=$row['name'];
               $hit=$row['hit'];
               $date= substr($row['regist_day'], 0, 10);
               $subject=$row['subject'];
@@ -109,8 +108,9 @@ $number = $total_record - $start;
               <div id="list_item2">
                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
               </div>
-              <div id="list_item3"><?=$date?></div>
-              <div id="list_item4"><?=$hit?></div>
+              <div id="list_item3"><?=$user_name?></div>
+              <div id="list_item4"><?=$date?></div>
+              <div id="list_item5"><?=$hit?></div>
             </div><!--end of list_item -->
             <div id="memo_content"><?=$memo_content?></div>
         <?php

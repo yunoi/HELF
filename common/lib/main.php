@@ -55,7 +55,6 @@
     <h4>같이할건강</h4>
       <ul>
 <?php
-  $rank = 1;
   $sql = "select * from together order by num desc limit 5";
   $result = mysqli_query($conn, $sql);
 

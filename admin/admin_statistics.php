@@ -32,7 +32,7 @@
             <h3 class="menu-title">-게시글 관리-</h3>
             <ul>
               <li><a href="admin_board.php">자유게시판 관리</a></li>
-              <li><a href="admin_board.php">후기게시판 관리</a></li>
+              <li><a href="admin_board2.php">후기게시판 관리</a></li>
             </ul>
             </ul>
             <br>
@@ -57,7 +57,7 @@
   		<!-- //snb -->
   		<!-- content -->
   		<div id="content">
-  			<p>#content</p>
+  			<p>통계</p>
   		</div>
   		<!-- //content -->
   	</div>

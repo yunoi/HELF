@@ -56,7 +56,7 @@
   		  </div><!--  end of sub -->
 
         <div id="content">
-     			<h3>게시글 관리 > 자유게시판</h3>
+     			<h3>게시글 관리 > 함께할건강 </h3>
            <div id="admin_box">
      	    <table>
              <tr>
@@ -71,7 +71,7 @@
 
 
      <?php
-     	$sql = "select * from community";
+     	$sql = "select * from together";
      	$result = mysqli_query($conn, $sql);
      	$total_record = mysqli_num_rows($result); // 전체 회원 수
 
@@ -83,6 +83,7 @@
      	  $subject     = $row["subject"];
          $file_name     = $row["file_name"];
          $regist_day     = $row["regist_day"];
+         $group_num   = $row["group_num"];
 
      ?>
 

@@ -34,7 +34,7 @@
             <h3 class="menu-title">-게시글 관리-</h3>
             <ul>
               <li><a href="admin_board.php">자유게시판 관리</a></li>
-              <li><a href="admin_board.php">후기게시판 관리</a></li>
+              <li><a href="admin_board2.php">후기게시판 관리</a></li>
             </ul>
             <br>
 
@@ -59,7 +59,7 @@
      </div><!--  end of sub -->
 
      <div id="content">
-    			<p>프로그램 등록</p><br>
+    			<p>프로그램 > 등록</p><br>
 
           <form name="program_regist" class="" action="program_insert.php?mode=insert" method="post" enctype="multipart/form-data">
             <table>

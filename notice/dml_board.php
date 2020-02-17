@@ -1,6 +1,6 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/common/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/db_connector.php";
 ?>
 <?php
 if(!isset($_SESSION['user_grade'])==="admin"){

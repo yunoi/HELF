@@ -97,42 +97,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     die('Error: ' . mysqli_error($conn));
   }
   echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
-}else if(isset($_GET["mode"])&&$_GET["mode"]=="response"){
-  $content = trim($_POST["content"]);
-  $subject = trim($_POST["subject"]);
-  if(empty($content)||empty($subject)){
-    echo "<script>alert('내용이나제목입력요망!');history.go(-1);</script>";
-    exit;
-  }
-  $subject = test_input($_POST["subject"]);
-  $content = test_input($_POST["content"]);
-  $userid = test_input($userid);
-  $num = test_input($_POST["num"]);
-  // $hit = test_input($_POST["hit"]);
-  $hit =0;
-  $q_subject = mysqli_real_escape_string($conn, $subject);
-  $q_content = mysqli_real_escape_string($conn, $content);
-  $q_userid = mysqli_real_escape_string($conn, $userid);
-  $q_num = mysqli_real_escape_string($conn, $num);
-  $regist_day=date("Y-m-d (H:i)");
-
-  $sql="SELECT * from notice where num =$q_num;";
-  $result = mysqli_query($conn,$sql);
-  if (!$result) {
-    die('Error: ' . mysqli_error($conn));
-  }
-  $row=mysqli_fetch_array($result);
-
-  $sql="SELECT max(num) from notice;";
-  $result = mysqli_query($conn,$sql);
-  if (!$result) {
-    die('Error: ' . mysqli_error($conn));
-  }
-  $row=mysqli_fetch_array($result);
-  $max_num=$row['max(num)'];
-
-  echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
-
 }//end of if insert
 // Header("Location: p260_score_list.php");
 ?>

@@ -17,13 +17,13 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    $sql="UPDATE `qna` SET `hit`=$hit WHERE `num`=$q_num;";
+    $sql="UPDATE `faq` SET `hit`=$hit WHERE `num`=$q_num;";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
 
-    $sql="SELECT * from `qna` where num ='$q_num';";
+    $sql="SELECT * from `faq` where num ='$q_num';";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));

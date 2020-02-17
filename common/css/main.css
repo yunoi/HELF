@@ -93,9 +93,9 @@
 #latest ul { margin-top: 20px; }
 #latest li { margin-top: 8px; margin-left: 10px; }
 #latest span { display: inline-block; }
-#latest span:nth-child(1) { width: 280px; }
-#latest span:nth-child(2) { width: 100px; }
-#latest span:nth-child(3) { width: 100px; }
+#latest span:nth-child(1) { width: 170px; }
+#latest span:nth-child(2) { width: 50px; }
+#latest span:nth-child(3) { width: 80px; }
 #point_rank { width: 350px; float: right; box-sizing: border-box;background-color: #f2b705;
     margin-left: 4px;
     padding: 4px;
@@ -106,7 +106,6 @@
 #point_rank ul { margin-top: 20px; }
 #point_rank li { margin-top: 8px; margin-left: 15px; }
 #point_rank span { display: inline-block; }
-#point_rank span:nth-child(1) { width: 50px; }
-#point_rank span:nth-child(2) { width: 100px; }
-#point_rank span:nth-child(3) { width: 100px; }
-#point_rank span:nth-child(4) { width: 100px; }
+#point_rank span:nth-child(1) { width: 170px; }
+#point_rank span:nth-child(2) { width: 50px; }
+#point_rank span:nth-child(3) { width: 80px; }

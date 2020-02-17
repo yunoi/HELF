@@ -10,7 +10,15 @@ $sql=$result=$total_record=$total_page=$start="";
 $row="";
 $memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
 $total_record=0;
-$sql="select * from carecenter";
+if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
+    //제목, 내용, 아이디
+    $find = $_POST["find"];
+    $search = $_POST["search"];
+    $q_search = mysqli_real_escape_string($conn, $search);
+    $sql="SELECT * from `carecenter` where $find like '%$q_search%'";
+} else {
+    $sql="SELECT * from carecenter";
+}
 $result=mysqli_query($conn, $sql);
 $total_record=mysqli_num_rows($result);
 $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));

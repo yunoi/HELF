@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!-- 회사소개 -->
 <?php $mater="강윤해" ?>
-
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">

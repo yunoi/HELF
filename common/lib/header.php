@@ -71,8 +71,8 @@
         <li class="down_menu">
         <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php"><span>소개</span></a>
         <ol class="menu_slide" id="about_slide">
-                  <li><a href="#">HELF</a></li>
-                  <li><a href="#">공지사항</a></li>
+                  <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php">HELF</a></li>
+                  <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/notice/notice.php">공지사항</a></li>
                   <li><a href="#">FAQ</a></li>
                 </ol>
               </li>

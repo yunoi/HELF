@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -7,16 +8,25 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="./js/member_form.js" charset="utf-8"></script>
 
-    <link rel="stylesheet" type="text/css" href="../common/css/common.css">
-    <link rel="stylesheet" type="text/css" href="../common/css/main.css">
-    <link rel="stylesheet" type="text/css" href="../carousel.css">
-    <script src="../js/vendor/modernizr.custom.min.js"></script>
-    <script src="../js/vendor/jquery-1.10.2.min.js"></script>
-    <script src="../js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
-    <script type="text/javascript" src="../main.js"></script>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
+        <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+
+    <script type="text/javascript" src="./common/js/main.js"></script>
+
+    <!-- 우편번호 api 참조 스크립트 -->
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+    <!-- 네이버 아이디로 로그인 api 참조 스크립트 -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -34,6 +44,15 @@
       function mail_address_setting(e) {
         document.getElementById("email_two").value= e.value;
         document.getElementById("email_two").focus();
+      }
+
+      function action_signup() {
+        document.member_form.action="member_insert.php";
+        document.member_form.submit();
+      }
+      function action_email() {
+        document.member_form.action="./PHPMailer/PHPMailer/phpmail_test.php";
+        document.member_form.submit();
       }
     </script>
   </head>
@@ -71,7 +90,7 @@
           <h1>회원가입</h1>
         </div>
         <div id="member_form">
-          <form name="member_form" id="input_member_form" action="member_insert.php" method="post">
+          <form name="member_form" id="input_member_form" method="post">
             <input type="text" name="id" id="input_id" placeholder=" 아이디 입력 "> <br>
             <p id="input_id_confirm"></p>
             <input type="password" name="password" id="input_password" placeholder=" 비밀번호 입력 "> <br>
@@ -112,12 +131,12 @@
               <div id="email_certification_check">
                 <input type="text" id="input_email_certification" placeholder=" 인증 번호 입력 ">
                 <div id="email_certification_check_button">
-                  <a href="#" onclick="">
+                  <a href="#">
                     <p>확 인</p>
                   </a>
                 </div>
                 <div id="email_certification">
-                  <a href="#" onclick="">
+                  <a href="#" onclick="action_email();">
                     <p>인증 요청</p>
                   </a>
                 </div>
@@ -133,11 +152,11 @@
             <div id="check_box">
               <input type="checkbox" name=""> <span id="all_agree"> 전체 동의 (필수, 선택 모두 포함) </span><br>
               <input type="checkbox" name=""> <span> 이용 약관 동의 (필수) </span>
-              <a href="#">약관 보기</a> <br>
+              <a href="./terms_of_use.php?page=tou1" target="_blank">약관 보기</a> <br>
               <input type="checkbox" name=""> <span> 개인정보 수집 동의 (필수) </span>
-              <a href="#">약관 보기</a> <br>
+              <a href="./terms_of_use.php?page=tou2" target="_blank">약관 보기</a> <br>
               <input type="checkbox" name=""> <span> 마케팅 수신 동의 (선택) </span>
-              <a href="#">상세 보기</a> <br>
+              <a href="./terms_of_use.php?page=tou3" target="_blank">상세 보기</a> <br>
             </div>
             <div id="button">
               <div id="cancel">
@@ -146,7 +165,7 @@
                 </a>
               </div>
               <div id="signup">
-                <input type="submit" id="button_submit" value="가입">
+                <input type="button" id="button_submit" value="가 입" onclick="action_signup();">
               </div>
             </div>
           </form>

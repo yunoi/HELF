@@ -62,6 +62,7 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
+
 <?php
 function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 {
@@ -80,10 +81,11 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
  ?>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/greet.css">
+    <link rel="stylesheet" href="./css/community.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <title></title>
     <script type="text/javascript">
     function check_delete(num) {
@@ -152,11 +154,14 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                   <?=$content?>
                 </div><!--end of col2  -->
               </div><!--end of view_content  -->
+              <div id="fb-root"></div>
+              <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>페이스북
+              <div class="fb-like" data-href="http://localhost/source/likeit.php" data-width="" data-layout="button_count" data-action="like" data-size="large" data-share="true"></div>
             </div><!--end of write_form  -->
 
 <!--덧글내용시작  -->
 <div id="ripple">
-  <div id="ripple1">덧글</div>
+  <div id="ripple1">댓글</div>
   <div id="ripple2">
     <?php
       $sql="select * from `comment` where b_code='자유게시판' and parent='$q_num' ";

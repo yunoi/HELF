@@ -1,11 +1,11 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
-// include $_SERVER['DOCUMENT_ROOT']."/helf/login/login.php";
+
 ?>
 <?php
 if(!isset($_SESSION['user_id'])){
-  echo "<script>alert('권한없음!');history.go(-1);</script>";
+  echo "<script>alert('권한이 없습니다.');history.go(-1);</script>";
   exit;
 }
 ?>
@@ -94,7 +94,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
   $content = trim($_POST["content"]);
   $subject = trim($_POST["subject"]);
   if(empty($content)||empty($subject)){
-    echo "<script>alert('내용이나제목입력요망!');history.go(-1);</script>";
+    echo "<script>alert('내용이나 제목을 입력해주세요');history.go(-1);</script>";
     exit;
   }
   $subject = test_input($_POST["subject"]);
@@ -154,7 +154,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
 
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="insert_ripple"){
   if(empty($_POST["ripple_content"])){
-    echo "<script>alert('내용입력요망!');history.go(-1);</script>";
+    echo "<script>alert('댓글 내용을 입력해주세요');history.go(-1);</script>";
     exit;
   }
   //"덧글을 다는사람은 로그인을 해야한다." 말한것이다.
@@ -168,7 +168,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
   $rowcount=mysqli_num_rows($result);
 
   if(!$rowcount){
-    echo "<script>alert('없는 아이디!!');history.go(-1);</script>";
+    echo "<script>alert('없는 아이디입니다.');history.go(-1);</script>";
     exit;
   }else{
     $content = test_input($_POST["ripple_content"]);

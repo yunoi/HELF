@@ -48,6 +48,11 @@
 <?php
     if($user_grade =='admin') {
 ?>
+<<<<<<< HEAD
+                <li> | </li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/admin_page.php">관리자페이지</a></li>
+<?php
+=======
         <li>
             |
         </li>
@@ -55,6 +60,7 @@
             <a href="admin.php">관리자페이지</a>
         </li>
         <?php
+>>>>>>> 15d987cb7a74de41dafc5e1760cec5604befedde
     }
 ?>
     </ul>

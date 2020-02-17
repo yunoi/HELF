@@ -69,7 +69,7 @@
         <ol class="menu_slide" id="about_slide">
                   <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php">HELF</a></li>
                   <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/notice/notice.php">공지사항</a></li>
-                  <li><a href="#">FAQ</a></li>
+                  <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/FAQ/list.php">FAQ</a></li>
                 </ol>
               </li>
         <li>

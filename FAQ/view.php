@@ -49,6 +49,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/greet.css">
     <script type="text/javascript" src="../js/member_form.js?ver=1"></script>
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <title></title>
   </head>
   <body>

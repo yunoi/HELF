@@ -15,13 +15,12 @@ if(!(isset($_SESSION['user_grade']))||!($_SESSION['user_grade']==="admin")){
 
 // 수정 추가 삭제 기능만 넣기
 if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
-
-    $mode=$_GET["mode"];//$mode="update"or"response"
+    $mode=$_GET["mode"]; //$mode="update"or"response"
     $num = test_input($_GET["num"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
     //update 이면 해당된글, response이면 부모의 해당된글을 가져옴.
-    $sql="SELECT * from `qna` where num ='$q_num';";
+    $sql="SELECT * from `faq` where num ='$q_num';";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));

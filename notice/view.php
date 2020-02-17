@@ -86,15 +86,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
             <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
         </header>
       </div><!--end of header  -->
-      <div id="menu">
-        <?php include "../lib/top_menu2.php"; ?>
-      </div><!--end of menu  -->
       <div id="content">
-       <div id="col1">
-         <div id="left_menu">
-           <?php include "../lib/left_menu.php"; ?>
-         </div>
-       </div><!--end of col1  -->
        <div id="col2">
          <div id="title">공지사항<img src="../img/title_greet.gif"></div>
          <div class="clear"></div>

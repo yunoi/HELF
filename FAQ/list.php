@@ -1,8 +1,7 @@
 <?php
 //공지사항 게시판 형식으로 만들기
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/common/lib/db_connector.php";
-include $_SERVER['DOCUMENT_ROOT']."/common/lib/create_table.php";
+include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/create_table.php";
 
 create_table($conn,'faq'); //FAQ
 
@@ -50,6 +49,7 @@ $number = $total_record - $start;
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
+<link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <!-- <script type="text/javascript" src="./js/member_form.js"></script> -->
     <title></title>
   </head>
@@ -58,8 +58,6 @@ $number = $total_record - $start;
       <div id="header">
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       </div><!--end of header  -->
-      <div id="menu">
-      </div><!--end of menu  -->
       <div id="content">
        <div id="col2">
          <div id="title">
@@ -84,9 +82,6 @@ $number = $total_record - $start;
            <ul>
              <li id="list_title1">번호</li>
              <li id="list_title2">제목</li>
-             <li id="list_title3">글쓴이</li>
-             <li id="list_title4">등록일</li>
-             <li id="list_title5">조회수</li>
            </ul>
          </div><!--end of list_top_title  -->
          <div id="list_content">
@@ -96,10 +91,6 @@ $number = $total_record - $start;
               mysqli_data_seek($result, $i);
               $row=mysqli_fetch_array($result);
               $num=$row['num'];
-              $id=$row['id'];
-              $name=$row['name'];
-              $hit=$row['hit'];
-              $date= substr($row['regist_day'], 0, 10);
               $subject=$row['subject'];
               $subject=str_replace("\n", "<br>", $subject);
               $subject=str_replace(" ", "&nbsp;", $subject); ?>
@@ -108,9 +99,6 @@ $number = $total_record - $start;
               <div id="list_item2">
                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
               </div>
-              <div id="list_item3"><?=$user_name?></div>
-              <div id="list_item4"><?=$date?></div>
-              <div id="list_item5"><?=$hit?></div>
             </div><!--end of list_item -->
             <div id="memo_content"><?=$memo_content?></div>
         <?php

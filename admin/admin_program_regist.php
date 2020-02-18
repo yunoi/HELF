@@ -6,7 +6,7 @@
     <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../common/css/common.css">
     <link rel="stylesheet" type="text/css" href="../common/css/main.css">
-    <link rel="stylesheet" type="text/css" href="./admin.css">
+    <link rel="stylesheet" type="text/css" href="./css/admin.css">
     <link rel="stylesheet" href="./css/program_regist.css">
     <script src="./js/register.js"></script>
   </head>
@@ -14,7 +14,7 @@
     <header>
       <?php
       include "../common/lib/header.php";
-      include $_SERVER['DOCUMENT_ROOT']."/helf//common/lib/db_connector.php";
+      include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
       ?>
     </header>
   <div id="admin"> <!--가운데 정렬을 위해 -->

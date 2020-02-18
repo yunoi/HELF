@@ -28,21 +28,20 @@ p {
 }
 
 #phone {
+  display: block;
+  clear: both;
   width: 400px;
   box-sizing: border-box;
-  margin-bottom: 10px;
 }
 
-#phone #phone_input {
-  display: inline-block;
-  height: 40px;
-  float: left;
+#phone_input {
+  width: 400px;
+  height: 60px;
   box-sizing: border-box;
-  margin-bottom: 10px;
 }
 
 #phone select {
-  width: 60px;
+  width: 95px;
   height: 40px;
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -50,7 +49,7 @@ p {
 }
 
 #phone input {
-  width: 103px;
+  width: 136.5px;
   height: 40px;
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -66,7 +65,11 @@ p {
   border: 1px solid #1C1C1C;
   border-radius: 2px;
 }
-
+#input_phone_confirm {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 10px;
+}
 #phone_certification a {
   height: 40px;
   text-decoration: none;
@@ -82,8 +85,49 @@ p {
   padding: 10px 0px 0px 0px;
 }
 
-#input_phone_confirm {
+#phone_certification_check {
+
+}
+
+#phone_certification_check input {
+  display: inline-block;
+  float: left;
+  width: 179px;
+  height: 40px;
+  margin-bottom: 10px;
+  margin-right: 7px;
+  box-sizing: border-box;
+}
+
+#input_phone_certification_confirm {
   clear: both;
+}
+
+#phone_certification_check_button {
+  display: inline-block;
+  float: left;
+  width: 112px;
+  height: 40px;
+  margin-bottom: 10px;
+  margin-right: 7px;
+  box-sizing: border-box;
+  background-color: #0B3861;
+  border-radius: 2px;
+}
+
+#phone_certification_check_button a {
+  text-decoration: none;
+  color: #1C1C1C;
+}
+
+#phone_certification_check_button a p {
+  width: 95px;
+  height: 33px;
+  text-align: center;
+  font-size: 13px;
+  color: white;
+  margin: 0px;
+  padding: 10px 0px 0px 6px;
 }
 
 #address {
@@ -110,7 +154,13 @@ p {
 }
 
 #email {
-  clear: both;
+  display: inline-block;
+  width: 100%;
+}
+
+#email_input {
+  display: inline-block;
+  width: 100%;
 }
 
 #email #email_one {
@@ -216,18 +266,17 @@ p {
 }
 
 #check_box span {
-  font-size: 13px;
   margin: 0;
   padding: 0;
 }
 
 #check_box a {
-  font-size: 10px;
+  font-size: 11px;
   text-decoration: underline;
   color: #F23005;
 }
 
-#check_box #all_agree {
+#all_agree_span {
   font-size: 14px;
   font-weight: bold;
 }

@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../common/css/common.css">
-    <link rel="stylesheet" type="text/css" href="../common/css/main.css">
-    <link rel="stylesheet" type="text/css" href="./admin.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+      <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/css/admin.css">
   </head>
   <body>
 

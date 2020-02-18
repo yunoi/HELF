@@ -5,14 +5,15 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../common/css/common.css">
     <link rel="stylesheet" type="text/css" href="../common/css/main.css">
-    <link rel="stylesheet" type="text/css" href="./admin.css">
+    <link rel="stylesheet" type="text/css" href="./css/admin.css">
   </head>
   <body>
-
-
-	<header>
-    <?php include "../common/lib/header.php";?>
-  </header>
+    <header>
+      <?php
+      include "../common/lib/header.php";
+      include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+      ?>
+    </header>
   <div id="admin"> <!--가운데 정렬을 위해 -->
 
    <div id="admin_border">
@@ -44,9 +45,9 @@
 
             <h3 class="menu-title">-통계-</h3>
             <ul>
-              <li><a href="admin_statistics.php">월별매출</a></li>
-              <li><a href="admin_statistics.php">프로그램별 매출</a></li>
-              <li><a href="admin_statistics.php">회원별 매출</a></li>
+              <li><a href="admin_statistics1.php">월별매출</a></li>
+              <li><a href="admin_statistics2.php">프로그램별 매출</a></li>
+              <li><a href="admin_statistics3.php">회원별 매출</a></li>
             </ul>
 
 
@@ -55,9 +56,66 @@
         </aside>
      </div><!--  end of sub -->
 
-   <div id="content">
-     <p>프로그램 > 관리</p>
-   </div> <!--  end of content -->
+     <div id="content">
+        <h3>프로그램 관리 > 관리</h3><br>
+        <div id="admin_box">
+
+        <table>
+          <tr>
+            <td>번호</td>
+            <td>샵이름</td>
+            <td>운동종류</td>
+            <td>제목</td>
+            <td>모집마감일</td>
+            <td>옵션</td>
+            <td>가격</td>
+            <td>수정</td>
+            <td>삭제</td>
+          </tr>
+
+
+
+  <?php
+    $sql = "select * from program order by o_key desc";
+    $result = mysqli_query($conn, $sql);
+    $total_record = mysqli_num_rows($result); // 전체 회원 수
+
+    $number = $total_record;
+
+     while ($row = mysqli_fetch_array($result)){
+      $o_key        = $row["o_key"];
+      $shop      = $row["shop"];
+      $type     = $row["type"];
+      $subject     = $row["subject"];
+      $end_day     = $row["end_day"];
+      $choose     = $row["choose"];
+      $price     = $row["price"];
+  ?>
+
+      <tr>
+      <form method="post" action="admin_member_update.php?num=<?=$num?>">
+        <td><?=$o_key?></td>
+        <td><?=$shop?></td>
+        <td><?=$type ?></td>
+        <td><?=$subject?></td>
+        <td><?=$end_day?></td>
+        <td><?=$choose?></td>
+        <td><?=$price?></td>
+        <td><button type="submit">수정</button></td>
+        <td><button type="button" onclick="location.href='admin_member_delete.php?num=<?=$num?>'">삭제</button></td>
+      </form>
+     </tr>
+
+  <?php
+         $number--;
+     }
+  ?>
+        </table>
+
+    </div> <!-- admin_box -->
+
+
+      </div>		<!-- end of content -->
 
  </div><!--  end of admin_board -->
 

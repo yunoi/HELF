@@ -38,8 +38,13 @@ $mail -> addAddress($rv_id, "");
 
 // 메일 내용
 $mail -> isHTML(true); // HTML 태그 사용 여부
-$mail -> Subject = "이메일 제목";  // 메일 제목
-$mail -> Body = "이메일 내용";     // 메일 내용
+$mail -> Subject = "HELF에서 발송하는 이메일 인증문자 요청 메일입니다.";  // 메일 제목
+
+//랜덤 인증 번호
+srand((double)microtime()*1000000); //난수값 초기화
+$code=rand(100000,999999);
+
+$mail -> Body = "이메일 인증번호 입니다.\n인증번호 : ".$code."\n정확히 입력해주세요.";     // 메일 내용
 
 // Gmail로 메일을 발송하기 위해서는 CA인증이 필요하다.
 // CA 인증을 받지 못한 경우에는 아래 설정하여 인증체크를 해지하여야 한다.
@@ -53,9 +58,9 @@ $mail -> SMTPOptions = array(
 
 // 메일 전송
 $mail -> send();
-echo "Message has been sent";
+echo "$code";
 
 } catch (Exception $e) {
-echo "Message could not be sent. Mailer Error : ", $mail -> ErrorInfo;
+echo "fail", $mail -> ErrorInfo;
 }
 ?>

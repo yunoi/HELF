@@ -18,7 +18,11 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
     $find = $_POST["find"];
     $search = $_POST["search"];
     $q_search = mysqli_real_escape_string($conn, $search);
-    $sql="SELECT * from `faq` where $find like '%$q_search%' order by num desc";
+    if($find==="full"){
+      $sql="SELECT * from `faq` where subject AND content like '%$q_search%' order by num desc";
+    }else{
+      $sql="SELECT * from `faq` where $find  like '%$q_search%' order by num desc";
+    }
 } else {
     $sql="SELECT * from `faq` order by num desc";
 }
@@ -71,6 +75,7 @@ $number = $total_record - $start;
                <select  name="find">
                  <option value="subject">제목</option>
                  <option value="content">내용</option>
+                 <option value="full">제목+내용</option>
                </select>
              </div><!--end of list_search3  -->
              <div id="list_search4"><input type="text" name="search"></div>
@@ -136,5 +141,8 @@ $number = $total_record - $start;
       </div><!--end of col2  -->
       </div><!--end of content -->
     </div><!--end of wrap  -->
+    <footer>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+    </footer>
   </body>
 </html>

@@ -45,9 +45,9 @@
 
             <h3 class="menu-title">-통계-</h3>
             <ul>
-              <li><a href="admin_statistics.php">월별매출</a></li>
-              <li><a href="admin_statistics.php">프로그램별 매출</a></li>
-              <li><a href="admin_statistics.php">회원별 매출</a></li>
+              <li><a href="admin_statistics1.php">월별매출</a></li>
+              <li><a href="admin_statistics2.php">프로그램별 매출</a></li>
+              <li><a href="admin_statistics3.php">회원별 매출</a></li>
             </ul>
 
 
@@ -57,7 +57,7 @@
      </div><!--  end of sub -->
 
    <div id="content">
-     <p>#content</p>
+     <h3>관리자페이지 > 메인</h3><br>
    </div> <!--  end of content -->
 
  </div><!--  end of admin_board -->

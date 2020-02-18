@@ -11,11 +11,12 @@
     <script src="./js/register.js"></script>
   </head>
   <body>
-
-
-	<header>
-    <?php include "../common/lib/header.php";?>
-  </header>
+    <header>
+      <?php
+      include "../common/lib/header.php";
+      include $_SERVER['DOCUMENT_ROOT']."/helf//common/lib/db_connector.php";
+      ?>
+    </header>
   <div id="admin"> <!--가운데 정렬을 위해 -->
 
    <div id="admin_border">
@@ -47,9 +48,9 @@
 
             <h3 class="menu-title">-통계-</h3>
             <ul>
-              <li><a href="admin_statistics.php">월별매출</a></li>
-              <li><a href="admin_statistics.php">프로그램별 매출</a></li>
-              <li><a href="admin_statistics.php">회원별 매출</a></li>
+              <li><a href="admin_statistics1.php">월별매출</a></li>
+              <li><a href="admin_statistics2.php">프로그램별 매출</a></li>
+              <li><a href="admin_statistics3.php">회원별 매출</a></li>
             </ul>
 
 
@@ -59,7 +60,7 @@
      </div><!--  end of sub -->
 
      <div id="content">
-    			<p>프로그램 > 등록</p><br>
+    			<h3>프로그램 관리 > 등록</h3><br>
 
           <form name="program_regist" class="" action="program_insert.php?mode=insert" method="post" enctype="multipart/form-data">
             <table>

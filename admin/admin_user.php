@@ -8,13 +8,12 @@
     <link rel="stylesheet" type="text/css" href="./admin.css">
   </head>
   <body>
-
-
-	<header>
-    <?php
-    include "../common/lib/header.php";
-    include $_SERVER['DOCUMENT_ROOT']."/helf//common/lib/db_connector.php";
-    ?>
+    <header>
+      <?php
+      include "../common/lib/header.php";
+      include $_SERVER['DOCUMENT_ROOT']."/helf//common/lib/db_connector.php";
+      ?>
+    </header>
   </header>
   <div id="admin"> <!--가운데 정렬을 위해 -->
 
@@ -47,9 +46,9 @@
 
             <h3 class="menu-title">-통계-</h3>
             <ul>
-              <li><a href="admin_statistics.php">월별매출</a></li>
-              <li><a href="admin_statistics.php">프로그램별 매출</a></li>
-              <li><a href="admin_statistics.php">회원별 매출</a></li>
+              <li><a href="admin_statistics1.php">월별매출</a></li>
+              <li><a href="admin_statistics2.php">프로그램별 매출</a></li>
+              <li><a href="admin_statistics3.php">회원별 매출</a></li>
             </ul>
 
 
@@ -59,11 +58,7 @@
      </div><!--  end of sub -->
 
      <div id="content">
-  			<h3>회원 관리 페이지</h3>
-        <div id="admin_box">
-  	    <h3 id="member_title">
-  	    	관리자 모드 > 회원 관리
-  		</h3>
+  			<h3>유저관리 > 유저</h3><br>
   	    <table>
           <tr>
             <td>아이디</td>

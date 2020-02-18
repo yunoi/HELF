@@ -68,21 +68,11 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
          <div class="clear"></div>
             <div id="write_form">
               <div class="write_line"></div>
-              <div id="write_row1">
-                <div class="col1">아이디</div>
-                <div class="col2"><?=$id?>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  조회 : <?=$hit?> &nbsp;&nbsp;&nbsp; 입력날짜: <?=$day?>
-                </div>
-
-              </div><!--end of write_row1  -->
-              <div class="write_line"></div>
               <div id="write_row2">
                 <div class="col1">제&nbsp;&nbsp;목</div>
                 <div class="col2"> <input type="text" name="subject" value="<?=$subject?>" readonly></div>
               </div><!--end of write_row2  -->
               <div class="write_line"></div>
-
               <div id="write_row3">
                 <div class="col1">내&nbsp;&nbsp;용</div>
                 <div class="col2"> <textarea name="content" rows="15" cols="79" readonly><?=$content?>
@@ -98,13 +88,13 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
             <?php
               //세션값이 존재하면 수정기능과 삭제기능부여하기
               if(isset($_SESSION['user_id'])){
-                if($_SESSION['user_id']=="admin" || $_SESSION['user_id']==$id){
+                if($_SESSION['user_grade']=="admin" || $_SESSION['user_grade']=="master"){
                   echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"><img src="../img/modify.png"></a>&nbsp;');
                   echo('<img src="../img/delete.png" onclick="check_delete('.$num.')">&nbsp;');
                 }
               }
               // 세션값이 존재하면 답변기능과 글쓰기 기능부여하기
-              if(!empty($_SESSION['user_id'])){
+              if($_SESSION['user_grade']=="admin" || $_SESSION['user_grade']=="master"){
                 echo '<a href="write_edit_form.php?mode=response&num='.$num.'"><img src="../img/response.png"></a>';
                 echo '<a href="write_edit_form.php"><img src="../img/write.png"></a>';
               }

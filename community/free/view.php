@@ -66,6 +66,7 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
 <?php
 function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 {
+  if(isset($_SESSION['user_id'])){
     $message="";
     if ($_SESSION['user_grade']=="admin"||$_SESSION['user_grade']=="master"||$_SESSION['user_id']==$id1) {
         $message=
@@ -76,6 +77,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
         </form>';
     }
     return $message;
+  }
 }
 
  ?>
@@ -122,7 +124,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
               <div class="write_line"></div>
               <div id="write_row1">
                 <div class="col1">아이디</div>
-                <div class="col2"><?=$user_id?>
+                <div class="col2"><?=$id?>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   조회 : <?=$hit?> &nbsp;&nbsp;&nbsp; 입력날짜: <?=$day?>
                 </div>
@@ -211,10 +213,13 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
   <?php
     //master or admin이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
     // echo "<script>alert('{$_SESSION['user_id']}');</script>";
-    if ($_SESSION['user_grade']=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$user_id) {
-        echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
-        echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
+    if(isset($_SESSION['user_id'])){
+      if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$user_id) {
+          echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
+          echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
+      }
     }
+
     //로그인하는 유저에게 글쓰기 기능을 부여함.
     if (!empty($_SESSION['user_id'])) {
         echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';

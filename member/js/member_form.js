@@ -1,19 +1,24 @@
-var id_pass = false;
-var pw_pass = false;
-var pw_check_pass = false;
-var name_pass = false;
-var phone_two_pass = false;
-var phone_three_pass = false;
-var email_one_pass = false;
-var email_two_pass = false;
-var address_one_pass = false;
-var address_thre_pass = false;
+var id_pass = false,
+ pw_pass = false,
+ pw_check_pass = false,
+ name_pass = false,
+ phone_two_pass = false,
+ phone_three_pass = false,
+ email_one_pass = false,
+ email_two_pass = false,
+ address_one_pass = false,
+ address_three_pass = false,
+ phone_code_pass = false,
+ email_code_pass = false,
 
+ tou_one_pass = false,
+ tou_two_pass = false;
 
-// 핸드폰 인증, 이메일 인증 이벤트 해줘야해~~!
+var phone_code="";
+var email_code="";
+
 
 $(document).ready(function() {
-  isAllPass();
   var input_id = $("#input_id"),
     input_password = $("#input_password"),
     input_password_check = $("#input_password_check"),
@@ -29,15 +34,13 @@ $(document).ready(function() {
     address_three = $("#address_three"),
 
     input_id_confirm = $("#input_id_confirm");
-  input_password_confirm = $("#input_password_confirm");
-  input_id_confinput_password_check_confirmirm = $("#input_password_check_confirm");
-  input_name_confirm = $("#input_name_confirm");
-  input_phone_confirm = $("#input_phone_confirm");
-  input_email_confirm = $("#input_email_confirm");
-  input_email_certification_confirm = $("#input_email_certification_confirm");
-  input_address_confirm = $("#input_address_confirm");
-
-
+    input_password_confirm = $("#input_password_confirm");
+    input_id_confinput_password_check_confirmirm = $("#input_password_check_confirm");
+    input_name_confirm = $("#input_name_confirm");
+    input_phone_confirm = $("#input_phone_confirm");
+    input_email_confirm = $("#input_email_confirm");
+    input_email_certification_confirm = $("#input_email_certification_confirm");
+    input_address_confirm = $("#input_address_confirm");
 
   input_id.blur(function() {
     var id_value = input_id.val();
@@ -239,15 +242,151 @@ $(document).ready(function() {
     }
   }); //address_three.blur end
 
+  $("#phone_check").click(function() {
+    var phone_one_value =  $("#phone_one").val();
+    var phone_two_value = $("#phone_two").val();
+    var phone_three_value = $("#phone_three").val();
+    if(phone_one_value !== "" && phone_two_value !== "" && phone_two_value !== "") {
+      $.ajax({
+          url: "./phone_certification.php",
+          type: 'POST',
+          data: {
+            "mode": "send",
+            "phone_one": phone_one_value,
+            "phone_two": phone_two_value,
+            "phone_three": phone_three_value
+          },
+          success: function(data) {
+            phone_code=data;
+             if (data === "발송 실패") {
+              alert("문자 전송 실패되었습니다.");
+              phone_code_pass = false;
+              isAllPass();
+              } else {
+              alert("문자가 전송 되었습니다.");
+            }
+          }
+        })
+    } else {
+      alert("휴대폰 번호가 제대로 입력되지 않았습니다!");
+    }
+  });
+
+  $("#input_phone_certification_check").click(function () {
+    if($("#input_phone_certification").val() === "") {
+      $("#input_phone_confirm").html("<span style='color:red'>인증번호를 입력해주세요.</span>");
+      phone_code_pass = false;
+      isAllPass();
+    } else if($("#input_phone_certification").val() === phone_code) {
+      $("#input_phone_confirm").html("<span style='color:green'>인증에 성공하였습니다.</span>");
+      phone_code_pass = true;
+      isAllPass();
+    } else if ($("#input_phone_certification").val() !== phone_code){
+        $("#input_phone_confirm").html("<span style='color:red'>인증에 실패하였습니다.</span>");
+        phone_code_pass = false;
+        isAllPass();
+    } else {
+      alert("문자 인증 오류입니다!")
+    }
+  });
+
+  $("#email_check").click(function() {
+    var email_one_value =  $("#email_one").val();
+    var email_two_value = $("#email_two").val();
+    if(email_one_value !== "" && email_two_value !== "") {
+      $.ajax({
+          url: "./PHPMailer/PHPMailer/phpmail_test.php",
+          type: 'POST',
+          data: {
+            "email_one": email_one_value,
+            "email_two": email_two_value
+          },
+          success: function(data) {
+            email_code=data;
+             if (data === "fail") {
+              alert("이메일이 전송 실패되었습니다.");
+              email_code_pass = false;
+              isAllPass();
+              } else {
+              alert("이메일이 전송 되었습니다.");
+            }
+          }
+        })
+    } else {
+      alert("이메일 주소가 제대로 입력되지 않았습니다!");
+    }
+  });
+
+  $("#input_email_certification_check").click(function () {
+    if($("#input_email_certification").val() === "") {
+        $("#input_email_certification_confirm").html("<span style='color:red'>이메일 인증번호를 입력해주세요.</span>");
+        email_code_pass = false;
+        isAllPass();
+    } else if($("#input_email_certification").val() === email_code) {
+        $("#input_email_certification_confirm").html("<span style='color:green'>이메일 인증에 성공하였습니다.</span>");
+        email_code_pass = true;
+        isAllPass();
+    } else if ($("#input_email_certification").val() !== email_code){
+        $("#input_email_certification_confirm").html("<span style='color:red'>이메일 인증에 실패하였습니다.</span>");
+        email_code_pass = false;
+        isAllPass();
+    } else {
+      alert("이메일 인증 오류입니다!")
+    }
+  });
+  // 전체 선택 체크박스
+  $("#all_agree").click(function() {
+    if($("#all_agree").prop("checked")) {
+      $("input[type=checkbox]").prop("checked",true);
+      tou_one_pass = true;
+      tou_two_pass = true;
+      isAllPass();
+    } else {
+       $("input[type=checkbox]").prop("checked",false);
+       tou_one_pass = false;
+       tou_two_pass = false;
+       isAllPass();
+    }
+    alert(tou_one_pass);
+    alert(tou_two_pass);
+  });
+
+  $("#tou_one").click(function() {
+    if($("#tou_one").prop("checked")) {
+      $("#tou_one").prop("checked",true);
+      tou_one_pass = true;
+      isAllPass();
+    } else {
+       $("#tou_one").prop("checked",false);
+       tou_one_pass = false;
+       isAllPass();
+    }
+    alert(tou_one_pass);
+    alert(tou_two_pass);
+  });
+
+  $("#tou_two").click(function() {
+    if($("#tou_two").prop("checked")) {
+      $("#tou_two").prop("checked",true);
+      tou_two_pass = true;
+      isAllPass();
+    } else {
+       $("#tou_two").prop("checked",false);
+       tou_two_pass = false;
+       isAllPass();
+    }
+    alert(tou_one_pass);
+    alert(tou_two_pass);
+  });
+
   function isAllPass() {
     if (id_pass && pw_pass && pw_check_pass && name_pass && phone_two_pass && phone_three_pass &&
-      email_one_pass && email_two_pass && address_one_pass && address_three_pass) {
+      email_one_pass && email_two_pass && address_one_pass && address_three_pass &&
+      phone_code_pass && email_code_pass && tou_one_pass && tou_two_pass) {
       $("#button_submit").attr("disabled", false);
     } else {
       $("#button_submit").attr("disabled", true);
     }
   }
-
-
 
 }); //document ready end

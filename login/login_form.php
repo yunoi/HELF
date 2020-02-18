@@ -4,7 +4,26 @@
     <meta charset="utf-8">
     <title>HELF :: Health friends, healthier life</title>
     <link rel="stylesheet" href="./css/login.css">
-    
+    <script type="text/javascript">
+      function check_input()
+      {
+          if (!document.login_form.id.value)
+          {
+              alert("아이디를 입력하세요");
+              document.login_form.id.focus();
+              return;
+          }
+
+          if (!document.login_form.password.value)
+          {
+              alert("비밀번호를 입력하세요");
+              document.login_form.password.focus();
+              return;
+          }
+          document.login_form.submit();
+        }
+    </script>
+
     <link
         rel="stylesheet"
         type="text/css"
@@ -39,7 +58,7 @@
             <input type="text" name="id" placeholder=" 아이디 입력 "> <br>
             <input type="password" name="password" placeholder=" 비밀번호 입력 "> <br>
             <div id="login_button">
-              <a href="#" onclick="check_input();">
+              <a href="#" onclick="check_input()">
                 <p>로그인</p>
               </a>
             </div>

@@ -37,6 +37,8 @@ $(document).ready(function() {
   input_email_certification_confirm = $("#input_email_certification_confirm");
   input_address_confirm = $("#input_address_confirm");
 
+
+
   input_id.blur(function() {
     var id_value = input_id.val();
     var exp = /^[a-z0-9]{5,20}$/;
@@ -233,7 +235,6 @@ $(document).ready(function() {
     } else {
       input_address_confirm.html("");
       address_three_pass = true;
-
       isAllPass();
     }
   }); //address_three.blur end
@@ -246,5 +247,7 @@ $(document).ready(function() {
       $("#button_submit").attr("disabled", true);
     }
   }
+
+
 
 }); //document ready end

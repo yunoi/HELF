@@ -62,9 +62,11 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
+
 <?php
 function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 {
+  if(isset($_SESSION['user_id'])){
     $message="";
     if ($_SESSION['user_grade']=="admin"||$_SESSION['user_grade']=="master"||$_SESSION['user_id']==$id1) {
         $message=
@@ -75,15 +77,17 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
         </form>';
     }
     return $message;
+  }
 }
 
  ?>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/greet.css">
+    <link rel="stylesheet" href="./css/community.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <title></title>
     <script type="text/javascript">
     function check_delete(num) {
@@ -120,7 +124,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
               <div class="write_line"></div>
               <div id="write_row1">
                 <div class="col1">아이디</div>
-                <div class="col2"><?=$user_id?>
+                <div class="col2"><?=$id?>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   조회 : <?=$hit?> &nbsp;&nbsp;&nbsp; 입력날짜: <?=$day?>
                 </div>
@@ -152,11 +156,14 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                   <?=$content?>
                 </div><!--end of col2  -->
               </div><!--end of view_content  -->
+              <div id="fb-root"></div>
+              <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v6.0"></script>페이스북
+              <div class="fb-like" data-href="http://localhost/source/likeit.php" data-width="" data-layout="button_count" data-action="like" data-size="large" data-share="true"></div>
             </div><!--end of write_form  -->
 
 <!--덧글내용시작  -->
 <div id="ripple">
-  <div id="ripple1">덧글</div>
+  <div id="ripple1">댓글</div>
   <div id="ripple2">
     <?php
       $sql="select * from `comment` where b_code='자유게시판' and parent='$q_num' ";
@@ -206,10 +213,13 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
   <?php
     //master or admin이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
     // echo "<script>alert('{$_SESSION['user_id']}');</script>";
-    if ($_SESSION['user_grade']=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$user_id) {
-        echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
-        echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
+    if(isset($_SESSION['user_id'])){
+      if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$user_id) {
+          echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
+          echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
+      }
     }
+
     //로그인하는 유저에게 글쓰기 기능을 부여함.
     if (!empty($_SESSION['user_id'])) {
         echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';

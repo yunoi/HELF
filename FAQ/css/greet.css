@@ -64,7 +64,7 @@
 	height:20px;
 	padding:7px;
 	border-top:solid 2px #aaaaaa;
-	background-color:#eeeeee;
+	background-color:antiquewhite;
 	margin-bottom:3px;
 }
 
@@ -96,6 +96,7 @@
 	float:left;
 	width:40px;
 	text-align:center;
+	margin-right: 30px;
 }
 
 #list_item #list_item2{

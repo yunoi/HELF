@@ -72,7 +72,6 @@
 <?php
     }
   }
-  mysqli_close($conn);
 ?>
       </ul>
   </div>

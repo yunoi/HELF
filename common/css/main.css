@@ -4,7 +4,7 @@
     min-height: 615px;
     float: left;
     position: relative; 
-    padding-right: 48px;
+    padding-right: 32px;
 }
 /* 슬라이드쇼 */
 #carousel_section{
@@ -13,7 +13,7 @@
       background-color: gray;
       position: relative;
           overflow: hidden;
-    margin-bottom: 32px;
+    margin-bottom: 48px;
   }
   
   #carousel_section > ul{
@@ -84,7 +84,7 @@
     overflow: hidden;
     top: 0px;
 }
-#latest { width: 350px; float: left; box-sizing: border-box; background-color: #04adbf;
+#latest { width: 354px; float: left; box-sizing: border-box; background-color: #04adbf;
     margin-right: 4px;
     padding: 4px;
     border-radius: 2px;
@@ -96,7 +96,7 @@
 #latest span:nth-child(1) { width: 170px; }
 #latest span:nth-child(2) { width: 50px; }
 #latest span:nth-child(3) { width: 80px; }
-#point_rank { width: 350px; float: right; box-sizing: border-box;background-color: #f2b705;
+#point_rank { width: 354px; float: right; box-sizing: border-box;background-color: #f2b705;
     margin-left: 4px;
     padding: 4px;
     border-radius: 2px;

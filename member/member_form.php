@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -7,16 +8,25 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="./js/member_form.js" charset="utf-8"></script>
 
-    <link rel="stylesheet" type="text/css" href="../common/css/common.css">
-    <link rel="stylesheet" type="text/css" href="../common/css/main.css">
-    <link rel="stylesheet" type="text/css" href="../carousel.css">
-    <script src="../js/vendor/modernizr.custom.min.js"></script>
-    <script src="../js/vendor/jquery-1.10.2.min.js"></script>
-    <script src="../js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
-    <script type="text/javascript" src="../main.js"></script>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
+        <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+
+    <script type="text/javascript" src="./common/js/main.js"></script>
+
+    <!-- 우편번호 api 참조 스크립트 -->
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+    <!-- 네이버 아이디로 로그인 api 참조 스크립트 -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -35,9 +45,13 @@
         document.getElementById("email_two").value= e.value;
         document.getElementById("email_two").focus();
       }
+      // 가입버튼 눌렀을 때
+      function action_signup() {
+        // 전화인증, 이메일인증 통과 안되면 서브밋 못하게해야해!!
+        document.member_form.action="member_insert.php";
+        document.member_form.submit();
+      }
     </script>
-  </head>
-  <body>
     <script type="text/javascript">
       var naver_id_login = new naver_id_login("imJpReP1ZuJ368WTaKMU", "http://localhost/helf/member/member_form.php");
       // 접근 토큰 값 출력
@@ -53,15 +67,17 @@
         var naver_email = naver_id_login.getProfileData('email');
         var naver_email_arr = naver_email.split('@');
 
-        alert(naver_email_arr[0]);
-        alert(naver_email_arr[1]);
-
         document.getElementById("input_name").value = naver_name;
+        document.getElementById("input_name").focus();
         document.getElementById("email_one").value = naver_email_arr[0];
+        document.getElementById("email_one").focus();
         document.getElementById("email_two").value = naver_email_arr[1];
-
+        document.getElementById("email_two").focus();
       }
     </script>
+  </head>
+  <body>
+
     <header>
       <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
     </header>
@@ -71,7 +87,7 @@
           <h1>회원가입</h1>
         </div>
         <div id="member_form">
-          <form name="member_form" id="input_member_form" action="member_insert.php" method="post">
+          <form name="member_form" id="input_member_form" method="post">
             <input type="text" name="id" id="input_id" placeholder=" 아이디 입력 "> <br>
             <p id="input_id_confirm"></p>
             <input type="password" name="password" id="input_password" placeholder=" 비밀번호 입력 "> <br>
@@ -112,15 +128,58 @@
               <div id="email_certification_check">
                 <input type="text" id="input_email_certification" placeholder=" 인증 번호 입력 ">
                 <div id="email_certification_check_button">
-                  <a href="#" onclick="">
+                  <a href="#" id="input_email_certification_check">
                     <p>확 인</p>
                   </a>
                 </div>
                 <div id="email_certification">
-                  <a href="#" onclick="">
+                  <a href="#" id="email_check">
+                    <!-- onclick="action_email();" -->
                     <p>인증 요청</p>
                   </a>
                 </div>
+                <!-- 이메일 인증 번호 확인 ajax -->
+                <script type="text/javascript">
+                  var code="";
+                  $(document).ready(function() {
+                    $("#email_check").click(function() {
+                      var email_one_value =  $("#email_one").val();
+                      var email_two_value = $("#email_two").val();
+                      if(email_one_value !== "" && email_two_value !== "") {
+                        $.ajax({
+                            url: "./PHPMailer/PHPMailer/phpmail_test.php",
+                            type: 'POST',
+                            data: {
+                              "email_one": email_one_value,
+                              "email_two": email_two_value
+                            },
+                            success: function(data) {
+                              code=data;
+                               if (data === "fail") {
+                                alert("메일이 전송 실패되었습니다.");
+                                } else {
+                                alert("메일이 전송 되었습니다.");
+                              }
+                            }
+                          })
+                      } else {
+                        alert("왜 else야");
+                      }
+                    });
+                    $("#input_email_certification_check").click(function () {
+                      if($("#input_email_certification").val() === "") {
+                        $("#input_email_certification_confirm").html("<span style='color:red'>인증번호를 입력해주세요.</span>");
+                      } else if($("#input_email_certification").val() === code) {
+                        $("#input_email_certification_confirm").html("<span style='color:green'>인증에 성공하였습니다.</span>");
+                      } else if ($("#input_email_certification").val() !== code){
+                          $("#input_email_certification_confirm").html("<span style='color:red'>인증에 실패하였습니다.</span>");
+                      } else {
+                        alert("왜 인증이 안돼ㅠㅜ")
+                      }
+                    });
+                  });
+                </script>
+
                 <p id="input_email_certification_confirm"></p>
               </div>
             </div>
@@ -133,11 +192,11 @@
             <div id="check_box">
               <input type="checkbox" name=""> <span id="all_agree"> 전체 동의 (필수, 선택 모두 포함) </span><br>
               <input type="checkbox" name=""> <span> 이용 약관 동의 (필수) </span>
-              <a href="#">약관 보기</a> <br>
+              <a href="./terms_of_use.php?page=tou1" target="_blank">약관 보기</a> <br>
               <input type="checkbox" name=""> <span> 개인정보 수집 동의 (필수) </span>
-              <a href="#">약관 보기</a> <br>
+              <a href="./terms_of_use.php?page=tou2" target="_blank">약관 보기</a> <br>
               <input type="checkbox" name=""> <span> 마케팅 수신 동의 (선택) </span>
-              <a href="#">상세 보기</a> <br>
+              <a href="./terms_of_use.php?page=tou3" target="_blank">상세 보기</a> <br>
             </div>
             <div id="button">
               <div id="cancel">
@@ -146,7 +205,7 @@
                 </a>
               </div>
               <div id="signup">
-                <input type="submit" id="button_submit" value="가입">
+                <input type="button" id="button_submit" value="가 입" onclick="action_signup();">
               </div>
             </div>
           </form>

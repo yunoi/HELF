@@ -21,7 +21,7 @@ function create_table($conn, $table_name){
               name char(10) not null,
               phone char(13) not null,
               email char(40) not null,
-              adress char(50),
+              address char(50),
               grade char(10),
               primary key(id)
            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
@@ -77,7 +77,7 @@ function create_table($conn, $table_name){
           )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
           case 'p_review' :
-            $sql = "CREATE TABLE p_review( 
+            $sql = "CREATE TABLE p_review(
               id char(20) not null,
               o_key int not null,
               content text not null,
@@ -88,7 +88,7 @@ function create_table($conn, $table_name){
         )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
           case 'p_qna' :
-            $sql = "CREATE TABLE p_qna( 
+            $sql = "CREATE TABLE p_qna(
               id char(20) not null,
               o_key int not null,
               content text not null,
@@ -96,7 +96,7 @@ function create_table($conn, $table_name){
               group_num int UNSIGNED NOT NULL,
               depth int UNSIGNED NOT NULL,
               primary key (id, o_key),
-               
+
             constraint fk_members_id2 FOREIGN KEY (id) REFERENCES members(id) on delete cascade,
               constraint fk_program_o_key2 FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade
         )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -106,7 +106,7 @@ function create_table($conn, $table_name){
               $sql = "create table notice(
                 num int not null auto_increment,
                 subject char(200) not null,
-                content text not null,        
+                content text not null,
                 regist_day char(20) not null,
                 hit int not null,
                 file_name char(40),
@@ -129,7 +129,7 @@ function create_table($conn, $table_name){
               id char(15) not null,
               name char(10) not null,
               subject char(200) not null,
-              content text not null,        
+              content text not null,
               regist_day char(20) not null,
               hit int not null,
               file_name char(40),
@@ -146,7 +146,7 @@ function create_table($conn, $table_name){
               parent int not null,
               id char(15) not null,
               name char(10) not null,
-              content text not null,        
+              content text not null,
               regist_day char(20) not null,
               b_code char(15) not null,
               primary key(num)
@@ -158,7 +158,7 @@ function create_table($conn, $table_name){
               id char(15) not null,
               name char(10) not null,
               subject char(200) not null,
-              content text not null,        
+              content text not null,
               regist_day char(20) not null,
               hit int not null,
               file_name char(40),
@@ -176,7 +176,7 @@ function create_table($conn, $table_name){
               name char(10) not null,
               area char(10) not null,
               subject char(200) not null,
-              content text not null,        
+              content text not null,
               regist_day char(20) not null,
               hit int not null,
               file_name char(40),
@@ -202,7 +202,7 @@ function create_table($conn, $table_name){
               primary key(name)
             )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
-          
+
       default:
         echo "<script>alert('해당 테이블 이름이 없습니다. ');</script>";
         break;

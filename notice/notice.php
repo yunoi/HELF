@@ -149,5 +149,8 @@ $number = $total_record - $start;
       </div><!--end of col2  -->
       </div><!--end of content -->
     </div><!--end of wrap  -->
+    <footer>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+    </footer>
   </body>
 </html>

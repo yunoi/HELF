@@ -5,7 +5,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../common/css/common.css">
     <link rel="stylesheet" type="text/css" href="../common/css/main.css">
-    <link rel="stylesheet" type="text/css" href="./admin.css">
+    <link rel="stylesheet" type="text/css" href="./css/admin.css">
 
   </head>
   <body>
@@ -17,7 +17,7 @@
     <header>
       <?php
       include "../common/lib/header.php";
-      include $_SERVER['DOCUMENT_ROOT']."/helf//common/lib/db_connector.php";
+      include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
       ?>
     </header>
 	<!-- //header -->

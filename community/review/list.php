@@ -92,8 +92,6 @@ $number = $total_record - $start;
              <li id="list_title3">글쓴이</li>
              <li id="list_title4">등록일</li>
              <li id="list_title5">조회</li>
-             <li id="list_title6">좋아요</li>
-             <li id="list_title7">싫어요</li>
            </ul>
          </div><!--end of list_top_title  -->
          <div id="list_content">
@@ -119,8 +117,6 @@ $number = $total_record - $start;
               <div id="list_item3"><?=$id?></div>
               <div id="list_item4"><?=$date?></div>
               <div id="list_item5"><?=$hit?></div>
-              <div id="list_item6"><?=$hit?></div>
-              <div id="list_item7"><?=$hit?></div>
             </div><!--end of list_item -->
             <div id="memo_content"><?=$memo_content?></div>
         <?php

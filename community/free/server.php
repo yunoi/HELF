@@ -1,4 +1,8 @@
 <?php
+// connect to database
+// session_start();
+// include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+// $con = mysqli_connect('localhost', 'root', '123456', 'helf');
 if (!$conn) {
     die("Error connecting to database: " . mysqli_connect_error($conn));
     exit();
@@ -10,12 +14,8 @@ if(!isset($_SESSION['user_id'])){
 
 $user_id = $_SESSION['user_id'];
 
-<<<<<<< HEAD
-echo "<script>alert('server.php에서 접속한 게시판 아이디{$num}, 접속아이디: {$_SESSION['user_id']} ');</script>";
-=======
 
 // echo "<script>alert('server.php에서 접속한 게시판 아이디{$num}, 접속아이디: {$_SESSION['user_id']} ');</script>";
->>>>>>> 23cbaf5070554b64321ce6d8c4cdbde13becaebf
 
 // 사용자가 좋아요 혹은 싫어요 버튼을 눌렀을 경우
 if (isset($_POST['action'])) {
@@ -56,11 +56,7 @@ function getLikes($id)
     // $id=(int)$id;
     $sql = "SELECT COUNT(*) FROM rating_info
           WHERE post_id = $id AND rating_action='like'";
-<<<<<<< HEAD
-    $rs = mysqli_query($con, $sql);
-=======
     $rs = mysqli_query($conn, $sql);
->>>>>>> 23cbaf5070554b64321ce6d8c4cdbde13becaebf
     $result = mysqli_fetch_array($rs);
     return $result[0];
 }
@@ -71,11 +67,7 @@ function getDislikes($id)
     global $conn;
     $sql = "SELECT COUNT(*) FROM rating_info
           WHERE post_id = $id AND rating_action='dislike'";
-<<<<<<< HEAD
-    $rs = mysqli_query($con, $sql);
-=======
     $rs = mysqli_query($conn, $sql);
->>>>>>> 23cbaf5070554b64321ce6d8c4cdbde13becaebf
     $result = mysqli_fetch_array($rs);
     return $result[0];
 }
@@ -88,13 +80,8 @@ function getRating($id)
     $likes_query = "SELECT COUNT(*) FROM rating_info WHERE post_id = $id AND rating_action='like'";
     $dislikes_query = "SELECT COUNT(*) FROM rating_info
                  WHERE post_id = $id AND rating_action='dislike'";
-<<<<<<< HEAD
-    $likes_rs = mysqli_query($con, $likes_query);
-    $dislikes_rs = mysqli_query($con, $dislikes_query);
-=======
     $likes_rs = mysqli_query($conn, $likes_query);
     $dislikes_rs = mysqli_query($conn, $dislikes_query);
->>>>>>> 23cbaf5070554b64321ce6d8c4cdbde13becaebf
     $likes = mysqli_fetch_array($likes_rs);
     $dislikes = mysqli_fetch_array($dislikes_rs);
     $rating = [
@@ -111,11 +98,7 @@ function userLiked($post_id)
     global $user_id;
     $sql = "SELECT * FROM rating_info WHERE user_id='$user_id'
           AND post_id=$post_id AND rating_action='like'";
-<<<<<<< HEAD
-    $result = mysqli_query($con, $sql);
-=======
     $result = mysqli_query($conn, $sql);
->>>>>>> 23cbaf5070554b64321ce6d8c4cdbde13becaebf
     if (mysqli_num_rows($result) > 0) {
         return true;
     } else {
@@ -130,11 +113,7 @@ function userDisliked($post_id)
     global $user_id;
     $sql = "SELECT * FROM rating_info WHERE user_id='$user_id'
           AND post_id=$post_id AND rating_action='dislike'";
-<<<<<<< HEAD
-    $result = mysqli_query($con, $sql);
-=======
     $result = mysqli_query($conn, $sql);
->>>>>>> 23cbaf5070554b64321ce6d8c4cdbde13becaebf
     if (mysqli_num_rows($result) > 0) {
         return true;
     } else {

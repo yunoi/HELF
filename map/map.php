@@ -88,7 +88,7 @@ $number = $total_record - $start;
        <div id="list_top_title">
          <ul>
            <li id="list_title1">지역</li>
-           <li id="list_title2">구</li>
+           <li id="list_title2">시,군,구</li>
            <li id="list_title3">측정장소</li>
            <li id="list_title4">이름</li>
            <li id="list_title5">주소</li>
@@ -119,7 +119,7 @@ $number = $total_record - $start;
             <div id="list_item6"><?=$tel?></div>
             <div id="list_item7">
               <!-- 구글맵 -->
-              <a href="https://www.google.com/maps/search/?api=1&query=<?=$name?>">
+              <a href="https://www.google.com/maps/search/?api=1&query=<?=$city.$name?>">
                 <!--네이버 https://map.naver.com/v5/search/php변수명($name) -->
 
                 <!--카카오맵 https://map.kakao.com/?q=php변수명($name) -->
@@ -134,7 +134,12 @@ $number = $total_record - $start;
       ?>
 
       <div id="page_button">
-        <div id="page_num">이전◀ &nbsp;&nbsp;&nbsp;&nbsp;
+        <div id="page_num">
+          <?php
+          if($page>1){
+            $val=(int)$page-1;
+            echo "<a href='./map.php?page=$val'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
+          }?>
         <?php
           for ($i=1; $i <= $total_page ; $i++) {
               if ($page==$i) {
@@ -144,7 +149,14 @@ $number = $total_record - $start;
               }
           }
         ?>
-        &nbsp;&nbsp;&nbsp;&nbsp;▶ 다음
+        <?php
+        if($page>=1 && $total_page!=$page){
+          $val=(int)$page+1;
+          echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./map.php?page=$val'>▶ 다음</a>";
+        }
+
+         ?>
+         <a href="./map.php?page=1"> <button type="button"> 목록</button></a>
         <br><br><br><br><br><br><br>
       </div><!--end of page num -->
     </div><!--end of page button -->

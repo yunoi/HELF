@@ -12,7 +12,7 @@ function create_procedure($conn, $procedure_name){
   }//end of while
 
   if($flag==="NO"){
-    $sql="DELIMITER //
+    $sql="
 CREATE PROCEDURE `carecenter_procedure`()
 BEGIN
 INSERT INTO `carecenter` (`city`,`area`,`area_health`,`type`,`name`,`address`,`tel`) VALUES ('서울','강남구','강남구보건소','보건소','강남구보건소','서울 강남구 선릉로 668','02-3423-7200');
@@ -269,8 +269,7 @@ INSERT INTO `carecenter` (`city`,`area`,`area_health`,`type`,`name`,`address`,`t
 INSERT INTO `carecenter` (`city`,`area`,`area_health`,`type`,`name`,`address`,`tel`) VALUES ('경북','울릉군','울릉군보건의료원','보건의료원','울릉군보건의료원','경북 울릉군 울릉읍 울릉순환로 396-18','054-790-6813');
 INSERT INTO `carecenter` (`city`,`area`,`area_health`,`type`,`name`,`address`,`tel`) VALUES ('경북','청송군','청송군보건의료원','보건의료원','청송군보건의료원','경북 청송군 청송읍 의료원길 19  (청송보건의료원)','054-870-7200');
 INSERT INTO `carecenter` (`city`,`area`,`area_health`,`type`,`name`,`address`,`tel`) VALUES ('경남','산청군','산청군보건의료원','보건의료원','산청군보건의료원','경남 산청군 산청읍 중앙로 97  (산청군보건의료원)','055-970-7500');
-END//
-DELIMITER ;";
+END";
 
     if(mysqli_query($conn,$sql)){
       echo "<script>alert('$procedure_name 프로시저가 생성되었습니다.');</script>";

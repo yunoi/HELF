@@ -79,18 +79,19 @@
         case "제주도":
         gym.innerHTML="<select id='sigungucode' title='시군구선택'><option value=''>시군구 선택</option><option value='서귀포시'>서귀포시</option><option value='제주시'>제주시</option></select>";
         break;
-        default:
-        gym.innerHTML="<select id='sigungucode' title='시군구선택'><option value='' selected='selected'>중분류</option></select>"
       }
     }
     function hells() {
-      location.href='https://www.google.com/maps/search/?api=1&query='+document.getElementById('city').value+''+document.getElementById('sigungucode').value+'헬스장';
+      var cityval=document.getElementById('city').value;
+      // location.href='https://www.google.com/maps/search/?api=1&query='+cityval+''+document.getElementById('sigungucode').value+'헬스장';
+      window.open('https://www.google.com/maps/search/?api=1&query='+cityval+''+document.getElementById('sigungucode').value+'헬스장');
+      getSigunguList(cityval);
     }
-    function last(){getSigunguList("끝")};
+    function last(){getSigunguList("서울")};
     </script>
   </head>
   <body onload="last();">
-    <select id="city" title="지역선택" name="areacode" onchange="getSigunguList(this.value);">
+    <select id="city" title="지역선택" name="areacode" onreset="getSigunguList(this.value);" onchange="getSigunguList(this.value);">
 			<option value="" selected="selected">지역선택</option>
 			<option value="서울">서울</option>
       <option value="인천">인천</option>

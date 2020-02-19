@@ -90,10 +90,9 @@ $number = $total_record - $start;
            <li id="list_title1">지역</li>
            <li id="list_title2">시,군,구</li>
            <li id="list_title3">측정장소</li>
-           <li id="list_title4">이름</li>
-           <li id="list_title5">주소</li>
-           <li id="list_title6">연락처</li>
-           <li id="list_title7">링크</li>
+           <li id="list_title4">주소</li>
+           <li id="list_title5">연락처</li>
+           <li id="list_title6">링크</li>
          </ul>
        </div><!--end of list_top_title  -->
 
@@ -105,8 +104,6 @@ $number = $total_record - $start;
             $city=$row['city'];
             $area=$row['area'];
             $areahealth=$row['area_health'];
-            $type=$row['type'];
-            $name=$row['name'];
             $adderrs=$row['address'];
             $tel=$row['tel'];?>
           <div id="list_item">
@@ -114,15 +111,14 @@ $number = $total_record - $start;
             <div id="list_item1"><?=$city?></div>
             <div id="list_item2"><?=$area?></div>
             <div id="list_item3"><?=$areahealth?></div>
-            <div id="list_item4"><?=$name?></div>
-            <div id="list_item5"><?=$adderrs?></div>
-            <div id="list_item6"><?=$tel?></div>
-            <div id="list_item7">
+            <div id="list_item4"><?=$adderrs?></div>
+            <div id="list_item5"><?=$tel?></div>
+            <div id="list_item6">
               <!-- 구글맵 -->
-              <a href="https://www.google.com/maps/search/?api=1&query=<?=$city.$name?>">
+              <!-- <a href="https://www.google.com/maps/search/?api=1&query=php변수명($name) "> -->
                 <!--네이버 https://map.naver.com/v5/search/php변수명($name) -->
 
-                <!--카카오맵 https://map.kakao.com/?q=php변수명($name) -->
+                <a href="https://map.kakao.com/?q=<?=$city.$areahealth?>">
                 <!--카카오맵 https://map.kakao.com/link/search/php변수명($name)  -->
                 <img src="./img/btn_spot.gif" width="18" height="24" alt="">
               </a>

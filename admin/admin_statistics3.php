@@ -124,7 +124,7 @@ Highcharts.chart('container', {
         type: 'column'
     },
     title: {
-        text: 'Monthly Average Rainfall'
+        text: '회원 매출'
     },
     subtitle: {
         text: 'Source: WorldClimate.com'

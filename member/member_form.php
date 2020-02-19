@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -47,7 +46,6 @@
       }
       // 가입버튼 눌렀을 때
       function action_signup() {
-        // 전화인증, 이메일인증 통과 안되면 서브밋 못하게해야해!!
         document.member_form.action="member_insert.php";
         document.member_form.submit();
       }
@@ -98,19 +96,28 @@
             <p id="input_name_confirm"></p>
             <div id="phone">
               <div id="phone_input">
-                <select name="phone_one">
+                <select name="phone_one" id="phone_one">
                   <option value="010" selected>010</option>
                   <option value="011" >011</option>
                 </select> -
                 <input type="number" name="phone_two" id="phone_two" placeholder=" 0000 "> -
                 <input type="number" name="phone_three" id="phone_three" placeholder=" 0000 ">
               </div>
-              <div id="phone_certification">
-                <a href="#" onclick="">
-                  <p>인증 요청</p>
-                </a>
+
+              <div id="phone_certification_check">
+                <input type="text" id="input_phone_certification" placeholder=" 문자 인증 번호 입력 ">
+                <div id="phone_certification_check_button">
+                  <a href="#" id="input_phone_certification_check">
+                    <p>확 인</p>
+                  </a>
+                </div>
+                <div id="phone_certification">
+                  <a href="#" id="phone_check">
+                    <p>인증 요청</p>
+                  </a>
+                </div>
+                <p id="input_phone_confirm"></p>
               </div>
-              <p id="input_phone_confirm"></p>
             </div>
             <div id="email">
               <div id="email_input">
@@ -126,7 +133,7 @@
                 <p id="input_email_confirm"></p>
               </div>
               <div id="email_certification_check">
-                <input type="text" id="input_email_certification" placeholder=" 인증 번호 입력 ">
+                <input type="text" id="input_email_certification" placeholder=" 이메일 인증 번호 입력 ">
                 <div id="email_certification_check_button">
                   <a href="#" id="input_email_certification_check">
                     <p>확 인</p>
@@ -134,52 +141,9 @@
                 </div>
                 <div id="email_certification">
                   <a href="#" id="email_check">
-                    <!-- onclick="action_email();" -->
                     <p>인증 요청</p>
                   </a>
                 </div>
-                <!-- 이메일 인증 번호 확인 ajax -->
-                <script type="text/javascript">
-                  var code="";
-                  $(document).ready(function() {
-                    $("#email_check").click(function() {
-                      var email_one_value =  $("#email_one").val();
-                      var email_two_value = $("#email_two").val();
-                      if(email_one_value !== "" && email_two_value !== "") {
-                        $.ajax({
-                            url: "./PHPMailer/PHPMailer/phpmail_test.php",
-                            type: 'POST',
-                            data: {
-                              "email_one": email_one_value,
-                              "email_two": email_two_value
-                            },
-                            success: function(data) {
-                              code=data;
-                               if (data === "fail") {
-                                alert("메일이 전송 실패되었습니다.");
-                                } else {
-                                alert("메일이 전송 되었습니다.");
-                              }
-                            }
-                          })
-                      } else {
-                        alert("왜 else야");
-                      }
-                    });
-                    $("#input_email_certification_check").click(function () {
-                      if($("#input_email_certification").val() === "") {
-                        $("#input_email_certification_confirm").html("<span style='color:red'>인증번호를 입력해주세요.</span>");
-                      } else if($("#input_email_certification").val() === code) {
-                        $("#input_email_certification_confirm").html("<span style='color:green'>인증에 성공하였습니다.</span>");
-                      } else if ($("#input_email_certification").val() !== code){
-                          $("#input_email_certification_confirm").html("<span style='color:red'>인증에 실패하였습니다.</span>");
-                      } else {
-                        alert("왜 인증이 안돼ㅠㅜ")
-                      }
-                    });
-                  });
-                </script>
-
                 <p id="input_email_certification_confirm"></p>
               </div>
             </div>
@@ -190,12 +154,12 @@
               <p id="input_address_confirm"></p>
             </div>
             <div id="check_box">
-              <input type="checkbox" name=""> <span id="all_agree"> 전체 동의 (필수, 선택 모두 포함) </span><br>
-              <input type="checkbox" name=""> <span> 이용 약관 동의 (필수) </span>
+              <input type="checkbox" id="all_agree"> <span id="all_agree_span"> 전체 동의 (필수, 선택 모두 포함) </span><br>
+              <input type="checkbox" id="tou_one"> <span> 이용 약관 동의 (필수) </span>
               <a href="./terms_of_use.php?page=tou1" target="_blank">약관 보기</a> <br>
-              <input type="checkbox" name=""> <span> 개인정보 수집 동의 (필수) </span>
+              <input type="checkbox" id="tou_two"> <span> 개인정보 수집 동의 (필수) </span>
               <a href="./terms_of_use.php?page=tou2" target="_blank">약관 보기</a> <br>
-              <input type="checkbox" name=""> <span> 마케팅 수신 동의 (선택) </span>
+              <input type="checkbox" id="tou_three"> <span> 마케팅 수신 동의 (선택) </span>
               <a href="./terms_of_use.php?page=tou3" target="_blank">상세 보기</a> <br>
             </div>
             <div id="button">

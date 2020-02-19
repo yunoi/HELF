@@ -76,7 +76,7 @@
             type: 'line'
         },
         title: {
-            text: 'Monthly Average Temperature'
+            text: '월별 매출'
         },
         subtitle: {
             text: 'Source: WorldClimate.com'

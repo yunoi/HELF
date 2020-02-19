@@ -99,7 +99,7 @@
                 </ol>
         </li>
         <li>
-            <a href="#">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/free/list.php">
                 <span>같이할건강</span></a>
         </li>
     </ul>

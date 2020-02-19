@@ -1,5 +1,5 @@
 #content #col2 {
-	width:807px;
+	width:890px;
 	min-height:558px;
 	float:left;
 	margin-left:15px;
@@ -82,15 +82,15 @@
 }
 
 #list_top_title #list_title3 {
-	margin-right: 114px;
+	margin-right: 76px;
 }
 
 #list_top_title #list_title4 {
-	margin-right: 170px;
+	margin-right: 204px;
 }
 
 #list_top_title #list_title5 {
-	margin-right: 112px;
+	margin-right: 199px;
 
 }
 #list_top_title #list_title6 {
@@ -134,14 +134,14 @@
 
 #list_item #list_item4{
 	float:left;
-	width: 200px;
+	width: 120px;
 	border-right:solid 1px gray;
 	text-align:center;
 }
 
 #list_item #list_item5{
 	float:left;
-	width: 200px;
+	width: 367px;
 	border-right:solid 1px gray;
 	text-align:center;
 }

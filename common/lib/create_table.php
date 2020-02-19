@@ -31,5 +31,4 @@ insert_init_data($conn, 'health_info');
 insert_init_data($conn, 'together');
 
 create_procedure($conn, 'carecenter_procedure');
-call_procedure($conn, 'carecenter_procedure');
 ?>

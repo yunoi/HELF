@@ -13,7 +13,7 @@ $(document).ready(function() {
       action = 'unlike';
     }
     $.ajax({
-      url: 'view.php', // (/.index.php) 경로명 일 수도 있다. ‘데이터를 요청할 주소’,
+      url: 'view.php', // (/.index.php) 경로명 일 수도 있다.
       type: 'post',
       data: { //서버로 전송할 데이터, 여긴 객체
         'action': action, // like or unlike 그리고 여기서 'action'은 변수명

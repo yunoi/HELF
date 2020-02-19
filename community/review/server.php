@@ -1,4 +1,8 @@
 <?php
+// connect to database
+// session_start();
+// include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+// $con = mysqli_connect('localhost', 'root', '123456', 'helf');
 if (!$conn) {
     die("Error connecting to database: " . mysqli_connect_error($conn));
     exit();

@@ -139,7 +139,7 @@
       <option value="중랑구">중랑구</option>
     </select>
     <!-- 인천 -->
-<select name="sigungucode" title="시군구선택">
+<!-- <select name="sigungucode" title="시군구선택">
   <option value="">시군구 선택</option>
   <option value="강화군">강화군</option>
   <option value="계양구">계양구</option>
@@ -409,7 +409,7 @@
   <option value="">시군구 선택</option>
   <option value="서귀포시">서귀포시</option>
   <option value="제주시">제주시</option>
-</select>
+</select> -->
 
 
     <input type="button" id="btn_map" name="" value="검색">

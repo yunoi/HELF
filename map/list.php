@@ -91,10 +91,10 @@ $number = $total_record - $start;
               $row=mysqli_fetch_array($result);
               $city=$row['city'];
               $area=$row['area'];
-              $areahealth=$row['areahealth'];
+              $areahealth=$row['area_health'];
               $type=$row['type'];
               $name=$row['name'];
-              $adderrs=$row['adderrs'];
+              $adderrs=$row['address'];
               $tel=$row['tel'];?>
             <div id="list_item">
               <!-- 지역 구 OOO보건소 (진료소,보건소) 이름 주소 번호 지도(링크)-->

@@ -2,6 +2,7 @@
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_statement.php";
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_ini_insert.php";
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_procedure.php";
 
 create_table($conn, 'members');
 create_table($conn, 'message');
@@ -28,5 +29,7 @@ insert_init_data($conn, 'comment');
 insert_init_data($conn, 'community');
 insert_init_data($conn, 'health_info');
 insert_init_data($conn, 'together');
-// insert_init_data($conn, 'carecenter');
+
+create_procedure($conn, 'carecenter_procedure');
+call_procedure($conn, 'carecenter_procedure');
 ?>

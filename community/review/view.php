@@ -18,13 +18,13 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
 
     // echo "<script>alert('게시글 번호 : {$num}');</script>";
 
-    $sql="UPDATE `community` SET `hit`=$hit WHERE b_code='자유게시판' and `num`=$q_num;";
+    $sql="UPDATE `community` SET `hit`=$hit WHERE b_code='다이어트후기' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
         die('Error: ' . mysqli_error($conn));
     }
 
-    $sql="SELECT * from `community` where b_code='자유게시판' and num ='$q_num';";
+    $sql="SELECT * from `community` where b_code='다이어트후기' and num ='$q_num';";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
         die('Error: ' . mysqli_error($conn));
@@ -128,13 +128,13 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
            <div id="sub_title"> <span>메뉴</span></div>
            <ul>
            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
-           <li><a href="#">다이어트 후기</a></li>
+           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/review/list.php">다이어트 후기</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
 
        <div id="col2">
-         <div id="title">자유게시판</div>
+         <div id="title">다이어트후기</div>
          <div class="clear"></div>
          <div id="write_form_title"></div>
          <div class="clear"></div>
@@ -225,7 +225,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
   <div id="ripple1">댓글</div>
   <div id="ripple2">
     <?php
-      $sql="select * from `comment` where b_code='자유게시판' and parent='$q_num' ";
+      $sql="select * from `comment` where b_code='다이어트후기' and parent='$q_num' ";
       $ripple_result= mysqli_query($conn, $sql);
       while ($ripple_row=mysqli_fetch_array($ripple_result)) {
           $ripple_num=$ripple_row['num'];
@@ -258,7 +258,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
       <input type="hidden" name="hit" value="<?=$hit?>">
       <input type="hidden" name="page" value="<?=$page?>">
       <input type="hidden" name="user_id" value="<?=$user_id?>">
-      <input type="hidden" name="b_code" value="자유게시판">
+      <input type="hidden" name="b_code" value="다이어트후기">
       <div id="ripple_insert">
         <div id="ripple_textarea"><textarea name="ripple_content" rows="3" cols="80"></textarea></div>
         <div id="ripple_button"><input type="image" src="./lib/memo_ripple_button.png"></div>

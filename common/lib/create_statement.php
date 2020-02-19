@@ -192,15 +192,15 @@ function create_table($conn, $table_name){
             break;
           case 'carecenter' :
             $sql = "create table carecenter(
-              city char(10) not null,
-                area char(10) not null,
-                area_health char(10) not null,
-                type char(10) not null,
-                name char(20) not null,
-                address char(50) not null,
-                tel char(15) not null,
-              primary key(name)
-            )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+              city char(20) not null,
+               area char(20) not null,
+               area_health char(40) not null,
+               type char(10) not null,
+               name char(20) not null,
+               address char(200) not null,
+               tel char(20) not null,
+              primary key(address)
+           ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
 
       default:

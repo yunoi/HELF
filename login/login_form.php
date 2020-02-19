@@ -39,9 +39,11 @@
         <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
 
     <script type="text/javascript" src="./common/js/main.js"></script>
-
+    <!-- 네이버 로그인 -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- 카카오톡 로그인 -->
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
   </head>
   <body>
@@ -65,14 +67,54 @@
           </form>
         </div>
         <div id="find_info">
-          <a href="forgot_id_pw.php?page=id">아이디 찾기</a>
-          <a href="forgot_id_pw.php?page=pw">비밀번호 찾기</a>
+          <script type="text/javascript">
+            // 팝업창을 화면 가운데에 띄워주기 위한 변수 선언
+            var popup_x = ((screen.availWidth-470)/2);
+            var popup_y = ((screen.availHeight-400)/2);
+
+            function find_id_popup() {
+              window.open('forgot_id_pw.php?page=id','아이디찾기','width=470, height=400, top=' + popup_y + ', left='+ popup_x + ', menubar=no, status=no, toolbar=no');
+            }
+
+            function find_password_popup() {
+              window.open('forgot_id_pw.php?page=password','비밀번호찾기','width=470, height=400, top=' + popup_y + ', left='+ popup_x + ', menubar=no, status=no, toolbar=no');
+            }
+          </script>
+          <a href="#" onclick="find_id_popup();">아이디 찾기</a>
+          <a  href="#" onclick="find_password_popup();">비밀번호 찾기</a>
         </div>
         <div id="sns_login">
           <div id="kakao_login">
-            <a href="kakao_login.php">
-              <p>카카오톡으로 로그인</p>
-            </a>
+            <a id="kakao-login-btn"></a>
+            <script type='text/javascript'>
+              //<![CDATA[
+                // 사용할 앱의 JavaScript 키를 설정해 주세요.
+                Kakao.init('2b354742bdf569e3d564614db25e1689');
+                // 카카오 로그인 버튼을 생성합니다.
+                Kakao.Auth.createLoginButton({
+                  container: '#kakao-login-btn',
+                  success: function(authObj) {
+                    // 로그인 성공시, API를 호출합니다.
+                    Kakao.API.request({
+                      url: '/v2/user/me',
+                      success: function(res) {
+                        // alert(JSON.stringify(res));
+
+                        var stringify = JSON.stringify(res);
+                        alert(stringify);
+
+                      },
+                      fail: function(error) {
+                        alert(JSON.stringify(error));
+                      }
+                    });
+                  },
+                  fail: function(err) {
+                    alert(JSON.stringify(err));
+                  }
+                });
+              //]]>
+            </script>
           </div>
             <div id="naver_id_login"></div>
             <!-- //네이버아이디로로그인 버튼 노출 영역 -->

@@ -29,6 +29,7 @@
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
+
     <script>
       // 우편번호 api
       function address_input() {
@@ -48,6 +49,46 @@
       function action_signup() {
         document.member_form.action="member_insert.php";
         document.member_form.submit();
+      }
+
+      function signup_duplicate_check() {
+        var input_name = $("#input_name"),
+         email_one = $("#email_one"),
+         email_two = $("#email_two");
+
+        var name_value = input_name.val(),
+         email_one_value = email_one.val();
+         email_two_value = email_two.val();
+
+         $.ajax({
+             url: '../login/forgot_id_pw_check.php',
+             type: 'POST',
+             data: {
+               "find_type": "signup_duplicate_check",
+               "input_name": name_value,
+               "email_one": email_one_value,
+               "email_two": email_two_value
+             },
+             success: function(data) {
+               console.log(data);
+               if (data === "ok") {
+
+               } else {
+                 alert("이미 가입하신 내용이 있습니다. 아이디는 " +data+ " 입니다.");
+                 history.go(-2);
+               }
+             }
+           })
+           .done(function() {
+             console.log("done");
+           })
+           .fail(function() {
+             console.log("error");
+           })
+           .always(function() {
+             console.log("complete");
+           });
+
       }
     </script>
     <script type="text/javascript">
@@ -71,8 +112,11 @@
         document.getElementById("email_one").focus();
         document.getElementById("email_two").value = naver_email_arr[1];
         document.getElementById("email_two").focus();
+
+        signup_duplicate_check();
       }
     </script>
+
   </head>
   <body>
 

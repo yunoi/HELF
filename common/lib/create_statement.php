@@ -192,17 +192,36 @@ function create_table($conn, $table_name){
             break;
           case 'carecenter' :
             $sql = "create table carecenter(
-              city char(10) not null,
-                area char(10) not null,
-                area_health char(10) not null,
-                type char(10) not null,
-                name char(20) not null,
-                address char(50) not null,
-                tel char(15) not null,
-              primary key(name)
-            )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+              city char(20) not null,
+               area char(20) not null,
+               area_health char(40) not null,
+               type char(10) not null,
+               name char(20) not null,
+               address char(200) not null,
+               tel char(20) not null,
+              primary key(address)
+           ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
-
+            case 'rating_info' :
+            $sql = "CREATE TABLE `rating_info` (
+              `num` int not null primary key auto_increment,
+              `user_id` char(20) NOT NULL,
+              `post_id` int(11) NOT NULL,
+              `rating_action` varchar(30) NOT NULL,
+               CONSTRAINT UC_rating_info UNIQUE (user_id, post_id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+            break;
+            case 'sales' :
+              $sql = "CREATE TABLE sales( 
+                id char(20) not null,
+                o_key int not null,
+                sales_day char(15) not null,
+                primary key (id, o_key),
+                 
+               constraint fk_members_id3 FOREIGN KEY (id) REFERENCES members(id) on delete cascade,
+                constraint fk_program_o_key3 FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade
+          )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+              break;
       default:
         echo "<script>alert('해당 테이블 이름이 없습니다. ');</script>";
         break;

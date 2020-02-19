@@ -77,7 +77,7 @@
                 </ol>
               </li>
         <li>
-            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/program.php">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/programtest.php">
                 <span>프로그램</span></a>
         </li>
         <li class="down_menu">
@@ -99,7 +99,7 @@
                 </ol>
         </li>
         <li>
-            <a href="#">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/free/list.php">
                 <span>같이할건강</span></a>
         </li>
     </ul>

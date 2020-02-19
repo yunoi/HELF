@@ -2,7 +2,6 @@
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 // echo "<script>alert('현재 로그인한 아이디: {$_SESSION['user_id']}');</script>";
-
 define('SCALE', 10);
 
 //*****************************************************
@@ -16,21 +15,19 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
     $find = $_POST["find"];
     $search = $_POST["search"];
     $q_search = mysqli_real_escape_string($conn, $search);
-    $sql="SELECT * from `community` where $find like '%$q_search%' AND b_code='자유게시판' order by num desc;";
+    $sql="SELECT * from `community` where $find like '%$q_search%' AND b_code='다이어트후기' order by num desc;";
 } else {
-    $sql="SELECT * from `community` where b_code='자유게시판' order by num desc;";
+    $sql="SELECT * from `community` where b_code='다이어트후기' order by num desc;";
 }
 
 $result=mysqli_query($conn, $sql);
-
 $total_record=mysqli_num_rows($result);
-// echo "<script>alert('{$total_record}');</script>";
-
 $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
 
 //2.페이지가 없으면 디폴트 페이지 1페이지
 if (empty($_GET['page'])) {
     $page=1;
+
 } else {
     $page=$_GET['page'];
 }
@@ -70,14 +67,14 @@ $number = $total_record - $start;
 
        <div id="col2">
          <div id="title">
-           <span>자유게시판</span>
+           <span>다이어트후기</span>
          </div>
          <form name="board_form" action="list.php?mode=search" method="post">
            <div id="list_search">
              <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
              <div id="list_search2"><span>SELECT</span></div>
              <div id="list_search3">
-               <select  name="find">
+               <select name="find">
                  <option value="subject">제목</option>
                  <option value="content">내용</option>
                  <option value="id">아이디</option>
@@ -95,6 +92,8 @@ $number = $total_record - $start;
              <li id="list_title3">글쓴이</li>
              <li id="list_title4">등록일</li>
              <li id="list_title5">조회</li>
+             <li id="list_title6">좋아요</li>
+             <li id="list_title7">싫어요</li>
            </ul>
          </div><!--end of list_top_title  -->
          <div id="list_content">
@@ -110,7 +109,8 @@ $number = $total_record - $start;
               $date= substr($row['regist_day'], 0, 10);
               $subject=$row['subject'];
               $subject=str_replace("\n", "<br>", $subject);
-              $subject=str_replace(" ", "&nbsp;", $subject); ?>
+              $subject=str_replace(" ", "&nbsp;", $subject);
+          ?>
             <div id="list_item">
               <div id="list_item1"><?=$number?></div>
               <div id="list_item2">
@@ -119,6 +119,8 @@ $number = $total_record - $start;
               <div id="list_item3"><?=$id?></div>
               <div id="list_item4"><?=$date?></div>
               <div id="list_item5"><?=$hit?></div>
+              <div id="list_item6"><?=$hit?></div>
+              <div id="list_item7"><?=$hit?></div>
             </div><!--end of list_item -->
             <div id="memo_content"><?=$memo_content?></div>
         <?php

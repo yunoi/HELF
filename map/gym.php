@@ -84,6 +84,7 @@
       }
     }
     function hells() {
+      document.getElementById('city').selected="selected";
       location.href='https://www.google.com/maps/search/?api=1&query='+document.getElementById('city').value+''+document.getElementById('sigungucode').value+'헬스장';
     }
     function last(){getSigunguList("끝")};

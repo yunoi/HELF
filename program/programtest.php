@@ -13,6 +13,11 @@ create_table($conn, 'program');
  <link rel="stylesheet" type="text/css" href="../common/css/common.css">
  <link rel="stylesheet" type="text/css" href="../common/css/main.css">
  <link rel="stylesheet" type="text/css" href="./css/program.css">
+ <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+ <script type="text/javascript" src="./scroll.js">
+
+ </script>
+
 
  </head>
  <body>
@@ -88,83 +93,6 @@ create_table($conn, 'program');
 
         <div class="div_program_list_main">
 
-            <ul id="board_list">
-
-<?php
-    if (isset($_GET["page"])) {
-        $page = $_GET["page"];
-    } else {
-        $page = 1;
-    }
-
-    $con = mysqli_connect("localhost", "root", "123456", "helf");
-    $sql = "select * from program";
-    $result = mysqli_query($con, $sql);
-    $total_record = mysqli_num_rows($result); // 전체 글 수
-
-    $scale = 10;
-
-    // 전체 페이지 수($total_page) 계산
-    if ($total_record % $scale == 0) {
-        $total_page = floor($total_record/$scale);
-    } else {
-        $total_page = floor($total_record/$scale) + 1;
-    }
-
-    // 표시할 페이지($page)에 따라 $start 계산
-    $start = ($page - 1) * $scale;
-
-    $number = $total_record - $start;
-
-   for ($i=$start; $i<$start+$scale && $i < $total_record; $i++) {
-       mysqli_data_seek($result, $i);
-       // 가져올 레코드로 위치(포인터) 이동
-       $row = mysqli_fetch_array($result);
-       // 하나의 레코드 가져오기
-       $shop         = $row["shop"];
-       $type          = $row["type"];
-       $subject        = $row["subject"];
-       $end_day     = $row["end_day"];
-       $price  = $row["price"];
-       $location         = $row["location"];
-       $file_copied         = $row["file_copied"];
-       $file_type         = $row["file_type"];
-
-       ?>
-				<li class="li_program_list">
-          <div class="div_list">
-          <div class="pro1">
-            <div class="main_image">
-              <?php
-                if(strpos($file_type, "image") !== false) {
-                  echo "<img src='../admin/data/$file_copied' class='image_vertical'>";
-                } else {
-                  echo "";
-                }
-              ?>
-            </div>
-          </div>
-          <div class="pro2">
-            <div class="abc">
-              <h5><?=$shop?> | <?=$type?> | <?=$location?></h5>
-              <h5 class="tit_list_block" style="font-size:16px"><?=$subject?></h5>
-              <span class="list_date">모집기간: <?=$end_day?> 까지</span>
-            </div>
-          </div>
-          <div class="pro3">
-            <em><strong>949,000</strong> 원</em>
-          </div>
-            </div>
-				</li>
-
-
-<?php
-       $number--;
-   }
-   mysqli_close($con);
-
-?>
-	    	</ul>
 
 
 

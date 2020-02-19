@@ -91,21 +91,8 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-<!-- ------------------------ -->
-
-
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
-
-
-
-<!-- ////////////////////////// -->
-
     <title></title>
     <script type="text/javascript">
     function check_delete(num) {
@@ -134,7 +121,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
        </div><!--end of col1  -->
 
        <div id="col2">
-         <div id="title">다이어트후기</div>
+         <div id="title">다이어트 후기</div>
          <div class="clear"></div>
          <div id="write_form_title"></div>
          <div class="clear"></div>
@@ -176,49 +163,38 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
               </div><!--end of view_content  -->
             </div><!--end of write_form  -->
 
+            <!-- 좋아요, 싫어요 관련 시작 -->
+      <div class="posts-wrapper">
+         <?php foreach ($communities as $post): ?>
+           <!-- foreach($array as $value)  value 값만 가져오기-->
+            <div class="post">
+            <!-- <?php echo $post['text']; ?> -->
+            <div class="post-info">
+             <!-- if user likes post, style button differently -->
+               <i <?php if (userLiked($post['num'])): ?>
+                    class="fa fa-thumbs-up like-btn"
+                 <?php else: ?>
+                    class="fa fa-thumbs-o-up like-btn"
+                 <?php endif ?>
+                 data-id="<?php echo $post['num'] ?>"></i>
+               <span class="likes"><?php echo getLikes($post['num']); ?></span>
 
+               &nbsp;&nbsp;&nbsp;&nbsp;
 
-
-                        <!-- ///////////////////////// -->
-
-                        <div class="posts-wrapper">
-                           <?php foreach ($communities as $post): ?>
-                             <!-- foreach($array as $value)  value 값만 가져오기-->
-                           	<div class="post">
-                              <!-- <?php echo $post['text']; ?> -->
-                              <div class="post-info">
-                        	    <!-- if user likes post, style button differently -->
-                              	<i <?php if (userLiked($post['num'])): ?>
-                              		  class="fa fa-thumbs-up like-btn"
-                              	  <?php else: ?>
-                              		  class="fa fa-thumbs-o-up like-btn"
-                              	  <?php endif ?>
-                              	  data-id="<?php echo $post['num'] ?>"></i>
-                              	<span class="likes"><?php echo getLikes($post['num']); ?></span>
-
-                              	&nbsp;&nbsp;&nbsp;&nbsp;
-
-                        	    <!-- if user dislikes post, style button differently -->
-                              	<i
-                              	  <?php if (userDisliked($post['num'])): ?>
-                              		  class="fa fa-thumbs-down dislike-btn"
-                              	  <?php else: ?>
-                              		  class="fa fa-thumbs-o-down dislike-btn"
-                              	  <?php endif ?>
-                              	  data-id="<?php echo $post['num'] ?>"></i>
-                              	<span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
-                              </div>
-                           	</div>
-                           <?php endforeach ?>
-
-                          </div>
-                          <script src="scripts.js"></script>
-
-
-
-
-                        <!-- ////////////////////////////// -->
-
+             <!-- if user dislikes post, style button differently -->
+               <i
+                 <?php if (userDisliked($post['num'])): ?>
+                    class="fa fa-thumbs-down dislike-btn"
+                 <?php else: ?>
+                    class="fa fa-thumbs-o-down dislike-btn"
+                 <?php endif ?>
+                 data-id="<?php echo $post['num'] ?>"></i>
+               <span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
+            </div>
+            </div>
+         <?php endforeach ?>
+        </div>
+        <script src="scripts.js"></script>
 
 <!--덧글내용시작  -->
 <div id="ripple">
@@ -273,25 +249,19 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     //master or admin이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
     // echo "<script>alert('{$_SESSION['user_id']}');</script>";
     if (isset($_SESSION['user_id'])) {
-        if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$user_id) {
+        if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$id) {
             echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
             echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
         }
     }
-
     //로그인하는 유저에게 글쓰기 기능을 부여함.
     if (!empty($_SESSION['user_id'])) {
         echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
     }
-
-
   ?>
 </div><!--end of write_button-->
 </div><!--end of col2  -->
 </div><!--end of content -->
 </div><!--end of wrap  -->
-
-
-
 </body>
 </html>

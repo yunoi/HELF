@@ -105,7 +105,12 @@ $number = $total_record - $start;
               <div id="list_item5"><?=$adderrs?></div>
               <div id="list_item6"><?=$tel?></div>
               <div id="list_item7">
+                <!-- 구글맵 -->
                 <a href="https://www.google.com/maps/search/?api=1&query=<?=$name?>">
+                  <!--네이버 https://map.naver.com/v5/search/php변수명($name) -->
+
+                  <!--카카오맵 https://map.kakao.com/?q=php변수명($name) -->
+                  <!--카카오맵 https://map.kakao.com/link/search/php변수명($name)  -->
                   <img src="./img/btn_spot.gif" width="18" height="24" alt="">
                 </a>
               </div>

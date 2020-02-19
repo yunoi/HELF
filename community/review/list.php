@@ -23,13 +23,13 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
 $result=mysqli_query($conn, $sql);
 
 $total_record=mysqli_num_rows($result);
-// echo "<script>alert('{$total_record}');</script>";
 
 $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
 
 //2.페이지가 없으면 디폴트 페이지 1페이지
 if (empty($_GET['page'])) {
     $page=1;
+
 } else {
     $page=$_GET['page'];
 }
@@ -76,15 +76,14 @@ $number = $total_record - $start;
              <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
              <div id="list_search2"><span>SELECT</span></div>
              <div id="list_search3">
-               <select  name="find">
+               <select name="find">
                  <option value="subject">제목</option>
                  <option value="content">내용</option>
-                 <option value="name">이름</option>
                  <option value="id">아이디</option>
                </select>
              </div><!--end of list_search3  -->
              <div id="list_search4"><input type="text" name="search"></div>
-             <div id="list_search5"><input type="button" value="검색"> </div>
+             <div id="list_search5"><input type="submit" value="검색"> </div>
            </div><!--end of list_search  -->
          </form>
          <div id="clear"></div>

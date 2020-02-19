@@ -1,3 +1,4 @@
+<!-- 헬스장 -->
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -24,8 +25,66 @@
         location.href='https://www.google.com/maps/search/?api=1&query='+name;
       }
     });
-    function getSigunguList(number){
-
+    function getSigunguList(city){
+      let $city=city;
+      let $sigungucode=document.getElementById('sigungucode');
+      switch ($city) {
+        case "서울":
+        $sigungucode.innerHTML='<option value="" selected="selected">지역선택</option>
+  			<option value="서울">서울</option>
+        <option value="인천">인천</option>
+        <option value="대전">대전</option>
+        <option value="대구">대구</option>
+        <option value="광주">광주</option>
+        <option value="부산">부산</option>
+        <option value="울산">울산</option>
+        <option value="세종특별자치시">세종특별자치시</option>
+        <option value="경기도">경기도</option>
+        <option value="강원도">강원도</option>
+        <option value="충청북도">충청북도</option>
+        <option value="충청남도">충청남도</option>
+        <option value="경상북도">경상북도</option>
+        <option value="경상남도">경상남도</option>
+        <option value="전라북도">전라북도</option>
+        <option value="전라남도">전라남도</option>
+        <option value="제주도">제주도</option>'
+        break;
+        case "인천":break;
+        case "대전":break;
+        case "대구":break;
+        case "광주":break;
+        case "부산":break;
+        case "울산":break;
+        case "세종특별자치시":break;
+        case "경기도":break;
+        case "강원도":break;
+        case "충청북도":break;
+        case "충청남도":break;
+        case "경상북도":break;
+        case "경상남도":break;
+        case "전라북도":break;
+        case "전라남도":break;
+        case "제주도":break;
+        default:
+        $sigungucode.innerHTML='<option value="" selected="selected">지역선택</option>
+  			<option value="서울">서울</option>
+        <option value="인천">인천</option>
+        <option value="대전">대전</option>
+        <option value="대구">대구</option>
+        <option value="광주">광주</option>
+        <option value="부산">부산</option>
+        <option value="울산">울산</option>
+        <option value="세종특별자치시">세종특별자치시</option>
+        <option value="경기도">경기도</option>
+        <option value="강원도">강원도</option>
+        <option value="충청북도">충청북도</option>
+        <option value="충청남도">충청남도</option>
+        <option value="경상북도">경상북도</option>
+        <option value="경상남도">경상남도</option>
+        <option value="전라북도">전라북도</option>
+        <option value="전라남도">전라남도</option>
+        <option value="제주도">제주도</option>'
+      }
     }
     </script>
   </head>
@@ -51,7 +110,7 @@
       <option value="제주도">제주도</option>
 		</select>
 
-    <select name="sigungucode" title="시군구선택">  <!-- 서울권 -->
+    <select id="sigungucode" title="시군구선택">  <!-- 서울권 -->
       <option value="">시군구 선택</option>
       <option value="강남구">강남구</option>
       <option value="강동구">강동구</option>

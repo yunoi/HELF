@@ -121,7 +121,11 @@
 <!-- 전라남도 -->
 <select name="sigungucode" title="시군구선택"><option value="">시군구 선택</option><option value="1">강진군</option><option value="2">고흥군</option><option value="3">곡성군</option><option value="4">광양시</option><option value="5">구례군</option><option value="6">나주시</option><option value="7">담양군</option><option value="8">목포시</option><option value="9">무안군</option><option value="10">보성군</option><option value="11">순천시</option><option value="12">신안군</option><option value="13">여수시</option><option value="16">영광군</option><option value="17">영암군</option><option value="18">완도군</option><option value="19">장성군</option><option value="20">장흥군</option><option value="21">진도군</option><option value="22">함평군</option><option value="23">해남군</option><option value="24">화순군</option></select>
 <!-- 제주도 -->
-<select name="sigungucode" title="시군구선택"><option value="">시군구 선택</option><option value="1">남제주군</option><option value="2">북제주군</option><option value="3">서귀포시</option><option value="4">제주시</option></select>
+<select name="sigungucode" title="시군구선택">
+  <option value="">시군구 선택</option>
+  <option value="3">서귀포시</option>
+  <option value="4">제주시</option>
+</select>
 
 
     <input type="button" id="btn_map" name="" value="검색">

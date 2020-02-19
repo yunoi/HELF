@@ -11,7 +11,6 @@ $row="";
 $memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
 $total_record=0;
 if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
-    //제목, 내용, 아이디
     $find = $_POST["find"];
     $search = $_POST["search"];
     $q_search = mysqli_real_escape_string($conn, $search);

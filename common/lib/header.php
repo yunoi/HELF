@@ -77,7 +77,7 @@
                 </ol>
               </li>
         <li>
-            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/program.php">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/programtest.php">
                 <span>프로그램</span></a>
         </li>
         <li class="down_menu">

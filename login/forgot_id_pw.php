@@ -43,7 +43,8 @@
               if ($page === "id") {
             ?>
               <p>아이디를 잊어버리셨나요?</p>
-              <p>가입하실때 입력하셨던 이메일을 입력해주세요</p>
+              <p>이름과 이메일을 입력해주세요</p>
+              <input type="text" name="name" placeholder=" 이름 입력 "> <br>
               <input type="text" name="email" placeholder=" 이메일 입력"> <br>
               <input type="button" name="" value="아이디 찾기" onclick="">
             <?php
@@ -51,6 +52,9 @@
              ?>
           </form>
         </div>
+        <script>
+
+        </script>
       </div>
     </section>
     <footer>

@@ -14,11 +14,11 @@ function insert_init_data($conn, $table_name){
     switch($table_name){
           case 'members' :
             $sql = "
-            insert into members values ('admin', 'aaa123', '관리자', '010-1234-5678', 'admin@naver.com', '서울특별시 관악구 원신 2길 54-7', 'admin'), ('yunhae', 'aaa123', '강유내', '010-1111-1111', 'yunhae@naver.com', '서울특별시 성동구 유내동 123', 'master'), ('pangyu', 'aaa123', '김팡규', '010-2222-2222', 'pangyu@naver.com', '서울특별시 노원구 팡규동 123', null);";
+            insert into members values ('admin', 'aaa123', '관리자', '010-1234-5678', 'admin@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'admin'), ('yunhae', 'aaa123', '강유내', '010-1111-1111', 'yunhae@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'master'), ('pangyu', 'aaa123', '김팡규', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', null);";
             break;
           case 'program' :
             $sql = "insert into program values(null, '판규헬스장', 'PT', '판규헬스장에서 피티받으실분 모집합니다', '먼저 현대인의 가장 큰 문제점인 불균형한 자세 체크 후 앞으로의 방향을 제시합니다.
-            그 후에는 재활 필라테스운동과 웨이트운동을 병행하여 몸의 무너진 밸런스부터 잡으며 시작합니다! 또한 필요에 따라 수업과 동시에 온라인 트레이닝(목적에 맞는 운동/스트레칭 영상)도 같이 진행하고 있습니다. *다이어트 식단관리 포함. 
+            그 후에는 재활 필라테스운동과 웨이트운동을 병행하여 몸의 무너진 밸런스부터 잡으며 시작합니다! 또한 필요에 따라 수업과 동시에 온라인 트레이닝(목적에 맞는 운동/스트레칭 영상)도 같이 진행하고 있습니다. *다이어트 식단관리 포함.
             최대한 원하는 목표를 성취하실 수 있도록 도와드립니다!', 3, '2020-03-05', 'PT 10회' , 500000 , '서울시 노원구 상계2동' , 'abc.jpg', 'abc.jpg', 'abc.jpg' , '2020-02-13');";
             break;
           case 'p_review' :
@@ -47,12 +47,14 @@ function insert_init_data($conn, $table_name){
           case 'together' :
             $sql = "INSERT INTO `together` (`num`, `id`, `name`, `area`, `subject`, `content`, `regist_day`, `hit`, `file_name`, `file_type`, `file_copied`, `likeit`, `b_code`, `group_num`, `depth`, `ord`) VALUES (null, 'ysm2678', '유세미', '전북', '제목입니다', '내용입니다', '2020-02-11 (21:32)', '2000', 'sleepyHeadCat.png', 'image/png', '2020_02_11_14_43_36.png', '1999', '같이할건강', '0', '0', '0');";
             break;
+
           // case 'carecenter' :
-          //   $sql = "LOAD DATA INFILE 'carecenter_list.csv' 
-          //   INTO TABLE carecenter 
+          //   $sql = "LOAD DATA INFILE 'carecenter_list.csv'
+          //   INTO TABLE carecenter
           //   FIELDS TERMINATED BY ','
           //   LINES TERMINATED BY '\n'";
           // break;
+
       default:
         echo "<script>alert('해당 테이블 이름이 없습니다. ');</script>";
         break;

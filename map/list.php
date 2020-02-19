@@ -11,7 +11,6 @@ $row="";
 $memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
 $total_record=0;
 if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
-    //제목, 내용, 아이디
     $find = $_POST["find"];
     $search = $_POST["search"];
     $q_search = mysqli_real_escape_string($conn, $search);
@@ -92,10 +91,10 @@ $number = $total_record - $start;
               $row=mysqli_fetch_array($result);
               $city=$row['city'];
               $area=$row['area'];
-              $areahealth=$row['areahealth'];
+              $areahealth=$row['area_health'];
               $type=$row['type'];
               $name=$row['name'];
-              $adderrs=$row['adderrs'];
+              $adderrs=$row['address'];
               $tel=$row['tel'];?>
             <div id="list_item">
               <!-- 지역 구 OOO보건소 (진료소,보건소) 이름 주소 번호 지도(링크)-->
@@ -106,7 +105,12 @@ $number = $total_record - $start;
               <div id="list_item5"><?=$adderrs?></div>
               <div id="list_item6"><?=$tel?></div>
               <div id="list_item7">
+                <!-- 구글맵 -->
                 <a href="https://www.google.com/maps/search/?api=1&query=<?=$name?>">
+                  <!--네이버 https://map.naver.com/v5/search/php변수명($name) -->
+
+                  <!--카카오맵 https://map.kakao.com/?q=php변수명($name) -->
+                  <!--카카오맵 https://map.kakao.com/link/search/php변수명($name)  -->
                   <img src="./img/btn_spot.gif" width="18" height="24" alt="">
                 </a>
               </div>

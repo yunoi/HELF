@@ -2,7 +2,6 @@
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 // echo "<script>alert('현재 로그인한 아이디: {$_SESSION['user_id']}');</script>";
-
 define('SCALE', 10);
 
 //*****************************************************
@@ -16,9 +15,9 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
     $find = $_POST["find"];
     $search = $_POST["search"];
     $q_search = mysqli_real_escape_string($conn, $search);
-    $sql="SELECT * from `community` where $find like '%$q_search%' AND b_code='자유게시판' order by num desc;";
+    $sql="SELECT * from `community` where $find like '%$q_search%' AND b_code='다이어트후기' order by num desc;";
 } else {
-    $sql="SELECT * from `community` where b_code='자유게시판' order by num desc;";
+    $sql="SELECT * from `community` where b_code='다이어트후기' order by num desc;";
 }
 
 $result=mysqli_query($conn, $sql);
@@ -70,7 +69,7 @@ $number = $total_record - $start;
 
        <div id="col2">
          <div id="title">
-           <span>자유게시판</span>
+           <span>다이어트후기</span>
          </div>
          <form name="board_form" action="list.php?mode=search" method="post">
            <div id="list_search">

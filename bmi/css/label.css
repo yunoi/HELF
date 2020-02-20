@@ -1,8 +1,24 @@
 *{  margin: 0px;  padding: 0px;}
 ul{  list-style: none;}
-label{  display: inline-block;  width: 100px;}
-.div-bmi{  width: 500px;  margin: 0px auto;  background-color: lemonchiffon;}
+.div-bmi{  width: 500px;  margin: 0px auto;}
 .div_btn{  text-align: center;}
+label{ display: inline-block;  width: 100px;}
 h4{  margin: 8px;}
 ul{  margin-left: 3px;}
 ul li{  margin-top: 7px;}
+#p_bmi{}
+#bmi_btn{background-color: lightcoral;}
+
+#div_bmi{
+  display: inline-block;
+  width: 1000px;
+  position: relative;
+  margin: 0 auto;
+}
+#div_form{
+float: left;
+margin-left: 153px;
+}
+#div_aside{
+float: left;
+}

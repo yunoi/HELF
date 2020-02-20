@@ -117,7 +117,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
            <div id="sub_title"> <span>메뉴</span></div>
            <ul>
            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
-           <li><a href="#">다이어트 후기</a></li>
+           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/review/list.php">다이어트 후기</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
@@ -168,45 +168,46 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 
 
 
-                        <!-- ///////////////////////// -->
+        <!-- ///////////////////////// -->
 
-                        <div class="posts-wrapper">
-                           <?php foreach ($communities as $post): ?>
-                             <!-- foreach($array as $value)  value 값만 가져오기-->
-                              <div class="post">
-                              <!-- <?php echo $post['text']; ?> -->
-                              <div class="post-info">
-                               <!-- if user likes post, style button differently -->
-                                 <i <?php if (userLiked($post['num'])): ?>
-                                      class="fa fa-thumbs-up like-btn"
-                                   <?php else: ?>
-                                      class="fa fa-thumbs-o-up like-btn"
-                                   <?php endif ?>
-                                   data-id="<?php echo $post['num'] ?>"></i>
-                                 <span class="likes"><?php echo getLikes($post['num']); ?></span>
+        <div class="posts-wrapper">
+           <?php foreach ($communities as $post): ?>
+             <!-- foreach($array as $value)  value 값만 가져오기-->
+              <div class="post">
+              <!-- <?php echo $post['text']; ?> -->
+              <div class="post-info">
+               <!-- if user likes post, style button differently -->
+                 <i <?php if (userLiked($post['num'])): ?>
+                      class="fa fa-thumbs-up like-btn"
+                   <?php else: ?>
+                      class="fa fa-thumbs-o-up like-btn"
+                   <?php endif ?>
+                   data-id="<?php echo $post['num'] ?>">
+                 </i>
+                 <span class="likes"><?php echo getLikes($post['num']); ?></span>
 
-                                 &nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;
 
-                               <!-- if user dislikes post, style button differently -->
-                                 <i
-                                   <?php if (userDisliked($post['num'])): ?>
-                                      class="fa fa-thumbs-down dislike-btn"
-                                   <?php else: ?>
-                                      class="fa fa-thumbs-o-down dislike-btn"
-                                   <?php endif ?>
-                                   data-id="<?php echo $post['num'] ?>"></i>
-                                 <span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
-                              </div>
-                              </div>
-                           <?php endforeach ?>
+               <!-- if user dislikes post, style button differently -->
+                 <i
+                   <?php if (userDisliked($post['num'])): ?>
+                      class="fa fa-thumbs-down dislike-btn"
+                   <?php else: ?>
+                      class="fa fa-thumbs-o-down dislike-btn"
+                   <?php endif ?>
+                   data-id="<?php echo $post['num'] ?>"></i>
+                 <span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
+              </div>
+              </div>
+           <?php endforeach ?>
 
-                          </div>
-                          <script src="scripts.js"></script>
-
-
+          </div>
+          <script src="scripts.js"></script>
 
 
-                        <!-- ////////////////////////////// -->
+
+
+        <!-- ////////////////////////////// -->
 
 
 <!--덧글내용시작  -->

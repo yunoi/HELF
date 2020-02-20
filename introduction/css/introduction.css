@@ -1,15 +1,26 @@
+section{
+  margin-top: 20px;
+  width: 1000px;
+  min-width: 1000px;
+  position: relative;
+}
 #div_introduction{
   margin: 0 auto;
   border:2px solid black;
   width: 450px;
+  font-family: cursive;
 }
 #div_header{
   margin: 0 auto;
-  width: 500px;
-  height: 100px;
-  background-color: #8E6F80;
+  width: 450px;
+  height: 50px;
   border: 1px solid lightgray;
   text-align: center;
   font-size: 24px;
   font-family: "맑은 고딕";
+}
+#aside_introduction{
+  position: absolute;
+  top: 50px;
+  left: 737px;
 }

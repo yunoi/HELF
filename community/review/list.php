@@ -108,11 +108,18 @@ $number = $total_record - $start;
               $subject=$row['subject'];
               $subject=str_replace("\n", "<br>", $subject);
               $subject=str_replace(" ", "&nbsp;", $subject);
+              $file_name=$row['file_name'];
           ?>
             <div id="list_item">
               <div id="list_item1"><?=$number?></div>
               <div id="list_item2">
                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
+              <?php
+                if (!($file_name === "")) {
+                    echo('<img src="../pic/disk.png" alt="">');
+                } else {
+                    echo "";
+                } ?>
               </div>
               <div id="list_item3"><?=$id?></div>
               <div id="list_item4"><?=$date?></div>

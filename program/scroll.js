@@ -1,47 +1,50 @@
-
-$(function(){
-
-    var count=1;
-
-    //$(window).scroll(function() { });
-
-    //문서가 로드되면 20 row 생성 그리고 생성이 완료되면 scroll 이벤트 바인딩
-    for(var i = 1; i <= 20; i++) {
-        count = i;
-
-        $("<h1>"+count+" line scroll</h1>").appendTo(".div_program_list_main");
-
-        if(count == 20) {
-            $(window).bind("scroll",infinityScrollFunction);
-        }
-    }
-
-    function infinityScrollFunction() {
-
-        //현재문서의 높이를 구함.
+$(document).ready(function() {
+    var count=5
+    ;
+    $(window).bind("scroll", function(){
         var documentHeight  = $(document).height();
-        console.log("documentHeight : " + documentHeight);
-
-        //scrollTop() 메서드는 선택된 요소의 세로 스크롤 위치를 설정하거나 반환
-        //스크롤바가 맨 위쪽에 있을때 , 위치는 0
-        console.log("window의 scrollTop() : " + $(window).scrollTop());
-        //height() 메서드는 브라우저 창의 높이를 설정하거나 반환
-        console.log("window의 height() : " + $(window).height());
-
-        //세로 스크롤위치 max값과 창의 높이를 더하면 현재문서의 높이를 구할수있음.
-        //세로 스크롤위치 값이 max이면 문서의 끝에 도달했다는 의미
         var scrollHeight = $(window).scrollTop()+$(window).height();
-        console.log("scrollHeight : " + scrollHeight);
 
-        if(scrollHeight > documentHeight-200) { //문서의 맨끝에 도달했을때 내용 추가
-            for(var i = 0; i<10; i++) {
-                //count = count + 1;
-                count++;
-                //$("<h1> infinity scroll </h>").appendTo("body");
-                $("<h1>"+count+" line scroll</h1>").appendTo(".div_program_list_main");
-            }
+        if(scrollHeight > documentHeight*0.95) {
+              $.ajax({
+                url:'program_db.php',
+                type:'POST',
+                data:{'list':count},
+
+                success:function(data){
+                  var data = JSON.parse(data);
+                  console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
+                  +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
+                  console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
+                  +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
+                  console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
+                  +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
+                  console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
+                  +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
+                  console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
+                  +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
+
+
+                  for(var i = 0; i<5; i++){
+                    var html = `<li class="li_program_list">`;
+                    html += `<div class="div_list"><div class="pro1"><div class="main_image"><img src='../admin/data/`+data[i].file_copied+`' class='image_vertical'></div></div>`;
+                    html += `<div class="pro2"><div class="abc"><h5>`+data[i].shop+" | "+data[i].type+" | "+data[i].location+`</h5>`;
+                    html += `<h5 class="tit_list_block" style="font-size:16px">`+data[i].subject+`</h5>`;
+                    html += `<span class="list_date">모집기간: `+data[i].end_day+` 까지</span></div></div>`;
+                    html += `<div class="pro3"><em><strong>`+data[i].price+`</strong> 원</em></div></div></li>`;
+
+                    $("#board_list").append(html);
+
+                  }
+
+
+
+                },
+                error:function(){
+                  alert("error")
+                }
+              });
+              count+=5;
         }
-    }//function infinityScrollFunction()
-
-
+    });
 });

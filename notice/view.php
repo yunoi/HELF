@@ -137,7 +137,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
 
             <div id="write_button">
               <!--목록보기 -->
-              <a href="./list.php?page=<?=$page?>"><img src="../img/list.png"></a>
+              <a href="./notice.php?page=<?=$page?>"><img src="./img/list.png"></a>
 
             <?php
               //세션값이 존재하면 수정기능과 삭제기능부여하기

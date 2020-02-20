@@ -36,26 +36,13 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $q_username = mysqli_real_escape_string($conn, $user_name);
     $regist_day=date("Y-m-d (H:i)");
 
+
     //그룹번호, 들여쓰기 기본값
-    $sql="INSERT INTO `notice` VALUES (null,'$q_userid','$username','$q_subject','$q_content','$regist_day',$hit);";
+    $sql="INSERT INTO `notice` VALUES (null,'$q_subject','$q_content','$regist_day',$hit,'$file_name','$file_type','$file_copied');";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
-
-    // //현재 최대큰번호를 가져와서 그룹번호로 저장하기
-    // $sql="SELECT max(num) from notice;";
-    // $result = mysqli_query($conn,$sql);
-    // if (!$result) {
-    //   die('Error: ' . mysqli_error($conn));
-    // }
-    // $row=mysqli_fetch_array($result);
-    // $max_num=$row['max(num)'];
-    // $sql="UPDATE `notice` SET `group_num`= $max_num WHERE `num`=$max_num;";
-    // $result = mysqli_query($conn,$sql);
-    // if (!$result) {
-    //   die('Error: ' . mysqli_error($conn));
-    // }
     mysqli_close($conn);
 
     // echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";

@@ -88,20 +88,11 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       </div><!--end of header  -->
       <div id="content">
        <div id="col2">
-         <div id="title">공지사항<img src="../img/title_greet.gif"></div>
+         <div id="title">공지사항<img src="./img/title_greet.gif"></div>
          <div class="clear"></div>
          <div id="write_form_title"></div>
          <div class="clear"></div>
             <div id="write_form">
-              <div class="write_line"></div>
-              <div id="write_row1">
-                <div class="col1">아이디</div>
-                <div class="col2"><?=$id?>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  조회 : <?=$hit?> &nbsp;&nbsp;&nbsp; 입력날짜: <?=$day?>
-                </div>
-
-              </div><!--end of write_row1  -->
               <div class="write_line"></div>
               <div id="write_row2">
                 <div class="col1">제&nbsp;&nbsp;목</div>
@@ -143,8 +134,8 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
               //세션값이 존재하면 수정기능과 삭제기능부여하기
               if(isset($_SESSION['user_grade'])){
                 if($_SESSION['user_grade']=="master" || $_SESSION['user_grade']=="admin"){
-                  echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"><img src="../img/modify.png"></a>&nbsp;');
-                  echo('<img src="../img/delete.png" onclick="check_delete('.$num.')">&nbsp;');
+                  echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"><img src="./img/modify.png"></a>&nbsp;');
+                  echo('<img src="./img/delete.png" onclick="check_delete('.$num.')">&nbsp;');
                 }
               }
             ?>

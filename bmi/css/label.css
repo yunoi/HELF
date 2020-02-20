@@ -7,7 +7,7 @@ h4{  margin: 13px; border-bottom: 2px solid #5d5d5d;}
 
 ul li input{width:95px; padding: 10px 0 10px 14px; margin-left: 10px;}
 #p_bmi{}
-#bmi_btn{background-color: lightcoral;}
+#bmi_btn{font-size: 20px;background-color: #F23005; color: white;}
 th{  background: #f5f5f5;}
 table tr td input{ width: 13px;}
 #man,#girl{width: 13px;}

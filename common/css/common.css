@@ -10,7 +10,7 @@ font-family: 'Nanum Gothic Coding', monospace; */
 }
 /* 페이지 기본 글꼴과 크기 설정 */
 body {
-    font-family: "맑은 고딕";
+    font-family: "Nanum Gothic";
     font-size: 14px;
 }
 img {
@@ -24,7 +24,7 @@ ul {
 a {
     display: inline-block;
     text-decoration: none;
-    font-family: 'Noto Sans KR', "맑은 고딕";
+    font-family: 'Noto Sans KR', "Nanum Gothic", "맑은 고딕";
 }
 a:link {
     text-decoration: none;
@@ -61,7 +61,6 @@ header {
 }
 #header_container {
     position: relative;
-    top: -18px;
 }
 #top {
     position: relative;
@@ -165,16 +164,30 @@ header {
     padding: 0;
     width: 250px;
 }
-#aside_shortcut {
+#container #aside_shortcut {
+    background: none;
     padding: 0;
     width: 100%;
     height: 258px;
 }
-#aside_shortcut li {
+#aside_shortcut {
+    width: 231px;
+    height: 244px;
+    padding: 4px 0 0 0;
+    background: url("../img/bg_shortcut.gif") no-repeat;
+    overflow: hidden;
+}
+#container #aside_shortcut li {
     width: 125px;
     margin: 0;
     height: 129px;
     float: left;
+}
+#aside_shortcut li {
+    float: left;
+    margin-left: 1px;
+    width: 114px;
+    height: 122px;
 }
 #aside_notice {
     width: 232px;

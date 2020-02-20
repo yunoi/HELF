@@ -1,4 +1,4 @@
-﻿<?php
+<?php
   if(isset($_SESSION["user_id"])){
     $user_id = $_SESSION["user_id"];
   } else {
@@ -14,7 +14,6 @@
   } else {
     $user_grade = "";
   }
-
 ?>
 <div id="header_container">
 <div id="top">
@@ -60,8 +59,8 @@
     </ul>
 </div>
 <nav id="menu_bar">
-    <ul>
-        <li id="li_img">
+    <ul style="margin:0;">
+        <li id="li_img" style="padding-left:250px;">
             <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/index.php">
                 <img
                     src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/helf_logo.png"

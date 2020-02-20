@@ -158,6 +158,9 @@ $number = $total_record - $start;
     </div><!--end of page button -->
     </div><!--end of list content -->
     </div><!--end of col2  -->
+    <aside id="aside">
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+    </aside>
     </div><!--end of content -->
   </div><!--end of wrap  -->
   <footer>

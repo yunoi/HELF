@@ -1,3 +1,7 @@
+<?php
+  session_start();
+ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
+?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -30,6 +34,8 @@
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
     </header>
   <section>
+    <div id="div_bmi">
+      <div id="div_form">
     <form name="form_kcal" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/bmi/calculator.php?mode=<?=$mode?>" method="post">
       <!-- get방식으로 안에 모드(타입)을 넣는다 bmi와 kcal을 한번에 처리한다 -->
         <div class="div-bmi">
@@ -79,6 +85,12 @@
       </div>
     </div>
     </form>
+      </div>
+      <div id="div_aside">
+    <aside>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+    </aside>
+          </div>
   </section>
   <footer>
       <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>

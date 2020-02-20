@@ -1,4 +1,4 @@
-﻿<?php
+<?php
   if(isset($_SESSION["user_id"])){
     $user_id = $_SESSION["user_id"];
   } else {
@@ -14,7 +14,6 @@
   } else {
     $user_grade = "";
   }
-
 ?>
 <div id="header_container">
 <div id="top">
@@ -37,7 +36,7 @@
     $logged = $user_name."(".$user_id.")";
     $logged_etc = "님 [Level: ".$user_grade."]";
 ?>
-      <li><span><?=$logged?></span><span><?=$logged_etc?></span></li>
+      <li><span><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/open_message.png" alt="쪽지함"></span><span><?=$logged?></span><span><?=$logged_etc?></span></li>
       <li> | </li>
 
       <li>
@@ -81,25 +80,24 @@
                 <span>프로그램</span></a>
         </li>
         <li class="down_menu">
-            <a
-                href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">
                 <span>커뮤니티</span></a>
                 <ol class="menu_slide" id="community_slide">
-                  <li><a href="#">자유게시판</a></li>
-                  <li><a href="#">후기게시판</a></li>
+                  <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
+                  <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/review/list.php">후기게시판</a></li>
                 </ol>
               </li>
 
         <li class="down_menu">
-            <a href="#">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">
                 <span>건강정보</span></a>
                 <ol class="menu_slide" id="info_slide">
-                  <li><a href="#">운동</a></li>
-                  <li><a href="#">레시피</a></li>
+                  <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">운동</a></li>
+                  <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">레시피</a></li>
                 </ol>
         </li>
         <li>
-            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/free/list.php">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php">
                 <span>같이할건강</span></a>
         </li>
     </ul>

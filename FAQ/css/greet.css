@@ -1,3 +1,13 @@
+#content{
+	padding-top: 100px;
+	width: 1100px;
+	position: relative;
+	margin: 0 auto;
+}
+#aside_menu{
+  margin-left: 25px;
+	margin-top: 61px;
+}
 #content #col2 {
 	width:807px;
 	min-height:558px;

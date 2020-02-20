@@ -83,7 +83,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
 
             <div id="write_button">
               <!--목록보기 -->
-              <a href="./list.php?page=<?=$page?>"><img src="../img/list.png"></a>
+              <a href="./list.php?page=<?=$page?>"><img src="./img/list.png"></a>
 
             <?php
               //세션값이 존재하면 수정기능과 삭제기능부여하기
@@ -93,11 +93,13 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
                   echo('<img src="../img/delete.png" onclick="check_delete('.$num.')">&nbsp;');
                 }
               }
-              // 세션값이 존재하면 답변기능과 글쓰기 기능부여하기
+              // 세션값이 존재하면 답변기능과 글쓰기 기능부여하기\
+              if(isset($_SESSION['user_grade'])){
               if($_SESSION['user_grade']=="admin" || $_SESSION['user_grade']=="master"){
                 echo '<a href="write_edit_form.php?mode=response&num='.$num.'"><img src="../img/response.png"></a>';
                 echo '<a href="write_edit_form.php"><img src="../img/write.png"></a>';
               }
+            }
             ?>
             </div><!--end of write_button-->
       </div><!--end of col2  -->

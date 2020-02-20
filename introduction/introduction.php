@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <!-- 회사소개 -->
-<?php $mater="강윤해" ?>
+<?php
+$mater="강윤해";
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
+?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -33,7 +36,7 @@
             저희 HELF는 2020년 2월에 설립이 된 회사입니다.<br/>
             当 HELFは 2020年 2月 に設立された会社です。 <br/>
             HELF is a company established in February 2020. <br/>
-            
+
             exercitation ullamco laboris nisi ut aliquip ex ea commodo <br/>
             consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum <br/>
             dolore eu fugiat nulla pariatur. Excepteur sint occaecat <br/>
@@ -69,11 +72,10 @@
           <img src="" alt="조직도 이미지">
         </div>
       </article>
+      <aside id="aside_introduction">
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+      </aside>
     </section>
-
-    <aside>
-    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
-  </aside>
   <footer>
   <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
   </footer>

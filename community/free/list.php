@@ -7,8 +7,7 @@ define('SCALE', 10);
 
 //*****************************************************
 $sql=$result=$total_record=$total_page=$start="";
-$row="";
-$memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
+$row=$memo_content="";
 $total_record=0;
 //*****************************************************
 if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
@@ -87,7 +86,7 @@ $number = $total_record - $start;
              <div id="list_search5"><input type="submit" value="검색"> </div>
            </div><!--end of list_search  -->
          </form>
-         <div id="clear"></div>
+
          <div id="list_top_title">
            <ul>
              <li id="list_title1">번호</li>
@@ -110,11 +109,19 @@ $number = $total_record - $start;
               $date= substr($row['regist_day'], 0, 10);
               $subject=$row['subject'];
               $subject=str_replace("\n", "<br>", $subject);
-              $subject=str_replace(" ", "&nbsp;", $subject); ?>
+              $subject=str_replace(" ", "&nbsp;", $subject);
+              $file_name=$row['file_name']; ?>
+
             <div id="list_item">
               <div id="list_item1"><?=$number?></div>
               <div id="list_item2">
                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
+              <?php
+                if (!($file_name === "")) {
+                    echo('<img src="../pic/disk.png" alt="">');
+                } else {
+                    echo "";
+                } ?>
               </div>
               <div id="list_item3"><?=$id?></div>
               <div id="list_item4"><?=$date?></div>

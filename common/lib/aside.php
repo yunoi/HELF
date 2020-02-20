@@ -9,7 +9,7 @@
                 <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/link_shortcut02.png" alt="칼로리처방"></a>
         </li>
         <li>
-             <a href="#">
+             <a href="#" onclick="window.open('http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/map/gym.php','헬스장찾기','_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, left=100px , width=220px, height=100px');">
                 <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/link_shortcut03.png" alt="우리동네 헬스장찾기"></a>
         </li>
         <li class="right">

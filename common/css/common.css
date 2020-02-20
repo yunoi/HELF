@@ -44,23 +44,29 @@ a:active {
 }
 /* 상위 div: container */
 #container {
-    width: 100%;
-    min-width: 1100px;
+    min-width: 1000px;
     background: url("../img/main_background.gif") repeat-x;
     height: 100%;
     min-height: 615px;
 }
 #section_aside {
     margin: 0 auto;
-    padding: 48px 0 90px;
-    width: 1100px;
+    padding: 48px 0 90px 0;
+    width: 1000px;
 }
 /* 상단 헤더 */
 header {
-    height: 110px;
+    height: 120px;
+    padding: 0;
+    margin: 0;
 }
 #header_container {
+    width: 100%;
+    height: 120px;
     position: relative;
+    z-index: 100;
+    position: fixed;
+    padding-bottom: 30px;
 }
 #top {
     position: relative;
@@ -75,10 +81,10 @@ header {
 #top #top_menu li {
   font-family: '돋움';
   font-size: 12px;
-    display: inline;
-    position: relative;
-    right: 146px;
-    top: 10px;
+  display: inline-block;
+  position: relative;
+  right: 146px;
+  top: 10px;
 }
 #top #top_menu a {
   font-family: '돋움';
@@ -100,6 +106,7 @@ header {
     margin: 4px auto;
     text-align: center;
     table-layout: fixed;
+
 }
 #menu_bar > ul > li {
     display: table-cell;
@@ -159,7 +166,7 @@ header {
 
 /* aside */
 #aside_menu {
-    float: left;
+    float: right;
     background: none;
     padding: 0;
     width: 250px;
@@ -194,7 +201,7 @@ header {
     margin-top: 8px;
     margin-bottom: 8px;
     position: relative;
-    border: 1px solid #dbdbdb;
+    /* border: 1px solid #dbdbdb; */
     padding: 10px 0 14px 16px;
     background: #fff;
 }
@@ -213,7 +220,7 @@ header {
 }
 /* 하단 푸터 */
 footer {
-    border-top: 1px solid #333333;
+    border: 1px solid #333333;
     height: 150px;
     z-index: 1;
     clear: both;

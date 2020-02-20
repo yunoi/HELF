@@ -22,7 +22,8 @@ a{
   height: 1000px;
   border: 1px solid black;
   float: left;
-  margin-left: 250px;
+  margin-left: 210px;
+  position: fixed;
 
 }
 
@@ -32,33 +33,23 @@ a{
   width: 900px;
   height: 1000px;
   border: 1px solid black;
-  margin-left: 520px;
+  margin-left: 480px;
 
 }
 
 .div_program_list_top{
-  position: relative;
-  height: 60px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid gray;
+  position: fixed;
+  width: 840px;
+  padding: 30px;
+  border: 1px solid gray;
+  background-color: white;
+  z-index: 100;
 }
 
 .div_program_list_main{
   margin: 30px;
   margin-top: 30px;
 
-}
-
-.li_order{
-  position: absolute;
-  top:20px;
-  left: 50px;
-}
-
-.li_search{
-  position: absolute;
-  top:20px;
-  right: 50px;
 }
 
 .div_list{
@@ -114,6 +105,15 @@ a{
   height:150px;
   text-align: center;
   line-height: 140px;
+}
+
+.li_order{
+  float: left;
+}
+
+.li_search{
+  float: right;
+
 }
 
 .li_program_list{

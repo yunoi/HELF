@@ -19,8 +19,7 @@ $(document).ready(function() {
         'post_id': post_id
       },
       success: function(data) {
-        var stringfied = JSON.stringify(data);
-        res = JSON.parse(stringfied);
+        res = JSON.parse(data);
         console.log(res);
         if (action == "like") {
           $clicked_btn.removeClass('fa-thumbs-o-up');
@@ -57,8 +56,7 @@ $(document).ready(function() {
         "post_id": post_id
       },
       success: function(data) {
-        var stringfied = JSON.stringify(data);
-        res = JSON.parse(stringfied);
+        res = JSON.parse(data);
         if (action == "dislike") {
           $clicked_btn.removeClass('fa-thumbs-o-down');
           $clicked_btn.addClass('fa-thumbs-down');

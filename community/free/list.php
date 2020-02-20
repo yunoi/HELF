@@ -7,8 +7,7 @@ define('SCALE', 10);
 
 //*****************************************************
 $sql=$result=$total_record=$total_page=$start="";
-$row="";
-$memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
+$row=$memo_content="";
 $total_record=0;
 //*****************************************************
 if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
@@ -87,7 +86,7 @@ $number = $total_record - $start;
              <div id="list_search5"><input type="submit" value="검색"> </div>
            </div><!--end of list_search  -->
          </form>
-         <div id="clear"></div>
+
          <div id="list_top_title">
            <ul>
              <li id="list_title1">번호</li>

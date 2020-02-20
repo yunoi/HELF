@@ -18,9 +18,6 @@
      <?php include "../common/lib/header.php";?>
  </header>
  <section>
-   <section>
-       <!-- ?php include "slide.php";?> -->
-   </section>
     <div class="div_program">
       <div class="div_program_category">
         <ul>
@@ -68,7 +65,6 @@
 
       </div>
       <div class="div_program_list">
-
         <div class="div_program_list_top">
           <ul>
             <li class="li_order">
@@ -117,7 +113,7 @@
           <div class="div_list">
           <div class="pro1">
             <div class="main_image">
-              <img src='../admin/data/$file_copied' class='image_vertical'>
+              <img src='../admin/data/<?=$file_copied?>' class='image_vertical'>
             </div>
           </div>
           <div class="pro2">
@@ -142,6 +138,9 @@
       </div>
 
     </div><!-- endof div_program	 -->
+    <aside>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+    </aside>
  </section>
  <footer>
      <!-- ?php include "footer.php";?> -->

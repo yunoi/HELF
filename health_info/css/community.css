@@ -246,3 +246,12 @@
   padding: 1em;
   margin: 1em;
 }
+.wrapper-grid li {
+  display: inline;
+}
+
+
+.wrapper-grid #grid_pic img{
+  display: block;
+  margin: 0 auto;
+}

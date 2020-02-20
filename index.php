@@ -24,7 +24,6 @@
         <script type="text/javascript" src="./common/js/main.js"></script>
     </head>
     <body>
-
         <header>
             <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
         </header>

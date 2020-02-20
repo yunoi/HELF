@@ -57,10 +57,24 @@ a:active {
 }
 /* 상단 헤더 */
 header {
-    height: 110px;
+    height: 120px;
+    padding: 0;
+    margin: 0;
 }
 #header_container {
+    width: 100%;
+    height: 120px;
     position: relative;
+<<<<<<< HEAD
+    z-index: 100;
+    position: fixed;
+    padding-bottom: 30px;
+
+
+
+
+=======
+>>>>>>> 130e3414b83e066933ae620c466f09b66ecaeae7
 }
 #top {
     position: relative;
@@ -75,10 +89,10 @@ header {
 #top #top_menu li {
   font-family: '돋움';
   font-size: 12px;
-    display: inline;
-    position: relative;
-    right: 146px;
-    top: 10px;
+  display: inline-block;
+  position: relative;
+  right: 146px;
+  top: 10px;
 }
 #top #top_menu a {
   font-family: '돋움';
@@ -194,7 +208,7 @@ header {
     margin-top: 8px;
     margin-bottom: 8px;
     position: relative;
-    border: 1px solid #dbdbdb;
+    /* border: 1px solid #dbdbdb; */
     padding: 10px 0 14px 16px;
     background: #fff;
 }
@@ -213,7 +227,7 @@ header {
 }
 /* 하단 푸터 */
 footer {
-    border-top: 1px solid #333333;
+    border: 1px solid #333333;
     height: 150px;
     z-index: 1;
     clear: both;

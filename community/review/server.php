@@ -20,8 +20,8 @@ $user_id = $_SESSION['user_id'];
 // 사용자가 좋아요 혹은 싫어요 버튼을 눌렀을 경우
 if (isset($_POST['action'])) {
     $post_id = $_POST['post_id'];
-    // echo "<script>alert('{$post_id}');</script>";
     $action = $_POST['action'];
+
     switch ($action) {
     case 'like':
          $sql="INSERT INTO rating_info (user_id, post_id, rating_action)

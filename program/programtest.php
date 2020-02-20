@@ -1,10 +1,3 @@
-<?php
-include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
-
-create_table($conn, 'program');
-
- ?>
-
  <!DOCTYPE html>
  <html>
  <head>
@@ -13,8 +6,8 @@ create_table($conn, 'program');
  <link rel="stylesheet" type="text/css" href="../common/css/common.css">
  <link rel="stylesheet" type="text/css" href="../common/css/main.css">
  <link rel="stylesheet" type="text/css" href="./css/program.css">
- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
- <script type="text/javascript" src="./scroll.js">
+ <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+ <script src="./scroll.js?ver=3"></script>
 
  </script>
 
@@ -92,10 +85,58 @@ create_table($conn, 'program');
         </div> <!-- (end)div_program_list_top -->
 
         <div class="div_program_list_main">
+          <ul id="board_list">
 
+            <?php
+    if (isset($_GET["page"])) {
+        $page = $_GET["page"];
+    } else {
+        $page = 1;
+    }
 
+    $conn = mysqli_connect("localhost", "root", "123456", "helf");
+    $sql = "select * from program order by o_key desc";
+    $result = mysqli_query($conn, $sql);
 
+    for ($i=0; $i<5; $i++) {
 
+       // 가져올 레코드로 위치(포인터) 이동
+       $row = mysqli_fetch_array($result);
+       // 하나의 레코드 가져오기
+       $shop         = $row["shop"];
+       $type          = $row["type"];
+       $subject        = $row["subject"];
+       $end_day     = $row["end_day"];
+       $price  = $row["price"];
+       $location         = $row["location"];
+       $file_copied         = $row["file_copied"];
+       $file_type         = $row["file_type"];
+
+       ?>
+				<li class="li_program_list">
+          <div class="div_list">
+          <div class="pro1">
+            <div class="main_image">
+              <img src='../admin/data/$file_copied' class='image_vertical'>
+            </div>
+          </div>
+          <div class="pro2">
+            <div class="abc">
+              <h5><?=$shop?> | <?=$type?> | <?=$location?></h5>
+              <h5 class="tit_list_block" style="font-size:16px"><?=$subject?></h5>
+              <span class="list_date">모집기간: <?=$end_day?> 까지</span>
+            </div>
+          </div>
+          <div class="pro3">
+            <em><strong><?=$price?></strong> 원</em>
+          </div>
+            </div>
+				</li>
+<?php
+}
+  mysqli_close($conn);
+?>
+          </ul>
         </div><!-- (end)div_program_list_main -->
 
       </div>

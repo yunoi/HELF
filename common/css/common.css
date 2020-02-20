@@ -93,6 +93,12 @@ header {
 
     color: #6b6b6b;
 }
+#top #top_menu img {
+    width:20px;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+}
 
 #menu_bar {
     padding-top: 10px;

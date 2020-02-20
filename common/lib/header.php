@@ -36,7 +36,7 @@
     $logged = $user_name."(".$user_id.")";
     $logged_etc = "님 [Level: ".$user_grade."]";
 ?>
-      <li><span><?=$logged?></span><span><?=$logged_etc?></span></li>
+      <li><span><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/open_message.png" alt="쪽지함"></span><span><?=$logged?></span><span><?=$logged_etc?></span></li>
       <li> | </li>
 
       <li>

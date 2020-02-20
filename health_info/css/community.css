@@ -1,9 +1,23 @@
+#content #col1 {
+    margin-top: 20px;
+    width: 160px;
+    min-height: 600px;
+    float: left;
+    border-right: solid 1px #dddddd;
+}
+
+#left_menu {
+    width: 92%;
+    height: 270px;
+    margin-left: 7px;
+}
+
+
 #content #col2 {
-	width:975px;
+	width:807px;
 	min-height:558px;
 	float:left;
 	margin-left:15px;
-/*	border:solid 1px #cccccc; */
 }
 
 #content #col2 #title{
@@ -73,27 +87,24 @@
 }
 
 #list_top_title #list_title1 {
-	margin-right: 35px;
-  margin-left: 10px;
+	margin-left:5px;
 }
 
 #list_top_title #list_title2 {
-	margin-right: 75px;
+	margin-left:250px;
 }
 
 #list_top_title #list_title3 {
-	margin-right: 265px;
+	margin-left:290px;
 }
 
 #list_top_title #list_title4 {
-	margin-right: 267px;
+	margin-left:32px;
 }
 
 #list_top_title #list_title5 {
-	margin-right: 46px;
-
+	margin-left:26px;
 }
-
 
 #list_content {
 	height:380px;
@@ -104,51 +115,36 @@
 	margin-top:2px;
 	padding:6px;
 	border-bottom:solid 1px #eeeeee;
-	border-left:solid 1px #eeeeee;
-	border-right:solid 1px #eeeeee;
 }
 
 #list_item #list_item1{
 	float:left;
-	width: 50px;
-	border-right:solid 1px gray;
+	width:40px;
 	text-align:center;
 }
 
 #list_item #list_item2{
 	float:left;
-	width: 104px;
-	border-right:solid 1px gray;
-	text-align:center;
+	width:560px;
 }
 
 #list_item #list_item3{
 	float:left;
-	width: 150px;
-	border-right:solid 1px gray;
+	width:65px;
 	text-align:center;
 }
 
 #list_item #list_item4{
 	float:left;
-	width: 490px;
-	border-right:solid 1px gray;
+	width:80px;
 	text-align:center;
 }
 
 #list_item #list_item5{
 	float:left;
-	width: 120px;
-	border-right:solid 1px gray;
+	width:40px;
 	text-align:center;
 }
-#list_item #list_item6{
-	float:left;
-	width: 40px;
-	border-right:solid 1px gray;
-	text-align:center;
-}
-
 
 #page_button {
 	margin-top:20px;

@@ -27,7 +27,7 @@
 	$sql = "insert into members (id, password, name, phone, email, address, grade) ";
 	$sql .= "values('$id', '$password', '$name', '$phone', '$email', '$address', null)";
 
-	$result = mysqli_query($conn, $sql);  // $sql 에 저장된 명령 실행
+  mysqli_query($conn, $sql);  // $sql 에 저장된 명령 실행
 
   mysqli_close($conn);
 

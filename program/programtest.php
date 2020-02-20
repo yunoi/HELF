@@ -7,6 +7,7 @@
  <link rel="stylesheet" type="text/css" href="../common/css/main.css">
  <link rel="stylesheet" type="text/css" href="./css/program.css?ver=1">
  <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+ <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
  <script src="./scroll.js?ver=3"></script>
 
  </script>
@@ -82,7 +83,7 @@
 
         <div class="div_program_list_main">
           <ul id="board_list">
-            <br><br><br><br><br>
+            <br><br><br><br><br><br><br>
 
             <?php
     if (isset($_GET["page"])) {
@@ -143,8 +144,5 @@
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
     </aside>
  </section>
- <footer>
-     <!-- ?php include "footer.php";?> -->
- </footer>
  </body>
  </html>

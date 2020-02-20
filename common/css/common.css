@@ -64,7 +64,6 @@ header {
     width: 100%;
     height: 120px;
     position: relative;
-<<<<<<< HEAD
     z-index: 100;
     position: fixed;
     padding-bottom: 30px;
@@ -72,8 +71,6 @@ header {
 
 
 
-=======
->>>>>>> 130e3414b83e066933ae620c466f09b66ecaeae7
 }
 #top {
     position: relative;

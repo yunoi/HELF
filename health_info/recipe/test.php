@@ -276,34 +276,7 @@
 <a href="/community/photo_list.asp?menu_id=86&amp;img_vchk=N&amp;gotopage=2" class="arr next"><img src="/img/btn/btn_next_page.gif" alt="다음게시물"></a>
 <a href="/community/photo_list.asp?menu_id=86&amp;img_vchk=N&amp;gotopage=412" class="arr"><img src="/img/btn/btn_last_page.gif" alt="마지막게시물"></a>
 </div>
-		<script>
-			function mem_reg_chk(){
 
-				$.ajax({
-					type:"post",
-					async : false,
-					dataType : "json",
-					url:"/API/mem_reg_check.asp",
-					success : function(oResult){
-						if (oResult.RESULT == "Y"){
-							location.href = "/community/board_write.asp";
-						} else if (oResult.RESULT == "N"){
-							alert('탈퇴한 회원입니다.');
-							location.href = "/member/mem_logout_login.asp";
-						} else if (oResult.RESULT == "L"){
-							alert('로그인 후 이용해주세요.');
-
-							location.href = "/member/mem_login.asp";
-						} else {
-							alert(oResult.MSG);
-						}
-					},
-					error:function(){
-						return;
-					}
-				});
-			}
-</script>
 <a href="javascript:;" onclick="mem_reg_chk('');" class="btn-right"><img src="/img/btn/btn_write.gif" alt="글쓰기"></a>
 </div><div class="sch-wrap">
 <form name="search" method="get" onsubmit="return false;">

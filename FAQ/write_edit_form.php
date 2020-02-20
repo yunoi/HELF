@@ -42,13 +42,13 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/greet.css">
     <script type="text/javascript" src="../js/member_form.js"></script>
-    <title></title>
+    <title>FAQ</title>
   </head>
   <body>
     <div id="wrap">
-      <div id="header">
-          <?php include "../lib/top_login2.php"; ?>
-      </div><!--end of header  -->
+      <header>
+          <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
+      </header>
       <div id="menu">
         <?php include "../lib/top_menu2.php"; ?>
       </div><!--end of menu  -->
@@ -59,7 +59,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
          </div>
        </div><!--end of col1  -->
        <div id="col2">
-         <div id="title"><img src="../img/title_greet.gif"></div>
+         <div id="title">FAQ<img src="../img/title_greet.gif"></div>
          <div class="clear"></div>
          <div id="write_form_title"><img src="../img/write_form_title.gif"></div>
          <div class="clear"></div>
@@ -72,7 +72,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
               <div id="write_row1">
                 <div class="col1">아이디</div>
                 <div class="col2"><?=$id?></div>
-                <div class="col3"><input type="checkbox" id="is_html_ok" name="is_html" value="y" <?=$checked?> <?=$disabled?> >HTML 쓰기</div>
               </div><!--end of write_row1  -->
               <div class="write_line"></div>
               <div id="write_row2">

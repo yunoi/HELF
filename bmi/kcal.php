@@ -81,7 +81,7 @@
         </li>
       </ul>
       <div class="div_btn">
-        <input type="button" name="" onclick="btn_kcal();" value="확인하기">
+        <input id="bmi_btn" type="button" name="" onclick="btn_kcal();" value="확인하기">
       </div>
     </div>
     </form>

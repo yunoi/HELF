@@ -71,12 +71,12 @@
             <input type="number" name="kg" id="kg" value="">kg
           </li>
         </ul>
-        <p>
+        <p id="p_bmi">
           <b>비만도 측정(BMI)이란?<br/>
             나이, 신장(cm), 몸무게(kg)만으로 비만을 판정하는 비만 지수</b>
         </p>
         <div class="div_btn">
-        <input type="button" name="" value="확인" onclick="btn_bmi();">
+        <input id="bmi_btn" type="button" name="" value="확인" onclick="btn_bmi();">
       </div>
         </div>
       </form>

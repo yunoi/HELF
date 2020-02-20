@@ -2,9 +2,15 @@
 // connect to database
 // session_start();
 // include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+<<<<<<< HEAD
+$con = mysqli_connect('localhost', 'root', '123456', 'helf');
+if (!$con) {
+    die("Error connecting to database: " . mysqli_connect_error($con));
+=======
 // $con = mysqli_connect('localhost', 'root', '123456', 'helf');
 if (!$conn) {
     die("Error connecting to database: " . mysqli_connect_error($conn));
+>>>>>>> d56fd5a1d75b7fc7aacd89182fc1b3b2b72dc604
     exit();
 }
 if(!isset($_SESSION['user_id'])){
@@ -14,8 +20,12 @@ if(!isset($_SESSION['user_id'])){
 
 $user_id = $_SESSION['user_id'];
 
+<<<<<<< HEAD
+echo "<script>alert('server.php에서 접속한 게시판 아이디{$num}, 접속아이디: {$_SESSION['user_id']} ');</script>";
+=======
 
 // echo "<script>alert('server.php에서 접속한 게시판 아이디{$num}, 접속아이디: {$_SESSION['user_id']} ');</script>";
+>>>>>>> d56fd5a1d75b7fc7aacd89182fc1b3b2b72dc604
 
 // 사용자가 좋아요 혹은 싫어요 버튼을 눌렀을 경우
 if (isset($_POST['action'])) {
@@ -44,7 +54,7 @@ if (isset($_POST['action'])) {
   }
 
     // execute query to effect changes in the database ...
-    mysqli_query($conn, $sql);
+    mysqli_query($con, $sql);
     echo getRating($post_id);
     exit(0);
 }
@@ -52,11 +62,15 @@ if (isset($_POST['action'])) {
 // Get total number of likes for a particular post
 function getLikes($id)
 {
-    global $conn;
+    global $con;
     // $id=(int)$id;
     $sql = "SELECT COUNT(*) FROM rating_info
           WHERE post_id = $id AND rating_action='like'";
+<<<<<<< HEAD
+    $rs = mysqli_query($con, $sql);
+=======
     $rs = mysqli_query($conn, $sql);
+>>>>>>> d56fd5a1d75b7fc7aacd89182fc1b3b2b72dc604
     $result = mysqli_fetch_array($rs);
     return $result[0];
 }
@@ -64,10 +78,14 @@ function getLikes($id)
 // Get total number of dislikes for a particular post
 function getDislikes($id)
 {
-    global $conn;
+    global $con;
     $sql = "SELECT COUNT(*) FROM rating_info
           WHERE post_id = $id AND rating_action='dislike'";
+<<<<<<< HEAD
+    $rs = mysqli_query($con, $sql);
+=======
     $rs = mysqli_query($conn, $sql);
+>>>>>>> d56fd5a1d75b7fc7aacd89182fc1b3b2b72dc604
     $result = mysqli_fetch_array($rs);
     return $result[0];
 }
@@ -75,13 +93,18 @@ function getDislikes($id)
 // Get total number of likes and dislikes for a particular post
 function getRating($id)
 {
-    global $conn;
+    global $con;
     $rating = array();
     $likes_query = "SELECT COUNT(*) FROM rating_info WHERE post_id = $id AND rating_action='like'";
     $dislikes_query = "SELECT COUNT(*) FROM rating_info
                  WHERE post_id = $id AND rating_action='dislike'";
+<<<<<<< HEAD
+    $likes_rs = mysqli_query($con, $likes_query);
+    $dislikes_rs = mysqli_query($con, $dislikes_query);
+=======
     $likes_rs = mysqli_query($conn, $likes_query);
     $dislikes_rs = mysqli_query($conn, $dislikes_query);
+>>>>>>> d56fd5a1d75b7fc7aacd89182fc1b3b2b72dc604
     $likes = mysqli_fetch_array($likes_rs);
     $dislikes = mysqli_fetch_array($dislikes_rs);
     $rating = [
@@ -94,11 +117,15 @@ function getRating($id)
 // Check if user already likes post or not
 function userLiked($post_id)
 {
-    global $conn;
+    global $con;
     global $user_id;
     $sql = "SELECT * FROM rating_info WHERE user_id='$user_id'
           AND post_id=$post_id AND rating_action='like'";
+<<<<<<< HEAD
+    $result = mysqli_query($con, $sql);
+=======
     $result = mysqli_query($conn, $sql);
+>>>>>>> d56fd5a1d75b7fc7aacd89182fc1b3b2b72dc604
     if (mysqli_num_rows($result) > 0) {
         return true;
     } else {
@@ -109,11 +136,15 @@ function userLiked($post_id)
 // Check if user already dislikes post or not
 function userDisliked($post_id)
 {
-    global $conn;
+    global $con;
     global $user_id;
     $sql = "SELECT * FROM rating_info WHERE user_id='$user_id'
           AND post_id=$post_id AND rating_action='dislike'";
+<<<<<<< HEAD
+    $result = mysqli_query($con, $sql);
+=======
     $result = mysqli_query($conn, $sql);
+>>>>>>> d56fd5a1d75b7fc7aacd89182fc1b3b2b72dc604
     if (mysqli_num_rows($result) > 0) {
         return true;
     } else {
@@ -124,7 +155,7 @@ function userDisliked($post_id)
 $num = test_input($_GET["num"]);
 
 $sql = "SELECT * FROM community where num=$num"; //게시판 번호
-$result_com = mysqli_query($conn, $sql);
+$result_com = mysqli_query($con, $sql);
 // fetch all community from database
 // return them as an associative array called $communities
 $communities = mysqli_fetch_all($result_com, MYSQLI_ASSOC);

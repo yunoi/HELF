@@ -44,16 +44,15 @@ a:active {
 }
 /* 상위 div: container */
 #container {
-    width: 100%;
-    min-width: 1100px;
+    min-width: 1000px;
     background: url("../img/main_background.gif") repeat-x;
     height: 100%;
     min-height: 615px;
 }
 #section_aside {
     margin: 0 auto;
-    padding: 48px 0 90px;
-    width: 1100px;
+    padding: 48px 0 90px 0;
+    width: 1000px;
 }
 /* 상단 헤더 */
 header {
@@ -100,6 +99,7 @@ header {
     margin: 4px auto;
     text-align: center;
     table-layout: fixed;
+
 }
 #menu_bar > ul > li {
     display: table-cell;
@@ -159,7 +159,7 @@ header {
 
 /* aside */
 #aside_menu {
-    float: left;
+    float: right;
     background: none;
     padding: 0;
     width: 250px;

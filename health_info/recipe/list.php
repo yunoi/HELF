@@ -22,8 +22,8 @@
          <div id="left_menu">
            <div id="sub_title"> <span>메뉴</span></div>
            <ul>
-           <li><a href="#">다이어트 레시피</a></li>
-           <li><a href="#">운동 정보</a></li>
+             <li><a href="#">운동 정보</a></li>
+           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">다이어트 레시피</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->

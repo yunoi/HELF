@@ -91,11 +91,11 @@
               </li>
 
         <li class="down_menu">
-            <a href="#">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">
                 <span>건강정보</span></a>
                 <ol class="menu_slide" id="info_slide">
                   <li><a href="#">운동</a></li>
-                  <li><a href="#">레시피</a></li>
+                  <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">레시피</a></li>
                 </ol>
         </li>
         <li>

@@ -41,7 +41,7 @@ $number = $total_record - $start;
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/community.css">
+    <link rel="stylesheet" href="../css/health_info.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
@@ -82,8 +82,8 @@ $number = $total_record - $start;
              <div id="list_search5"><input type="submit" value="검색"> </div>
            </div><!--end of list_search  -->
          </form>
-         <!-- grid 내용들 -->
-           <div class="wrapper-grid">
+
+           <div class="list_content">
 
              <?php
              for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++) {
@@ -100,9 +100,11 @@ $number = $total_record - $start;
                  $file_name=$row['file_name'];
                  $file_copied=$row['file_copied'];
                  $file_type=$row['file_type'];
-                 $b_code=$row['b_code'];
 
-                 if (!empty($file_copied)&&$file_type =="image") {
+                  $file_type_tok=explode('/', $file_type);
+                  $file_type=$file_type_tok[0];
+
+                 if (!empty($file_copied)&&$file_type ==="image") {
                      //이미지 정보를 가져오기 위한 함수 width, height, type
                      $image_info=getimagesize("./data/".$file_copied);
                      $image_width=$image_info[0];
@@ -110,41 +112,39 @@ $number = $total_record - $start;
                      $image_type=$image_info[2];
                      if ($image_width>175 || $image_height>130) {
                          $image_width = 175;
-                         $image_width = 130;
+                         $image_height = 130;
+
+                         // echo "<script>alert('{사진 있다}');</script>";
+
                      }
                  } else {
+                    // echo "<script>alert('{사진 없다}');</script>";
                      $image_width=0;
                      $image_height=0;
                      $image_type="";
                  } ?>
 
 
-                <div>
-                  <div id="grid_pic">
-                    <img src="./pic/cat.png" alt="">
-                  </div>
-                  <ul>
-                    <li>글번호</li>
-                    <li>날짜</li>
-                    <li>조회수</li>
-                  </ul>
-                </div>
-                <div>Two</div>
-                <div>Three</div>
-                <div>Four</div>
-                <div>Five</div>
-                <div>Five</div>
-                <div>Five</div>
-                <div>Five</div>
-                <div>Five</div>
-             </div><!-- end of wrapper-grid -->
-
-
-
+             <div id="list_item">
+               <div id="list_item1"><?=$number?></div>
+               <div id="list_item2">
+                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
                <?php
-                   $number--;
-             }//end of for
-               ?><!-- END OF FOR PHP -->
+                 if (!($file_name === "")) {
+                      echo "<img src='./data/$file_copied' width='$image_width'><br>";
+                 } else {
+                     echo "사진없다";
+                 } ?>
+               </div>
+               <div id="list_item3"><?=$id?></div>
+               <div id="list_item4"><?=$date?></div>
+               <div id="list_item5"><?=$hit?></div>
+             </div><!--end of list_item -->
+             <div id="memo_content"><?=$memo_content?></div>
+         <?php
+             $number--;
+}//end of for
+         ?>
 
 
          <div id="list_content">
@@ -165,6 +165,9 @@ $number = $total_record - $start;
 
       </div><!--end of col2  -->
       </div><!--end of content -->
+      <aside>
+          <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+      </aside>
     </div><!--end of wrap  -->
   </body>
 </html>

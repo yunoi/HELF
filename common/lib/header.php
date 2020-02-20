@@ -59,8 +59,8 @@
     </ul>
 </div>
 <nav id="menu_bar">
-    <ul style="margin:0;">
-        <li id="li_img" style="padding-left:250px;">
+    <ul>
+        <li id="li_img">
             <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/index.php">
                 <img
                     src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/helf_logo.png"

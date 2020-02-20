@@ -74,8 +74,13 @@
     <div id="aside_notice">
         <p id="notice_title">공지사항</p>
         <ul id="notice_area">
-        <?php
-  $sql = "select * from notice order by num desc limit 10";
+<?php
+  if(strpos(basename($_SERVER['PHP_SELF']), 'index') !== false){
+    $sql = "select * from notice order by num desc limit 10";
+  }
+  else{
+    $sql = "select * from notice order by num desc limit 3";
+  }
   $result = mysqli_query($conn, $sql);
 
   if(!$result){

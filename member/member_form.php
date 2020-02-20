@@ -1,6 +1,26 @@
+<?php
+	if(isset($_POST["hidden_kakao_name"])) {
+			$hidden_kakao_name = $_POST["hidden_kakao_name"];
+	} else {
+		$hidden_kakao_name = "";
+	}
+
+	if(isset($_POST["hidden_kakao_email"])) {
+			$hidden_kakao_email = $_POST["hidden_kakao_email"];
+			$hidden_kakao_email = explode("@", $hidden_kakao_email);
+			$hidden_kakao_email_one = $hidden_kakao_email[0];
+			$hidden_kakao_email_two = $hidden_kakao_email[1];
+	} else {
+		$hidden_kakao_email = "";
+	}
+	// echo $hidden_kakao_name;
+	// echo $hidden_kakao_email;
+ ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+
     <meta charset="utf-8">
     <title>HELF :: Health friends, healthier life</title>
     <link rel="stylesheet" href="./css/member.css">
@@ -28,7 +48,6 @@
     <!-- 네이버 아이디로 로그인 api 참조 스크립트 -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
 
     <script>
       // 우편번호 api
@@ -136,7 +155,17 @@
             <p id="input_password_confirm"></p>
             <input type="password" id="input_password_check" placeholder=" 비밀번호 재입력 "> <br>
             <p id="input_password_check_confirm"></p>
+            <?php
+              if($hidden_kakao_name !== "") {
+            ?>
+            <input type="text" name="name" id="input_name" value=<?=$hidden_kakao_name?>> <br>
+            <?php
+            } else {
+            ?>
             <input type="text" name="name" id="input_name" placeholder=" 이름 "> <br>
+            <?php
+            }
+            ?>
             <p id="input_name_confirm"></p>
             <div id="phone">
               <div id="phone_input">
@@ -165,8 +194,22 @@
             </div>
             <div id="email">
               <div id="email_input">
-                <input type="text"  name="email_one" id="email_one" placeholder=" 이메일 입력 "> @
-                <input type="text" name="email_two" id="email_two">
+								<?php
+									if($hidden_kakao_email !== "") {
+								?>
+									<input type="text"  name="email_one" id="email_one" value="<?=$hidden_kakao_email_one?>"> @
+									<input type="text" name="email_two" id="email_two" value="<?=$hidden_kakao_email_two?>">
+									<script type="text/javascript">
+										signup_duplicate_check();
+									</script>
+									<?php
+			            } else {
+			            ?>
+                	<input type="text"  name="email_one" id="email_one" placeholder=" 이메일 입력 "> @
+									<input type="text" name="email_two" id="email_two">
+									<?php
+			            }
+			            ?>
                 <select name="email_option" onchange="mail_address_setting(this);">
                   <option value="gmail.com" selected>gmail.com</option>
                   <option value="naver.com">naver.com</option>

@@ -65,6 +65,10 @@
               </a>
             </div>
           </form>
+          <form id="hidden_kakao_login_form" action="../member/member_form.php" method="post">
+            <input type="hidden" id="hidden_kakao_name" name="hidden_kakao_name" >
+            <input type="hidden" id="hidden_kakao_email" name="hidden_kakao_email" >
+          </form>
         </div>
         <div id="find_info">
           <script type="text/javascript">
@@ -98,10 +102,47 @@
                     Kakao.API.request({
                       url: '/v2/user/me',
                       success: function(res) {
-                        // alert(JSON.stringify(res));
+                        // console.log(JSON.stringify(res));
+                        // console.log(JSON.stringify(res));
+                        // console.log(JSON.stringify(authObj));
 
-                        var stringify = JSON.stringify(res);
-                        alert(stringify);
+                        var kakao_name = res["kakao_account"]["profile"]["nickname"];
+                        var kakao_email = res["kakao_account"]["email"];
+                        if(kakao_name !== "undefined" && kakao_email !== "undefined") {
+                          $("#hidden_kakao_name").val(kakao_name);
+                          $("#hidden_kakao_email").val(kakao_email);
+                          $("#hidden_kakao_login_form").submit();
+                        } else {
+                          alert("카카오톡 로그인 오류입니다!")
+                        }
+
+                        // $("#hidden_kakao_name").val(JSON.stringify(res.properties.nickname));
+                        // $("#hidden_kakao_email").val(JSON.stringify(res.kakao_account.email));
+                        // console.log( JSON.stringify(res.properties.nickname));
+                        // console.log( JSON.stringify(res.kakao_account.email));
+                        //
+                        // $.ajax({
+                        //   url: './kakao_check.php',
+                        //   type: 'POST',
+                        //   data: {kakao_name: JSON.stringify(res.properties.nickname),
+                        //         kakao_email: JSON.stringify(res.kakao_account.email)}
+                        // })
+                        // .done(function(result) {
+                        //   console.log(result);
+                        //   result = result.split("#");
+                        //   console.log(result[0]);
+                        //   console.log(result[1]);
+                        //   $("#hidden_kakao").val("kakao");
+                        //   $("#hidden_kakao_name").val(result[0]);
+                        //   $("#hidden_kakao_email").val(result[1]);
+                        //   $('#hidden_kakao_login_form').submit();
+                        // })
+                        // .fail(function() {
+                        //   console.log("error");
+                        // })
+                        // .always(function() {
+                        //   console.log("complete");
+                        // });
 
                       },
                       fail: function(error) {

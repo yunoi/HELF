@@ -1,3 +1,7 @@
+<?php
+  session_start();
+ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -48,6 +52,8 @@
     </header>
 <!--  -->
     <section>
+      <div id="div_bmi">
+        <div id="div_form">
       <form class="" name="form_bmi" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/calculator.php?mode=<?=$mode?>" method="post">
         <div class="div-bmi">
           <h4>나의 BMI지수를 재보자</h4>
@@ -64,7 +70,7 @@
           </li>
           <li>
             <label for="cm">신장(cm)</label>
-            <input type="number" name="cm" id="cm" value="">cn
+            <input type="number" name="cm" id="cm" value="">cm
           </li>
           <li>
             <label for="kg">몸무게</label>
@@ -80,6 +86,13 @@
       </div>
         </div>
       </form>
+        </div>
+        <div id="div_aside">
+          <aside>
+            <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+          </aside>
+        </div>
+      </div>
     </section>
 <!--  -->
 <footer>

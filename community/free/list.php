@@ -96,8 +96,8 @@ $number = $total_record - $start;
              <li id="list_title5">조회</li>
            </ul>
          </div><!--end of list_top_title  -->
-         <div id="list_content">
 
+         <div id="list_content">
          <?php
           for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++) {
               mysqli_data_seek($result, $i);

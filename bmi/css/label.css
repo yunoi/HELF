@@ -10,6 +10,7 @@ ul li input{width:95px; padding: 10px 0 10px 14px; margin-left: 10px;}
 #bmi_btn{background-color: lightcoral;}
 th{  background: #f5f5f5;}
 table tr td input{ width: 13px;}
+#man,#girl{width: 13px;}
 #div_bmi{
   width: 1000px;
   position: relative;

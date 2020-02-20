@@ -56,7 +56,7 @@ a:active {
 }
 /* 상단 헤더 */
 header {
-    height: 120px;
+    height: 150px;
     padding: 0;
     margin: 0;
 }
@@ -66,6 +66,7 @@ header {
     height: 120px;
     position: relative;
     z-index: 100;
+    background-color: white;
     position: fixed;
     padding-bottom: 30px;
 }
@@ -96,7 +97,6 @@ header {
 
 #menu_bar {
     height: 78px;
-    background-color: #fff;
     font-size: 16px;
     margin: 0 auto;
     width: 100%;

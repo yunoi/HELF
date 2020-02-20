@@ -5,7 +5,7 @@
  <title>같이할건강</title>
  <link rel="stylesheet" type="text/css" href="../common/css/common.css">
  <link rel="stylesheet" type="text/css" href="../common/css/main.css">
- <link rel="stylesheet" type="text/css" href="./css/program.css">
+ <link rel="stylesheet" type="text/css" href="./css/program.css?ver=1">
  <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
  <script src="./scroll.js?ver=3"></script>
 
@@ -82,6 +82,7 @@
 
         <div class="div_program_list_main">
           <ul id="board_list">
+            <br><br><br><br><br>
 
             <?php
     if (isset($_GET["page"])) {

@@ -100,7 +100,6 @@ $number = $total_record - $start;
                  $file_name=$row['file_name'];
                  $file_copied=$row['file_copied'];
                  $file_type=$row['file_type'];
-                 $b_code=$row['b_code'];
 
                  if (!empty($file_copied)&&$file_type =="image") {
                      //이미지 정보를 가져오기 위한 함수 width, height, type
@@ -110,7 +109,7 @@ $number = $total_record - $start;
                      $image_type=$image_info[2];
                      if ($image_width>175 || $image_height>130) {
                          $image_width = 175;
-                         $image_width = 130;
+                         $image_height = 130;
                      }
                  } else {
                      $image_width=0;
@@ -121,22 +120,26 @@ $number = $total_record - $start;
 
                 <div>
                   <div id="grid_pic">
-                    <img src="./pic/cat.png" alt="">
+                    <?php
+                      echo "<img src='./data/$file_copied' width='$image_width'><br>";
+                      if ($file_type =="image") {
+                          echo "<img src='./data/$file_copied' width='$image_width'><br>";
+                          echo "사진 있다";
+                      } elseif (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
+                          $file_path = "./data/".$file_copied;
+                          $file_size = filesize($file_path);
+                          echo "사진 없다";
+                      }
+                    ?>
                   </div>
+
                   <ul>
-                    <li>글번호</li>
-                    <li>날짜</li>
-                    <li>조회수</li>
+                    <li><?=$number?>&nbsp||&nbsp</li>
+                    <li><?=$date?>&nbsp||&nbsp</li>
+                    <li>조회 <?=$hit?></li>
                   </ul>
                 </div>
-                <div>Two</div>
-                <div>Three</div>
-                <div>Four</div>
-                <div>Five</div>
-                <div>Five</div>
-                <div>Five</div>
-                <div>Five</div>
-                <div>Five</div>
+  
              </div><!-- end of wrapper-grid -->
 
 
@@ -165,6 +168,9 @@ $number = $total_record - $start;
 
       </div><!--end of col2  -->
       </div><!--end of content -->
+      <aside>
+          <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+      </aside>
     </div><!--end of wrap  -->
   </body>
 </html>

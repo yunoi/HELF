@@ -4,6 +4,11 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style media="screen">
+      #gym{
+        display: inline-block;
+      }
+    </style>
     <script>
     var x = document.getElementById('name');
     var lat=0;
@@ -83,14 +88,18 @@
     }
     function hells() {
       var cityval=document.getElementById('city').value;
+      var sigungucode=document.getElementById('sigungucode').value;
+      if(cityval==="" || sigungucode===""){
+        return;
+      }
       // location.href='https://www.google.com/maps/search/?api=1&query='+cityval+''+document.getElementById('sigungucode').value+'헬스장';
-      window.open('https://www.google.com/maps/search/?api=1&query='+cityval+''+document.getElementById('sigungucode').value+'헬스장');
-      getSigunguList(cityval);
+      window.open('https://www.google.com/maps/search/?api=1&query='+cityval+''+sigungucode+'헬스장');
     }
     function last(){getSigunguList("서울")};
     </script>
   </head>
   <body onload="last();">
+    <p>당신이 있으신 지역을 선택해주세요~</p>
     <select id="city" title="지역선택" name="areacode" onreset="getSigunguList(this.value);" onchange="getSigunguList(this.value);">
 			<option value="" selected="selected">지역선택</option>
 			<option value="서울">서울</option>

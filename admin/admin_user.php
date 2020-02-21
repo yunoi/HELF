@@ -99,7 +99,7 @@
         <td><?=$address?></td>
         <td><?=$grade?></td>
         <td><button type="submit">수정</button></td>
-        <td><button type="button" onclick="location.href='admin_member_delete.php?num=<?=$num?>'">삭제</button></td>
+        <td><button type="button" onclick="location.href='user_curd.php?id=<?=$id?>&mode=delete'">삭제</button></td>
   		</form>
      </tr>
 

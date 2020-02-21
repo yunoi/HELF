@@ -222,6 +222,18 @@ function create_table($conn, $table_name){
                 constraint fk_program_o_key3 FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade
           )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
               break;
+              case 'deleted_members' :
+                $sql = "CREATE TABLE `deleted_members` (
+                id char(20),
+                password char(15),
+                name char(10),
+                phone char(13),
+                email char(40),
+                address char(50),
+                grade char(10),
+                `deleted_date` date
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+              break;
       default:
         echo "<script>alert('해당 테이블 이름이 없습니다. ');</script>";
         break;

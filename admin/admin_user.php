@@ -2,7 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>HELF :: 관리자페이지</title>
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="../common/css/common.css">
     <link rel="stylesheet" type="text/css" href="../common/css/main.css">
     <link rel="stylesheet" type="text/css" href="./css/admin.css">
@@ -98,7 +99,7 @@
         <td><?=$address?></td>
         <td><?=$grade?></td>
         <td><button type="submit">수정</button></td>
-        <td><button type="button" onclick="location.href='admin_member_delete.php?num=<?=$num?>'">삭제</button></td>
+        <td><button type="button" onclick="location.href='user_curd.php?id=<?=$id?>&mode=delete'">삭제</button></td>
   		</form>
      </tr>
 

@@ -375,8 +375,6 @@ $(document).ready(function() {
        tou_two_pass = false;
        isAllPass();
     }
-    alert(tou_one_pass);
-    alert(tou_two_pass);
   });
 
   function isAllPass() {

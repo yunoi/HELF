@@ -2,7 +2,8 @@
  <html>
  <head>
  <meta charset="utf-8">
- <title>같이할건강</title>
+ <title>HELF :: 프로그램</title>
+ <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
  <link rel="stylesheet" type="text/css" href="../common/css/common.css">
  <link rel="stylesheet" type="text/css" href="../common/css/main.css">
  <link rel="stylesheet" type="text/css" href="./css/program.css?ver=1">
@@ -58,8 +59,7 @@
           </li>
           <br><br>&nbsp
           <li class="li_ok">
-            <input type="button" name="" value="초기화">&nbsp
-            <input type="button" name="" value="확인">
+            <input type="button" name="" value="검색">
           </li>
 
         </ul>
@@ -97,6 +97,8 @@
     $result = mysqli_query($conn, $sql);
 
     for ($i=0; $i<5; $i++) {
+       $back_color = array('#04adbf', '#04d9d9', '#f2b705', '#d98e04','#f23005');
+
 
        // 가져올 레코드로 위치(포인터) 이동
        $row = mysqli_fetch_array($result);
@@ -111,8 +113,9 @@
        $file_type         = $row["file_type"];
 
        ?>
+       <a href="program_detail.php">
 				<li class="li_program_list">
-          <div class="div_list">
+          <div class="div_list" style="background:<?=$back_color[$i]?>">
           <div class="pro1">
             <div class="main_image">
               <img src='../admin/data/<?=$file_copied?>' class='image_vertical'>
@@ -120,9 +123,9 @@
           </div>
           <div class="pro2">
             <div class="abc">
-              <h5><?=$shop?> | <?=$type?> | <?=$location?></h5>
-              <h5 class="tit_list_block" style="font-size:16px"><?=$subject?></h5>
-              <span class="list_date">모집기간: <?=$end_day?> 까지</span>
+              <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
+              <div class="info_2"><?=$subject?></div>
+              <div class="info_3">모집기간: <?=$end_day?> 까지</div>
             </div>
           </div>
           <div class="pro3">
@@ -130,6 +133,7 @@
           </div>
             </div>
 				</li>
+        </a>
 <?php
 }
   mysqli_close($conn);

@@ -30,11 +30,73 @@
   if (isset($_POST["price"])) $price = $_POST["price"];
   else $price = "";
 
-  if (isset($_POST["h_area1"])) $h_area1 = $_POST["h_area1"];
-  else $h_area1 = "";
+  if (isset($_POST["h_area1"])){
+    switch ($_POST["h_area1"]) {
+      case '1':
+        $h_area1 = "서울";
+        break;
+      case '2':
+        $h_area1 = "부산";
+        break;
+      case '3':
+        $h_area1 = "대구";
+        break;
+      case '4':
+        $h_area1 = "인천";
+        break;
+      case '5':
+        $h_area1 = "광주";
+        break;
+      case '6':
+        $h_area1 = "대전";
+        break;
+      case '7':
+        $h_area1 = "울산";
+        break;
+      case '8':
+        $h_area1 = "강원";
+        break;
+      case '9':
+        $h_area1 = "경기";
+        break;
+      case '10':
+        $h_area1 = "경남";
+        break;
+      case '11':
+        $h_area1 = "경북";
+        break;
+      case '12':
+        $h_area1 = "전남";
+        break;
+      case '13':
+        $h_area1 = "전북";
+        break;
+        case '14':
+        $h_area1 = "제주";
+        break;
+      case '15':
+        $h_area1 = "충남";
+        break;
+      case '16':
+        $h_area1 = "충북";
+        break;
+      case '17':
+        $h_area1 = "세종";
+        break;
+      default:
+        $h_area1 = "전체";
+        break;
+    }
 
-  if (isset($_POST["h_area2"])) $h_area2 = $_POST["h_area2"];
-  else $h_area2 = "";
+  }
+
+  if (isset($_POST["h_area2"])){
+    if($_POST["h_area2"] === "-선택-"){
+      $h_area2 = "전체";
+    }else{
+      $h_area2 = $_POST["h_area2"];
+    }
+  }
 
   if (isset($_POST["detail"])) $detail = $_POST["detail"];
   else $detail = "";
@@ -46,17 +108,17 @@
   if (isset($_FILES["upfile"]["name"])) {
       $upfile_name = $_FILES["upfile"]["name"];
   } else {
-      $upfile_name = "왜안떠";
+      $upfile_name = "파일 없음";
   }
   if (isset($_FILES["upfile"]["tmp_name"])) {
       $upfile_tmp_name = $_FILES["upfile"]["tmp_name"];
   } else {
-      $upfile_tmp_name = "";
+      $upfile_tmp_name = "임시파일 없음";
   }
   if (isset($_FILES["upfile"]["type"])) {
       $upfile_type = $_FILES["upfile"]["type"];
   } else {
-      $upfile_type = "";
+      $upfile_type = "파일타입 없음";
   }
   if (isset($_FILES["upfile"]["size"])) {
       $upfile_size = $_FILES["upfile"]["size"];

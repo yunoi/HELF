@@ -28,9 +28,9 @@ $(document).ready(function() {
                   for(var i = 0; i<5; i++){
                     var html = `<li class="li_program_list">`;
                     html += `<div class="div_list"><div class="pro1"><div class="main_image"><img src='../admin/data/`+data[i].file_copied+`' class='image_vertical'></div></div>`;
-                    html += `<div class="pro2"><div class="abc"><h5>`+data[i].shop+" | "+data[i].type+" | "+data[i].location+`</h5>`;
-                    html += `<h5 class="tit_list_block" style="font-size:16px">`+data[i].subject+`</h5>`;
-                    html += `<span class="list_date">모집기간: `+data[i].end_day+` 까지</span></div></div>`;
+                    html += `<div class="pro2"><div class="abc"><div class="info_1">`+data[i].shop+" | "+data[i].type+" | "+data[i].location+`</div>`;
+                    html += `<div class="info_2">`+data[i].subject+`</div>`;
+                    html += `<div class="info_3"">모집기간: `+data[i].end_day+` 까지</div></div></div>`;
                     html += `<div class="pro3"><em><strong>`+data[i].price+`</strong> 원</em></div></div></li>`;
 
                     $("#board_list").append(html);

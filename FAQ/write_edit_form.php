@@ -53,11 +53,8 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
       </header>
       <div id="content">
        <div id="col2">
-         <div id="title">FAQ<img src="../img/title_greet.gif"></div>
+         <div id="title">FAQ</div>
          <div class="clear"></div>
-         <div id="write_form_title"><img src="../img/write_form_title.gif"></div>
-         <div class="clear"></div>
-
          <form name="board_form" action="dml_board.php?mode=<?=$mode?>" method="post">
           <input type="hidden" name="num" value="<?=$num?>">
           <input type="hidden" name="hit" value="<?=$hit?>">
@@ -79,8 +76,8 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
 
             <div id="write_button">
               <!-- 완료버튼 및 목록버튼 -->
-              <input type="image" src="../img/ok.png" onclick="document.getElementById("is_html_ok").disabled=false">&nbsp;
-              <a href="./list.php"><img src="../img/list.png"></a>
+              <input type="image" src="./img/ok.png" onclick="document.getElementById("is_html_ok").disabled=false">&nbsp;
+              <a href="./list.php"><img src="./img/list.png"></a>
             </div><!--end of write_button-->
          </form>
       </div><!--end of col2  -->

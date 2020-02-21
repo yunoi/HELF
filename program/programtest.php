@@ -83,7 +83,7 @@
 
         <div class="div_program_list_main">
           <ul id="board_list">
-            <br><br><br><br><br><br><br>
+            <br><br><br><br><br>
 
             <?php
     if (isset($_GET["page"])) {
@@ -139,10 +139,11 @@
 
       </div>
 
+      <aside>
+          <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+      </aside>
     </div><!-- endof div_program	 -->
-    <aside>
-        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
-    </aside>
+
  </section>
  </body>
  </html>

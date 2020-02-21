@@ -39,6 +39,13 @@ a{
 
 }
 
+aside{
+  position: absolute;
+  right: 170px;
+  top: 130px;
+  position: fixed;
+}
+
 .div_program_list_top{
   position: fixed;
   width: 600px;

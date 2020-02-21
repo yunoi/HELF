@@ -7,6 +7,7 @@
     <head>
         <meta charset="utf-8">
         <title>HELF :: Health friends, healthier life</title>
+        <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
         <link
             rel="stylesheet"
             type="text/css"

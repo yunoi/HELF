@@ -52,7 +52,8 @@
         <div id="div_form">
       <form class="" name="form_bmi" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/calculator.php?mode=<?=$mode?>" method="post">
         <div class="div-bmi">
-          <h4>나의 BMI지수를 재보자</h4>
+          <h2>나의 BMI지수를 재보자</h2>
+          <br/>
         <!-- get방식으로 안에 모드(타입)을 넣는다 bmi와 kcal을 한번에 처리한다 -->
         <ul>
           <li>
@@ -73,10 +74,12 @@
             <input type="number" name="kg" id="kg" value="">kg
           </li>
         </ul>
+        <br/>
         <p id="p_bmi">
           <b>비만도 측정(BMI)이란?<br/>
             나이, 신장(cm), 몸무게(kg)만으로 비만을 판정하는 비만 지수</b>
         </p>
+        <br/>
         <div class="div_btn">
         <input id="bmi_btn" type="button" name="" value="확인" onclick="btn_bmi();">
       </div>

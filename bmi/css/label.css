@@ -3,24 +3,13 @@ ul{  list-style: none;}
 .div-bmi{  width: 550px;  margin: 0px auto;}
 .div_btn{  text-align: center;}
 label{background: #f5f5f5; padding: 22px 0 22px 14px; text-align: left; display: inline-block;  width: 100px;}
-h4{  margin: 13px; border-bottom: 2px solid #5d5d5d;}
-
+h2{  margin: 13px; border-bottom: 2px solid #5d5d5d;}
 ul li input{width:95px; padding: 10px 0 10px 14px; margin-left: 10px;}
 #p_bmi{}
-#bmi_btn{font-size: 20px;background-color: #F23005; color: white;}
+#bmi_btn{ width: 225px; height: 40px; text-align: center; font-size: 20px; border:1px solid #F23005; color: #F23005; background-color: white;}
 th{  background: #f5f5f5;}
 table tr td input{ width: 13px;}
 #man,#girl{width: 13px;}
-#div_bmi{
-  width: 1000px;
-  position: relative;
-  margin: 0 auto;
-}
-#div_form{
-float: left;
-margin-left: 153px;
-}
-#div_aside{
-float: left;
-margin-top: 28px;
-}
+#div_bmi{ width: 1000px; position: relative; margin: 0 auto;}
+#div_form{ float: left; margin-left: 153px;}
+#div_aside{ float: left; margin-top: 40px;}

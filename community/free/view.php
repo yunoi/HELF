@@ -46,6 +46,9 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $file_type=$row['file_type'];
     $day=$row['regist_day'];
 
+    $file_type_tok=explode('/', $file_type);
+    $file_type=$file_type_tok[0];
+
     if (!empty($file_copied)&&$file_type =="image") {
         //이미지 정보를 가져오기 위한 함수 width, height, type
         $image_info=getimagesize("./data/".$file_copied);
@@ -148,7 +151,16 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                 <div class="col2">
                   <?php
                     if ($file_type =="image") {
+                      $file_path = "./data/".$file_copied;
+                      $file_size = filesize($file_path);
+                      //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
+                      echo("
+                      ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
+                    ");
                         echo "<img src='./data/$file_copied' width='$image_width'><br>";
+
                     } elseif (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
                         $file_path = "./data/".$file_copied;
                         $file_size = filesize($file_path);

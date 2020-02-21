@@ -84,7 +84,6 @@ $number = $total_record - $start;
          </form>
 
            <div class="list_content">
-
              <?php
              for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++) {
                  mysqli_data_seek($result, $i);
@@ -101,8 +100,8 @@ $number = $total_record - $start;
                  $file_copied=$row['file_copied'];
                  $file_type=$row['file_type'];
 
-                  $file_type_tok=explode('/', $file_type);
-                  $file_type=$file_type_tok[0];
+                 $file_type_tok=explode('/', $file_type);
+                 $file_type=$file_type_tok[0];
 
                  if (!empty($file_copied)&&$file_type ==="image") {
                      //이미지 정보를 가져오기 위한 함수 width, height, type
@@ -113,56 +112,60 @@ $number = $total_record - $start;
                      if ($image_width>175 || $image_height>130) {
                          $image_width = 175;
                          $image_height = 130;
-
                          // echo "<script>alert('{사진 있다}');</script>";
-
                      }
                  } else {
-                    // echo "<script>alert('{사진 없다}');</script>";
+                     // echo "<script>alert('{사진 없다}');</script>";
                      $image_width=0;
                      $image_height=0;
                      $image_type="";
                  } ?>
 
-
              <div id="list_item">
-               <div id="list_item1"><?=$number?></div>
-               <div id="list_item2">
-                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
-               <?php
-                 if (!($file_name === "")) {
-                      echo "<img src='./data/$file_copied' width='$image_width'><br>";
-                 } else {
-                     echo "사진없다";
-                 } ?>
-               </div>
-               <div id="list_item3"><?=$id?></div>
+               <div id="list_item1">글번호<?=$number?></div>
+               <div id="list_item2"><?=$subject?></div>
                <div id="list_item4"><?=$date?></div>
-               <div id="list_item5"><?=$hit?></div>
+               <div id="list_item5">조회수<?=$hit?></div>
+               <div id="list_item3">
+                  <?php
+                  if (!($file_name === "")) {
+                      echo "<a href='./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>'><img src='./data/$file_copied' width='$image_width'> </a><br>";
+                  } else {
+                      echo "사진이 존재하지 않습니다.";
+                  } ?>
+                </div>
              </div><!--end of list_item -->
-             <div id="memo_content"><?=$memo_content?></div>
          <?php
              $number--;
-}//end of for
+             }//end of for
          ?>
 
-
-         <div id="list_content">
           <div id="page_button">
             <div id="page_num">이전◀ &nbsp;&nbsp;&nbsp;&nbsp;
-
+              <?php
+                for ($i=1; $i <= $total_page ; $i++) {
+                    if ($page==$i) {
+                        echo "<b>&nbsp;$i&nbsp;</b>";
+                    } else {
+                        echo "<a href='./list.php?page=$i'>&nbsp;$i&nbsp;</a>";
+                    }
+                }
+              ?>
             &nbsp;&nbsp;&nbsp;&nbsp;▶ 다음
             <br><br><br><br><br><br><br>
           </div><!--end of page num -->
 
           <div id="button">
             <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
-            <a href="#"> <button type="button">목록</button>&nbsp;</a>
+            <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button>&nbsp;</a>
+            <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
+              if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
+                  echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
+              }
+            ?>
           </div><!--end of button -->
-
         </div><!--end of page button -->
-      </div><!--end of list content -->
-
+        </div><!--end of list content -->
       </div><!--end of col2  -->
       </div><!--end of content -->
       <aside>

@@ -62,22 +62,20 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="./css/memo.css">
     <link rel="stylesheet" href="./css/greet.css">
-    <script type="text/javascript" src="../js/member_form.js?ver=1"></script>
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    function check_delete(num) {
+      var result=confirm("삭제하시겠습니까?\n Either OK or Cancel.");
+      if(result){
+            window.location.href='./dml_board.php?mode=delete&num='+num;
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="wrap">
@@ -88,7 +86,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       </div><!--end of header  -->
       <div id="content">
        <div id="col2">
-         <div id="title">공지사항<img src="./img/title_greet.gif"></div>
+         <div id="title">공지사항</div>
          <div class="clear"></div>
          <div id="write_form_title"></div>
          <div class="clear"></div>
@@ -141,6 +139,9 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
             ?>
             </div><!--end of write_button-->
       </div><!--end of col2  -->
+      <aside id="aside">
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+      </aside>
       </div><!--end of content -->
     </div><!--end of wrap  -->
     <footer>

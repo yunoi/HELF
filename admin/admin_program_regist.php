@@ -63,7 +63,7 @@
      <div id="content">
     			<h3>프로그램 관리 > 등록</h3><br>
 
-          <form name="program_regist" class="" action="program_insert.php?mode=insert" method="post" enctype="multipart/form-data">
+          <form name="program_regist" class="" action="program_curd.php?mode=insert" method="post" enctype="multipart/form-data">
             <table>
               <tr>
                 <td>샵 이름</td>

@@ -97,6 +97,8 @@
     $result = mysqli_query($conn, $sql);
 
     for ($i=0; $i<5; $i++) {
+       $back_color = array('#04adbf', '#04d9d9', '#f2b705', '#d98e04','#f23005');
+
 
        // 가져올 레코드로 위치(포인터) 이동
        $row = mysqli_fetch_array($result);
@@ -111,8 +113,9 @@
        $file_type         = $row["file_type"];
 
        ?>
+       <a href="program_detail.php">
 				<li class="li_program_list">
-          <div class="div_list">
+          <div class="div_list" style="background:<?=$back_color[$i]?>">
           <div class="pro1">
             <div class="main_image">
               <img src='../admin/data/<?=$file_copied?>' class='image_vertical'>
@@ -130,6 +133,7 @@
           </div>
             </div>
 				</li>
+        </a>
 <?php
 }
   mysqli_close($conn);

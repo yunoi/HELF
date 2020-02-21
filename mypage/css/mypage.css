@@ -13,6 +13,11 @@
   height: 60px;
 }
 
+.select_tap {
+  background-color: white !important;
+  border-bottom: 1.5px solid white !important;
+}
+
 #mypage_buttons div {
   display: inline-block;
   float: left;
@@ -44,6 +49,7 @@
 #buy_list {
   border-right: 1.5px solid #BDBDBD;
 }
+
 
 /* mypage_info css */
 #mypage_info_content {

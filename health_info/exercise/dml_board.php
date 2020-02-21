@@ -38,7 +38,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
     //include $_SERVER['DOCUMENT_ROOT']."/helf/health_info/lib/file_upload.php";
 
     //8 파일의 실제명과 저장되는 명을 삽입한다.
-    $sql="INSERT INTO `health_info` VALUES (null,'$q_userid','$q_username','$q_subject','$q_content','$regist_day',0,'$upfile_name', '$upfile_type','$copied_file_name',0,'레시피');";
+    $sql="INSERT INTO `health_info` VALUES (null,'$q_userid','$q_username','$q_subject','$q_content','$regist_day',0,'$upfile_name', '$upfile_type','$copied_file_name',0,'운동');";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
         alert_back('Error:5 ' . mysqli_error($conn));
@@ -46,7 +46,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
     }
 
     //등록된사용자가 최근 입력한 이미지게시판을 보여주기 위하여 num 찾아서 전달하기 위함이다.
-    $sql="SELECT num from `health_info` where id ='$q_userid' and b_code='레시피' order by num desc limit 1;";
+    $sql="SELECT num from `health_info` where id ='$q_userid' and b_code='운동' order by num desc limit 1;";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
         alert_back('Error: 6' . mysqli_error($conn));
@@ -110,7 +110,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
     //1번과 2번이 해당이 된다. 파일삭제만 체크한다..
     if (isset($_POST['del_file']) && $_POST['del_file'] =='1') {
         //삭제할 게시물의 이미지파일명을 가져와서 삭제한다.
-        $sql="SELECT `file_copied` from `health_info` where `num` ='$q_num' and `b_code`='레시피';";
+        $sql="SELECT `file_copied` from `health_info` where `num` ='$q_num' and `b_code`='운동';";
         $result = mysqli_query($conn, $sql);
         if (!$result) {
             alert_back('Error: 6' . mysqli_error($conn));
@@ -122,7 +122,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
             unlink("./data/".$file_copied);
         }
 
-        $sql="UPDATE `health_info` SET `file_name`='', `file_copied` ='', `file_type` =''  WHERE `num`=$q_num and `b_code`='레시피';";
+        $sql="UPDATE `health_info` SET `file_name`='', `file_copied` ='', `file_type` =''  WHERE `num`=$q_num and `b_code`='운동';";
         $result = mysqli_query($conn, $sql);
         if (!$result) {
             die('Error: ' . mysqli_error($conn));
@@ -194,7 +194,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
     $parent = test_input($_POST["parent"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    $sql ="DELETE FROM `comment` WHERE `b_code`='레시피' and `num` =$q_num";
+    $sql ="DELETE FROM `comment` WHERE `b_code`='운동' and `num` =$q_num";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
         die('Error: ' . mysqli_error($conn));

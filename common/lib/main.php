@@ -27,7 +27,7 @@
 </ol>
   <div id=board_preview>
 <div id="latest">
-    <h4>자유게시판</h4>
+    <h4>인기게시글</h4>
     <ul>
 <?php
   $sql = "select * from community order by num desc limit 5";

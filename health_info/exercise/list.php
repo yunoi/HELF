@@ -15,9 +15,9 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
     $find = $_POST["find"];
     $search = $_POST["search"];
     $q_search = mysqli_real_escape_string($conn, $search);
-    $sql="SELECT * from `health_info` where $find like '%$q_search%' AND b_code='레시피' order by num desc;";
+    $sql="SELECT * from `health_info` where $find like '%$q_search%' AND b_code='운동' order by num desc;";
 } else {
-    $sql="SELECT * from `health_info` where b_code='레시피' order by num desc;";
+    $sql="SELECT * from `health_info` where b_code='운동' order by num desc;";
 }
 
 $result=mysqli_query($conn, $sql);
@@ -67,7 +67,7 @@ $number = $total_record - $start;
 
        <div id="col2">
          <div id="title">
-           <span>다이어트 레시피</span>
+           <span>운동 정보</span>
          </div>
          <form name="board_form" action="list.php?mode=search" method="post">
            <div id="list_search">

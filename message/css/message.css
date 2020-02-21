@@ -32,6 +32,12 @@ ul { list-style-type: none; }
   background-color: #FAFAFA;
 }
 
+#message_buttons a {
+  width: 118.756px;
+  height: 40px;
+  text-decoration: none;
+}
+
 #message_buttons p {
   height: 38px;
   text-align: center;

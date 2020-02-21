@@ -50,7 +50,7 @@ if(isset($_SESSION["user_grade"])){
       if(isset($_GET['mode'])) {
         $mode = $_GET['mode'];
       } else {
-        $mode = "";
+        $mode = "receive";
       }
       
 
@@ -60,7 +60,7 @@ if(isset($_SESSION["user_grade"])){
           <h1>메시지함</h1>
         </div>
         <div id="message_buttons">
-          <div id="receive_message" class="select_tap">
+          <div id="receive_message">
           <p>받은 메시지</p>
           </div>
           <div id="send_message">

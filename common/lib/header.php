@@ -18,7 +18,7 @@
 <script>
   function message_box() {
     window.open(
-        "http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/message/message_box.php",
+        "http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/message/message_box.php?mode=receive",
         "메시지함",
         "_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
                 "ft=100px , width=820px, height=615px"

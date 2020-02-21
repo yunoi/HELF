@@ -1,6 +1,6 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/common/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/db_connector.php";
 
 //*****************************************************
 $num=$id=$subject=$content=$day=$hit="";
@@ -39,27 +39,21 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/greet.css">
-    <script type="text/javascript" src="../js/member_form.js"></script>
-    <title></title>
+    <link rel="stylesheet" href="./css/memo.css">
+    <link rel="stylesheet" href="./css/greet.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
+    <title>FAQ</title>
   </head>
   <body>
     <div id="wrap">
-      <div id="header">
-          <?php include "../lib/top_login2.php"; ?>
-      </div><!--end of header  -->
-      <div id="menu">
-        <?php include "../lib/top_menu2.php"; ?>
-      </div><!--end of menu  -->
+      <header>
+          <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
+      </header>
       <div id="content">
-       <div id="col1">
-         <div id="left_menu">
-           <?php include "../lib/left_menu.php"; ?>
-         </div>
-       </div><!--end of col1  -->
        <div id="col2">
-         <div id="title"><img src="../img/title_greet.gif"></div>
+         <div id="title">FAQ<img src="../img/title_greet.gif"></div>
          <div class="clear"></div>
          <div id="write_form_title"><img src="../img/write_form_title.gif"></div>
          <div class="clear"></div>
@@ -69,11 +63,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
           <input type="hidden" name="hit" value="<?=$hit?>">
           <div id="write_form">
               <div class="write_line"></div>
-              <div id="write_row1">
-                <div class="col1">아이디</div>
-                <div class="col2"><?=$id?></div>
-                <div class="col3"><input type="checkbox" id="is_html_ok" name="is_html" value="y" <?=$checked?> <?=$disabled?> >HTML 쓰기</div>
-              </div><!--end of write_row1  -->
               <div class="write_line"></div>
               <div id="write_row2">
                 <div class="col1">제&nbsp;&nbsp;목</div>

@@ -63,7 +63,7 @@ header {
 #header_container {
     width: 100%;
     min-width: 1000px;
-    height: 120px;
+    height: 130px;
     position: relative;
     z-index: 100;
     background-color: white;
@@ -97,12 +97,13 @@ header {
     width:20px;
     display: inline-block;
     position: relative;
-    top: 2px;
+    top: 3px;
+    right:1px;
 }
 
 #menu_bar {
-    padding-top: 10px;
-    padding-bottom: 2px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     height: 78px;
     font-size: 16px;
     margin: 0 auto;

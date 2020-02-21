@@ -3,7 +3,8 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <title>HELF :: 헬스장 찾기</title>
     <style media="screen">
       #gym{
         display: inline-block;

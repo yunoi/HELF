@@ -6,22 +6,18 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>HELF :: BMI</title>
     <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/css/label.css">
     <link
         rel="stylesheet"
         type="text/css"
         href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
         <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
             <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/bmi/css/label.css">
     <script src="./js/vendor/modernizr.custom.min.js"></script>
     <script src="./js/vendor/jquery-1.10.2.min.js"></script>
     <script src="./js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
-    <script type="text/javascript" src="./common/js/main.js"></script>
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <script>
     function btn_bmi() {
       let $age = document.form_bmi.age;

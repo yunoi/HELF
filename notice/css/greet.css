@@ -4,6 +4,9 @@
 	position: relative;
 	margin: 0 auto;
 }
+.col2 p{
+	width: 650px;
+}
 #aside_menu{
   margin-left: 25px;
 	margin-top: 61px;

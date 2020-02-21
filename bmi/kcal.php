@@ -13,9 +13,6 @@
         href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/bmi/css/label.css">
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
-    <script src="./js/vendor/modernizr.custom.min.js"></script>
-    <script src="./js/vendor/jquery-1.10.2.min.js"></script>
-    <script src="./js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
     <script>
       function btn_kcal(){
         <?php $mode = "kcal"; ?>
@@ -69,7 +66,7 @@
               <input type="radio" name="work" value="0.3"> 가벼운 활동(평소 가벼운 운동이나 스포츠를 한다)<br/><br/>
               <input type="radio" name="work" value="0.6"> 보통 활동(평소 적당한 운동이나 스포츠를 한다)<br/><br/>
               <input type="radio" name="work" value="0.7"> 많은 활동(평소 강렬한 운동이나 활동을 한다)<br/><br/>
-              <input type="radio" name="work" value="0.9"> 격심한 활동(평소 매우 심한 운동을 하거나 육체를 쓰는 직업이다)<br/><br/></td>
+              <input type="radio" name="work" value="0.9"> 격심한 활동(평소 매우 심한 운동을 하거나 육체적인 직업이다)<br/><br/></td>
             </tr>
           </table>
         </li>

@@ -12,7 +12,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
     $num = test_input($_GET["num"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    $sql="SELECT * from `community` where num ='$q_num';";
+    $sql="SELECT * from `health_info` where num ='$q_num';";
     $result = mysqli_query($conn, $sql);
 
     if (!$result) {
@@ -38,14 +38,13 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="../css/community.css">
+    <link rel="stylesheet" href="../css/health_info.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
-    <title>HELF :: 커뮤니티게시판</title>
+    <title>HELF :: 건강정보게시판</title>
   </head>
   <body>
     <div id="wrap">
@@ -57,14 +56,14 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
          <div id="left_menu">
            <div id="sub_title"> <span>메뉴</span></div>
            <ul>
-           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
-           <li><a href="#">다이어트 후기</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동 정보</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">다이어트 레시피</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
 
        <div id="col2">
-         <div id="title">자유게시판</div>
+         <div id="title">다이어트 레시피</div>
          <div class="clear"></div>
          <div id="write_form_title">글쓰기</div>
          <div class="clear"></div>

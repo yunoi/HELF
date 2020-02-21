@@ -2,7 +2,7 @@
 // connect to database
 // session_start();
 // include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
-// $con = mysqli_connect('localhost', 'root', '123456', 'helf');
+// $conn = mysqli_connect('localhost', 'root', '123456', 'helf');
 if (!$conn) {
     die("Error connecting to database: " . mysqli_connect_error($conn));
     exit();
@@ -25,19 +25,19 @@ if (isset($_POST['action'])) {
     switch ($action) {
     case 'like':
          $sql="INSERT INTO rating_info (user_id, post_id, rating_action, b_code)
-               VALUES ('$user_id', $post_id, 'like','자유게시판')
+               VALUES ('$user_id', $post_id, 'like', '운동')
                ON DUPLICATE KEY UPDATE rating_action='like'";
          break;
     case 'dislike':
           $sql="INSERT INTO rating_info (user_id, post_id, rating_action, b_code)
-               VALUES ('$user_id', $post_id, 'dislike', '자유게시판')
+               VALUES ('$user_id', $post_id, 'dislike', '운동')
                ON DUPLICATE KEY UPDATE rating_action='dislike'";
          break;
     case 'unlike':
-          $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='자유게시판'";
+          $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='운동'";
           break;
     case 'undislike':
-            $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='자유게시판'";
+            $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='운동'";
       break;
     default:
         break;
@@ -123,8 +123,12 @@ function userDisliked($post_id)
 
 $num = test_input($_GET["num"]);
 
-$sql = "SELECT * FROM community where num=$num"; //게시판 번호
+$sql = "SELECT * FROM health_info where num=$num"; //게시판 번호
 $result_com = mysqli_query($conn, $sql);
+
+if(empty($result_com)){
+  echo "result_com 없음";
+}
 // fetch all community from database
 // return them as an associative array called $communities
 $communities = mysqli_fetch_all($result_com, MYSQLI_ASSOC);

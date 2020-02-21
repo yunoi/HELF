@@ -96,7 +96,8 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title></title>
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <title>HELF :: 커뮤니티게시판</title>
     <script type="text/javascript">
     function check_delete(num) {
       var result=confirm("삭제하시겠습니까?");
@@ -274,6 +275,9 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 </div><!--end of write_button-->
 </div><!--end of col2  -->
 </div><!--end of content -->
+<aside>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+</aside>
 </div><!--end of wrap  -->
 </body>
 </html>

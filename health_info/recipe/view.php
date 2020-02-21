@@ -11,12 +11,12 @@ if (empty($_GET['page'])) {
     $page=$_GET['page'];
 }
 
+
 if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $num = test_input($_GET["num"]);
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    // echo "<script>alert('게시글 번호 : {$num}');</script>";
 
     $sql="UPDATE `health_info` SET `hit`=$hit WHERE b_code='레시피' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
@@ -96,8 +96,8 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title></title>
-
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <title>HELF :: 건강정보게시판</title>
     <script type="text/javascript">
     function check_delete(num) {
       var result=confirm("삭제하시겠습니까?");
@@ -118,7 +118,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
          <div id="left_menu">
            <div id="sub_title"> <span>메뉴</span></div>
            <ul>
-           <li><a href="#">운동정보</a></li>
+           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동 정보</a></li>
            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">다이어트 레시피</a></li>
            </ul>
          </div>
@@ -279,6 +279,9 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 </div><!--end of write_button-->
 </div><!--end of col2  -->
 </div><!--end of content -->
+<aside>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+</aside>
 </div><!--end of wrap  -->
 
 </body>

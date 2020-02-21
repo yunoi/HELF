@@ -213,12 +213,12 @@ function create_table($conn, $table_name){
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
             case 'sales' :
-              $sql = "CREATE TABLE sales( 
+              $sql = "CREATE TABLE sales(
                 id char(20) not null,
                 o_key int not null,
                 sales_day char(15) not null,
                 primary key (id, o_key),
-                 
+
                constraint fk_members_id3 FOREIGN KEY (id) REFERENCES members(id) on delete cascade,
                 constraint fk_program_o_key3 FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade
           )ENGINE=InnoDB DEFAULT CHARSET=utf8;";

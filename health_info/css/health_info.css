@@ -117,35 +117,37 @@
 	margin-top:2px;
 	padding:6px;
 	border:solid 2px blue;
+  display: inline-block;
+
+}
+
+#list_item img {
+	border: 1px solid green;
 }
 
 #list_item #list_item1{
 	float:left;
-	width:40px;
-	text-align:center;
+  padding: 2px;
 }
 
 #list_item #list_item2{
 	float:left;
-	width:560px;
+  padding: 2px;
 }
 
 #list_item #list_item3{
 	float:left;
-	width:65px;
-	text-align:center;
+  padding: 2px;
 }
 
 #list_item #list_item4{
 	float:left;
-	width:80px;
-	text-align:center;
+  padding: 2px;
 }
 
 #list_item #list_item5{
 	float:left;
-	width:40px;
-	text-align:center;
+  padding: 2px;
 }
 
 #page_button {

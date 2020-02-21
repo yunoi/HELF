@@ -36,7 +36,7 @@ $number = $total_record - $start;
 <html>
 <head>
     <meta charset="utf-8">
-    <title>키워드로 장소검색하기</title>
+    <title>HELF :: 인바디 보건소 찾기</title>
     <link
         rel="stylesheet"
         type="text/css"
@@ -52,6 +52,7 @@ $number = $total_record - $start;
         <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
         <link rel="stylesheet" href="./css/greet.css">
         <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
+        <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
         <script type="text/javascript" src="./js/member_form.js"></script>
 </head>
 <body>

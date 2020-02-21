@@ -43,7 +43,8 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
-    <title>공지사항</title>
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <title>HELF :: 공지사항</title>
   </head>
   <body>
     <div id="wrap">

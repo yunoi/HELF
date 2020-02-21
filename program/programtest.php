@@ -2,7 +2,8 @@
  <html>
  <head>
  <meta charset="utf-8">
- <title>같이할건강</title>
+ <title>HELF :: 프로그램</title>
+ <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
  <link rel="stylesheet" type="text/css" href="../common/css/common.css">
  <link rel="stylesheet" type="text/css" href="../common/css/main.css">
  <link rel="stylesheet" type="text/css" href="./css/program.css?ver=1">
@@ -58,8 +59,7 @@
           </li>
           <br><br>&nbsp
           <li class="li_ok">
-            <input type="button" name="" value="초기화">&nbsp
-            <input type="button" name="" value="확인">
+            <input type="button" name="" value="검색">
           </li>
 
         </ul>
@@ -120,9 +120,9 @@
           </div>
           <div class="pro2">
             <div class="abc">
-              <h5><?=$shop?> | <?=$type?> | <?=$location?></h5>
-              <h5 class="tit_list_block" style="font-size:16px"><?=$subject?></h5>
-              <span class="list_date">모집기간: <?=$end_day?> 까지</span>
+              <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
+              <div class="info_2"><?=$subject?></div>
+              <div class="info_3">모집기간: <?=$end_day?> 까지</div>
             </div>
           </div>
           <div class="pro3">

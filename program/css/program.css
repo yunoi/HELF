@@ -41,14 +41,14 @@ a{
 
 aside{
   position: absolute;
-  right: 170px;
+  right: 150px;
   top: 130px;
   position: fixed;
 }
 
 .div_program_list_top{
   position: fixed;
-  width: 600px;
+  width: 620px;
   padding: 30px;
   border: 1px solid gray;
   background-color: white;
@@ -61,7 +61,7 @@ aside{
 }
 
 .div_list{
-  width: 660px;
+  width: 680px;
   height: 150px;
   border: 1px solid gray;
 }

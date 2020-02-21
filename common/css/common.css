@@ -97,7 +97,8 @@ header {
     width:20px;
     display: inline-block;
     position: relative;
-    top: 2px;
+    top: 3px;
+    right:1px;
 }
 
 #menu_bar {

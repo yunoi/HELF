@@ -18,13 +18,13 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
 
     // echo "<script>alert('게시글 번호 : {$num}');</script>";
 
-    $sql="UPDATE `community` SET `hit`=$hit WHERE b_code='다이어트후기' and `num`=$q_num;";
+    $sql="UPDATE `health_info` SET `hit`=$hit WHERE b_code='레시피' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
         die('Error: ' . mysqli_error($conn));
     }
 
-    $sql="SELECT * from `community` where b_code='다이어트후기' and num ='$q_num';";
+    $sql="SELECT * from `health_info` where b_code='레시피' and num ='$q_num';";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
         die('Error: ' . mysqli_error($conn));
@@ -74,7 +74,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 {
     if (isset($_SESSION['user_id'])) {
         $message="";
-        if ($_SESSION['user_grade']=="admin"||$_SESSION['user_grade']=="master"||$_SESSION['user_id']==$id1) {
+        if ($_SESSION['user_grade']=="admin"||$_SESSION['user_grade']=="master") {
             $message=
         '<form style="display:inline" action="'.$page1.'?mode=delete_ripple&page='.$page.'&hit='.$hit.'" method="post">
           <input type="hidden" name="num" value="'.$num1.'">
@@ -89,7 +89,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
  ?>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/community.css">
+    <link rel="stylesheet" href="../css/health_info.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
@@ -97,6 +97,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title></title>
+
     <script type="text/javascript">
     function check_delete(num) {
       var result=confirm("삭제하시겠습니까?");
@@ -117,14 +118,14 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
          <div id="left_menu">
            <div id="sub_title"> <span>메뉴</span></div>
            <ul>
-           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
-           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/review/list.php">다이어트 후기</a></li>
+           <li><a href="#">운동정보</a></li>
+           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">다이어트 레시피</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
 
        <div id="col2">
-         <div id="title">다이어트 후기</div>
+         <div id="title">다이어트 레시피</div>
          <div class="clear"></div>
          <div id="write_form_title"></div>
          <div class="clear"></div>
@@ -174,46 +175,47 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                 </div><!--end of col2  -->
               </div><!--end of view_content  -->
             </div><!--end of write_form  -->
+        <!-- ///////////////////////// -->
 
-            <!-- 좋아요, 싫어요 관련 시작 -->
-      <div class="posts-wrapper">
-         <?php foreach ($communities as $post): ?>
-           <!-- foreach($array as $value)  value 값만 가져오기-->
-            <div class="post">
-            <!-- <?php echo $post['text']; ?> -->
-            <div class="post-info">
-             <!-- if user likes post, style button differently -->
-               <i <?php if (userLiked($post['num'])): ?>
-                    class="fa fa-thumbs-up like-btn"
-                 <?php else: ?>
-                    class="fa fa-thumbs-o-up like-btn"
-                 <?php endif ?>
-                 data-id="<?php echo $post['num'] ?>"></i>
-               <span class="likes"><?php echo getLikes($post['num']); ?></span>
+        <div class="posts-wrapper">
+           <?php foreach ($communities as $post): ?>
+             <!-- foreach($array as $value)  value 값만 가져오기-->
+              <div class="post">
+              <!-- <?php echo $post['text']; ?> -->
+              <div class="post-info">
+               <!-- if user likes post, style button differently -->
+                 <i <?php if (userLiked($post['num'])): ?>
+                      class="fa fa-thumbs-up like-btn"
+                   <?php else: ?>
+                      class="fa fa-thumbs-o-up like-btn"
+                   <?php endif ?>
+                   data-id="<?php echo $post['num'] ?>">
+                 </i>
+                 <span class="likes"><?php echo getLikes($post['num']); ?></span>
 
-               &nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;
 
-             <!-- if user dislikes post, style button differently -->
-               <i
-                 <?php if (userDisliked($post['num'])): ?>
-                    class="fa fa-thumbs-down dislike-btn"
-                 <?php else: ?>
-                    class="fa fa-thumbs-o-down dislike-btn"
-                 <?php endif ?>
-                 data-id="<?php echo $post['num'] ?>"></i>
-               <span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
-            </div>
-            </div>
-         <?php endforeach ?>
-        </div>
-        <script src="scripts.js"></script>
+               <!-- if user dislikes post, style button differently -->
+                 <i
+                   <?php if (userDisliked($post['num'])): ?>
+                      class="fa fa-thumbs-down dislike-btn"
+                   <?php else: ?>
+                      class="fa fa-thumbs-o-down dislike-btn"
+                   <?php endif ?>
+                   data-id="<?php echo $post['num'] ?>"></i>
+                 <span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
+              </div>
+              </div>
+           <?php endforeach ?>
+         </div><!--end of posts-wrapper --!>
+          <script src="scripts.js"></script>
 
 <!--덧글내용시작  -->
 <div id="ripple">
   <div id="ripple1">댓글</div>
   <div id="ripple2">
     <?php
-      $sql="select * from `comment` where b_code='다이어트후기' and parent='$q_num' ";
+      $sql="select * from `comment` where b_code='레시피' and parent='$q_num' ";
       $ripple_result= mysqli_query($conn, $sql);
       while ($ripple_row=mysqli_fetch_array($ripple_result)) {
           $ripple_num=$ripple_row['num'];
@@ -246,10 +248,10 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
       <input type="hidden" name="hit" value="<?=$hit?>">
       <input type="hidden" name="page" value="<?=$page?>">
       <input type="hidden" name="user_id" value="<?=$user_id?>">
-      <input type="hidden" name="b_code" value="다이어트후기">
+      <input type="hidden" name="b_code" value="레시피">
       <div id="ripple_insert">
         <div id="ripple_textarea"><textarea name="ripple_content" rows="3" cols="80"></textarea></div>
-        <div id="ripple_button"><input type="image" src="./lib/memo_ripple_button.png"></div>
+        <div id="ripple_button"><input type="image" src="../lib/memo_ripple_button.png"></div>
       </div><!--end of ripple_insert -->
     </form>
   </div><!--end of ripple2  -->
@@ -261,19 +263,23 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     //master or admin이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
     // echo "<script>alert('{$_SESSION['user_id']}');</script>";
     if (isset($_SESSION['user_id'])) {
-        if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$id) {
+        if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master") {
             echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
             echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
         }
     }
+
     //로그인하는 유저에게 글쓰기 기능을 부여함.
-    if (!empty($_SESSION['user_id'])) {
+    if ($_SESSION['user_grade']=="admin"||$_SESSION['user_grade']=="master") {
         echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
     }
+
+
   ?>
 </div><!--end of write_button-->
 </div><!--end of col2  -->
 </div><!--end of content -->
 </div><!--end of wrap  -->
+
 </body>
 </html>

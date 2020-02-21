@@ -15,6 +15,16 @@
     $user_grade = "";
   }
 ?>
+<script>
+  function message_box() {
+    window.open(
+        "http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/message/message_box.php",
+        "메시지함",
+        "_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
+                "ft=100px , width=820px, height=615px"
+    );
+    }
+</script>
 <div id="header_container">
 <div id="top">
     <ul id="top_menu">
@@ -35,14 +45,14 @@
   } else {
     $logged = $user_name."(".$user_id.") 님";
 ?>
-      <li><span><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/open_message.png" alt="쪽지함"></span><span> <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_info.php"><?=$logged?></a> </span></li>
+      <li><a href="#"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/open_message.png" alt="쪽지함" onclick="message_box()"></a>
+          <span><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_info.php"><?=$logged?></a> </span></li>
       <li> | </li>
 
       <li>
         <a
             href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/login/logout.php">로그아웃</a>
       </li>
-      <li> | </li>
 <?php
   }
 ?>

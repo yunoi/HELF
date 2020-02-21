@@ -207,6 +207,7 @@ function create_table($conn, $table_name){
               `num` int not null primary key auto_increment,
               `user_id` char(20) NOT NULL,
               `post_id` int(11) NOT NULL,
+              `b_code` char(20) not null,
               `rating_action` varchar(30) NOT NULL,
                CONSTRAINT UC_rating_info UNIQUE (user_id, post_id)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";

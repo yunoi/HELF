@@ -1,0 +1,82 @@
+ul { list-style-type: none; }
+#message_main_content {
+  width: 716px;
+  min-height: 580px;
+  margin: 0 auto;
+}
+
+#title_message {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+#message_buttons {
+  height: 60px;
+  z-index: 200;
+}
+
+.select_tap {
+  background-color: white !important;
+  border-bottom: 1.5px solid white !important;
+  z-index:201;
+}
+
+#message_buttons div {
+  position: relative;
+  display: inline-block;
+  width: 119.32px;
+  box-sizing: border-box;
+  border: 1.5px solid #BDBDBD;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #FAFAFA;
+}
+
+#message_buttons p {
+  height: 38px;
+  text-align: center;
+  color: #585858;
+  font-weight: bold;
+  margin: 0px;
+  padding: 14px 0px 0px 0px;
+  cursor: pointer;
+}
+
+#send_message {
+  border-right: 1.5px solid #BDBDBD;
+}
+
+#box_line{
+  position: relative;
+  width: 728px;
+  height: 360px;
+  text-align: center;
+  border: 1.5px solid #BDBDBD;
+  top: -7px;
+  left: 0;
+  z-index: 110;
+}
+#message_content {
+  position: absolute;
+  top: 9px;
+  left: 7px;
+  display: block;
+  width: 716px;
+  height: 100px;
+  box-sizing: border-box;
+}
+/* 수신/송신 쪽지함(message_form.php) */
+#message li { padding: 10px; border-bottom: solid 1px #dddddd;}
+#message li:nth-child(1) { font-weight: bold; }
+#message span {	display: inline-block; text-align: center; }
+#message .title { font-weight: bold; }
+#message .col1 { width: 80px; }
+#message .col2 { width: 210px; text-align: left; }
+#message .col3 { width: 120px; }
+#message .col4 { width: 150px; }
+#page_num {	text-align: center;	margin: 30px 0 }
+#page_num li { display: inline; }
+
+.buttons { text-align: right; margin: 8px 0 20px 0; }
+.buttons li { display: inline; }
+.buttons button { padding: 5px 10px; cursor: pointer; }

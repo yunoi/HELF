@@ -50,12 +50,8 @@
   border-right: 1.5px solid #BDBDBD;
 }
 
-
 /* mypage_info css */
-#mypage_info_content {
+#mypage_content {
   display: block;
   width: 716px;
-  height: 100px;
-  box-sizing: border-box;
-  border: 1px solid gray;
 }

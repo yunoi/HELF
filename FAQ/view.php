@@ -35,21 +35,12 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/greet.css">
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <script type="text/javascript">
     function check_delete(num) {
@@ -59,7 +50,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       }
     }
     </script>
-  <title></title>
+  <title>HELF :: FAQ</title>
   </head>
   <body>
     <div id="wrap">
@@ -78,13 +69,12 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
               <div class="write_line"></div>
               <div id="write_row2">
                 <div class="col1">제&nbsp;&nbsp;목</div>
-                <div class="col2"> <input type="text" name="subject" value="<?=$subject?>" readonly></div>
+                <div class="col2"> <p><?=$subject?></p></div>
               </div><!--end of write_row2  -->
               <div class="write_line"></div>
               <div id="write_row3">
                 <div class="col1">내&nbsp;&nbsp;용</div>
-                <div class="col2"> <textarea name="content" rows="15" cols="79" readonly><?=$content?>
-                </textarea></div>
+                <div class="col2"><p><?=$content?></p></div>
               </div><!--end of write_row3  -->
               <div class="write_line"></div>
             </div><!--end of write_form  -->

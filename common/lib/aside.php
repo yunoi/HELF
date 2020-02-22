@@ -4,13 +4,13 @@
             "http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/map/gym.php",
             "헬스장찾기",
             "_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
-                    "ft=100px , width=220px, height=100px"
+                    "ft=100px , width=350px, height=200px"
         );
     }
 </script>
 <div id="aside_menu">
     <ul id="aside_shortcut">
-        <?php 
+        <?php
   if(strpos(basename($_SERVER['PHP_SELF']), 'index') !== false){
     ?>
         <li>

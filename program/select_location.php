@@ -132,7 +132,7 @@ function cat1_change(key,sel){
 
  //해당 지역의 상세지역을 세팅
  for(i=0; i<name.length; i++){
-  sel.options[i+1] = new Option(name[i],val[i]);
+  sel.options[i+1] = new Option(name[i],name[i]);
  }
 
 }

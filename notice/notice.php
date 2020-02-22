@@ -54,8 +54,9 @@ $number = $total_record - $start;
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+<link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <!-- <script type="text/javascript" src="./js/member_form.js"></script> -->
-    <title></title>
+    <title>HELF :: 공지사항</title>
   </head>
   <body>
     <div id="wrap">
@@ -69,7 +70,7 @@ $number = $total_record - $start;
          <div id="title">
            <span>공지사항</span>
          </div>
-         <form name="board_form" action="list.php?mode=search" method="post">
+         <form name="board_form" action="./notice.php?mode=search" method="post">
            <div id="list_search">
              <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
              <div id="list_search2"><span>SELECT</span></div>
@@ -81,7 +82,7 @@ $number = $total_record - $start;
                </select>
              </div><!--end of list_search3  -->
              <div id="list_search4"><input type="text" name="search"></div>
-             <div id="list_search5"><input type="button" value="검색"> </div>
+             <div id="list_search5"><input type="submit" value="검색"></div>
            </div><!--end of list_search  -->
          </form>
          <div id="clear"></div>

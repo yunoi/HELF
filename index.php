@@ -7,6 +7,7 @@
     <head>
         <meta charset="utf-8">
         <title>HELF :: Health friends, healthier life</title>
+        <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
         <link
             rel="stylesheet"
             type="text/css"
@@ -21,7 +22,7 @@
 
         <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
         <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-        <script type="text/javascript" src="./common/js/main.js"></script>
+        <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
     </head>
     <body>
         <header>

@@ -37,12 +37,14 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/memo.css">
     <link rel="stylesheet" href="./css/greet.css">
-    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
-    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
-    <title>공지사항</title>
+    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <title>HELF :: 공지사항</title>
   </head>
   <body>
     <div id="wrap">
@@ -91,9 +93,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
                     }
                   ?>
                 </div><!--end of col2  -->
-                <aside>
-                    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
-                </aside>
+
               </div><!--end of write_row4  -->
               <div class="clear"></div>
               <div class="write_line"></div>
@@ -106,7 +106,13 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
             </div><!--end of write_button-->
          </form>
       </div><!--end of col2  -->
+      <aside id="aside">
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+      </aside>
       </div><!--end of content -->
     </div><!--end of wrap  -->
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+    </footer>
   </body>
 </html>

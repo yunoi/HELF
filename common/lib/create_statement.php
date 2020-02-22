@@ -207,20 +207,33 @@ function create_table($conn, $table_name){
               `num` int not null primary key auto_increment,
               `user_id` char(20) NOT NULL,
               `post_id` int(11) NOT NULL,
+              `b_code` char(20) not null,
               `rating_action` varchar(30) NOT NULL,
                CONSTRAINT UC_rating_info UNIQUE (user_id, post_id)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
             case 'sales' :
-              $sql = "CREATE TABLE sales( 
+              $sql = "CREATE TABLE sales(
                 id char(20) not null,
                 o_key int not null,
                 sales_day char(15) not null,
                 primary key (id, o_key),
-                 
+
                constraint fk_members_id3 FOREIGN KEY (id) REFERENCES members(id) on delete cascade,
                 constraint fk_program_o_key3 FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade
           )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+              break;
+              case 'deleted_members' :
+                $sql = "CREATE TABLE `deleted_members` (
+                id char(20),
+                password char(15),
+                name char(10),
+                phone char(13),
+                email char(40),
+                address char(50),
+                grade char(10),
+                `deleted_date` date
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
               break;
       default:
         echo "<script>alert('해당 테이블 이름이 없습니다. ');</script>";

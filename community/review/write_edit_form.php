@@ -44,7 +44,8 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-    <title></title>
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <title>HELF :: 커뮤니티게시판</title>
   </head>
   <body>
     <div id="wrap">
@@ -122,6 +123,9 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
          </form>
       </div><!--end of col2  -->
       </div><!--end of content -->
+      <aside>
+          <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+      </aside>
     </div><!--end of wrap  -->
   </body>
 </html>

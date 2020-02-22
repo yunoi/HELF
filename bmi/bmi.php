@@ -6,22 +6,15 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>HELF :: BMI</title>
     <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/css/label.css">
     <link
         rel="stylesheet"
         type="text/css"
         href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
-        <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-            <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/bmi/css/label.css">
-    <script src="./js/vendor/modernizr.custom.min.js"></script>
-    <script src="./js/vendor/jquery-1.10.2.min.js"></script>
-    <script src="./js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
-    <script type="text/javascript" src="./common/js/main.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+    <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/bmi/css/label.css">
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <script>
     function btn_bmi() {
       let $age = document.form_bmi.age;
@@ -56,7 +49,8 @@
         <div id="div_form">
       <form class="" name="form_bmi" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/calculator.php?mode=<?=$mode?>" method="post">
         <div class="div-bmi">
-          <h4>나의 BMI지수를 재보자</h4>
+          <h2>나의 BMI지수를 재보자</h2>
+          <br/>
         <!-- get방식으로 안에 모드(타입)을 넣는다 bmi와 kcal을 한번에 처리한다 -->
         <ul>
           <li>
@@ -77,10 +71,12 @@
             <input type="number" name="kg" id="kg" value="">kg
           </li>
         </ul>
+        <br/>
         <p id="p_bmi">
           <b>비만도 측정(BMI)이란?<br/>
             나이, 신장(cm), 몸무게(kg)만으로 비만을 판정하는 비만 지수</b>
         </p>
+        <br/>
         <div class="div_btn">
         <input id="bmi_btn" type="button" name="" value="확인" onclick="btn_bmi();">
       </div>

@@ -65,7 +65,7 @@ header {
     min-width: 1000px;
     height: 130px;
     position: relative;
-    z-index: 100;
+    z-index: 111;
     background-color: white;
     position: fixed;
 }
@@ -161,7 +161,6 @@ header {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     width: 100px;
     cursor: pointer;
-    z-index: 110;
     top: 100px;
 }
 .menu_slide li {
@@ -171,6 +170,7 @@ header {
 .down_menu:hover .menu_slide {
     display: block;
     position: absolute;
+    z-index: 110;
 }
 
 /* aside */
@@ -205,13 +205,14 @@ header {
     width: 114px;
     height: 122px;
 }
+/* 공지사항 */
 #container #aside_notice {
-    width: 232px;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    box-sizing: border-box;
+    width: 252px;
+    margin: 8px 0;
     position: relative;
     border: 1px solid #dbdbdb;
-    padding: 10px 0 14px 16px;
+    padding: 10px 16px 14px 16px;
     background: #fff;
 }
 
@@ -219,8 +220,8 @@ header {
     position: relative;
     margin: 20px 0;
     border: 1px solid #dbdbdb;
-    width: 213px;
-    padding: 10px 0 14px 16px;
+    width: 197px;
+    padding: 10px 16px 14px 16px;
     background: #fff;
 }
 #notice_title{
@@ -231,11 +232,29 @@ header {
 }
 #notice_area {
   font-family: '돋움';
+  color: #787878;
   font-size: 12px;
   position: relative;
   width: 250px;
   text-align: left;
 }
+#notice_area li{
+    padding-left: 24px;
+    background: url(../img/noti.png) no-repeat;
+    background-size: 20px;
+    height: 16px;
+    margin-top: 4px;
+}
+#notice_area li span{
+    display: inline-block;
+    margin-top: 2px;
+    overflow: hidden;
+    width: 190px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 0px;
+}
+
 /* 하단 푸터 */
 footer {
     border: 1px solid #333333;

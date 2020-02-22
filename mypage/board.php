@@ -9,8 +9,8 @@
       <span class="col2">게시판</span>
       <span class="col3">제목</span>
       <span class="col4">날짜</span>
-      <span class="col5">추천수</span>
-      <span class="col6">조회수</span>
+      <span class="col5">추천</span>
+      <span class="col6">조회</span>
 	</li>
 <?php
     if (isset($_GET["page"])) {
@@ -23,7 +23,7 @@
     $result = mysqli_query($conn, $sql);
     $total_record = mysqli_num_rows($result); // 전체 글 수
 
-    $scale = 3;
+    $scale = 10;
 
     // 전체 페이지 수($total_page) 계산
     if ($total_record % $scale == 0) {
@@ -69,15 +69,13 @@
 
 ?>
 	    	</ul>
-        <!-- 페이지까지 포스트로 주던가 아니면 액션에다가 페이지값 세팅 -->
-        <form id="board_form" name="board_form" action="mypage_info.php" method="post">
-          <input type="hidden" id="type" name="type" value="board">
-        </form>
+
+
 			<ul id="page_num">
 <?php
     if ($total_page>=2 && $page >= 2) {
         $new_page = $page-1;
-        echo "<li><a href='board.php?page=$new_page'>◀ 이전</a> </li>";
+        echo "<li><a href='mypage_info.php?type=board&page=$new_page'>◀ 이전</a> </li>";
     } else {
         echo "<li>&nbsp;</li>";
     }
@@ -87,13 +85,13 @@
         if ($page == $i) {     // 현재 페이지 번호 링크 안함
             echo "<li><b> $i </b></li>";
         } else {
-            echo "<li><a onclick='document.board_form.submit;location.href=\"mypage_info.php?page=$i\"'>  $i  </a><li>";
+            echo "<li><a href='mypage_info.php?type=board&page=$i'>  $i  </a><li>";
         }
     }
     if ($total_page>=2 && $page != $total_page) {
         $new_page = $page+1;
 
-        echo "<li> <a href='board.php?page=$new_page'>다음 ▶</a> </li>";
+        echo "<li> <a href='mypage_info.php?type=board&page=$new_page'>다음 ▶</a> </li>";
     } else {
         echo "<li>&nbsp;</li>";
     }

@@ -1,6 +1,5 @@
 #mypage_main_content {
   width: 716px;
-  min-height: 615px;
   margin: 0 auto;
 }
 
@@ -50,8 +49,9 @@
   border-right: 1.5px solid #BDBDBD;
 }
 
-/* mypage_info css */
 #mypage_content {
   display: block;
   width: 716px;
+  min-height: 510px;
+  margin-bottom: 40px;
 }

@@ -1,8 +1,8 @@
 <?php
   session_start();
 
-  if(isset($_POST["type"])) {
-    $type = $_POST["type"];
+  if(isset($_GET["type"])) {
+    $type = $_GET["type"];
   } else {
     $type = "";
   }
@@ -38,13 +38,17 @@
   </head>
   <script>
     $(document).ready(function() {
-      alert("<?=$type?>");
+      // url 수정해줌. 대신 새로고침하면 아래주소로 이동해버림,,ㅜㅠ
+      // history.pushState(null,null,"http://localhost/helf/mypage/mypage_info.php");
       if ("<?=$type?>" === "" || "<?=$type?>" === "info") {
         $("#mypage_info").trigger("click");
         $("#mypage_info").trigger("click");
       } else if("<?=$type?>" === "board") {
         $("#mywrite_board").trigger("click");
         $("#mywrite_board").trigger("click");
+      } else if("<?=$type?>" === "comment") {
+        $("#mywrite_comment").trigger("click");
+        $("#mywrite_comment").trigger("click");
       }
     });
 
@@ -121,29 +125,29 @@
               <p>내가 쓴 글</p>
             </a>
           </div>
-          <div id="mywrite_comment" onclick="select_tap_effect();fetch_page('comment.php');">
+          <div id="mywrite_comment" onclick="select_tap_effect();fetch_page('comment.php?page=<?=$page?>');">
             <a>
               <p>내가 쓴 댓글</p>
             </a>
           </div>
-          <div id="fick_list" onclick="select_tap_effect();fetch_page('pick.php');">
+          <div id="fick_list" onclick="select_tap_effect();fetch_page('pick.php?page=<?=$page?>');">
             <a>
               <p>찜한 상품</p>
             </a>
           </div>
-          <div id="cart_list" onclick="select_tap_effect();fetch_page('cart.php');">
+          <div id="cart_list" onclick="select_tap_effect();fetch_page('cart.php?page=<?=$page?>');">
             <a>
               <p>장바구니</p>
             </a>
           </div>
-          <div id="buy_list" onclick="select_tap_effect();fetch_page('buy.php');">
+          <div id="buy_list" onclick="select_tap_effect();fetch_page('buy.php?page=<?=$page?>');">
             <a>
               <p>구매 내역</p>
             </a>
           </div>
         </div>
         <div id="mypage_content">
-          <p>인포</p>
+
         </div>
       </div>
     </section>

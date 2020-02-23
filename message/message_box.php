@@ -133,7 +133,6 @@ if(isset($_SESSION["user_grade"])){
 <?php
       $number--;
     } // end of for
-    mysqli_close($conn);
 ?>
            </ul>
            <ul id="page_num">
@@ -169,5 +168,6 @@ if(isset($_SESSION["user_grade"])){
              </li>
            </ul>
       </div> <!-- message_main_content -->
+
   </body>
 </html>

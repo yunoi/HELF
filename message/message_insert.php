@@ -29,7 +29,7 @@
   $num_recode = mysqli_num_rows($result);
 
   if($num_recode){
-    $sql = "insert into message values(null, '$send_id', '$rv_id', '$subject', '$content', '$regist_day')";
+    $sql = "insert into message values(null, '$send_id', '$rv_id', '$subject', '$content', '$regist_day', 'n')";
     mysqli_query($conn, $sql);
   } else {
     echo ("

@@ -242,6 +242,7 @@
 #write_row3 .col2 textarea {
   margin-top: 1px;
   border: solid 1px #cccccc;
+  width: 650px;
 }
 
 #write_button {

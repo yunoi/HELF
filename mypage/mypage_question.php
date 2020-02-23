@@ -17,7 +17,7 @@
     <meta charset="utf-8">
     <title>HELF :: Health friends, healthier life</title>
     <link rel="stylesheet" href="./css/mypage.css">
-    <link rel="stylesheet" href="./css/board.css">
+    <link rel="stylesheet" href="./css/review.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <link
         rel="stylesheet"
@@ -42,12 +42,12 @@
           <h1>마이페이지</h1>
         </div>
         <div id="mypage_buttons">
-          <div id="mywrite_board" class="select_tap" onclick="location.href='./mypage_board.php'">
+          <div id="mywrite_board" onclick="location.href='./mypage_board.php'">
             <a>
               <p>내가 쓴 글</p>
             </a>
           </div>
-          <div id="mywrite_comment" onclick="location.href='./mypage_comment.php'">
+          <div id="mywrite_comment"onclick="location.href='./mypage_comment.php'">
             <a>
               <p>내가 쓴 댓글</p>
             </a>
@@ -57,7 +57,7 @@
               <p>내가 쓴 상품평</p>
             </a>
           </div>
-          <div id="mywrite_question" onclick="location.href='./mypage_question.php'">
+          <div id="mywrite_question" class="select_tap" onclick="location.href='./mypage_question.php'">
             <a>
               <p>내가 쓴 상품문의</p>
             </a>
@@ -74,15 +74,12 @@
           </div>
         </div>
         <div id="mypage_content">
-          <ul id="board_list">
-          	<li>
-                <span class="col1">번호</span>
-                <span class="col2">게시판</span>
-                <span class="col3">제목</span>
-                <span class="col4">날짜</span>
-                <span class="col5">추천</span>
-                <span class="col6">조회</span>
-          	</li>
+          <ul id="review_list">
+            <li>
+                <span class="col1">프로그램 명</span>
+                <span class="col2">문의 내용</span>
+                <span class="col3">작성일</span>
+            </li>
           <?php
               if (isset($_GET["page"])) {
                   $page = $_GET["page"];
@@ -90,7 +87,7 @@
                   $page = 1;
               }
 
-              $sql = "select * from community where id='$id' order by num desc";
+              $sql = "select p_qna.*, program.subject from p_qna, program where id='$id' and p_qna.o_key = program.o_key;";
               $result = mysqli_query($conn, $sql);
               $total_record = mysqli_num_rows($result); // 전체 글 수
 
@@ -114,27 +111,18 @@
                  // 가져올 레코드로 위치(포인터) 이동
                  $row = mysqli_fetch_array($result);
                  // 하나의 레코드 가져오기
-                 $num         = $row["num"];
-                 $b_code      = $row["b_code"];
-                 $subject     = $row["subject"];
+                 $subject      = $row["subject"];
+                 $content     = $row["content"];
                  $regist_day  = $row["regist_day"];
-                 $likeit      = $row["likeit"];
-                 $hit         = $row["hit"];
-                 if ($row["file_name"]) {
-                     $file_image = "<img src='./img/file.gif'>";
-                 } else {
-                     $file_image = " ";
-                 } ?>
-          				<li id="board_content">
-          					<span class="col1"><?=$number?></span>
-          					<span class="col2"><?=$b_code?></span>
-          					<span class="col3"><a href="board_view.php?num=<?=$num?>&page=<?=$page?>"><?=str_cutting($subject,75)?></a></span>
-                    <span class="col4"><?=$regist_day?></span>
-          					<span class="col5"><?=$likeit?></span>
-          					<span class="col6"><?=$hit?></span>
-          				</li>
+
+
+                  ?>
+                  <li>
+                    <span class="col1"><?=str_cutting($subject,25)?></span>
+                    <span class="col2"><a href="board_view.php?num=<?=$num?>&page=<?=$page?>"><?=str_cutting($content,100)?></a></span>
+                    <span class="col3"><?=$regist_day?></span>
+                  </li>
           <?php
-                 $number--;
              }
              mysqli_close($conn);
 
@@ -152,16 +140,14 @@
                    return $string;
               }
             }
-
           ?>
-          	    	</ul>
+                  </ul>
 
-
-          			<ul id="page_num">
+                <ul id="page_num">
           <?php
               if ($total_page>=2 && $page >= 2) {
                   $new_page = $page-1;
-                  echo "<li><a href='mypage_board.php?page=$new_page'>◀ 이전</a> </li>";
+                  echo "<li><a href='mypage_review.php?page=$new_page'>◀ 이전</a> </li>";
               } else {
                   echo "<li>&nbsp;</li>";
               }
@@ -171,18 +157,18 @@
                   if ($page == $i) {     // 현재 페이지 번호 링크 안함
                       echo "<li><b> $i </b></li>";
                   } else {
-                      echo "<li><a href='mypage_board.php?page=$i'>  $i  </a><li>";
+                      echo "<li><a href='mypage_review.php?page=$i'>  $i  </a><li>";
                   }
               }
               if ($total_page>=2 && $page != $total_page) {
                   $new_page = $page+1;
 
-                  echo "<li> <a href='mypage_board.php?page=$new_page'>다음 ▶</a> </li>";
+                  echo "<li> <a href='mypage_review.php?page=$new_page'>다음 ▶</a> </li>";
               } else {
                   echo "<li>&nbsp;</li>";
               }
           ?>
-          			</ul> <!-- page -->
+                </ul> <!-- page -->
         </div>
       </div>
     </section>

@@ -4,12 +4,8 @@
   <head>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <link rel="stylesheet" href="./css/greet.css">
     <title>HELF :: 헬스장 찾기</title>
-    <style media="screen">
-      #gym{
-        display: inline-block;
-      }
-    </style>
     <script>
     var x = document.getElementById('name');
     var lat=0;
@@ -100,7 +96,10 @@
     </script>
   </head>
   <body onload="last();">
+    <div class="div_gym">
     <p>당신이 있으신 지역을 선택해주세요~</p>
+    <br/>
+    <div class="">
     <select id="city" title="지역선택" name="areacode" onreset="getSigunguList(this.value);" onchange="getSigunguList(this.value);">
 			<option value="" selected="selected">지역선택</option>
 			<option value="서울">서울</option>
@@ -123,7 +122,9 @@
 		</select>
     <div id="gym">
     </div>
-
+      </div>
+    <br/><br/>
     <input type="button" id="btn_map" name="" value="검색" onclick="hells();">
+    </div>
   </body>
 </html>

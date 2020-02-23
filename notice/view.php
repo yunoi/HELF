@@ -40,7 +40,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
     $file_copied=$row['file_copied'];
     $file_type=$row['file_type'];
 
-    if (!empty($file_copied)&&$file_type =="image") {
+    if (!empty($file_copied)&&$file_type =="image/png") {
         //이미지 정보를 가져오기 위한 함수 width, height, type
         $image_info=getimagesize("./data/".$file_copied);
         $image_width=$image_info[0];
@@ -95,17 +95,17 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
               <div class="write_line"></div>
               <div id="write_row2">
                 <div class="col1">제&nbsp;&nbsp;목</div>
-                <div class="col2"> <input type="text" name="subject" value="<?=$subject?>" readonly></div>
+                <div class="col2"> <p><?=$subject?></div>
               </div><!--end of write_row2  -->
               <div class="write_line"></div>
 
               <div id="write_row3">
                 <div class="col1">내&nbsp;&nbsp;용</div>
-                <div class="col2"> <textarea name="content" rows="15" cols="79" readonly><?=$content?>
-                </textarea></div>
+                <div class="col2"><p><?=$content?> <br/>
+                <img src='./data/<?=$file_copied?>' width='<?=$image_width?>'>;</p></div>
               </div><!--end of write_row3  -->
               <div class="write_line">
-                <div id="view_content">
+                <div class="clear">
                 <div class="col2">
                   <?php
                     if ($file_type =="image") {
@@ -117,8 +117,7 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
                         echo("
                         ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
-                      ");
+                        <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>");
                     }
                   ?>
                 </div><!--end of col2  -->

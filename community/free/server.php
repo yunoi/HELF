@@ -24,20 +24,20 @@ if (isset($_POST['action'])) {
     $action = $_POST['action'];
     switch ($action) {
     case 'like':
-         $sql="INSERT INTO rating_info (user_id, post_id, rating_action)
-               VALUES ('$user_id', $post_id, 'like')
+         $sql="INSERT INTO rating_info (user_id, post_id, rating_action, b_code)
+               VALUES ('$user_id', $post_id, 'like','자유게시판')
                ON DUPLICATE KEY UPDATE rating_action='like'";
          break;
     case 'dislike':
-          $sql="INSERT INTO rating_info (user_id, post_id, rating_action)
-               VALUES ('$user_id', $post_id, 'dislike')
+          $sql="INSERT INTO rating_info (user_id, post_id, rating_action, b_code)
+               VALUES ('$user_id', $post_id, 'dislike', '자유게시판')
                ON DUPLICATE KEY UPDATE rating_action='dislike'";
          break;
     case 'unlike':
-          $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id";
+          $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='자유게시판'";
           break;
     case 'undislike':
-            $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id";
+            $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='자유게시판'";
       break;
     default:
         break;

@@ -11,12 +11,14 @@ if (empty($_GET['page'])) {
     $page=$_GET['page'];
 }
 
+echo "<script>alert('페이지 : {$page}');</script>";
+
 if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $num = test_input($_GET["num"]);
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    // echo "<script>alert('게시글 번호 : {$num}');</script>";
+    echo "<script>alert('게시글 번호 : {$num}');</script>";
 
     $sql="UPDATE `community` SET `hit`=$hit WHERE b_code='자유게시판' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
@@ -97,8 +99,8 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title></title>
-
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <title>HELF :: 커뮤니티게시판</title>
     <script type="text/javascript">
     function check_delete(num) {
       var result=confirm("삭제하시겠습니까?");
@@ -151,16 +153,15 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                 <div class="col2">
                   <?php
                     if ($file_type =="image") {
-                      $file_path = "./data/".$file_copied;
-                      $file_size = filesize($file_path);
-                      //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
-                      echo("
+                        $file_path = "./data/".$file_copied;
+                        $file_size = filesize($file_path);
+                        //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
+                        echo("
                       ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
                     ");
                         echo "<img src='./data/$file_copied' width='$image_width'><br>";
-
                     } elseif (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
                         $file_path = "./data/".$file_copied;
                         $file_size = filesize($file_path);
@@ -177,18 +178,12 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
               </div><!--end of view_content  -->
             </div><!--end of write_form  -->
 
-
-
-
-        <!-- ///////////////////////// -->
-
         <div class="posts-wrapper">
            <?php foreach ($communities as $post): ?>
              <!-- foreach($array as $value)  value 값만 가져오기-->
               <div class="post">
               <!-- <?php echo $post['text']; ?> -->
               <div class="post-info">
-               <!-- if user likes post, style button differently -->
                  <i <?php if (userLiked($post['num'])): ?>
                       class="fa fa-thumbs-up like-btn"
                    <?php else: ?>
@@ -215,11 +210,6 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 
           </div>
           <script src="scripts.js"></script>
-
-
-
-
-        <!-- ////////////////////////////// -->
 
 
 <!--덧글내용시작  -->
@@ -291,6 +281,9 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 </div><!--end of write_button-->
 </div><!--end of col2  -->
 </div><!--end of content -->
+<aside>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+</aside>
 </div><!--end of wrap  -->
 
 </body>

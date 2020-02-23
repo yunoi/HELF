@@ -3,7 +3,7 @@ session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 // echo "<script>alert('현재 로그인한 아이디: {$_SESSION['user_id']}');</script>";
 
-define('SCALE', 10);
+define('SCALE', 9);
 
 //*****************************************************
 $sql=$result=$total_record=$total_page=$start="";
@@ -46,7 +46,8 @@ $number = $total_record - $start;
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-    <title></title>
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <title>HELF :: 건강정보게시판</title>
   </head>
   <body>
     <div id="wrap">
@@ -58,7 +59,7 @@ $number = $total_record - $start;
          <div id="left_menu">
            <div id="sub_title"> <span>메뉴</span></div>
            <ul>
-             <li><a href="#">운동 정보</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동 정보</a></li>
            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">다이어트 레시피</a></li>
            </ul>
          </div>
@@ -103,15 +104,16 @@ $number = $total_record - $start;
                  $file_type_tok=explode('/', $file_type);
                  $file_type=$file_type_tok[0];
 
+
                  if (!empty($file_copied)&&$file_type ==="image") {
                      //이미지 정보를 가져오기 위한 함수 width, height, type
                      $image_info=getimagesize("./data/".$file_copied);
                      $image_width=$image_info[0];
                      $image_height=$image_info[1];
                      $image_type=$image_info[2];
-                     if ($image_width>175 || $image_height>130) {
+                     if (!($image_width===175) && !($image_height===130)) {
                          $image_width = 175;
-                         $image_height = 130;
+                         $image_height = 120;
                          // echo "<script>alert('{사진 있다}');</script>";
                      }
                  } else {
@@ -129,7 +131,8 @@ $number = $total_record - $start;
                <div id="list_item3">
                   <?php
                   if (!($file_name === "")) {
-                      echo "<a href='./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>'><img src='./data/$file_copied' width='$image_width'> </a><br>";
+                      $hit=$hit+1;
+                      echo "<a href='./view.php?num=$num&page=$page&hit=$hit'><img src='./data/$file_copied' width='$image_width'> </a><br>";
                   } else {
                       echo "사진이 존재하지 않습니다.";
                   } ?>
@@ -160,7 +163,9 @@ $number = $total_record - $start;
             <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button>&nbsp;</a>
             <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
               if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
+                if($_SESSION["user_grade"]==="admin" || $_SESSION["user_grade"]==="master"){
                   echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
+                }
               }
             ?>
           </div><!--end of button -->

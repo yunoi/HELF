@@ -38,13 +38,12 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="../css/health_info.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
-    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-    <title></title>
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <title>HELF :: 건강정보게시판</title>
   </head>
   <body>
     <div id="wrap">
@@ -56,7 +55,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
          <div id="left_menu">
            <div id="sub_title"> <span>메뉴</span></div>
            <ul>
-             <li><a href="#">운동정보</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동 정보</a></li>
              <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">다이어트 레시피</a></li>
            </ul>
          </div>
@@ -122,6 +121,9 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
          </form>
       </div><!--end of col2  -->
       </div><!--end of content -->
+      <aside>
+          <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+      </aside>
     </div><!--end of wrap  -->
   </body>
 </html>

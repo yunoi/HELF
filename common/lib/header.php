@@ -48,7 +48,14 @@
       <li><a href="#"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/open_message.png" alt="쪽지함" onclick="message_box()"></a>
           <span><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_info.php"><?=$logged?></a> </span></li>
       <li> | </li>
-
+      <li>
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/member/member_form.php?modify=modify">내 정보 수정</a>
+      </li>
+      <li> | </li>
+      <li>
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/cart_list.php">장바구니</a>
+      </li>
+      <li> | </li>
       <li>
         <a
             href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/login/logout.php">로그아웃</a>

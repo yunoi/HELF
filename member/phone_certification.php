@@ -39,8 +39,8 @@ function SocketPost($posts) {
 if($mode == "send") {
 	//UTF-8로 데이터를 전송해야 합니다.
 	$hp = $phone;
-	$name = "김하늘";
-	$title = "문자인증테스트";
+	$name = "HELF";
+	$title = "HELF에서 발송하는 문자 인증 요청 입니다.";
 
 	//랜덤 인증 번호
 	srand((double)microtime()*1000000); //난수값 초기화

@@ -1,5 +1,6 @@
 <?php
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+ 
   if(isset($_SESSION["user_id"])){
     $user_id = $_SESSION["user_id"];
   } else {

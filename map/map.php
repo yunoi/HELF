@@ -2,8 +2,7 @@
 //도시 = 서울,경기등등 city
 //지역 = 구 용산구,성동구 area
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/create_table.php";
-create_table($conn, 'carecenter');
+
 define('SCALE', 10);
 //*****************************************************
 $sql=$result=$total_record=$total_page=$start="";

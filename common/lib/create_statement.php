@@ -167,6 +167,7 @@ function create_table($conn, $table_name){
               file_copied char(40),
               likeit int not null,
               b_code char(15) not null,
+              video_name char(200),
               primary key(num)
            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;

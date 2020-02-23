@@ -1,7 +1,7 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
-
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 ?>
 <?php
 if(!isset($_SESSION['user_id'])){

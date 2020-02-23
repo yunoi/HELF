@@ -38,9 +38,12 @@
   } else {
     while($row = mysqli_fetch_array($result)){
       $regist_day = substr($row["regist_day"], 0, 10);
+      $num = $row['num'];
+      $hit = $row['hit'];
 ?>
       <li>
-        <span><?= $row["subject"]?></span>
+        <span><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/view.php?num=<?=$num?>&hit=<?=$hit+1?>"><?= $row["subject"]?>       </a>
+</span>
         <span><?= $row["name"]?></span>
         <span><?= $regist_day?></span>
       </li>

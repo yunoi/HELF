@@ -1,9 +1,10 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 include('server.php');
 
-$num=$id=$subject=$content=$day=$hit=$image_width=$q_num="";
+$num=$id=$subject=$content=$day=$hit=$image_width=$q_num=$video_name="";
 
 if (empty($_GET['page'])) {
     $page=1;
@@ -39,8 +40,20 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $subject=str_replace(" ", "&nbsp;", $subject);
     $content=str_replace("\n", "<br>", $content);
     $content=str_replace(" ", "&nbsp;", $content);
-    //b_code
     $b_code=$row['b_code'];
+
+    /////
+    $video_name= htmlspecialchars($row['video_name']);
+    $video_name=str_replace("\n", "<br>", $video_name);
+    $video_name=str_replace(" ", "&nbsp;", $video_name);
+    $video_name=substr($video_name, -11);
+    echo "<script>alert('{$video_name}');</script>";
+
+    ////
+
+
+
+
     $file_name=$row['file_name'];
     $file_copied=$row['file_copied'];
     $file_type=$row['file_type'];
@@ -172,6 +185,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                     }
                   ?>
                   <?=$content?>
+                  <iframe width="700" height="500" src="https://www.youtube.com/embed/<?=$video_name?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div><!--end of col2  -->
               </div><!--end of view_content  -->
             </div><!--end of write_form  -->

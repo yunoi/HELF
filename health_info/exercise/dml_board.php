@@ -12,7 +12,7 @@ if (!($_SESSION['user_grade']==="admin")&&!($_SESSION['user_grade']==="master"))
 <meta charset="utf-8">
 
 <?php
-$content= $q_content = $sql= $result = $user_id= $user_name ="";
+$content= $q_content = $sql= $result = $user_id= $user_name =$video_name="";
 $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 
@@ -32,13 +32,22 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
     $q_userid = mysqli_real_escape_string($conn, $user_id);
     $q_username = mysqli_real_escape_string($conn, $user_name);
     $regist_day=date("Y-m-d (H:i)");
+  //////
+
+
+$video_name=$_POST["video_name"];
+$video_name=substr($video_name, -11);
+
+  ///////
+
+
 
     //include 파일업로드기능
     include  "../lib/file_upload.php";
     //include $_SERVER['DOCUMENT_ROOT']."/helf/health_info/lib/file_upload.php";
 
     //8 파일의 실제명과 저장되는 명을 삽입한다.
-    $sql="INSERT INTO `health_info` VALUES (null,'$q_userid','$q_username','$q_subject','$q_content','$regist_day',0,'$upfile_name', '$upfile_type','$copied_file_name',0,'운동');";
+    $sql="INSERT INTO `health_info` VALUES (null,'$q_userid','$q_username','$q_subject','$q_content','$regist_day',0,'$upfile_name','$upfile_type','$copied_file_name',0,'운동','$video_name');";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
         alert_back('Error:5 ' . mysqli_error($conn));

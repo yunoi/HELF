@@ -39,7 +39,9 @@
   <script>
     $(document).ready(function() {
       // url 수정해줌. 대신 새로고침하면 아래주소로 이동해버림,,ㅜㅠ
-      // history.pushState(null,null,"http://localhost/helf/mypage/mypage_info.php");
+      history.pushState(null,null,"http://localhost/helf/mypage/mypage_info.php");
+      alert("<?=$type?>");
+      alert("<?=$page?>");
       if ("<?=$type?>" === "" || "<?=$type?>" === "info") {
         $("#mypage_info").trigger("click");
         $("#mypage_info").trigger("click");

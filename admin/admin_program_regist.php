@@ -60,65 +60,104 @@
         </aside>
      </div><!--  end of sub -->
 
+
+
+  <?php
+  if(isset($_GET["o_key"])){
+    $o_key  = $_GET["o_key"];
+    $sql    = "select * from program where o_key= $o_key";
+    $result = mysqli_query($conn, $sql);
+    $row    = mysqli_fetch_array($result);
+
+    $shop = $row["shop"];
+    $type = $row["type"];
+    $subject = $row["subject"];
+    $content = $row["content"];
+    $personnel = $row["personnel"];
+    $end_day = $row["end_day"];
+    $choose = $row["choose"];
+    $price = $row["price"];
+    $location = $row["location"];
+    $file_name = $row["file_name"];
+    $file_type = $row["file_type"];
+    $file_copied = $row["file_copied"];
+    $mod = "modify";
+
+    mysqli_close($conn);
+  }else{
+    $shop = "";
+    $type = "";
+    $subject = "";
+    $content = "";
+    $personnel = "";
+    $end_day = "";
+    $choose = "";
+    $price = "";
+    $location = "";
+    $file_name = "";
+    $mod = "insert";
+
+  }
+  ?>
+
      <div id="content">
     			<h3>프로그램 관리 > 등록</h3><br>
-
-          <form name="program_regist" class="" action="program_curd.php?mode=insert" method="post" enctype="multipart/form-data">
+          <form name="program_regist" class="" action="program_curd.php?mode=<?=$mod?>&o_key=<?=$o_key?>" method="post" enctype="multipart/form-data">
             <table>
               <tr>
                 <td>샵 이름</td>
                 <td>
-                  <input type="text" name="shop" value="판규헬스장">
+                  <input type="text" name="shop" value=<?=$shop?>>
                 </td>
               </tr>
               <tr>
                 <td>운동 종류</td>
                 <td>
                   <select name="type" class="kind_sel">
-                    <option value="name2">전체</option>
-                    <option value="헬스" selected>헬스</option>
-                    <option value="name4">수영</option>
-                    <option value="name5">자전거</option>
-                    <option value="name6">요가/필라테스</option>
-                    <option value="name7">기타</option>
-                    <option value="name8">등등</option>
+                    <option value="선택" selected>-선택-</option>
+                    <option value="헬스">헬스</option>
+                    <option value="수영">수영</option>
+                    <option value="자전거">자전거</option>
+                    <option value="요가/필라테스">요가/필라테스</option>
+                    <option value="기타">기타</option>
+                    <option value="등등">등등</option>
                   </select>
                 </td>
               </tr>
               <tr>
                 <td>제목</td>
                 <td>
-                  <input type="text" name="subject" value="헬스합시다">
+                  <input type="text" name="subject" value=<?=$subject?>>
                 </td>
               </tr>
               <tr>
                 <td>내용</td>
                 <td>
-                  <input type="text" name="content" value="살을 빼야합니다">
+                  <input type="text" name="content" value=<?=$content?>>
                 </td>
               </tr>
               <tr>
                 <td>모집인원</td>
                 <td>
-                  <input type="number" name="personnel" value="">
+                  <input type="number" name="personnel" value=<?=$personnel?>>
                 </td>
               </tr>
               <tr>
                 <td>모집 마감일</td>
                 <td>
-                  <input type="text" name="end_day" value="내일">
+                  <input type="text" name="end_day" value=<?=$end_day?>>
                 </td>
               </tr>
               <tr>
                 <td>옵션</td>
                 <td>
-                  <input type="text" name="choose" value="헬스장 1달 이용권">
+                  <input type="text" name="choose" value=<?=$choose?>>
                 </td>
               </tr>
               <tr>
                 <td>가격</td>
                 <td>
-                  <input type="number" name="price" value=""> 원
+                  <input type="number" name="price" value=<?=$price?>> 원
                 </td>
               </tr>
               <tr>
@@ -130,20 +169,28 @@
               <tr>
                 <td>상세주소
                 <td>
-                  <input type="text" name="detail" value="상계동 ">
+                  <input type="text" name="detail" value="">
                 </td>
               </tr>
               <tr>
                 <td>파일선택</td>
                 <td>
-                  <input type="file" name="upfile" value="">
+                  <?=$file_name?>&nbsp&nbsp<input type="file" name="upfile" value="">
                 </td>
               </tr>
               <tr>
                 <td> </td>
                 <td>
-                  <input id="btn_regist" type="button" name="" value="등록">
-                  <input type="button" name="" value="취소">
+                  <?php
+                    if(isset($_GET["o_key"])){
+                      echo "<input type='submit' value='수정1'>";
+                    }else{
+                      echo "<input type='submit' value='등록1'>";
+                    }
+
+                   ?>
+                   <input type="button" name="" value="취소">
+
                 </td>
               </tr>
             </table>

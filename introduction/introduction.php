@@ -24,10 +24,11 @@
     <header>
       <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
     </header>
+    <div id="div-body">
     <section>
       <article>
         <div id="div_header">
-          <b>회사소개</b>
+          <b>★★회사소개★★</b>
         </div>
         <div id="div_introduction">
           <p>안녕하세요 대표자 <b><?=$mater?></b> 입니다. <br/>
@@ -70,10 +71,11 @@
           <img src="" alt="조직도 이미지">
         </div>
       </article>
-      <aside id="aside_introduction">
-        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
-      </aside>
     </section>
+    <aside id="aside_introduction">
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+    </aside>
+  </div>
   <footer>
   <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
   </footer>

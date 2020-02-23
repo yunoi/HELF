@@ -1,4 +1,5 @@
 <?php
+ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
   if(isset($_SESSION["user_id"])){
     $user_id = $_SESSION["user_id"];
   } else {
@@ -43,9 +44,18 @@
         </li>
     <?php
   } else {
+    $sql = "select * from message where rv_id='$user_id' and read_mark='n'";
+    $result = mysqli_query($conn, $sql);
+    $total_record = mysqli_num_rows($result);
+    if($total_record > 0){
+      $envelope = "/helf/common/img/new_message.png";
+    } else {
+      $envelope = "/helf/common/img/open_message.png";
+    }
+
     $logged = $user_name."(".$user_id.") 님";
 ?>
-      <li><a href="#"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/open_message.png" alt="쪽지함" onclick="message_box()"></a>
+      <li><a href="#"><img src="http://<?php echo $_SERVER['HTTP_HOST'].$envelope;?>" alt="쪽지함" onclick="message_box()"></a>
           <span><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_info.php"><?=$logged?></a> </span></li>
       <li> | </li>
       <li>

@@ -36,17 +36,3 @@ if ($dbflag==="NO") {
 
 
 $dbconn = mysqli_select_db($conn, "helf") or die('Error:' . mysqli_error($conn));
-
-function test_input($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-function alert_back($data)
-{
-    echo "<script>alert('$data');history.go(-1);</script>";
-    exit;
-}

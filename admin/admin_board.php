@@ -76,7 +76,7 @@
      <?php
      	$sql = "select * from community";
      	$result = mysqli_query($conn, $sql);
-     	$total_record = mysqli_num_rows($result); // 전체 회원 수
+     	$total_record = mysqli_num_rows($result); // 전체 글 수
 
      	$number = $total_record;
 
@@ -90,11 +90,9 @@
      ?>
 
      		<tr>
-     		<form method="post" action="admin_member_update.php?num=<?=$num?>">
-           <td>
-             <input type="checkbox" name="" value="">
-           </td>
-           <td><?=$num?></td>
+     		<form method="post" action="board_curd.php?mode=delete">
+           <td><input type="checkbox" name="item[]" value="<?=$num?>"></td>
+           <td><?=$number?></td>
            <td><?=$id?></td>
            <td><?=$subject?></td>
            <td><?=$file_name ?></td>

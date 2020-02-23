@@ -39,7 +39,7 @@
 
             <h3 class="menu-title">-프로그램 관리-</h3>
             <ul>
-              <li><a href="admin_program_regist.php">프로그램 등록</a></li>
+              <li><a href="admin_program_regist.php?mode=regist">프로그램 등록</a></li>
               <li><a href="admin_program_manage.php">프로그램 관리</a></li>
             </ul>
             <br>

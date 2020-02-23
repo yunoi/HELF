@@ -172,7 +172,6 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                     }
                   ?>
                   <?=$content?>
-                </div><!--end of col2  -->
               </div><!--end of view_content  -->
             </div><!--end of write_form  -->
         <!-- ///////////////////////// -->

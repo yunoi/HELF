@@ -102,6 +102,7 @@ $number = $total_record - $start;
               $row=mysqli_fetch_array($result);
               $num=$row['num'];
               $hit=$row['hit'];
+              $file_name=$row['file_name'];
               $date= substr($row['regist_day'], 0, 10);
               $subject=$row['subject'];
               $subject=str_replace("\n", "<br>", $subject);
@@ -110,6 +111,12 @@ $number = $total_record - $start;
               <div id="list_item1"><?=$number?></div>
               <div id="list_item2">
                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
+                  <?php
+                  if(!($file_name==="")){
+                    echo "<img src='./img/disk.png' alt='' width='20' height='20'>";
+                  }else{
+                    echo "";
+                  } ?>
               </div>
               <div id="list_item3"><?=$date?></div>
               <div id="list_item4"><?=$hit?></div>
@@ -135,7 +142,6 @@ $number = $total_record - $start;
           <br><br><br><br><br><br><br>
         </div><!--end of page num -->
         <div id="button">
-          <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
           <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/notice/notice.php?page=<?=$page?>"> <button type="button">목록</button>&nbsp;</a>
           <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
             if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴

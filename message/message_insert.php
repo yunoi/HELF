@@ -1,5 +1,7 @@
 <meta charset="utf-8">
 <?php
+ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+
   date_default_timezone_set('Asia/Seoul');
 
   $send_id = $_POST['send_id'];
@@ -22,7 +24,6 @@
     ");
   }
 
-  $conn = mysqli_connect("localhost", "root", "123456", "hamster");
   $sql = "select * from members where id='$rv_id'";
   $result = mysqli_query($conn, $sql);
   $num_recode = mysqli_num_rows($result);

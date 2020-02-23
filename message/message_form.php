@@ -54,8 +54,10 @@ if(isset($_SESSION["user_id"])){
                 <span class="col2"><textarea name="content"></textarea></span>
               </li>
             </ul>
+            <div class="bottom_buttons">
+            <button type="button" onclick="history.go(-1)">뒤로가기</button>
             <button type="button" onclick="check_message()">보내기</button>
-          </div>
+            </div>          </div>
         </form>
       </div>
     </section>

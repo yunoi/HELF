@@ -1,26 +1,24 @@
+<?php
+  session_start();
+ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
+ $mater="강윤해";
+?>
 <!DOCTYPE html>
 <!-- 회사소개 -->
-<?php
-$mater="강윤해";
-include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
-?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>회사 소개</title>
+    <title>HELF :: 회사 소개</title>
     <link
         rel="stylesheet"
         type="text/css"
         href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
-        <script src="./js/vendor/modernizr.custom.min.js"></script>
-        <script src="./js/vendor/jquery-1.10.2.min.js"></script>
-        <script src="./js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="./common/js/main.js"></script>
-        <link rel="stylesheet" href="./css/introduction.css">
+    <script src="./js/vendor/modernizr.custom.min.js"></script>
+    <script src="./js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="./js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="./common/js/main.js"></script>
+    <link rel="stylesheet" href="./css/introduction.css">
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
   </head>
   <body>
     <header>

@@ -54,6 +54,7 @@ function create_table($conn, $table_name){
               subject char(200) not null,
               content text not null,
               regist_day char(20),
+              read_mark char(2),
               primary key(num)
           ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;

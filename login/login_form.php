@@ -4,9 +4,21 @@
     <meta charset="utf-8">
     <title>HELF :: Health friends, healthier life</title>
     <link rel="stylesheet" href="./css/login.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript">
-      function check_input()
-      {
+      $(document).ready(function() {
+        $("#id").keydown(function(key) {
+          if(key.keyCode == 13) {
+            check_input();
+          }
+        });
+        $("#password").keydown(function(key) {
+          if(key.keyCode == 13) {
+            check_input();
+          }
+        });
+      })
+      function check_input() {
           if (!document.login_form.id.value)
           {
               alert("아이디를 입력하세요");
@@ -21,7 +33,7 @@
               return;
           }
           document.login_form.submit();
-        }
+      }
     </script>
 
     <link
@@ -41,7 +53,7 @@
     <script type="text/javascript" src="./common/js/main.js"></script>
     <!-- 네이버 로그인 -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
     <!-- 카카오톡 로그인 -->
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
@@ -57,8 +69,8 @@
         </div>
         <div id="login_form">
           <form name="login_form" action="login.php" method="post">
-            <input type="text" name="id" placeholder=" 아이디 입력 "> <br>
-            <input type="password" name="password" placeholder=" 비밀번호 입력 "> <br>
+            <input type="text" id="id" name="id" placeholder=" 아이디 입력 "> <br>
+            <input type="password" id="password" name="password" placeholder=" 비밀번호 입력 "> <br>
             <div id="login_button">
               <a href="#" onclick="check_input()">
                 <p>로그인</p>

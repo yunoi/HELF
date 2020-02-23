@@ -28,7 +28,7 @@
     <section>
       <article>
         <div id="div_header">
-          <b>회사소개</b>
+          <b>★★회사소개★★</b>
         </div>
         <div id="div_introduction">
           <p>안녕하세요 대표자 <b><?=$mater?></b> 입니다. <br/>

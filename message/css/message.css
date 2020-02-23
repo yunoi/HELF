@@ -86,3 +86,17 @@ ul { list-style-type: none; }
 .buttons { text-align: right; margin: 8px 0 20px 0; }
 .buttons li { display: inline; }
 .buttons button { padding: 5px 10px; cursor: pointer; }
+
+/* 쪽지 보내기(message_form.php) */
+#message_box { position: relative; width: 800px; margin: 0 auto; }
+#message_box h3 { margin-top: 30px;	padding: 10px; border-bottom: solid 2px #516e7f; font-size: 20px; }
+#write_msg { padding: 0 20px; }
+#write_msg span { display: inline-block; }
+#write_msg .col1 { width: 100px; }
+#write_msg li {	padding: 12px; border-bottom: solid 1px #dddddd; vertical-align: top;}
+#write_msg input { width: 500px; height: 25px; }
+#write_msg textarea { width: 500px;	height: 150px; }
+#write_msg #text_area {	position: relative;	height: 158px; }
+#write_msg #text_area .col1 { position: absolute; top: 10px; }
+#write_msg #text_area .col2 { position: absolute; left: 117px; }
+#write_msg button {	margin: 15px 0 30px 580px;	padding: 5px 23px; cursor: pointer; }

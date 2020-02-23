@@ -30,7 +30,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $sql="INSERT INTO `faq` VALUES (null,'$q_subject','$q_content');";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
-      die('Error: ' . mysqli_error($conn));
+      die('Error: '. mysqli_error($conn));
     }
     mysqli_close($conn);
 

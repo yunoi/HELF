@@ -21,8 +21,8 @@
   if (isset($_POST["address"])) $personnel = $_POST["address"];
   else $personnel = "";
 
-  if (isset($_POST["grade"])) $end_day = $_POST["grade"];
-  else $end_day = "";
+  if (isset($_POST["grade"])) $grade = $_POST["grade"];
+  else $grade = "왜안떠";
 
 
 
@@ -38,21 +38,21 @@
       mysqli_close($conn);                // DB 연결 끊기
   }
 
-//게시글 삭제
+  //유저삭제
   function user_delete($conn, $id)
   {
-      $sql = "delete from members where id = '$id'";
-      mysqli_query($conn, $sql);
+    $sql = "delete from members where id = '$id'";
+    mysqli_query($conn, $sql);
+    mysqli_close($conn);
 
   }
 
-//게시글 수
-  function board_modify($con, $num, $subject, $content, $upfile_name, $upfile_type, $copied_file_name)
+//유저등급
+  function user_modify($conn, $id, $grade)
   {
-      $sql = "update board set subject='$subject', content='$content', file_name='$upfile_name', file_type='$upfile_type', file_copied='$copied_file_name' ";
-      $sql .= " where num=$num";
-      mysqli_query($con, $sql);
-      mysqli_close($con);
+    $sql = "update members set grade ='$grade' where id = '$id'";
+    mysqli_query($conn, $sql);
+    mysqli_close($conn);
   }
 
 
@@ -66,10 +66,10 @@
        ";
       break;
     case 'modify':
-      board_modify($con, $num, $subject, $content, $upfile_name, $upfile_type, $copied_file_name);
+        user_modify($conn, $id, $grade);
       echo "
          <script>
-             location.href = 'board_list.php?page=$page';
+             location.href = 'admin_user.php';
          </script>
        ";
       break;

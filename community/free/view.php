@@ -1,6 +1,7 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+// include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 
 include('server.php');
 
@@ -12,14 +13,11 @@ if (empty($_GET['page'])) {
     $page=$_GET['page'];
 }
 
-echo "<script>alert('페이지 : {$page}');</script>";
-
 if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $num = test_input($_GET["num"]);
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    echo "<script>alert('게시글 번호 : {$num}');</script>";
 
     $sql="UPDATE `community` SET `hit`=$hit WHERE b_code='자유게시판' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);

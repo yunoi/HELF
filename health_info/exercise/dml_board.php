@@ -1,6 +1,7 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 ?>
 <?php
 
@@ -32,14 +33,9 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
     $q_userid = mysqli_real_escape_string($conn, $user_id);
     $q_username = mysqli_real_escape_string($conn, $user_name);
     $regist_day=date("Y-m-d (H:i)");
-  //////
-
-
-$video_name=$_POST["video_name"];
-$video_name=substr($video_name, -11);
-
-  ///////
-
+    //첨부 동영상 보기 위해
+    $video_name=$_POST["video_name"];
+    $video_name=substr($video_name, -11);
 
 
     //include 파일업로드기능

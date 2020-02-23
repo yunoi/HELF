@@ -1,6 +1,7 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 include('server.php');
 
 $num=$id=$subject=$content=$day=$hit=$image_width=$q_num=$video_name="";
@@ -40,20 +41,10 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $content=str_replace("\n", "<br>", $content);
     $content=str_replace(" ", "&nbsp;", $content);
     $b_code=$row['b_code'];
-
-
-
-    /////
     $video_name= htmlspecialchars($row['video_name']);
     $video_name=str_replace("\n", "<br>", $video_name);
     $video_name=str_replace(" ", "&nbsp;", $video_name);
     $video_name=substr($video_name, -11);
-    echo "<script>alert('{$video_name}');</script>";
-
-    ////
-
-
-
     $file_name=$row['file_name'];
     $file_copied=$row['file_copied'];
     $file_type=$row['file_type'];
@@ -185,6 +176,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                     }
                   ?>
                   <?=$content?>
+                  <!-- 첨부한 동영상 보기 -->
                 <iframe width="700" height="500" src="https://www.youtube.com/embed/<?=$video_name?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div><!--end of col2  -->
               </div><!--end of view_content  -->
@@ -281,13 +273,10 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
             echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
         }
     }
-
     //로그인하는 유저에게 글쓰기 기능을 부여함.
     if ($_SESSION['user_grade']=="admin"||$_SESSION['user_grade']=="master") {
         echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
     }
-
-
   ?>
 </div><!--end of write_button-->
 </div><!--end of col2  -->

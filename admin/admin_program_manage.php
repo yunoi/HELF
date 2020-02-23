@@ -94,7 +94,7 @@
   ?>
 
       <tr>
-      <form method="post" action="admin_member_update.php?num=<?=$num?>">
+      <form method="post" action="admin_program_regist.php?o_key=<?=$o_key?>">
         <td><?=$o_key?></td>
         <td><?=$shop?></td>
         <td><?=$type ?></td>
@@ -103,7 +103,7 @@
         <td><?=$choose?></td>
         <td><?=$price?></td>
         <td><button type="submit">수정</button></td>
-        <td><button type="button" onclick="location.href='admin_member_delete.php?num=<?=$num?>'">삭제</button></td>
+        <td><button type="button" onclick="location.href='program_curd.php?o_key=<?=$o_key?>&mode=delete'">삭제</button></td>
       </form>
      </tr>
 

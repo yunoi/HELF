@@ -91,15 +91,15 @@
   ?>
 
   		<tr>
-  		<form method="post" action="admin_member_update.php?num=<?=$num?>">
+  		<form method="post" action="user_curd.php?id=<?=$id?>&mode=modify">
         <td><?=$id?></td>
         <td><?=$name?></td>
         <td><?=$phone ?></td>
         <td><?=$email?></td>
         <td><?=$address?></td>
-        <td><?=$grade?></td>
+        <td><input class="grade" type="text" name="grade" value="<?=$grade?>"></td>
         <td><button type="submit">수정</button></td>
-        <td><button type="button" onclick="location.href='user_curd.php?id=<?=$id?>&mode=delete'">삭제</button></td>
+        <td><button type="button" onclick="location.href='user_curd.php?id=<?=$id?>&mode=delete'">탈퇴</button></td>
   		</form>
      </tr>
 

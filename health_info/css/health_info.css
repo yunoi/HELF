@@ -1,3 +1,8 @@
+#content{
+  padding-top: 100px;
+}
+
+
 #content #col1 {
     margin-top: 20px;
     width: 160px;
@@ -10,6 +15,7 @@
     width: 92%;
     height: 270px;
     margin-left: 7px;
+    padding-top: 20px;
 }
 
 
@@ -18,7 +24,6 @@
 	min-height:558px;
 	float:left;
 	margin-left:15px;
-  margin-top: 200px;
 }
 
 #content #col2 #title{
@@ -126,6 +131,14 @@
 	border: 1px solid green;
   width: 175px;
   height: 120px;
+  left: 0px;
+  top: 0px;
+}
+
+#list_item3:hover {
+  z-index: -2;
+  opacity: 0.5;
+  background-color: blue;
 }
 
 #list_item #list_item1{

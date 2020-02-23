@@ -142,7 +142,6 @@
         </div><!-- (end)div_program_list_main -->
 
       </div>
-
       <aside>
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
       </aside>

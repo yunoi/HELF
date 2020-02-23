@@ -3,8 +3,13 @@
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/helf//common/lib/db_connector.php";
 
-  if (isset($_GET["mode"])) $mode = $_GET["mode"];
+  if (isset($_GET["mode"])) {
+    $mode = $_GET["mode"];
+  }
   else $mode = "";
+  
+  if (isset($_GET["o_key"])) $o_key = $_GET["o_key"];
+  else $o_key = "";
 
   if (isset($_POST["shop"])) $shop = $_POST["shop"];
   else $shop = "";
@@ -101,24 +106,22 @@
   if (isset($_POST["detail"])) $detail = $_POST["detail"];
   else $detail = "";
 
-
-
-  $location = $h_area1.",".$h_area2.",".$detail;
+  // $location = $h_area1.",".$h_area2.",".$detail;
 
   if (isset($_FILES["upfile"]["name"])) {
       $upfile_name = $_FILES["upfile"]["name"];
   } else {
-      $upfile_name = "파일 없음";
+      $upfile_name = "";
   }
   if (isset($_FILES["upfile"]["tmp_name"])) {
       $upfile_tmp_name = $_FILES["upfile"]["tmp_name"];
   } else {
-      $upfile_tmp_name = "임시파일 없음";
+      $upfile_tmp_name = "";
   }
   if (isset($_FILES["upfile"]["type"])) {
       $upfile_type = $_FILES["upfile"]["type"];
   } else {
-      $upfile_type = "파일타입 없음";
+      $upfile_type = "";
   }
   if (isset($_FILES["upfile"]["size"])) {
       $upfile_size = $_FILES["upfile"]["size"];
@@ -131,14 +134,9 @@
       $upfile_error = "";
   }
 
-    echo "<script>alert('$upfile_name');</script>";
-
-
-
   $regist_day = date("Y-m-d");  // 현재의 '년-월-일-시-분'을 저장
 
   $upload_dir = './data/';
-
 
   if ($upfile_name && !$upfile_error) {
         $file = explode(".", $upfile_name);
@@ -151,21 +149,21 @@
 
         if ($upfile_size  > 1000000) {
             echo("
-				<script>
-				alert('업로드 파일 크기가 지정된 용량(1MB)을 초과합니다!<br>파일 크기를 체크해주세요! ');
-				history.go(-1)
-				</script>
-				");
+        <script>
+        alert('업로드 파일 크기가 지정된 용량(1MB)을 초과합니다!<br>파일 크기를 체크해주세요! ');
+        history.go(-1)
+        </script>
+        ");
             exit;
         }
 
         if (!move_uploaded_file($upfile_tmp_name, $uploaded_file)) {
             echo("
-					<script>
-					alert('파일을 지정한 디렉토리에 복사하는데 실패했습니다.');
-					history.go(-1)
-					</script>
-				");
+          <script>
+          alert('파일을 지정한 디렉토리에 복사하는데 실패했습니다.');
+          history.go(-1)
+          </script>
+        ");
             exit;
         }
     } else {
@@ -174,16 +172,12 @@
         $copied_file_name = "";
     }
 
-
-
-
-
-
-
  //게시글 등록
   function program_insert($conn, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location,
     $upfile_name, $upfile_type, $copied_file_name, $regist_day)
   {
+
+
       $sql = "insert into program (shop , type, subject, content, personnel, end_day, choose, price, location, file_name, file_type, file_copied, regist_day) ";
       $sql .= "values('$shop', '$type', '$subject', '$content', $personnel,'$end_day','$choose', $price,'$location', ";
       $sql .= "'$upfile_name', '$upfile_type', '$copied_file_name','$regist_day')";
@@ -192,49 +186,55 @@
       mysqli_close($conn);                // DB 연결 끊기
   }
 
-//게시글 삭제
-  function board_delete($con, $num, $page)
-  {
-      $sql = "select * from board where num = $num";
-      $result = mysqli_query($con, $sql);
+//프로그램 삭제
+function program_delete($conn, $o_key){
+
+      $sql = "select * from program where o_key = $o_key";
+      $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_array($result);
 
       $copied_name = $row["file_copied"];
 
-      if ($copied_name) {
+      if ($copied_name)
+      {
           $file_path = "./data/".$copied_name;
           unlink($file_path);
       }
 
-      $sql = "delete from board where num = $num";
-      mysqli_query($con, $sql);
-      mysqli_close($con);
-  }
+      $sql = "delete from program where o_key = $o_key";
+      mysqli_query($conn, $sql);
+      mysqli_close($conn);
 
-//게시글 수
-  function board_modify($con, $num, $subject, $content, $upfile_name, $upfile_type, $copied_file_name)
+}
+
+//게시글 수정
+function program_modify($conn, $o_key, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location,
+  $upfile_name, $upfile_type, $copied_file_name, $regist_day)
   {
-      $sql = "update board set subject='$subject', content='$content', file_name='$upfile_name', file_type='$upfile_type', file_copied='$copied_file_name' ";
-      $sql .= " where num=$num";
-      mysqli_query($con, $sql);
-      mysqli_close($con);
+
+      $sql = "update program set shop='$shop', type='$type', subject = '$subject', content = '$content', personnel = '$personnel', end_day = '$end_day',
+      choose = '$choose', price = '$price', location = '$location', file_name='$upfile_name', file_type='$upfile_type', file_copied='$copied_file_name' ";
+      $sql .= " where o_key=$o_key";
+      mysqli_query($conn, $sql);
+      mysqli_close($conn);
   }
 
 
   switch ($mode) {
     case 'delete':
-      board_delete($con, $num, $page);
+      program_delete($conn , $o_key);
       echo "
          <script>
-             location.href = 'board_list.php?page=$page';
+             location.href = 'admin_program_manage.php';
          </script>
        ";
       break;
     case 'modify':
-      board_modify($con, $num, $subject, $content, $upfile_name, $upfile_type, $copied_file_name);
+      program_modify($conn, $o_key, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location,
+        $upfile_name, $upfile_type, $copied_file_name, $regist_day);
       echo "
          <script>
-             location.href = 'board_list.php?page=$page';
+             location.href = 'admin_program_manage.php';
          </script>
        ";
       break;

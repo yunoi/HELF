@@ -33,6 +33,9 @@
   margin: 0 auto;
   border: 1px solid black;
 }
+.grade{
+  width: 50px;
+}
 
 a:hover{
   color: lightblue;

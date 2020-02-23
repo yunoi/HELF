@@ -111,6 +111,7 @@ $number = $total_record - $start;
                      $image_width=$image_info[0];
                      $image_height=$image_info[1];
                      $image_type=$image_info[2];
+                     //사진 크기 조절
                      if (!($image_width===175) && !($image_height===130)) {
                          $image_width = 175;
                          $image_height = 120;
@@ -136,6 +137,7 @@ $number = $total_record - $start;
                   } else {
                       echo "사진이 존재하지 않습니다.";
                   } ?>
+
                 </div>
              </div><!--end of list_item -->
          <?php
@@ -163,8 +165,8 @@ $number = $total_record - $start;
             <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button>&nbsp;</a>
             <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
               if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
-                if($_SESSION["user_grade"]==="admin" || $_SESSION["user_grade"]==="master"){
-                  echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
+                if ($_SESSION["user_grade"]==="admin" || $_SESSION["user_grade"]==="master") {
+                    echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
                 }
               }
             ?>

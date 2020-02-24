@@ -1,31 +1,31 @@
 <form name="form1">
-  <select name="h_area1" onChange="cat1_change(this.value,h_area2)" style="width:80px; height:20px;">
+  <select name="h_area1" onchange="cat1_change(this.value,h_area2)" style="width:80px; height:20px;">
     <option selected>-선택-</option>
-    <option value='0'>전체</option>
-    <option value='1'>서울</option>
-    <option value='2'>부산</option>
-    <option value='3'>대구</option>
-    <option value='4'>인천</option>
-    <option value='5'>광주</option>
-    <option value='6'>대전</option>
-    <option value='7'>울산</option>
-    <option value='8'>강원</option>
-    <option value='9'>경기</option>
-    <option value='10'>경남</option>
-    <option value='11'>경북</option>
-    <option value='12'>전남</option>
-    <option value='13'>전북</option>
-    <option value='14'>제주</option>
-    <option value='15'>충남</option>
-    <option value='16'>충북</option>
-    <option value='17'>세종</option>
+    <option value='0' >전체</option>
+    <option value='1' >서울</option>
+    <option value='2' >부산</option>
+    <option value='3' >대구</option>
+    <option value='4' >인천</option>
+    <option value='5' >광주</option>
+    <option value='6' >대전</option>
+    <option value='7' >울산</option>
+    <option value='8' >강원</option>
+    <option value='9' >경기</option>
+    <option value='10' >경남</option>
+    <option value='11' >경북</option>
+    <option value='12' >전남</option>
+    <option value='13' >전북</option>
+    <option value='14' >제주</option>
+    <option value='15' >충남</option>
+    <option value='16' >충북</option>
+    <option value='17' >세종</option>
   </select>
+
   &nbsp
-  <select name="h_area2" style="width:80px; height:20px;">
+  <select id="h_area2" name="h_area2" style="width:80px; height:20px;">
     <option selected>-선택-</option>
   </select>
 <script language=javascript>
-
 
 
  var cat1_num = new Array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
@@ -117,8 +117,8 @@
  cat2_num[17] = new Array(279);
  cat2_name[17] = new Array('전체');
 
-
 function cat1_change(key,sel){
+ console.log(key);
  if(key == '') return;
  var name = cat2_name[key];
  var val = cat2_num[key];
@@ -133,6 +133,7 @@ function cat1_change(key,sel){
  //해당 지역의 상세지역을 세팅
  for(i=0; i<name.length; i++){
   sel.options[i+1] = new Option(name[i],name[i]);
+
  }
 
 }

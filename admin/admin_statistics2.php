@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../common/css/common.css">
     <link rel="stylesheet" type="text/css" href="../common/css/main.css">
     <link rel="stylesheet" type="text/css" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/statistics.css">
 
   </head>
   <body>
@@ -20,8 +21,55 @@
       include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
       ?>
     </header>
-	<!-- //header -->
-	<!-- container -->
+
+    <?php
+    $sql="select p.type , count(s.o_key) as 'count' from sales s ";
+    $sql.="inner join program p on s.o_key = p.o_key ";
+    $sql.="group by s.o_key order by count(s.o_key) desc";
+
+    $result = mysqli_query($conn, $sql);
+    $array = array();
+    $count = "";
+
+    for($i=0;$row=mysqli_fetch_array($result);$i++) {
+      for ($j=0; $j<2; $j++) {
+        if($j==0){
+          $array[$i][$j] = $row['type'];
+        }else{
+          $array[$i][$j] = $row['count'];
+          $count = $count + $row['count'];
+        }
+
+      }
+    }
+    ?>
+
+    <?php
+    $sql2="select m.id, m.name , sum(p.price) as 'Purchase' from sales s ";
+    $sql2.="inner join members m on s.id = m.id ";
+    $sql2.="inner join program p on s.o_key = p.o_key ";
+    $sql2.="group by m.name order by sum(p.price) desc";
+
+    $result2 = mysqli_query($conn, $sql2);
+    $array2 = array();
+
+    for($i=0;$row2=mysqli_fetch_array($result2);$i++) {
+      for ($j=0; $j<count($row2); $j++) {
+        if($j == 0){
+          $array2[$i][$j] = $row2["id"];
+        }else if($j == 1){
+          $array2[$i][$j] = $row2["name"];
+        }else if($j == 2){
+          $array2[$i][$j] = $row2["Purchase"];
+        }
+      }
+    }
+     ?>
+    <script>
+    var arr1 = <?php echo  json_encode($array2);?> ;
+    console.log(arr1);
+    </script>
+
   <div id="admin">
     <div id="admin_border">
   		<p>관리자페이지</p>
@@ -51,9 +99,8 @@
             <br>
             <h3>-통계-</h3>
             <ul>
-              <li><a href="admin_statistics1.php">월별매출</a></li>
-              <li><a href="admin_statistics2.php">프로그램별 매출</a></li>
-              <li><a href="admin_statistics3.php">회원별 매출</a></li>
+              <li><a href="admin_statistics1.php">매출 분석</a></li>
+              <li><a href="admin_statistics2.php">인기 프로그램</a></li>
             </ul>
 
 
@@ -64,9 +111,9 @@
   		<!-- //snb -->
   		<!-- content -->
   		<div id="content">
-        <h3>통계 > 프로그램별 매출</h3><br>
+        <h3>통계 > 인기 프로그램</h3><br>
 
-        <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="container" style="min-width: 550px; height: 400px; max-width: 500px; margin-left:20px; border:1px solid blue; float:left;"></div>
 
 
 
@@ -97,7 +144,7 @@ Highcharts.chart('container', {
         type: 'pie'
     },
     title: {
-        text: '프로그램 매출'
+        text: '인기 프로그램'
     },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -116,16 +163,43 @@ Highcharts.chart('container', {
     series: [{
         name: 'Share',
         data: [
-            { name: 'Chrome', y: 61.41 },
-            { name: 'Internet Explorer', y: 11.84 },
-            { name: 'Firefox', y: 10.85 },
-            { name: 'Edge', y: 4.67 },
-            { name: 'Safari', y: 4.18 },
-            { name: 'Other', y: 7.05 }
+          <?php
+            for ($i=0; $i < count($array) ; $i++) {
+              if($i== count($array) - 1){
+                echo "{ name: '".$array[$i][0]."', y:".$array[$i][1]."} ";
+              }else{
+                echo "{ name: '".$array[$i][0]."', y:".$array[$i][1]."}, ";
+              }
+            }
+
+           ?>
+
         ]
     }]
 });
 		</script>
+    <div id="p_ranking">
+      <h3>유저 구매 랭킹</h3><br>
+      <table id="tb_ranking">
+        <tr id="i9">
+          <td >아이디</td>
+          <td >이름</td>
+          <td >구매액</td>
+        </tr>
+        <?php
+          for($i=0; $i<count($array2); $i++){
+            echo "<tr>";
+            for($j=0; $j<3; $j++){
+           ?>
+          <td><?=$array2[$i][$j]?></td>
+          <?php
+          }
+           echo "</tr>";
+         }
+         ?>
+      </table>
+
+    </div>
   		</div>
   		<!-- //content -->
   	</div>

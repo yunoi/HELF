@@ -47,9 +47,8 @@
 
             <h3 class="menu-title">-통계-</h3>
             <ul>
-              <li><a href="admin_statistics1.php">월별매출</a></li>
-              <li><a href="admin_statistics2.php">프로그램별 매출</a></li>
-              <li><a href="admin_statistics3.php">회원별 매출</a></li>
+              <li><a href="admin_statistics1.php">매출 분석</a></li>
+              <li><a href="admin_statistics2.php">인기 프로그램</a></li>
             </ul>
 
 
@@ -60,7 +59,7 @@
 
      <div id="content">
   			<h3>유저관리 > 유저</h3><br>
-  	    <table>
+  	    <table id="user_table">
           <tr>
             <td>아이디</td>
             <td>이름</td>

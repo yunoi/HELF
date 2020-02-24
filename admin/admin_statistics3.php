@@ -7,50 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../common/css/common.css">
     <link rel="stylesheet" type="text/css" href="../common/css/main.css">
     <link rel="stylesheet" type="text/css" href="./css/admin.css">
-
-    <style type="text/css">
-.highcharts-figure, .highcharts-data-table table {
-    min-width: 310px;
-    max-width: 800px;
-    margin: 1em auto;
-}
-
-.highcharts-figure #container {
-  max-width: 750px;
-  min-width: 750px;
-  height: 400px;
-  min-height: 400px;
-}
-
-.highcharts-data-table table {
-	font-family: Verdana, sans-serif;
-	border-collapse: collapse;
-	border: 1px solid #EBEBEB;
-	margin: 10px auto;
-	text-align: center;
-	width: 100%;
-	max-width: 500px;
-}
-.highcharts-data-table caption {
-    padding: 1em 0;
-    font-size: 1.2em;
-    color: #555;
-}
-.highcharts-data-table th {
-	font-weight: 600;
-    padding: 0.5em;
-}
-.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
-    padding: 0.5em;
-}
-.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
-    background: #f8f8f8;
-}
-.highcharts-data-table tr:hover {
-    background: #f1f7ff;
-}
-
-		</style>
+    <link rel="stylesheet" href="./css/statistics.css">
 
   </head>
   <body>
@@ -66,8 +23,32 @@
       include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
       ?>
     </header>
-	<!-- //header -->
-	<!-- container -->
+
+    <?php
+    $sql2="select p.shop, sum(p.price) as 'p_sales' from sales s ";
+    $sql2.="inner join program p on s.o_key = p.o_key ";
+    $sql2.="group by p.shop order by sum(p.price) desc";
+
+    $result2 = mysqli_query($conn, $sql2);
+    $array2 = array();
+
+    for($i=0;$row2=mysqli_fetch_array($result2);$i++) {
+      for ($j=0; $j<2; $j++) {
+        if($j==0){
+          $array2[$i][$j] = $row2['shop'];
+        }else{
+          $array2[$i][$j] = $row2['p_sales']/10000;
+        }
+
+      }
+    }
+    ?>
+
+    <script>
+    var arr2 = <?php echo  json_encode($array2);?> ;
+    console.log(arr2);
+    </script>
+
   <div id="admin">
     <div id="admin_border">
   		<p>관리자페이지</p>
@@ -110,17 +91,17 @@
   		<!-- //snb -->
   		<!-- content -->
   		<div id="content">
-        <h3>통계 > 회원별 매출</h3><br>
+        <h3>통계 > 가게별 매출</h3><br>
 
 
 <figure class="highcharts-figure">
-    <div id="container"></div>
+    <div id="container2"></div>
 </figure>
 
 
 
 		<script type="text/javascript">
-Highcharts.chart('container', {
+Highcharts.chart('container2', {
     chart: {
         type: 'column'
     },
@@ -132,25 +113,23 @@ Highcharts.chart('container', {
     },
     xAxis: {
         categories: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
+          <?php
+          for($i=0; $i<count($array2); $i++){
+            if($i < count($array2)-1){
+              echo "'".$array2[$i][0]."',";
+            }else{
+              echo "'".$array2[$i][0]."'";
+
+            }
+          }
+          ?>
         ],
         crosshair: true
     },
     yAxis: {
         min: 0,
         title: {
-            text: 'Rainfall (mm)'
+            text: '매출액 (만원)'
         }
     },
     tooltip: {
@@ -169,19 +148,18 @@ Highcharts.chart('container', {
     },
     series: [{
         name: 'Tokyo',
-        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+        data: [
+          <?php
+          for($i=0; $i<count($array2); $i++){
+            if($i < count($array2)-1){
+              echo $array2[$i][1].",";
+            }else{
+              echo $array2[$i][1];
 
-    }, {
-        name: 'New York',
-        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-
-    }, {
-        name: 'London',
-        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-
-    }, {
-        name: 'Berlin',
-        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+            }
+          }
+          ?>
+        ]
 
     }]
 });

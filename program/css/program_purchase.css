@@ -80,6 +80,8 @@ width: 330px;
   padding-right: 30px;
   display: inline-block;
 }
+.div_item4 .div_body ul li img{height: 20px; border-radius: 6px;}
+.div_item4 .div_body ul li input{width: 15px; height: 15px;}
 .position-relative{
   width: 65%;
   float: left;

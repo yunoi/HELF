@@ -7,7 +7,7 @@
     $mode = $_GET["mode"];
   }
   else $mode = "";
-  
+
   if (isset($_GET["o_key"])) $o_key = $_GET["o_key"];
   else $o_key = "";
 
@@ -106,7 +106,7 @@
   if (isset($_POST["detail"])) $detail = $_POST["detail"];
   else $detail = "";
 
-  // $location = $h_area1.",".$h_area2.",".$detail;
+  $location = $h_area1.",".$h_area2.",".$detail;
 
   if (isset($_FILES["upfile"]["name"])) {
       $upfile_name = $_FILES["upfile"]["name"];

@@ -1,0 +1,105 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+.clear{
+  display: block;
+  height: 10px;
+  clear: both;
+}
+.item_all{
+  position: relative;
+  width: 830px;
+  margin: 0px auto;
+}
+.div_item1{
+  width: 828px;
+  border: 1px solid #e6e6e6;
+}
+.div_item1 table th{
+  padding: 10px 15px;
+  background-color: #f3f4f8;
+}
+.div_item1 table td{
+  text-align: center;
+  padding: 20px 15px 10px;
+}
+.div_center{
+  padding: 20px;
+}
+.h{
+  padding: 10px 12px;
+  background:#f3f4f8;
+}
+.div_body{
+  padding: 20px;
+}
+#title1{
+  text-align: left;
+  width: 450px;
+}
+#title2{
+  width: 110px;
+}
+#title3{
+  width: 80px;
+}
+#title4{
+  text-align: right;
+  width: 110px;
+}
+#program{
+  text-align:left;
+}
+.div_item2{border: 1px solid #e6e6e6; height: 170px;}
+.item2_left{
+width: 330px;
+  float: left;
+  padding: 0px 15px;
+}
+.item2_right{
+  width: 330px;
+  float: left;
+  padding: 0px 15px;
+}
+.item2_right a{color: #f26656;
+    text-decoration: none;}
+.item2_right button{
+  width: 100%;
+  background-color: #ca0;
+  padding: 15px;
+}
+.left{float: left; width: 50%; padding: 0px 30px 0px 15px}
+.right{float: left; width: 41%;}
+.left .hi{padding: 0px 15px; width: 70%;}
+.left .hi button{float: right;}
+.div_item3{height: 170px; border: 1px solid #e6e6e6;}
+.div_item4{border: 1px solid #e6e6e6;}
+.div_item4 .div_body ul{list-style: none;}
+.div_item4 .div_body ul li{
+  padding-right: 30px;
+  display: inline-block;
+}
+.position-relative{
+  width: 65%;
+  float: left;
+}
+.btn{float: left; width: 30%; padding: 0px 15px;}
+.btn a{width: 100%; display: block;}
+.btn a button{
+  width: 100%;
+  height: 52px;
+  display: block;
+  font-weight: 500;
+    text-align: center;
+    color: #333;
+    background-color: #ffd400;
+    border-color: #ffd400;
+    border-radius: 4px;
+  }
+  .item1_div{float: left;}
+  .item2_div{float: left; padding-left: 20px;}
+.item2_div img{
+  width: 120px;
+  height: 90px;
+}

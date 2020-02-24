@@ -13,6 +13,8 @@ $(document).ready(function() {
 
                 success:function(data){
                   var data = JSON.parse(data);
+                  console.log(data[0].o_key+","+data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
+                  +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
                   // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
                   // +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
                   // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
@@ -21,21 +23,29 @@ $(document).ready(function() {
                   // +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
                   // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
                   // +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
-                  // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
-                  // +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
-                  var back_color = Array('#04adbf', '#04d9d9', '#f2b705', '#d98e04','#f23005');
 
-                  for(var i = 0; i<5; i++){
-                    var html = `<li class="li_program_list">`;
-                    html += `<div class="div_list" style="background:`+back_color[i]+`"><div class="pro1"><div class="main_image"><img src='../admin/data/`+data[i].file_copied+`' class='image_vertical'></div></div>`;
-                    html += `<div class="pro2"><div class="abc"><div class="info_1">`+data[i].shop+" | "+data[i].type+" | "+data[i].location+`</div>`;
+
+                  for(var i=0; i<5; i++){
+                    var html = `<li><div class="program_li"><div class="program_image">`;
+                    html += `<a href='../program/program_detail.php?o_key=`+data[i].o_key+`'>`;
+                    html += `<img src='../admin/data/`+data[i].file_copied+`'>`;
+                    html += `</a></div><div class="program_detail">`;
+                    html += `<a href="../program/program_detail.php?o_key=`+data[i].o_key+`">`;
+                    html += `<div class="info_1">`+data[i].shop+" | "+data[i].type+" | "+data[i].location+`</div>`;
                     html += `<div class="info_2">`+data[i].subject+`</div>`;
-                    html += `<div class="info_3"">모집기간: `+data[i].end_day+` 까지</div></div></div>`;
-                    html += `<div class="pro3"><em><strong>`+data[i].price+`</strong> 원</em></div></div></li>`;
+                    html += `<div class="info_3">모집기간 : `+data[i].end_day+` 까지</div></a></div>`;
+                    html += `<div class="program_price"><p>`+data[i].price+`<span> 원~</span>`;
+                    html += `<div class="pick_buttons"><button type="button" id="cart_btn">장바구니</button> <br>`;
+                    html += `<button type="button" id="delete_btn">삭제</button></div></div>`;
+                    html += ` <div class="checkbox_div"><input type="checkbox" name="no[]"></div></div></li>`;
 
                     $("#board_list").append(html);
-
                   }
+
+
+
+
+
 
 
 

@@ -30,28 +30,37 @@
     <h4>인기게시글</h4>
     <ul>
 <?php
-  $sql = "select * from community order by num desc limit 5";
+  $sql = "SELECT post_id, COUNT(post_id) AS likeit FROM rating_info where rating_action='like'
+  Group by post_id
+  HAVING COUNT(post_id) > 0 order by likeit desc limit 5;";
   $result = mysqli_query($conn, $sql);
-
   if(!$result){
-    echo "게시판 DB 테이블이 생성 전이거나 아직 게시글이 없습니다.";
+    echo(mysqli_error($result));
   } else {
     while($row = mysqli_fetch_array($result)){
-      $regist_day = substr($row["regist_day"], 0, 10);
-      $num = $row['num'];
-      $hit = $row['hit'];
+      $best_number = $row['post_id'];
+      $sql = "select distinct name, subject, regist_day from community inner join rating_info on community.num=rating_info.post_id where community.num=$best_number;";
+      $result2 = mysqli_query($conn, $sql);
+      if(!$result2){
+        echo "게시판 DB 테이블이 생성 전이거나 아직 게시글이 없습니다.";
+      } else {
+        while($row2 = mysqli_fetch_array($result2)){
+          $regist_day = substr($row2["regist_day"], 0, 10);
+          // $num = $row2['num'];
+          // $hit = $row2['hit'];
+ 
 ?>
       <li>
-        <span><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/view.php?num=<?=$num?>&hit=<?=$hit+1?>"><?= $row["subject"]?>       </a>
-</span>
-        <span><?= $row["name"]?></span>
+        <span><?= $row2["subject"]?></span>
+        <span><?= $row2["name"]?></span>
         <span><?= $regist_day?></span>
       </li>
 <?php
+        }
+      }
     }
   }
 ?>
-
     </ul>
   </div>
   <div id="point_rank">

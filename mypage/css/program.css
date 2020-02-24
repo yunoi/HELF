@@ -49,6 +49,19 @@
 .program_li {
   display: inline-block;
   float: left;
+  width: 684px;
+  height: 140px;
+  border-top: 0.5px solid lightgray;
+  border-bottom: 0.5px solid lightgray;
+  border-radius: 2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.program_pick_li {
+  display: inline-block;
+  float: left;
   width: 714px;
   height: 140px;
   border-top: 0.5px solid lightgray;
@@ -79,7 +92,7 @@
 .program_detail {
   display: inline-block;
   float: left;
-  width: 390px;
+  width: 350px;
   margin-top: 20px;
   margin-left: 20px;
 }

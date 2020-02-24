@@ -11,7 +11,6 @@ https://kmong.com/order/2518542 참고한 사이트 화면
   <head>
     <meta charset="utf-8">
     <title>HELF :: 결제페이지</title>
-    <link rel="stylesheet" href="./css/program_detail.css">
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <link
         rel="stylesheet"

@@ -53,11 +53,22 @@
   width: 300px;
 }
 
-
-
+#myHeader ul{
+  list-style: none;
+}
+#myHeader ul li{
+  display: inline-block;
+}
+#myHeader ul li a{
+  border: 1px solid white;
+  color: white;
+}
+#cansel{
+  border: 1px solid gray;
+}
 /* 스크롤 내리면서 상단에 고정버튼 생기기게 하는 부분 */
 .buttons {
-  width: 400px;
+  width: 450px;
   padding: 10px 16px;
   background: #555;
   color: #f1f1f1;
@@ -68,7 +79,7 @@
 }
 
 .sticky {
-  width: 400px;
+  width: 450px;
   z-index: 1111;
   position: fixed;
   top: 130px;

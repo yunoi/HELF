@@ -170,7 +170,7 @@
                   ?>
 
                         <li>
-                          <div class="program_li">
+                          <div class="program_pick_li">
                             <div class="program_image">
                               <a href="../program/program_detail.php?o_key=<?=$o_key?>">
                               <img src='../admin/data/<?=$file_copied?>'>

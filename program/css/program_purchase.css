@@ -95,3 +95,9 @@ width: 330px;
     border-color: #ffd400;
     border-radius: 4px;
   }
+  .item1_div{float: left;}
+  .item2_div{float: left; padding-left: 20px;}
+.item2_div img{
+  width: 120px;
+  height: 90px;
+}

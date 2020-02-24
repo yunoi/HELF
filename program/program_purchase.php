@@ -43,16 +43,17 @@ https://kmong.com/order/2518542 참고한 사이트 화면
             <img src="" alt="">
           </div>
           <div class="div_right">
-            <div class="">
+            <div class="item2_div">
+              <!-- 아이콘과 회사명관련을 입력할 부분 -->
+              <img src="./img/koma.png" alt=""/>
+              <span></span>
+            </div>
+            <div class="item1_div">
               <!-- 제품명 부분 -->
               <h4>프로그램 이름</h4>
             </div>
-            <div class="">
-              <!-- 아이콘과 회사명관련을 입력할 부분 -->
-              <img src="" alt=""/>
-              <span></span>
-            </div>
           </div>
+          <div class="clear"></div>
           <div class="div_center">
             <table>
               <tr>

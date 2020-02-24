@@ -113,6 +113,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
               현재 사용가능 쿠폰&nbsp;<span>0</span>
               <button type="button" name="button">쿠폰선택</button>
             </div>
+              <div class="clear"></div>
             <div class="row">
               <div class="">
                   캐시 사용 <span>(보유캐시&nbsp;:&nbsp;<b>0</b>원)</span>
@@ -149,33 +150,19 @@ https://kmong.com/order/2518542 참고한 사이트 화면
             결제방법
           </div>
           <div class="div_body">
-          <div class="">
-            <ul>
-              <li><input type="radio" name="pay" value="">신용카드</li>
-              <li><input type="radio" name="pay" value="">실시간 계좌이체</li>
-              <li><input type="radio" name="pay" value="">무통장입금</li>
-              <li><input type="radio" name="pay" value="">휴대폰</li>
-              <li><input type="radio" name="pay" value="">페이나우</li>
-              <li><input type="radio" name="pay" value=""><img src="" alt="payco"></li>
-            </ul>
-          </div>
-        </div>
-              <div class="clear"></div>
-        <div class="div_item5">
-          <div class="h">
-            세금계산서
-          </div>
-          <div class="div_body">
-            <ul>
-              <li>카드전표, 현금영수증(지출방법)은 '크몽'이름으로 발행되어 매입세액공제를 받을 수 없습니다.[매입세액공제 안내]<img src="" alt="매입세액공제 안내"> </li>
-              <li><b>매입세액공제가 필요할 경우 반드시 해당 기업전문가에게 세금계산서를 발급 신청을 하시기 바랍니다.</b></li>
-              <li>세금계산서는 거래 주체인 전문가가 의뢰인에게 발행합니다.</li>
-              <li>이벤트 쿠폰 사용 금액은 할인된 금액이기 때문에 세금계산서에 포함되지 않습니다.</li>
-            </ul>
-          </div>
+            <div class="">
+              <ul>
+                <li><input type="radio" name="pay" value="">신용카드</li>
+                <li><input type="radio" name="pay" value="">실시간 계좌이체</li>
+                <li><input type="radio" name="pay" value="">무통장입금</li>
+                <li><input type="radio" name="pay" value="">휴대폰</li>
+                <li><input type="radio" name="pay" value="">페이나우</li>
+                <li><input type="radio" name="pay" value=""><img src="" alt="payco"></li>
+              </ul>
+            </div>
         </div>
       <div class="clear"></div>
-      <div class="div_item6">
+      <div class="div_item5">
         <div class="div_body">
           <div class="position-relative">
                 <img src="" alt="">
@@ -184,7 +171,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                     <li>크몽을 통해 결제 진행 시 관련 정책에 의해 보호 받을 수 있습니다.</li>
                 </ul>
             </div>
-          <div class="">
+          <div class="btn">
             <a href="#"><button type="button" name="button">결제하기</button> </a>
           </div>
       </div><!--end of div_body-->

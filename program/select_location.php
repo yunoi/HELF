@@ -1,9 +1,5 @@
 <form name="form1">
-<<<<<<< HEAD
   <select name="h_area1" onchange="cat1_change(this.value,h_area2)" style="width:80px; height:20px;">
-=======
-  <select name="h_area1" id="h_area1" onChange="cat1_change(this.value,h_area2)" style="width:80px; height:20px;">
->>>>>>> b9a948d2703b4f4d9b6a2f329568d917e9dc275e
     <option selected>-선택-</option>
     <option value='0' >전체</option>
     <option value='1' >서울</option>

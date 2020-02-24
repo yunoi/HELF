@@ -182,18 +182,26 @@ Highcharts.chart('container', {
       <h3>유저 구매 랭킹</h3><br>
       <table id="tb_ranking">
         <tr id="i9">
-          <td >아이디</td>
-          <td >이름</td>
-          <td >구매액</td>
+          <td>랭킹</td>
+          <td>아이디</td>
+          <td>이름</td>
+          <td>구매액</td>
         </tr>
         <?php
           for($i=0; $i<count($array2); $i++){
             echo "<tr>";
-            for($j=0; $j<3; $j++){
-           ?>
-          <td><?=$array2[$i][$j]?></td>
-          <?php
-          }
+            $r=$i + 1;
+            for($j=0; $j<4; $j++){
+              $d = $j-1;
+              if($j==0){
+                echo "<td>$r</td>";
+              }else{
+        ?>
+               <td><?=$array2[$i][$d]?></td>
+
+               <?php
+              }
+            }
            echo "</tr>";
          }
          ?>

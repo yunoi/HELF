@@ -1,0 +1,47 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+.clear{
+  display: block;
+  height: 10px;
+}
+.item_all{
+  position: relative;
+  width: 830px;
+  margin: 0px auto;
+}
+.div_item1{
+  width: 800px;
+}
+.div_item1 table th{
+  padding: 10px 15px;
+  background-color: #f3f4f8;
+}
+.div_item1 table td{
+  padding: 20px 15px 10px;
+}
+.div_center{
+  padding: 20px;
+}
+.h{
+  padding: 10px 12px;
+  background:#f3f4f8;
+}
+.div_body{
+  padding: 20px;
+}
+#title1{
+  text-align: left;
+  width: 450px;
+}
+#title2{
+  width: 110px;
+}
+#title3{
+  width: 80px;
+}
+#title4{
+  text-align: right;
+  width: 110px;
+}

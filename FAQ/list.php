@@ -99,7 +99,8 @@ $number = $total_record - $start;
               $num=$row['num'];
               $subject=$row['subject'];
               $subject=str_replace("\n", "<br>", $subject);
-              $subject=str_replace(" ", "&nbsp;", $subject); ?>
+              $subject=str_replace(" ", "&nbsp;", $subject);
+            ?>
             <div id="list_item">
               <div id="list_item1"><?=$number?></div>
               <div id="list_item2">

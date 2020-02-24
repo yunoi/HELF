@@ -54,6 +54,14 @@
                     1회당 레슨시간 (분) : 30 분<br/>
                     레슨 횟수 : 1 회<br/>
                   </p>
+                  <select class="" name="">
+                    <option value="0">옵션선택</option>
+                    <option value="1000">추가1 1000원</option>
+                    <option value="3000">추가2 3000원</option>
+                    <option value="5000">추가3 5000원</option>
+                    <option value="7000">추가4 7000원</option>
+                  </select>
+                  <br/>
                   <div class="">
                     <img src="" alt="">작업일 : 123 &nbsp;&nbsp; <img src="" alt="">수정 횟수 : 제한 없음
                   </div>
@@ -62,7 +70,7 @@
                 </form>
               </div>
             </aside>
-    </div>
+          </div>
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
     </footer>

@@ -36,6 +36,16 @@ function create_table($conn, $table_name){
               FOREIGN KEY (o_key) REFERENCES program (o_key)
            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
+            case 'cart' :
+              $sql = "create table cart (
+                num int not null auto_increment,
+                id char(20) not null,
+                o_key int not null,
+                PRIMARY KEY(num),
+                FOREIGN KEY (id) REFERENCES members (id),
+                FOREIGN KEY (o_key) REFERENCES program (o_key)
+             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+              break;
           case 'buy' :
             $sql = "create table buy (
               num int not null auto_increment,

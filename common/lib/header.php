@@ -1,4 +1,6 @@
 <?php
+ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+
   if(isset($_SESSION["user_id"])){
     $user_id = $_SESSION["user_id"];
   } else {
@@ -43,12 +45,43 @@
         </li>
     <?php
   } else {
+    $sql = "select * from message where rv_id='$user_id' and read_mark='n'";
+    $result = mysqli_query($conn, $sql);
+    $total_record = mysqli_num_rows($result);
+    if($total_record > 0){
+      $envelope = "/helf/common/img/new_message.png";
+    } else {
+      $envelope = "/helf/common/img/open_message.png";
+    }
+
     $logged = $user_name."(".$user_id.") 님";
 ?>
-      <li><a href="#"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/open_message.png" alt="쪽지함" onclick="message_box()"></a>
-          <span><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_info.php"><?=$logged?></a> </span></li>
+      <li><a href="#"><img src="http://<?php echo $_SERVER['HTTP_HOST'].$envelope;?>" alt="쪽지함" onclick="message_box()"></a></li>
+      <li id="mypage_li">
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_board.php">
+          <?=$logged?>
+        </a>
+          <ol id="mypage_slide">
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf//mypage/mypage_board.php">내가 쓴 글</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_comment.php">내가 쓴 댓글</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_review.php">내가 쓴 상품평</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_question.php">내가 쓴 상품 문의</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_pick.php">찜 내역</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_buy.php">구매 내역</a></li>
+          </ol>
+      </li>
       <li> | </li>
+      <li>
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/member/member_form.php?modify=modify">
+          <span>내 정보 수정</span>
+          </a>
 
+      </li>
+      <li> | </li>
+      <li>
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/cart_list.php">장바구니</a>
+      </li>
+      <li> | </li>
       <li>
         <a
             href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/login/logout.php">로그아웃</a>

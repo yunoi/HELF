@@ -1,10 +1,12 @@
 <meta charset="utf-8">
 <?php
+  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+
   $num = $_GET['num'];
   $mode = $_GET['mode'];
 
-  $conn = mysqli_connect("localhost", "root", "123456", "hamster");
   $sql = "delete from message where num=$num";
+
   mysqli_query($conn, $sql);
   mysqli_close($conn);
 

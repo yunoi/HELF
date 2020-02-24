@@ -31,14 +31,14 @@ $mail -> Port = 465;                                  // email 보낼때 사용�
 $mail -> CharSet = "utf-8"; // 문자셋 인코딩
 
 // 보내는 메일
-$mail -> setFrom("neul713@naver.com", "김하늘");
+$mail -> setFrom("neul713@naver.com", "HELF");
 
 // 받는 메일
 $mail -> addAddress($rv_id, "");
 
 // 메일 내용
 $mail -> isHTML(true); // HTML 태그 사용 여부
-$mail -> Subject = "HELF에서 발송하는 이메일 인증문자 요청 메일입니다.";  // 메일 제목
+$mail -> Subject = "HELF에서 발송하는 이메일 인증 요청 입니다.";  // 메일 제목
 
 //랜덤 인증 번호
 srand((double)microtime()*1000000); //난수값 초기화

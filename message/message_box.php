@@ -19,21 +19,25 @@ if(isset($_SESSION["user_grade"])){
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>HELF :: 메시지함</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/message/css/message.css">
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-    <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/message/js/message.js"></script>
-  </head>
-  <body>
-  <?php
+    <head>
+        <meta charset="utf-8">
+        <title>HELF :: 메시지함</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/message/css/message.css">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+        <script
+            type="text/javascript"
+            src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/message/js/message.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    </head>
+    <body>
+    <?php
       if(!$user_id){
         echo ("<script>
           alert('로그인 후 이용해 주세요!');
@@ -55,36 +59,43 @@ if(isset($_SESSION["user_grade"])){
       
 
     ?>
-      <div id="message_main_content">
-        <div id="title_messagee">
-          <h1>메시지함</h1>
-        </div>
-        <div id="message_buttons">
-          <div id="receive_message">
-          <p>받은 메시지</p>
-          </div>
-          <div id="send_message">
-         <p>보낸 메시지</p>
-          </div>
-        </div>
-        <div id="box_line">
-        <div id="message_content">
-        <ul id="message">
-             <li>
-               <span class="col1">번호</span>
-               <span class="col2">제목</span>
-               <span class="col3">
-<?php
+        <div id="message_main_content">
+            <div id="title_messagee">
+            <?php
+                if($mode=="send"){
+                  echo "<h1>보낸 메시지함</h1>";
+                } else {
+                  echo "<h1>받은 메시지함</h1>";
+                }
+?>
+            </div>
+            <div id="message_buttons">
+                <ul class="tab">
+                    <li>
+                        <a href="./message_box.php?mode=receive" id="received">받은 메시지</a>
+                    </li>
+                    <li>
+                        <a href="./message_box.php?mode=send" id="sent">보낸 메시지</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="message_content">
+                <ul class="message">
+                    <li>
+                        <span class="col1">번호</span>
+                        <span class="col2">제목</span>
+                        <span class="col3">
+                        <?php
                 if($mode=="send"){
                   echo "받은 이";
                 } else {
                   echo "보낸 이";
                 }
 ?>
-               </span>
-               <span class="col4">등록일</span>
-             </li>
-<?php
+                        </span>
+                        <span class="col4">등록일</span>
+                    </li>
+                <?php
 
   if($mode == "send"){
     $sql = "select * from message where send_id='$user_id' order by num desc";
@@ -124,20 +135,21 @@ if(isset($_SESSION["user_grade"])){
     $record = mysqli_fetch_array($result2);
     $msg_name = $record['name'];
 ?>
-              <li>
-                <span class="col1"><?=$number?></span>
-                <span class="col2"><a href="message_view.php?mode=<?=$mode?>&num=<?=$num?>"><?=$subject?></a></span>
-                <span class="col3"><?=$msg_name?>(<?=$msg_id?>)</span>
-                <span class="col4"><?=$regist_day?></span>
-              </li>
-<?php
+                    <li>
+                        <span class="col1"><?=$number?></span>
+                        <span class="col2">
+                            <a href="message_view.php?mode=<?=$mode?>&num=<?=$num?>"><?=$subject?></a>
+                        </span>
+                        <span class="col3"><?=$msg_name?>(<?=$msg_id?>)</span>
+                        <span class="col4"><?=$regist_day?></span>
+                    </li>
+                    <?php
       $number--;
     } // end of for
-    mysqli_close($conn);
 ?>
-           </ul>
-           <ul id="page_num">
-<?php
+                </ul>
+                <ul id="page_num">
+                <?php
   if($total_page>=2 && $page >=2){
     $new_page = $page-1;
     echo "<li><a href='message_box.php?mode=$mode&page=$new_page'>◀ 이전</a></li>";
@@ -160,14 +172,14 @@ if(isset($_SESSION["user_grade"])){
     echo "<li>&nbsp;</li>";
   }
 ?>
-           </ul>
-        </div> <!-- message_content -->
-        </div> <!-- box_line -->
-        <ul class="buttons">
-             <li>
-               <button onclick="location.href='message_form.php'">쪽지 보내기</button>
-             </li>
-           </ul>
-      </div> <!-- message_main_content -->
-  </body>
+                </ul>
+            </div>
+            <!-- message_content -->
+            <div class="bottom_buttons">
+                <button onclick="location.href='message_form.php'">쪽지 보내기</button>
+            </div>
+        </div>
+        <!-- message_main_content -->
+
+    </body>
 </html>

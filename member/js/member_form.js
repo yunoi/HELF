@@ -22,7 +22,6 @@ $(document).ready(function() {
   var input_id = $("#input_id"),
     input_password = $("#input_password"),
     input_password_check = $("#input_password_check"),
-    input_id = $("#input_id"),
     input_name = $("#input_name"),
 
     phone_two = $("#phone_two"),
@@ -42,52 +41,75 @@ $(document).ready(function() {
     input_email_certification_confirm = $("#input_email_certification_confirm");
     input_address_confirm = $("#input_address_confirm");
 
-  input_id.blur(function() {
-    var id_value = input_id.val();
-    var exp = /^[a-z0-9]{5,20}$/;
-    if (id_value === "") {
-      input_id_confirm.html("<span style='color:red'>아이디를 입력해주세요.</span>");
-      id_pass = false;
-      isAllPass();
-    } else if (!exp.test(id_value)) {
-      input_id_confirm.html("<span style='color:red'>아이디는 5~20자의 영문 소문자와 숫자만 사용할 수 있습니다.</span>");
-      id_pass = false;
-      isAllPass();
-    } else {
-      $.ajax({
-          url: './member_form_check.php',
-          type: 'POST',
-          data: {
-            "input_id": id_value
-          },
-          success: function(data) {
-            console.log(data);
-            if (data === "1") {
-              input_id_confirm.html("<span style='color:red'>이미 사용중인 아이디입니다. 다른 아이디를 입력해주세요.</span>");
-              id_pass = false;
-              isAllPass();
-            } else if (data === "0") {
-              input_id_confirm.html("<span style='color:green'>사용 가능한 아이디입니다.</span>");
-              id_pass = true;
-              isAllPass();
-            } else {
-              input_id_confirm.html("<span style='color:red'>오류입니다. 다시 확인해주세요.</span>");
-              id_pass = false;
-              isAllPass();
+  // 정보수정이거나 회원가입이거나 판별
+  if(input_id.attr("readonly")) {
+    input_id_confirm.html("<span style='color:green'>아이디는 변경할 수 없습니다.</span>");
+    // 수정하지 않는 정보가 있을 수 있기때문에 일단 처음에 다 true를 주고 수정하는 칸이 블러되면 다시 거기서
+    // false인지 true인지 판별.
+    id_pass = true;
+    pw_pass = true;
+    pw_check_pass = true;
+    name_pass = true;
+    phone_two_pass = true;
+    phone_three_pass = true;
+    email_one_pass = true;
+    email_two_pass = true;
+    address_one_pass = true;
+    address_three_pass = true;
+    phone_code_pass = true;
+    email_code_pass = true;
+    tou_one_pass = true;
+    tou_two_pass = true;
+    isAllPass();
+  } else {
+    input_id.blur(function() {
+      var id_value = input_id.val();
+      var exp = /^[a-z0-9]{5,20}$/;
+      if (id_value === "") {
+        input_id_confirm.html("<span style='color:red'>아이디를 입력해주세요.</span>");
+        id_pass = false;
+        isAllPass();
+      } else if (!exp.test(id_value)) {
+        input_id_confirm.html("<span style='color:red'>아이디는 5~20자의 영문 소문자와 숫자만 사용할 수 있습니다.</span>");
+        id_pass = false;
+        isAllPass();
+      } else {
+        $.ajax({
+            url: './member_form_check.php',
+            type: 'POST',
+            data: {
+              "input_id": id_value
+            },
+            success: function(data) {
+              console.log(data);
+              if (data === "1") {
+                input_id_confirm.html("<span style='color:red'>이미 사용중인 아이디입니다. 다른 아이디를 입력해주세요.</span>");
+                id_pass = false;
+                isAllPass();
+              } else if (data === "0") {
+                input_id_confirm.html("<span style='color:green'>사용 가능한 아이디입니다.</span>");
+                id_pass = true;
+                isAllPass();
+              } else {
+                input_id_confirm.html("<span style='color:red'>오류입니다. 다시 확인해주세요.</span>");
+                id_pass = false;
+                isAllPass();
+              }
             }
-          }
-        })
-        .done(function() {
-          console.log("success");
-        })
-        .fail(function() {
-          console.log("error");
-        })
-        .always(function() {
-          console.log("complete");
-        });
-    }
-  }); //input_id.blur end
+          })
+          .done(function() {
+            console.log("success");
+          })
+          .fail(function() {
+            console.log("error");
+          })
+          .always(function() {
+            console.log("complete");
+          });
+      }
+    }); //input_id.blur end
+  }
+
 
   input_password.blur(function() {
     var password_value = input_password.val();
@@ -347,8 +369,6 @@ $(document).ready(function() {
        tou_two_pass = false;
        isAllPass();
     }
-    alert(tou_one_pass);
-    alert(tou_two_pass);
   });
 
   $("#tou_one").click(function() {

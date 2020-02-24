@@ -2,8 +2,7 @@
 //도시 = 서울,경기등등 city
 //지역 = 구 용산구,성동구 area
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/create_table.php";
-create_table($conn, 'carecenter');
+
 define('SCALE', 10);
 //*****************************************************
 $sql=$result=$total_record=$total_page=$start="";
@@ -60,10 +59,7 @@ $number = $total_record - $start;
       <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
   </header>
   <div id="wrap">
-    <div id="header">
-    </div><!--end of header  -->
-    <div id="menu">
-    </div><!--end of menu  -->
+
     <div id="content">
      <div id="col2">
        <div id="title">
@@ -78,11 +74,11 @@ $number = $total_record - $start;
                <option value="city">지역</option>
                <option value="area">구</option>
                <option value="name">이름</option>
-               <option value="adderrs">주소</option>
+               <option value="address">주소</option>
              </select>
            </div><!--end of list_search3  -->
            <div id="list_search4"><input type="text" name="search"></div>
-           <div id="list_search5"><input type="button" value="검색"> </div>
+           <div id="list_search5"><input type="submit" value="검색"></div>
          </div><!--end of list_search  -->
        </form>
        <div id="clear"></div>

@@ -1,4 +1,5 @@
 /* 메인 콘텐트 */
+
 #main_content { 
     width: 716px;
     min-height: 615px;
@@ -36,6 +37,7 @@
   #carousel_section > ul > li >img{
     width: 100%;
       height: 100%;
+      cursor: pointer;
       /* object-fit: cover; */
   }
   /* 양쪽 화살표를 중앙에 배치시키기 */
@@ -83,6 +85,10 @@
     position: relative;
     top: 0px;
 }
+#board_preview a{
+
+    color: #fff;
+}
 #latest { width: 354px; float: left; box-sizing: border-box; background-color: #04d9d9;
     margin-right: 4px;
     border-radius: 2px;
@@ -91,7 +97,13 @@
 #latest h4 { font-size: 16px; padding-bottom: 5px; border-bottom: solid 1px #dddddd; }
 #latest ul { margin-top: 20px; }
 #latest li { margin-top: 8px; margin-left: 10px; }
-#latest span { display: inline-block; }
+#latest span { display: inline-block;
+  margin-top: 2px;
+  overflow: hidden;
+  width: 190px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0px;}
 #latest span:nth-child(1) { width: 170px; }
 #latest span:nth-child(2) { width: 50px; }
 #latest span:nth-child(3) { width: 80px; }
@@ -104,7 +116,13 @@
 #point_rank h4 { font-size: 16px; padding-bottom: 5px; border-bottom: solid 1px #dddddd; }
 #point_rank ul { margin-top: 20px; }
 #point_rank li { margin-top: 8px; margin-left: 10px; }
-#point_rank span { display: inline-block; }
+#point_rank span { display: inline-block; 
+  margin-top: 2px;
+  overflow: hidden;
+  width: 190px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0px;}
 #point_rank span:nth-child(1) { width: 170px; }
 #point_rank span:nth-child(2) { width: 50px; }
 #point_rank span:nth-child(3) { width: 80px; }

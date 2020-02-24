@@ -145,7 +145,6 @@
           ?>
           	    	</ul>
 
-
           			<ul id="page_num">
           <?php
               if ($total_page>=2 && $page >= 2) {
@@ -171,7 +170,7 @@
                   echo "<li>&nbsp;</li>";
               }
           ?>
-          			</ul> <!-- page -->
+          </ul> <!-- page -->
         </div>
       </div>
     </section>

@@ -18,6 +18,7 @@ create_table($conn, 'health_info');
 create_table($conn, 'together');
 create_table($conn, 'carecenter');
 create_table($conn, 'pick');
+create_table($conn, 'cart');
 create_table($conn, 'buy');
 create_table($conn, 'rating_info');
 create_table($conn, 'sales');

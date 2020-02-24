@@ -10,7 +10,7 @@ if(isset($_SESSION["user_id"])){
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>메시지 보내기</title>
+    <title>HELF :: 메시지함</title>
     <link rel="stylesheet" type="text/css" href="./css/common.css">
     <link rel="stylesheet" type="text/css" href="./css/message.css">
     <link rel="shortcut icon" href="./favicon.ico">

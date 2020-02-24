@@ -4,31 +4,52 @@
 
 .checkbox_div {
   display: inline-block;
-  float: left;
+  float: right;
 }
 
 .checkbox_div input {
-  width: 15px;
-  height: 15px;
-  margin-top: 55px;
+  width: 16px;
+  height: 16px;
+  margin-top: 60px;
+  border: 1px solid black;
 }
 
 #all_check {
+  float: right;
+  clear: both;
+  width: 714px;
   padding-top: 5px;
   padding-bottom: 5px;
-  font-size: 18px;
+  font-size: 13px;
+}
+
+#all_check #btn_submit {
+  width: 100px;
+  height: 28px;
+  padding: 3px 15px;
+  font-size: 13px;
+  border-radius: 2px;
+  border: 0.5px solid black;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  float: right;
 }
 
 #all_check input {
-  margin-top: 3px;
-  margin-right: 7px;
-  margin-left: 2px;
+  float: right;
+  margin-top: 6px;
+  margin-right: 2px;
+  margin-left: 10px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid black;
 }
 
 .program_li {
   display: inline-block;
   float: left;
-  width: 704px;
+  width: 714px;
   height: 140px;
   border-top: 0.5px solid lightgray;
   border-bottom: 0.5px solid lightgray;
@@ -94,11 +115,11 @@
   font-size: 10px;
 }
 
-.pick_buttons {
+.buttons {
   width: 110px;
 }
 
-.pick_buttons button {
+.buttons button {
   margin-bottom: 5px;
   font-size: 13px;
   padding: 3px 5px;

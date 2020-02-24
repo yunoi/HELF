@@ -5,6 +5,7 @@
 .clear{
   display: block;
   height: 10px;
+  clear: both;
 }
 .item_all{
   position: relative;
@@ -19,6 +20,7 @@
   background-color: #f3f4f8;
 }
 .div_item1 table td{
+  text-align: center;
   padding: 20px 15px 10px;
 }
 .div_center{
@@ -45,3 +47,26 @@
   text-align: right;
   width: 110px;
 }
+#program{
+  text-align:left;
+}
+.div_item2{height: 170px;}
+.item2_left{
+width: 330px;
+  float: left;
+  padding: 0px 15px;
+}
+.item2_right{
+  width: 330px;
+  float: left;
+  padding: 0px 15px;
+}
+.item2_right a{color: #f26656;
+    text-decoration: none;}
+.item2_right button{
+  width: 100%;
+  background-color: #ca0;
+  padding: 15px;
+}
+.left{float: left; width: 58%;}
+.right{float: left; width: 41%;}

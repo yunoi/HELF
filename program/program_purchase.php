@@ -6,6 +6,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
 <?php
   session_start();
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
+ $val=1;
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -61,16 +62,16 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                 <th id="title4">가격</th>
               </tr>
               <tr>
-                <td>
+                <td id="program">
                   <strong>운동 + 식단 프로그램</strong>
                   <ul>
                     <li>♥&nbsp;1회당 레슨시간(분) : 30분</li>
                     <li>♥&nbsp;레슨횟수 : 1회</li>
                   </ul></td>
                 <td><div class="">
-                    <button type="button" name="button" onclick="values(plus)"></button>
-                    <b>1</b>
-                    <button type="button" name="button" onclick="values(minus)"></button>
+                    <button type="button" name="button" onclick="">-</button>
+                    <b><?=$val?></b>
+                    <button type="button" name="button" onclick="">+</button>
                   </div></td>
                 <td>
                     <span id="item3">365</span>
@@ -90,14 +91,14 @@ https://kmong.com/order/2518542 참고한 사이트 화면
             의뢰인 정보
           </div>
           <div class="div_body">
-            <div class="">
+            <div class="item2_left">
               <ul>
                 <li>본인 확인 후 구매가 가능합니다.(첫 결제 1회만)</li>
                 <li>인증된 정보에 따라 실명이 자동 업데이트 됩니다.</li>
               </ul>
             </div>
-            <div class="">
-              <a href="#">로그인 후 휴대폰 인증을 해주세요</a>
+            <div class="item2_right">
+              <a href="#"><button type="button" name="button"><b>로그인 후 휴대폰 인증을 해주세요</b></button> </a>
             </div>
           </div><!--end of div_body-->
         </div><!--end of div_item2-->

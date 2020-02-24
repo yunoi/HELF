@@ -2,12 +2,39 @@
   width: 714px;
 }
 
+.checkbox_div {
+  display: inline-block;
+  float: left;
+}
+
+.checkbox_div input {
+  width: 15px;
+  height: 15px;
+  margin-top: 55px;
+}
+
+#all_check {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 18px;
+}
+
+#all_check input {
+  margin-top: 3px;
+  margin-right: 7px;
+  margin-left: 2px;
+}
+
 .program_li {
   display: inline-block;
-  width: 714px;
+  float: left;
+  width: 704px;
   height: 140px;
-  border: 0.5px solid lightgray;
+  border-top: 0.5px solid lightgray;
+  border-bottom: 0.5px solid lightgray;
   border-radius: 2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
 }
 
@@ -71,7 +98,7 @@
   width: 110px;
 }
 
-.pick_buttons button{
+.pick_buttons button {
   margin-bottom: 5px;
   font-size: 13px;
   padding: 3px 5px;
@@ -97,6 +124,7 @@
 }
 
 #page_num {
+  clear: both;
   text-align: center;
   margin: 30px 0
 }

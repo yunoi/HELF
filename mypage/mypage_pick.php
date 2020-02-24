@@ -75,6 +75,7 @@
           </div>
         </div>
         <div id="mypage_content">
+          <form id="delete_pick_form" action="mypage_pick.php" method="post">
           <ul id="program_list">
           <?php
               if (isset($_GET["page"])) {
@@ -119,27 +120,33 @@
 
                   ?>
 
-                  <a href="../program/program_detail.php?o_key=<?=$o_key?>">
-                    <li>
-                      <div class="program_li">
-                        <div class="program_image">
-                          <img src='../admin/data/<?=$file_copied?>'>
-                        </div>
-                        <div class="program_detail">
-                          <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
-                          <div class="info_2"><?=$subject?></div>
-                          <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
-                        </div>
-                        <div class="program_price">
-                          <p><?=$price?><span> 원~</span>
-                          <div class="pick_buttons">
-                            <button type="button" id="cart_btn">장바구니</button> <br>
-                            <button type="button" id="delete_btn">삭제</button>
+                        <li>
+                          <div class="program_li">
+                            <div class="program_image">
+                              <a href="../program/program_detail.php?o_key=<?=$o_key?>">
+                              <img src='../admin/data/<?=$file_copied?>'>
+                              </a>
+                            </div>
+                            <div class="program_detail">
+                              <a href="../program/program_detail.php?o_key=<?=$o_key?>">
+                                <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
+                                <div class="info_2"><?=$subject?></div>
+                                <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
+                              </a>
+                            </div>
+                            <div class="program_price">
+                              <p><?=$price?><span> 원~</span>
+                              <div class="pick_buttons">
+                                <button type="button" id="cart_btn">장바구니</button> <br>
+                                <button type="button" id="delete_btn">삭제</button>
+                              </div>
+                            </div>
+                            <div class="checkbox_div">
+                              <input type="checkbox" name="no[]">
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </li>
-                  </a>
+                        </li>
+
                   <?php
                  $number--;
                   }
@@ -162,7 +169,10 @@
                 }
           ?>
                   </ul>
-
+                  <!-- <div id="all_check">
+                    <input type="checkbox"  value=""> 선택 프로그램 삭제
+                  </div> -->
+                </form>
                 <ul id="page_num">
           <?php
               if ($total_page>=2 && $page >= 2) {

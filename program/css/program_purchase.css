@@ -13,7 +13,8 @@
   margin: 0px auto;
 }
 .div_item1{
-  width: 800px;
+  width: 828px;
+  border: 1px solid #e6e6e6;
 }
 .div_item1 table th{
   padding: 10px 15px;
@@ -50,7 +51,7 @@
 #program{
   text-align:left;
 }
-.div_item2{height: 170px;}
+.div_item2{border: 1px solid #e6e6e6; height: 170px;}
 .item2_left{
 width: 330px;
   float: left;
@@ -72,7 +73,8 @@ width: 330px;
 .right{float: left; width: 41%;}
 .left .hi{padding: 0px 15px; width: 70%;}
 .left .hi button{float: right;}
-
+.div_item3{height: 170px; border: 1px solid #e6e6e6;}
+.div_item4{border: 1px solid #e6e6e6;}
 .div_item4 .div_body ul{list-style: none;}
 .div_item4 .div_body ul li{
   padding-right: 30px;

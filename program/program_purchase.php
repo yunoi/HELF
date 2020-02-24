@@ -1,7 +1,5 @@
 <!--
 https://kmong.com/order/2518542 참고한 사이트 화면
-이페이지 구매화면에서 구매후 결제할 페이지로 생각하고 만들었음
-하 귀찮다 9:15
  -->
 <?php
   session_start();
@@ -162,6 +160,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
               </ul>
             </div>
         </div>
+      </div><!--end of div_item4-->
       <div class="clear"></div>
       <div class="div_item5">
         <div class="div_body">
@@ -176,7 +175,6 @@ https://kmong.com/order/2518542 참고한 사이트 화면
             <a href="#"><button type="button" name="button">결제하기</button> </a>
           </div>
       </div><!--end of div_body-->
-    </div><!--end of div_item6-->
     </div><!--end of item_all-->
     </section>
 <div class="clear"></div>

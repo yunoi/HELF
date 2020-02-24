@@ -86,33 +86,33 @@
             <br><br><br><br><br>
 
             <?php
-    if (isset($_GET["page"])) {
-        $page = $_GET["page"];
-    } else {
-        $page = 1;
-    }
+              if (isset($_GET["page"])) {
+                  $page = $_GET["page"];
+              } else {
+                  $page = 1;
+              }
 
-    $conn = mysqli_connect("localhost", "root", "123456", "helf");
-    $sql = "select * from program order by o_key desc";
-    $result = mysqli_query($conn, $sql);
+              $conn = mysqli_connect("localhost", "root", "123456", "helf");
+              $sql = "select * from program order by o_key desc";
+              $result = mysqli_query($conn, $sql);
 
-    for ($i=0; $i<5; $i++) {
-       $back_color = array('#04adbf', '#04d9d9', '#f2b705', '#d98e04','#f23005');
+              for ($i=0; $i<5; $i++) {
+                 $back_color = array('#04adbf', '#04d9d9', '#f2b705', '#d98e04','#f23005');
 
 
-       // 가져올 레코드로 위치(포인터) 이동
-       $row = mysqli_fetch_array($result);
-       // 하나의 레코드 가져오기
-       $shop         = $row["shop"];
-       $type          = $row["type"];
-       $subject        = $row["subject"];
-       $end_day     = $row["end_day"];
-       $price  = $row["price"];
-       $location         = $row["location"];
-       $file_copied         = $row["file_copied"];
-       $file_type         = $row["file_type"];
+               // 가져올 레코드로 위치(포인터) 이동
+               $row = mysqli_fetch_array($result);
+               // 하나의 레코드 가져오기
+               $shop         = $row["shop"];
+               $type          = $row["type"];
+               $subject        = $row["subject"];
+               $end_day     = $row["end_day"];
+               $price  = $row["price"];
+               $location         = $row["location"];
+               $file_copied         = $row["file_copied"];
+               $file_type         = $row["file_type"];
 
-       ?>
+               ?>
        <a href="program_detail.php">
 				<li class="li_program_list">
           <div class="div_list" style="background:<?=$back_color[$i]?>">

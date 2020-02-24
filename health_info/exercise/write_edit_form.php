@@ -1,8 +1,9 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 
-$num=$id=$subject=$content=$day=$hit="";
+$num=$id=$subject=$content=$day=$hit=$video_name="";
 $mode="insert";
 $checked="";
 $id= $_SESSION['user_id'];
@@ -31,6 +32,10 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
     $file_copied=$row['file_copied'];
     $day=$row['regist_day'];
     $hit=$row['hit'];
+    $video_name= htmlspecialchars($row['video_name']);
+    $video_name=str_replace("\n", "<br>", $video_name);
+    $video_name=str_replace(" ", "&nbsp;", $video_name);
+
     mysqli_close($conn);
 }
 ?>
@@ -63,7 +68,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
        </div><!--end of col1  -->
 
        <div id="col2">
-         <div id="title">다이어트 레시피</div>
+         <div id="title">운동정보</div>
          <div class="clear"></div>
          <div id="write_form_title">글쓰기</div>
          <div class="clear"></div>
@@ -89,6 +94,11 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
                 <div class="col1">내&nbsp;&nbsp;용</div>
                 <div class="col2"><textarea name="content" rows="15" cols="79"><?=$content?></textarea></div>
               </div><!--end of write_row3  -->
+              <div id="write_row3_video">
+                <div class="col1">첨부 동영상 소스</div>
+                <div class="col2"><input type="text" name="video_name" value=<?=$video_name?>></div>
+              </div><!--end of write_row3  -->
+              <br><br>
               <div class="write_line"></div>
               <div id="write_row4">
                 <div class="col1">파일업로드</div>

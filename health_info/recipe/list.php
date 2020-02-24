@@ -3,38 +3,7 @@ session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 // echo "<script>alert('현재 로그인한 아이디: {$_SESSION['user_id']}');</script>";
 
-define('SCALE', 9);
 
-//*****************************************************
-$sql=$result=$total_record=$total_page=$start="";
-$row=$memo_content="";
-$total_record=0;
-//*****************************************************
-if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
-    //제목, 내용, 아이디
-    $find = $_POST["find"];
-    $search = $_POST["search"];
-    $q_search = mysqli_real_escape_string($conn, $search);
-    $sql="SELECT * from `health_info` where $find like '%$q_search%' AND b_code='레시피' order by num desc;";
-} else {
-    $sql="SELECT * from `health_info` where b_code='레시피' order by num desc;";
-}
-
-$result=mysqli_query($conn, $sql);
-$total_record=mysqli_num_rows($result);
-// echo "<script>alert('{$total_record}');</script>";
-
-$total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
-
-//2.페이지가 없으면 디폴트 페이지 1페이지
-if (empty($_GET['page'])) {
-    $page=1;
-} else {
-    $page=$_GET['page'];
-}
-
-$start=($page -1) * SCALE;
-$number = $total_record - $start;
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +21,40 @@ $number = $total_record - $start;
   <body>
     <div id="wrap">
       <div id="header">
-        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";
+        define('SCALE', 9);
+
+        //*****************************************************
+        $sql=$result=$total_record=$total_page=$start="";
+        $row=$memo_content="";
+        $total_record=0;
+        //*****************************************************
+        if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
+            //제목, 내용, 아이디
+            $find = $_POST["find"];
+            $search = $_POST["search"];
+            $q_search = mysqli_real_escape_string($conn, $search);
+            $sql="SELECT * from `health_info` where $find like '%$q_search%' AND b_code='레시피' order by num desc;";
+        } else {
+            $sql="SELECT * from `health_info` where b_code='레시피' order by num desc;";
+        }
+
+        $result=mysqli_query($conn, $sql);
+        $total_record=mysqli_num_rows($result);
+        // echo "<script>alert('{$total_record}');</script>";
+
+        $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
+
+        //2.페이지가 없으면 디폴트 페이지 1페이지
+        if (empty($_GET['page'])) {
+            $page=1;
+        } else {
+            $page=$_GET['page'];
+        }
+
+        $start=($page -1) * SCALE;
+        $number = $total_record - $start;
+        ?>
       </div><!--end of header  -->
       <div id="content">
         <div id="col1">

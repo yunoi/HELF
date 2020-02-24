@@ -11,7 +11,7 @@ session_start();
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>메시지함</title>
+    <title>HELF :: 메시지함</title>
     <link rel="stylesheet" type="text/css" href="./css/message.css">
     <link rel="shortcut icon" href="./favicon.ico">
   </head>

@@ -1,7 +1,5 @@
 <!--
 https://kmong.com/order/2518542 참고한 사이트 화면
-이페이지 구매화면에서 구매후 결제할 페이지로 생각하고 만들었음
-하 귀찮다 9:15
  -->
 <?php
   session_start();
@@ -26,8 +24,43 @@ https://kmong.com/order/2518542 참고한 사이트 화면
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="./css/program_purchase.css">
     <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
     <script src="./js/program_purchase.js" charset="utf-8"></script>
+    <!-- 카카오페이 -->
+    <script>
+      function payment(){
+        var IMP = window.IMP; // 생략가능
+        IMP.init('imp50161639'); // 가맹점 식별코드
+        
+        IMP.request_pay({
+    pg : 'kakaopay',
+    pay_method : 'card',
+    merchant_uid : 'merchant_' + new Date().getTime(),
+    name : '주문명:결제테스트',
+    amount : 14000,
+    buyer_email : 'iamport@siot.do',
+    buyer_name : '구매자이름',
+    buyer_tel : '010-1234-5678',
+    buyer_addr : '서울특별시 강남구 삼성동',
+    buyer_postcode : '123-456',
+    m_redirect_url : '/payments/complete'
+}, function(rsp) {
+    if ( rsp.success ) {
+        var msg = '결제가 완료되었습니다.';
+        msg += '고유ID : ' + rsp.imp_uid;
+        msg += '상점 거래ID : ' + rsp.merchant_uid;
+        msg += '결제 금액 : ' + rsp.paid_amount;
+        msg += '카드 승인번호 : ' + rsp.apply_num;
+    } else {
+        var msg = '결제에 실패하였습니다.';
+        msg += '에러내용 : ' + rsp.error_msg;
+    }
+    alert(msg);
+});
+      }
+  
+    </script>
   </head>
   <body>
     <header>
@@ -43,16 +76,17 @@ https://kmong.com/order/2518542 참고한 사이트 화면
             <img src="" alt="">
           </div>
           <div class="div_right">
-            <div class="">
+            <div class="item2_div">
+              <!-- 아이콘과 회사명관련을 입력할 부분 -->
+              <img src="./img/koma.png" alt=""/>
+              <span></span>
+            </div>
+            <div class="item1_div">
               <!-- 제품명 부분 -->
               <h4>프로그램 이름</h4>
             </div>
-            <div class="">
-              <!-- 아이콘과 회사명관련을 입력할 부분 -->
-              <img src="" alt=""/>
-              <span></span>
-            </div>
           </div>
+          <div class="clear"></div>
           <div class="div_center">
             <table>
               <tr>
@@ -113,6 +147,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
               현재 사용가능 쿠폰&nbsp;<span>0</span>
               <button type="button" name="button">쿠폰선택</button>
             </div>
+              <div class="clear"></div>
             <div class="row">
               <div class="">
                   캐시 사용 <span>(보유캐시&nbsp;:&nbsp;<b>0</b>원)</span>
@@ -149,33 +184,20 @@ https://kmong.com/order/2518542 참고한 사이트 화면
             결제방법
           </div>
           <div class="div_body">
-          <div class="">
-            <ul>
-              <li><input type="radio" name="pay" value="">신용카드</li>
-              <li><input type="radio" name="pay" value="">실시간 계좌이체</li>
-              <li><input type="radio" name="pay" value="">무통장입금</li>
-              <li><input type="radio" name="pay" value="">휴대폰</li>
-              <li><input type="radio" name="pay" value="">페이나우</li>
-              <li><input type="radio" name="pay" value=""><img src="" alt="payco"></li>
-            </ul>
-          </div>
+            <div class="">
+              <ul>
+                <li><input type="radio" name="pay" value="">신용카드</li>
+                <li><input type="radio" name="pay" value="">실시간 계좌이체</li>
+                <li><input type="radio" name="pay" value="">무통장입금</li>
+                <li><input type="radio" name="pay" value="">휴대폰</li>
+                <li><input type="radio" name="pay" value="">페이나우</li>
+                <li><input type="radio" name="pay" value=""><img src="" alt="payco"></li>
+              </ul>
+            </div>
         </div>
-              <div class="clear"></div>
-        <div class="div_item5">
-          <div class="h">
-            세금계산서
-          </div>
-          <div class="div_body">
-            <ul>
-              <li>카드전표, 현금영수증(지출방법)은 '크몽'이름으로 발행되어 매입세액공제를 받을 수 없습니다.[매입세액공제 안내]<img src="" alt="매입세액공제 안내"> </li>
-              <li><b>매입세액공제가 필요할 경우 반드시 해당 기업전문가에게 세금계산서를 발급 신청을 하시기 바랍니다.</b></li>
-              <li>세금계산서는 거래 주체인 전문가가 의뢰인에게 발행합니다.</li>
-              <li>이벤트 쿠폰 사용 금액은 할인된 금액이기 때문에 세금계산서에 포함되지 않습니다.</li>
-            </ul>
-          </div>
-        </div>
+      </div><!--end of div_item4-->
       <div class="clear"></div>
-      <div class="div_item6">
+      <div class="div_item5">
         <div class="div_body">
           <div class="position-relative">
                 <img src="" alt="">
@@ -184,11 +206,10 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                     <li>크몽을 통해 결제 진행 시 관련 정책에 의해 보호 받을 수 있습니다.</li>
                 </ul>
             </div>
-          <div class="">
-            <a href="#"><button type="button" name="button">결제하기</button> </a>
+          <div class="btn">
+            <a href="#"><button type="button" name="button" onclick="payment()">결제하기</button> </a>
           </div>
       </div><!--end of div_body-->
-    </div><!--end of div_item6-->
     </div><!--end of item_all-->
     </section>
 <div class="clear"></div>

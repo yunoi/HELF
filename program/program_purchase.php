@@ -32,7 +32,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       function payment(){
         var IMP = window.IMP; // 생략가능
         IMP.init('imp50161639'); // 가맹점 식별코드
-        
+
         IMP.request_pay({
     pg : 'kakaopay',
     pay_method : 'card',
@@ -59,7 +59,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
     alert(msg);
 });
       }
-  
+
     </script>
   </head>
   <body>
@@ -186,12 +186,8 @@ https://kmong.com/order/2518542 참고한 사이트 화면
           <div class="div_body">
             <div class="">
               <ul>
-                <li><input type="radio" name="pay" value="">신용카드</li>
-                <li><input type="radio" name="pay" value="">실시간 계좌이체</li>
                 <li><input type="radio" name="pay" value="">무통장입금</li>
-                <li><input type="radio" name="pay" value="">휴대폰</li>
-                <li><input type="radio" name="pay" value="">페이나우</li>
-                <li><input type="radio" name="pay" value=""><img src="" alt="payco"></li>
+                <li><input type="radio" name="pay" value=""><img src="./img/kakao.jpg" alt="kakao"></li>
               </ul>
             </div>
         </div>

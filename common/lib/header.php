@@ -130,7 +130,7 @@
               </li>
 
         <li class="down_menu">
-            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">
                 <span>건강정보</span></a>
                 <ol class="menu_slide" id="info_slide">
                 <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동 정보</a></li>

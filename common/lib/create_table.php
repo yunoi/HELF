@@ -8,6 +8,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_trigger.php";
 create_table($conn, 'members');
 create_table($conn, 'message');
 create_table($conn, 'program');
+create_table($conn, 'sales');
 create_table($conn, 'p_review');
 create_table($conn, 'p_qna');
 create_table($conn, 'notice');
@@ -19,9 +20,7 @@ create_table($conn, 'together');
 create_table($conn, 'carecenter');
 create_table($conn, 'pick');
 create_table($conn, 'cart');
-create_table($conn, 'buy');
 create_table($conn, 'rating_info');
-create_table($conn, 'sales');
 create_table($conn, 'deleted_members');
 
 insert_init_data($conn, 'members');

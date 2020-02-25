@@ -1,4 +1,4 @@
-<?php
+sales<?php
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
   $id = $_SESSION["user_id"];
@@ -7,6 +7,42 @@
     $page = $_GET["page"];
   } else {
     $page = "1";
+  }
+
+  if(isset($_GET["num"])) {
+    $num = $_GET["num"];
+
+    $sql = "delete from sales where num=$num;";
+    mysqli_query($conn, $sql);
+
+    echo "
+    <script>
+      alert('삭제되었습니다.');
+    </script>
+    ";
+
+  } else {
+    $num = "";
+  }
+
+  if(isset($_POST["no"])) {
+    $no = $_POST["no"];
+
+    for ($i=0; $i<count($no); $i++) {
+      $sql = "delete from sales where num=$no[$i];";
+      $result = mysqli_query($conn, $sql);
+    }
+
+    echo "
+    <script>
+      alert('삭제되었습니다.');
+    </script>
+    ";
+
+
+
+  } else {
+    $no = "";
   }
 
 ?>
@@ -31,7 +67,20 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <script type="text/javascript" src="./common/js/main.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        // url에서 get 값 지워줌;
+        history.pushState(null, null, "http://localhost/helf/mypage/mypage_buy.php");
 
+        $("#all_agree").click(function() {
+          if($("#all_agree").prop("checked")) {
+            $("input[type=checkbox]").prop("checked",true);
+          } else {
+             $("input[type=checkbox]").prop("checked",false);
+          }
+        });
+      })
+    </script>
   </head>
   <body>
     <header>
@@ -63,7 +112,7 @@
               <p>내가 쓴 상품문의</p>
             </a>
           </div>
-          <div id="fick_list"onclick="location.href='./mypage_pick.php'">
+          <div id="fick_list" onclick="location.href='./mypage_pick.php'">
             <a>
               <p>찜한 상품</p>
             </a>
@@ -75,15 +124,15 @@
           </div>
         </div>
         <div id="mypage_content">
+          <form id="delete_buy_form" action="mypage_buy.php?page=<?=$page?>" method="post">
+            <div id="all_check">
+              <input type="checkbox" id="all_agree">
+              <input type="submit" id="btn_submit" value="선택 상품 삭제">
+            </div>
           <ul id="program_list">
           <?php
-              if (isset($_GET["page"])) {
-                  $page = $_GET["page"];
-              } else {
-                  $page = 1;
-              }
 
-              $sql = "select buy.*, program.* from buy, program where id='$id' and buy.o_key = program.o_key;";
+              $sql = "select sales.*, program.* from sales, program where id='$id' and sales.o_key = program.o_key;";
               $result = mysqli_query($conn, $sql);
               $total_record = mysqli_num_rows($result); // 전체 글 수
 
@@ -107,40 +156,49 @@
                  // 가져올 레코드로 위치(포인터) 이동
                  $row = mysqli_fetch_array($result);
                  // 하나의 레코드 가져오기
-                 $regist_day   = $row["regist_day"];
+                 $sales_day    = $row["sales_day"];
+                 $num          = $row["num"];
                  $o_key        = $row["o_key"];
                  $shop         = $row["shop"];
                  $type         = $row["type"];
                  $subject      = $row["subject"];
                  $end_day      = $row["end_day"];
                  $price        = $row["price"];
+                 $choose       = $row["choose"];
                  $location     = $row["location"];
                  $file_copied  = $row["file_copied"];
                  $file_type    = $row["file_type"];
 
                   ?>
 
-                  <a href="../program/program_detail.php?o_key=<?=$o_key?>">
-                    <li>
-                      <div class="program_li">
-                        <div class="program_image">
-                          <img src='../admin/data/<?=$file_copied?>'>
-                        </div>
-                        <div class="program_detail">
-                          <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
-                          <div class="info_2"><?=$subject?></div>
-                          <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
-                          <div class="program_buy_day">구매일 : <?=$regist_day?></div>
-                        </div>
-                        <div class="program_price">
-                          <p><?=$price?><span> 원~</span></p>
-                          <div class="pick_buttons">
-                            <button type="button" id="delete_btn">삭제</button>
+                        <li>
+                          <div class="program_pick_li">
+                            <div class="program_image">
+                              <a href="../program/program_detail.php?o_key=<?=$o_key?>">
+                              <img src='../admin/data/<?=$file_copied?>'>
+                              </a>
+                            </div>
+                            <div class="program_detail">
+                              <a href="../program/program_detail.php?o_key=<?=$o_key?>">
+                                <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
+                                <div class="info_2"><?=$subject?></div>
+                                <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
+                                <div class="info_4">선택한 옵션 : <?=$choose?></div>
+                                <div class="program_buy_day">구매일 : <?=$sales_day?></div>
+                              </a>
+                            </div>
+                            <div class="program_price">
+                              <p><?=$price?><span> 원</span>
+                              <div class="buttons">
+                                <button type="button" id="delete_btn" onclick="location.href='mypage_buy.php?num=<?=$num?>&page=<?=$page?>'">삭제</button>
+                              </div>
+                            </div>
+                            <div class="checkbox_div">
+                              <input type="checkbox" name="no[]" value="<?=$num?>">
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </li>
-                  </a>
+                        </li>
+
                   <?php
                  $number--;
                   }
@@ -164,11 +222,12 @@
           ?>
                   </ul>
 
+                </form>
                 <ul id="page_num">
           <?php
               if ($total_page>=2 && $page >= 2) {
                   $new_page = $page-1;
-                  echo "<li><a href='mypage_pick.php?page=$new_page'>◀ 이전</a> </li>";
+                  echo "<li><a href='mypage_buy.php?page=$new_page'>◀ 이전</a> </li>";
               } else {
                   echo "<li>&nbsp;</li>";
               }
@@ -178,13 +237,13 @@
                   if ($page == $i) {     // 현재 페이지 번호 링크 안함
                       echo "<li><b> $i </b></li>";
                   } else {
-                      echo "<li><a href='mypage_pick.php?page=$i'>  $i  </a><li>";
+                      echo "<li><a href='mypage_buy.php?page=$i'>  $i  </a><li>";
                   }
               }
               if ($total_page>=2 && $page != $total_page) {
                   $new_page = $page+1;
 
-                  echo "<li> <a href='mypage_pick.php?page=$new_page'>다음 ▶</a> </li>";
+                  echo "<li> <a href='mypage_buy.php?page=$new_page'>다음 ▶</a> </li>";
               } else {
                   echo "<li>&nbsp;</li>";
               }

@@ -264,7 +264,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     //master or admin이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
     // echo "<script>alert('{$_SESSION['user_id']}');</script>";
     if (isset($_SESSION['user_id'])) {
-        if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$user_id) {
+        if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$id) {
             echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
             echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
         }

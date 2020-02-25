@@ -59,7 +59,7 @@
       <li><a href="#"><img src="http://<?php echo $_SERVER['HTTP_HOST'].$envelope;?>" alt="쪽지함" onclick="message_box()"></a></li>
       <li id="mypage_li">
         <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/mypage/mypage_board.php">
-          <?=$logged?>
+          <b><?=$logged?></b>
         </a>
           <ol id="mypage_slide">
             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf//mypage/mypage_board.php">내가 쓴 글</a></li>

@@ -9,6 +9,42 @@
     $page = "1";
   }
 
+  if(isset($_GET["num"])) {
+    $num = $_GET["num"];
+
+    $sql = "delete from pick where num=$num;";
+    mysqli_query($conn, $sql);
+
+    echo "
+    <script>
+      alert('삭제되었습니다.');
+    </script>
+    ";
+
+  } else {
+    $num = "";
+  }
+
+  if(isset($_POST["no"])) {
+    $no = $_POST["no"];
+
+    for ($i=0; $i<count($no); $i++) {
+      $sql = "delete from pick where num=$no[$i];";
+      $result = mysqli_query($conn, $sql);
+    }
+
+    echo "
+    <script>
+      alert('삭제되었습니다.');
+    </script>
+    ";
+
+
+
+  } else {
+    $no = "";
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +67,20 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <script type="text/javascript" src="./common/js/main.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        // url에서 get 값 지워줌;
+        history.pushState(null, null, "http://localhost/helf/mypage/mypage_pick.php");
 
+        $("#all_agree").click(function() {
+          if($("#all_agree").prop("checked")) {
+            $("input[type=checkbox]").prop("checked",true);
+          } else {
+             $("input[type=checkbox]").prop("checked",false);
+          }
+        });
+      })
+    </script>
   </head>
   <body>
     <header>
@@ -75,14 +124,13 @@
           </div>
         </div>
         <div id="mypage_content">
-          <form id="delete_pick_form" action="mypage_pick.php" method="post">
+          <form id="delete_pick_form" action="mypage_pick.php?page=<?=$page?>" method="post">
+            <div id="all_check">
+              <input type="checkbox" id="all_agree">
+              <input type="submit" id="btn_submit" value="선택 상품 삭제">
+            </div>
           <ul id="program_list">
           <?php
-              if (isset($_GET["page"])) {
-                  $page = $_GET["page"];
-              } else {
-                  $page = 1;
-              }
 
               $sql = "select pick.*, program.* from pick, program where id='$id' and pick.o_key = program.o_key;";
               $result = mysqli_query($conn, $sql);
@@ -108,12 +156,14 @@
                  // 가져올 레코드로 위치(포인터) 이동
                  $row = mysqli_fetch_array($result);
                  // 하나의 레코드 가져오기
+                 $num          = $row["num"];
                  $o_key        = $row["o_key"];
                  $shop         = $row["shop"];
                  $type         = $row["type"];
                  $subject      = $row["subject"];
                  $end_day      = $row["end_day"];
                  $price        = $row["price"];
+                 $choose       = $row["choose"];
                  $location     = $row["location"];
                  $file_copied  = $row["file_copied"];
                  $file_type    = $row["file_type"];
@@ -121,7 +171,7 @@
                   ?>
 
                         <li>
-                          <div class="program_li">
+                          <div class="program_pick_li">
                             <div class="program_image">
                               <a href="../program/program_detail.php?o_key=<?=$o_key?>">
                               <img src='../admin/data/<?=$file_copied?>'>
@@ -132,17 +182,18 @@
                                 <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
                                 <div class="info_2"><?=$subject?></div>
                                 <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
+                                <div class="info_4">선택한 옵션 : <?=$choose?></div>
                               </a>
                             </div>
                             <div class="program_price">
-                              <p><?=$price?><span> 원~</span>
-                              <div class="pick_buttons">
+                              <p><?=$price?><span> 원</span>
+                              <div class="buttons">
                                 <button type="button" id="cart_btn">장바구니</button> <br>
-                                <button type="button" id="delete_btn">삭제</button>
+                                <button type="button" id="delete_btn" onclick="location.href='mypage_pick.php?num=<?=$num?>&page=<?=$page?>'">삭제</button>
                               </div>
                             </div>
                             <div class="checkbox_div">
-                              <input type="checkbox" name="no[]">
+                              <input type="checkbox" name="no[]" value="<?=$num?>">
                             </div>
                           </div>
                         </li>
@@ -169,9 +220,7 @@
                 }
           ?>
                   </ul>
-                  <!-- <div id="all_check">
-                    <input type="checkbox"  value=""> 선택 프로그램 삭제
-                  </div> -->
+
                 </form>
                 <ul id="page_num">
           <?php

@@ -27,12 +27,19 @@ if(isset($_SESSION["user_id"])){
       }
     ?>
     <section>
-      <div id="message_box">
-        <h3 id="write_title">메시지 보내기</h3>
-        <ul class="top_buttons">
-          <li><a href="message_box.php?mode=receive">받은 메시지</a></li>
-          <li><a href="message_box.php?mode=send">보낸 메시지</a></li>
-        </ul>
+    <div id="message_main_content">
+        <h2 id="write_title">메시지 보내기</h2>
+        <div id="message_buttons">
+                <ul class="tab">
+                    <li>
+                        <a href="./message_box.php?mode=receive" id="received">받은 메시지</a>
+                    </li>
+                    <li>
+                        <a href="./message_box.php?mode=send" id="sent">보낸 메시지</a>
+                    </li>
+                </ul>
+            </div>
+        <div id="message_content">
         <form name="message_form" action="message_insert.php" method="post">
           <div id="write_msg">
             <ul>
@@ -55,10 +62,11 @@ if(isset($_SESSION["user_id"])){
               </li>
             </ul>
             <div class="bottom_buttons">
-            <button type="button" onclick="history.go(-1)">뒤로가기</button>
+            <button type="button" onclick="check_back()">뒤로가기</button>
             <button type="button" onclick="check_message()">보내기</button>
             </div>          </div>
         </form>
+      </div>
       </div>
     </section>
   </body>

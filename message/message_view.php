@@ -17,7 +17,8 @@ session_start();
   </head>
   <body>
     <section>
-        <h3 class="title">
+    <div id="message_main_content">
+        <h2 class="title">
 <?php
   $mode = $_GET['mode'];
   $num = $_GET['num'];
@@ -54,7 +55,18 @@ session_start();
     echo "받은 메시지 > 내용보기";
   }
 ?>
-        </h3>
+        </h2>
+        <div id="message_buttons">
+                <ul class="tab">
+                    <li>
+                        <a href="./message_box.php?mode=receive" id="received">받은 메시지</a>
+                    </li>
+                    <li>
+                        <a href="./message_box.php?mode=send" id="sent">보낸 메시지</a>
+                    </li>
+                </ul>
+            </div>
+        <div id="message_content">
         <ul id="view_content">
           <li>
             <span class="col1"><b>제목: </b><?=$subject?></span>
@@ -68,14 +80,10 @@ session_start();
 <?php
   if($mode == "send"){
     echo ("
-    <li><button onclick=\"location.href='message_box.php?mode=receive'\">받은 메시지</button></li>
-    <li><button onclick=\"location.href='message_box.php?mode=send'\">보낸 메시지</button></li>
     <li><button onclick='delete_confirm()'>삭제</button></li>
     ");
   } else {
     echo ("
-    <li><button onclick=\"location.href='message_box.php?mode=receive'\">받은 메시지</button></li>
-    <li><button onclick=\"location.href='message_box.php?mode=send'\">보낸 메시지</button></li>
     <li><button onclick=\"location.href='message_response_form.php?num=$num'\">답변하기</button></li>
     <li><button onclick='delete_confirm()'>삭제</button></li>
     ");
@@ -83,6 +91,8 @@ session_start();
 ?>
         </ul>
       </div>
+</div>
+</div>
     </section>
     <script>
       function delete_confirm(){

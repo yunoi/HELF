@@ -1,4 +1,4 @@
-<?php
+sales<?php
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
   $id = $_SESSION["user_id"];
@@ -12,7 +12,7 @@
   if(isset($_GET["num"])) {
     $num = $_GET["num"];
 
-    $sql = "delete from buy where num=$num;";
+    $sql = "delete from sales where num=$num;";
     mysqli_query($conn, $sql);
 
     echo "
@@ -29,7 +29,7 @@
     $no = $_POST["no"];
 
     for ($i=0; $i<count($no); $i++) {
-      $sql = "delete from buy where num=$no[$i];";
+      $sql = "delete from sales where num=$no[$i];";
       $result = mysqli_query($conn, $sql);
     }
 
@@ -132,7 +132,7 @@
           <ul id="program_list">
           <?php
 
-              $sql = "select buy.*, program.* from buy, program where id='$id' and buy.o_key = program.o_key;";
+              $sql = "select sales.*, program.* from sales, program where id='$id' and sales.o_key = program.o_key;";
               $result = mysqli_query($conn, $sql);
               $total_record = mysqli_num_rows($result); // 전체 글 수
 
@@ -156,7 +156,7 @@
                  // 가져올 레코드로 위치(포인터) 이동
                  $row = mysqli_fetch_array($result);
                  // 하나의 레코드 가져오기
-                 $regist_day   = $row["regist_day"];
+                 $sales_day    = $row["sales_day"];
                  $num          = $row["num"];
                  $o_key        = $row["o_key"];
                  $shop         = $row["shop"];
@@ -164,6 +164,7 @@
                  $subject      = $row["subject"];
                  $end_day      = $row["end_day"];
                  $price        = $row["price"];
+                 $choose       = $row["choose"];
                  $location     = $row["location"];
                  $file_copied  = $row["file_copied"];
                  $file_type    = $row["file_type"];
@@ -182,11 +183,12 @@
                                 <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
                                 <div class="info_2"><?=$subject?></div>
                                 <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
-                                <div class="program_buy_day">구매일 : <?=$regist_day?></div>
+                                <div class="info_4">선택한 옵션 : <?=$choose?></div>
+                                <div class="program_buy_day">구매일 : <?=$sales_day?></div>
                               </a>
                             </div>
                             <div class="program_price">
-                              <p><?=$price?><span> 원~</span>
+                              <p><?=$price?><span> 원</span>
                               <div class="buttons">
                                 <button type="button" id="delete_btn" onclick="location.href='mypage_buy.php?num=<?=$num?>&page=<?=$page?>'">삭제</button>
                               </div>

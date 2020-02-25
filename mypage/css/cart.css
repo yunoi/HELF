@@ -1,5 +1,9 @@
+#cart_main_content {
+  width: 1000px;
+  margin: 0 auto;
+}
 #program_list {
-  width: 714px;
+  width: 1000px;
 }
 
 .checkbox_div {
@@ -17,7 +21,7 @@
 #all_check {
   float: right;
   clear: both;
-  width: 714px;
+  width: 1000px;
   padding-top: 5px;
   padding-bottom: 5px;
   font-size: 13px;
@@ -49,7 +53,7 @@
 .program_cart_li {
   display: inline-block;
   float: left;
-  width: 714px;
+  width: 1000px;
   height: 140px;
   border-top: 0.5px solid lightgray;
   border-bottom: 0.5px solid lightgray;
@@ -80,7 +84,7 @@
   display: inline-block;
   float: left;
   width: 350px;
-  margin-top: 20px;
+  margin-top: 4px;
   margin-left: 20px;
 }
 
@@ -94,6 +98,14 @@
 
 .info_2 {
   font-size: 17px;
+}
+
+.info_3 {
+  margin-bottom: 12px !important;
+}
+
+.info_4 {
+  font-weight: bold;
 }
 
 .program_price {

@@ -93,12 +93,12 @@
   display: inline-block;
   float: left;
   width: 350px;
-  margin-top: 20px;
+  margin-top: 4px;
   margin-left: 20px;
 }
 
 .program_detail div {
-  margin-bottom: 13px;
+  margin-bottom: 10px;
 }
 
 .info_1 {
@@ -107,6 +107,20 @@
 
 .info_2 {
   font-size: 17px;
+}
+
+.info_3 {
+  margin-bottom: 12px !important;
+}
+
+.info_4 {
+  font-weight: bold;
+}
+
+.program_buy_day {
+  margin-top: -5px;
+  font-size: 13px;
+  color:#F23005;
 }
 
 .program_price {
@@ -151,11 +165,7 @@
   color: white;
 }
 
-.program_buy_day {
-  margin-top: -5px;
-  font-size: 13px;
-  font-weight: bold;
-}
+
 
 #page_num {
   clear: both;

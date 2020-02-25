@@ -163,6 +163,7 @@
                  $subject      = $row["subject"];
                  $end_day      = $row["end_day"];
                  $price        = $row["price"];
+                 $choose       = $row["choose"];
                  $location     = $row["location"];
                  $file_copied  = $row["file_copied"];
                  $file_type    = $row["file_type"];
@@ -181,10 +182,11 @@
                                 <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
                                 <div class="info_2"><?=$subject?></div>
                                 <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
+                                <div class="info_4">선택한 옵션 : <?=$choose?></div>
                               </a>
                             </div>
                             <div class="program_price">
-                              <p><?=$price?><span> 원~</span>
+                              <p><?=$price?><span> 원</span>
                               <div class="buttons">
                                 <button type="button" id="cart_btn">장바구니</button> <br>
                                 <button type="button" id="delete_btn" onclick="location.href='mypage_pick.php?num=<?=$num?>&page=<?=$page?>'">삭제</button>

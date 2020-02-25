@@ -35,19 +35,98 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
             $sql="SELECT * from `together` where b_code='같이할건강' order by group_num desc, ord asc;";
         }
         $result=mysqli_query($conn, $sql);
-        $total_record=mysqli_num_rows($result);
-        // echo "<script>alert('{$total_record}');</script>";
-        $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
 
-        //2.페이지가 없으면 디폴트 페이지 1페이지
-        if (empty($_GET['page'])) {
-            $page=1;
-        } else {
-            $page=$_GET['page'];
+
+        if (isset($_GET["search_area"])) {
+            switch ($_GET["search_area"]) {
+            case '전국':
+              break;
+            case '서울':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='서울' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '부산':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='부산' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '대구':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='대구' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '인천':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='인천' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '광주':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='광주' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '대전':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='대전' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '울산':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='울산' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '강원':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='강원' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '경기':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='경기' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '경남':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='경남' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '경북':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='경북' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '전남':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='전남' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '전북':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='전북' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '제주':
+              $sql="SELECT * from `together` where b_code='같이할건강' and area='제주' order by group_num desc, ord asc;";
+              $result=mysqli_query($conn, $sql);
+              break;
+            case '충남':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='충남' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '충북':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='충북' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            case '세종':
+                $sql="SELECT * from `together` where b_code='같이할건강' and area='세종' order by group_num desc, ord asc;";
+                $result=mysqli_query($conn, $sql);
+              break;
+            default:
+              echo "<script>alert('지역을 선택해주세요');history.go(-1);</script>";
+              break;
+          }
         }
-        $start=($page -1) * SCALE;
-        $number = $total_record - $start;
-        ?>
+          $total_record=mysqli_num_rows($result);
+          $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
+
+          //페이지가 없으면 디폴트 페이지 1페이지
+          if (empty($_GET['page'])) {
+              $page=1;
+          } else {
+              $page=$_GET['page'];
+          }
+          $start=($page -1) * SCALE;
+          $number = $total_record - $start;
+         ?>
+
       </div><!--end of header  -->
       <div id="menu">
       </div><!--end of menu  -->
@@ -57,13 +136,23 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
            <div id="sub_title"> <span>메뉴</span></div>
            <ul>
              <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php">전국</a></li>
-                <li><a href="./list_sort.php?area=서울">서울</a></li>
-                <li><a href="#">경기*인천</a></li>
-                <li><a href="#">강원도</a></li>
-                <li><a href="#">충청도</a></li>
-                <li><a href="#">전라도</a></li>
-                <li><a href="#">경상도</a></li>
-                <li><a href="#">제주도</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=서울">서울</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=부산">부산</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대구">대구</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=인천">인천</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=광주">광주</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대전">대전</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=울산">울산</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=강원">강원</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경기">경기</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경남">경남</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경북">경북</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전남">전남</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전북">전북</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=제주">제주</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충남">충남</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충북">충북</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=세종">세종</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
@@ -126,7 +215,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$space.$subject?></a>
               <?php
                 if (!($file_name === "")) {
-                    echo('<img src="../pic/disk.png" alt="">');
+                    echo('<img src="./data/disk.png" alt="">');
                 } else {
                     echo "";
                 } ?>

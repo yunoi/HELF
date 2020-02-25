@@ -89,12 +89,12 @@
 
     color: #fff;
 }
-#latest { width: 354px; float: left; box-sizing: border-box; background-color: #04d9d9;
+#latest { width: 354px; float: left; box-sizing: border-box; background-color: #69caca;
     margin-right: 4px;
     border-radius: 2px;
     padding: 10px 16px 14px 16px;
 }
-#latest h4 { font-size: 16px; padding-bottom: 5px; border-bottom: solid 1px #dddddd; }
+#latest h4 { font-size: 16px; padding-bottom: 5px; border-bottom: solid 1px white; }
 #latest ul { margin-top: 20px; }
 #latest li { margin-top: 8px; margin-left: 10px; }
 #latest span { display: inline-block;
@@ -108,12 +108,12 @@
 #latest span:nth-child(2) { width: 50px; }
 #latest span:nth-child(3) { width: 80px; }
 
-#point_rank { width: 354px; float: right; box-sizing: border-box;background-color: #f2b705;
+#point_rank { width: 354px; float: right; box-sizing: border-box;background-color: #e4c158;
     margin-left: 4px;
     padding: 10px 16px 14px 16px;
     border-radius: 2px;
 }
-#point_rank h4 { font-size: 16px; padding-bottom: 5px; border-bottom: solid 1px #dddddd; }
+#point_rank h4 { font-size: 16px; padding-bottom: 5px; border-bottom: solid 1px white; }
 #point_rank ul { margin-top: 20px; }
 #point_rank li { margin-top: 8px; margin-left: 10px; }
 #point_rank span { display: inline-block; 

@@ -1,50 +1,7 @@
 <?php
 //공지사항 게시판 형식으로 만들기
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/create_table.php";
-
-create_table($conn,'faq'); //FAQ
-
-define('SCALE', 10);
-
-//*****************************************************
-$sql=$result=$total_record=$total_page=$start="";
-$row="";
-$memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
-$total_record=0;
-//*****************************************************
-if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
-    //제목, 내용, 아이디
-    $find = $_POST["find"];
-    $search = $_POST["search"];
-    $q_search = mysqli_real_escape_string($conn, $search);
-    if($find==="full"){
-      $sql="SELECT * from `faq` where subject AND content like '%$q_search%' order by num desc";
-    }else{
-      $sql="SELECT * from `faq` where $find  like '%$q_search%' order by num desc";
-    }
-} else {
-    $sql="SELECT * from `faq` order by num desc";
-}
-
-$result=mysqli_query($conn, $sql);
-
-$total_record=mysqli_num_rows($result);
-// echo "<script>alert('{$total_record}');</script>";
-
-$total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
-
-//2.페이지가 없으면 디폴트 페이지 1페이지
-if (empty($_GET['page'])) {
-    $page=1;
-} else {
-    $page=$_GET['page'];
-}
-
-$start=($page-1) * SCALE;
-$number = $total_record - $start;
 ?>
-
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -53,15 +10,54 @@ $number = $total_record - $start;
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
-<link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-<link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
-    <!-- <script type="text/javascript" src="./js/member_form.js"></script> -->
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <title>HELF :: FAQ</title>
   </head>
   <body>
     <div id="wrap">
       <div id="header">
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
+        <?php
+        define('SCALE', 10);
+
+        //*****************************************************
+        $sql=$result=$total_record=$total_page=$start="";
+        $row="";
+        $memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
+        $total_record=0;
+        //*****************************************************
+        if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
+          //제목, 내용, 아이디
+          $find = $_POST["find"];
+          $search = $_POST["search"];
+          $q_search = mysqli_real_escape_string($conn, $search);
+          if($find==="full"){
+            $sql="SELECT * from `faq` where subject AND content like '%$q_search%' order by num desc";
+          }else{
+            $sql="SELECT * from `faq` where $find  like '%$q_search%' order by num desc";
+          }
+        } else {
+          $sql="SELECT * from `faq` order by num desc";
+        }
+
+        $result=mysqli_query($conn, $sql);
+
+        $total_record=mysqli_num_rows($result);
+        // echo "<script>alert('{$total_record}');</script>";
+
+        $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
+
+        //2.페이지가 없으면 디폴트 페이지 1페이지
+        if (empty($_GET['page'])) {
+          $page=1;
+        } else {
+          $page=$_GET['page'];
+        }
+
+        $start=($page-1) * SCALE;
+        $number = $total_record - $start;
+        ?>
       </div><!--end of header  -->
       <div id="content">
        <div id="col2">

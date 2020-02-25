@@ -1,61 +1,5 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
-
-//*****************************************************
-$num=$id=$subject=$content=$day=$hit="";
-//*****************************************************
-
-if(empty($_GET['page'])){
-  $page=1;
-}else{
-  $page=$_GET['page'];
-}
-
-if(isset($_GET["num"])&&!empty($_GET["num"])){
-    $num = test_input($_GET["num"]);
-    $q_num = mysqli_real_escape_string($conn, $num);
-
-    $sql="UPDATE `notice` SET `hit`=hit+1 WHERE `num`=$q_num;";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      die('Error: ' . mysqli_error($conn));
-    }
-
-    $sql="SELECT * from `notice` where num ='$q_num';";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      die('Error: ' . mysqli_error($conn));
-    }
-    $row=mysqli_fetch_array($result);
-    $subject= htmlspecialchars($row['subject']);
-    $content= htmlspecialchars($row['content']);
-    $subject=str_replace("\n", "<br>",$subject);
-    $subject=str_replace(" ", "&nbsp;",$subject);
-    $content=str_replace("\n", "<br>",$content);
-    $content=str_replace(" ", "&nbsp;",$content);
-    $day=$row['regist_day'];
-    $hit=$row['hit'];
-    $file_name=$row['file_name'];
-    $file_copied=$row['file_copied'];
-    $file_type=$row['file_type'];
-
-    if (!empty($file_copied)&&$file_type =="image/png") {
-        //이미지 정보를 가져오기 위한 함수 width, height, type
-        $image_info=getimagesize("./data/".$file_copied);
-        $image_width=$image_info[0];
-        $image_height=$image_info[1];
-        $image_type=$image_info[2];
-        if ($image_width>400) {
-            $image_width = 400;
-        }
-    } else {
-        $image_width=0;
-        $image_height=0;
-        $image_type="";
-    }
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -83,6 +27,60 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       <div id="header">
         <header>
             <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
+            <?php
+            include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
+            $num=$id=$subject=$content=$day=$hit="";
+
+            if(empty($_GET['page'])){
+              $page=1;
+            }else{
+              $page=$_GET['page'];
+            }
+
+            if(isset($_GET["num"])&&!empty($_GET["num"])){
+                $num = test_input($_GET["num"]);
+                $q_num = mysqli_real_escape_string($conn, $num);
+
+                $sql="UPDATE `notice` SET `hit`=hit+1 WHERE `num`=$q_num;";
+                $result = mysqli_query($conn,$sql);
+                if (!$result) {
+                  die('Error: ' . mysqli_error($conn));
+                }
+
+                $sql="SELECT * from `notice` where num ='$q_num';";
+                $result = mysqli_query($conn,$sql);
+                if (!$result) {
+                  die('Error: ' . mysqli_error($conn));
+                }
+                $row=mysqli_fetch_array($result);
+                $subject= htmlspecialchars($row['subject']);
+                $content= htmlspecialchars($row['content']);
+                $subject=str_replace("\n", "<br>",$subject);
+                $subject=str_replace(" ", "&nbsp;",$subject);
+                $content=str_replace("\n", "<br>",$content);
+                $content=str_replace(" ", "&nbsp;",$content);
+                $day=$row['regist_day'];
+                $hit=$row['hit'];
+                $file_name=$row['file_name'];
+                $file_copied=$row['file_copied'];
+                $file_type=$row['file_type'];
+
+                if (!empty($file_copied)&&$file_type =="image/png") {
+                    //이미지 정보를 가져오기 위한 함수 width, height, type
+                    $image_info=getimagesize("./data/".$file_copied);
+                    $image_width=$image_info[0];
+                    $image_height=$image_info[1];
+                    $image_type=$image_info[2];
+                    if ($image_width>400) {
+                        $image_width = 400;
+                    }
+                } else {
+                    $image_width=0;
+                    $image_height=0;
+                    $image_type="";
+                }
+            }
+            ?>
         </header>
       </div><!--end of header  -->
       <div id="content">

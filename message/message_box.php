@@ -63,9 +63,9 @@ if(isset($_SESSION["user_grade"])){
             <div id="title_messagee">
             <?php
                 if($mode=="send"){
-                  echo "<h1>보낸 메시지함</h1>";
+                  echo "<h2>보낸 메시지함</h2>";
                 } else {
-                  echo "<h1>받은 메시지함</h1>";
+                  echo "<h2>받은 메시지함</h2>";
                 }
 ?>
             </div>

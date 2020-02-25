@@ -65,14 +65,24 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update"||(isset($_GET["mode"])&&$_GET[
          <div id="left_menu">
            <div id="sub_title"> <span>지역</span></div>
            <ul>
-             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">전국</a></li>
-             <li><a href="#">서울</a></li>
-             <li><a href="#">경기*인천</a></li>
-             <li><a href="#">강원도</a></li>
-             <li><a href="#">충청도</a></li>
-             <li><a href="#">전라도</a></li>
-             <li><a href="#">경상도</a></li>
-             <li><a href="#">제주도</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php">전국</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=서울">서울</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=부산">부산</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대구">대구</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=인천">인천</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=광주">광주</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대전">대전</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=울산">울산</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=강원">강원</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경기">경기</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경남">경남</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경북">경북</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전남">전남</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전북">전북</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=제주">제주</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충남">충남</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충북">충북</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=세종">세종</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
@@ -92,15 +102,24 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update"||(isset($_GET["mode"])&&$_GET[
                 <div class="col2"><?=$id?></div>
                 <div class="col3">
                   활동 지역 <select name="area">
-                  <option value="선택">선택</option>
                   <option value="전국" <?php if($area === "전국") echo "selected";?>>전국</option>
                   <option value="서울" <?php if($area === "서울") echo "selected";?>>서울</option>
-                  <option value="경기인천" <?php if($area === "경기인천") echo "selected";?>>경기인천</option>
-                  <option value="강원도" <?php if($area === "강원도") echo "selected";?>>강원도</option>
-                  <option value="충청도" <?php if($area === "충청도") echo "selected";?>>충청도</option>
-                  <option value="전라도" <?php if($area === "전라도") echo "selected";?>>전라도</option>
-                  <option value="경상도" <?php if($area === "경상도") echo "selected";?>>경상도</option>
-                  <option value="제주도" <?php if($area === "제주도") echo "selected";?>>제주도</option>
+                  <option value="부산" <?php if($area === "부산") echo "selected";?>>부산</option>
+                  <option value="대구" <?php if($area === "대구") echo "selected";?>>대구</option>
+                  <option value="인천" <?php if($area === "인천") echo "selected";?>>인천</option>
+                  <option value="광주" <?php if($area === "광주") echo "selected";?>>광주</option>
+                  <option value="대전" <?php if($area === "대전") echo "selected";?>>대전</option>
+                  <option value="울산" <?php if($area === "울산") echo "selected";?>>울산</option>
+                  <option value="강원" <?php if($area === "강원") echo "selected";?>>강원</option>
+                  <option value="경기" <?php if($area === "경기") echo "selected";?>>경기</option>
+                  <option value="경남" <?php if($area === "경남") echo "selected";?>>경남</option>
+                  <option value="경북" <?php if($area === "경북") echo "selected";?>>경북</option>
+                  <option value="전남" <?php if($area === "전남") echo "selected";?>>전남</option>
+                  <option value="전북" <?php if($area === "전북") echo "selected";?>>전북</option>
+                  <option value="제주" <?php if($area === "제주") echo "selected";?>>제주</option>
+                  <option value="충남" <?php if($area === "충남") echo "selected";?>>충남</option>
+                  <option value="충북" <?php if($area === "충북") echo "selected";?>>충북</option>
+                  <option value="세종" <?php if($area === "세종") echo "selected";?>>세종</option>
                 </select>
                 </div>
               </div><!--end of write_row1  -->

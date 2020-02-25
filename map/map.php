@@ -2,34 +2,6 @@
 //도시 = 서울,경기등등 city
 //지역 = 구 용산구,성동구 area
 session_start();
-
-define('SCALE', 10);
-//*****************************************************
-$sql=$result=$total_record=$total_page=$start="";
-$row="";
-$memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
-$total_record=0;
-if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
-    $find = $_POST["find"];
-    $search = $_POST["search"];
-    $q_search = mysqli_real_escape_string($conn, $search);
-    $sql="SELECT * from `carecenter` where $find like '%$q_search%'";
-} else {
-    $sql="SELECT * from carecenter";
-}
-$result=mysqli_query($conn, $sql);
-$total_record=mysqli_num_rows($result);
-$total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
-
-//2.페이지가 없으면 디폴트 페이지 1페이지
-if (empty($_GET['page'])) {
-    $page=1;
-} else {
-    $page=$_GET['page'];
-}
-
-$start=($page -1) * SCALE;
-$number = $total_record - $start;
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,7 +29,37 @@ $number = $total_record - $start;
 <body>
   <header>
       <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
+      <?php
+      define('SCALE', 10);
+      //*****************************************************
+      $sql=$result=$total_record=$total_page=$start="";
+      $row="";
+      $memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
+      $total_record=0;
+      if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
+          $find = $_POST["find"];
+          $search = $_POST["search"];
+          $q_search = mysqli_real_escape_string($conn, $search);
+          $sql="SELECT * from `carecenter` where $find like '%$q_search%'";
+      } else {
+          $sql="SELECT * from carecenter";
+      }
+      $result=mysqli_query($conn, $sql);
+      $total_record=mysqli_num_rows($result);
+      $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
+
+      //2.페이지가 없으면 디폴트 페이지 1페이지
+      if (empty($_GET['page'])) {
+          $page=1;
+      } else {
+          $page=$_GET['page'];
+      }
+
+      $start=($page -1) * SCALE;
+      $number = $total_record - $start;
+       ?>
   </header>
+
   <div id="wrap">
 
     <div id="content">

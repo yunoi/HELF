@@ -42,17 +42,10 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $content=str_replace(" ", "&nbsp;", $content);
     $b_code=$row['b_code'];
 
-    /////
     $video_name= htmlspecialchars($row['video_name']);
     $video_name=str_replace("\n", "<br>", $video_name);
     $video_name=str_replace(" ", "&nbsp;", $video_name);
     $video_name=substr($video_name, -11);
-    echo "<script>alert('{$video_name}');</script>";
-
-    ////
-
-
-
 
     $file_name=$row['file_name'];
     $file_copied=$row['file_copied'];
@@ -275,7 +268,6 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button></a>
   <?php
     //master or admin이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
-    // echo "<script>alert('{$_SESSION['user_id']}');</script>";
     if (isset($_SESSION['user_id'])) {
         if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master") {
             echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');

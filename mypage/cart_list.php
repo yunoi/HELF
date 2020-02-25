@@ -38,10 +38,10 @@
       alert('삭제되었습니다.');
     </script>
     ";
-
   } else {
     $no = "";
   }
+
 ?>
 
 <!DOCTYPE html>
@@ -69,13 +69,62 @@
         // url에서 get 값 지워줌;
         history.pushState(null, null, "http://localhost/helf/mypage/cart_list.php");
 
-        $("#all_agree").click(function() {
+        // 전체 선택
+        $("#all_agree").change(function() {
           if($("#all_agree").prop("checked")) {
             $("input[type=checkbox]").prop("checked",true);
+
           } else {
              $("input[type=checkbox]").prop("checked",false);
           }
         });
+
+
+
+        // 체크된 프로그램 가격 계산
+        $("input[type=checkbox]").change(function () {
+
+          if($("input[type=checkbox]:checked").length !== $("input[type=checkbox]").length) {
+            $("#all_agree").prop("checked",false);
+          }
+
+          if($("input[type=checkbox]:checked").length === 0) {
+            $("#total_price").html("0");
+          } else {
+            var items = [];
+            $("input[type=checkbox]:checked").each(function () {
+              var check_value = $(this).val();
+              // console.log("밸류확인 : " + check_value);
+              items.push($(this).val());
+              console.log("확인 : " + items);
+
+              $.ajax({
+                  url: 'cart_price_cal.php',
+                  type: 'POST',
+                  traditional: true,
+                  data: {
+                    "items[]": items
+                  },
+                  success: function(data) {
+                    data = Number(data);
+                    console.log("총합은 "+data)
+                    $("#total_price").html(data);
+                  }
+                })
+                .done(function() {
+                  console.log("done");
+                })
+                .fail(function() {
+                  console.log("error");
+                })
+                .always(function() {
+                  console.log("complete");
+                });
+            });
+          }
+
+        });
+
       })
     </script>
   </head>
@@ -89,37 +138,20 @@
           <h1>장바구니</h1>
         </div>
         <div id="mypage_content">
-          <form id="delete_cart_form" action="cart_list.php?page=<?=$page?>" method="post">
+          <form id="delete_cart_form" method="post">
             <div id="all_check">
-              <input type="checkbox" id="all_agree">
-              <span>전체 선택</span>
+              <input type="checkbox" id="all_agree" value="0">
+              <span>전체선택</span>
               <input type="submit" id="btn_submit" value="선택 상품 삭제">
             </div>
           <ul id="program_list">
           <?php
 
-              $sql = "select cart.*, program.* from cart, program where id='$id' and cart.o_key = program.o_key;";
+              $sql = "select * from cart A inner join program B on A.o_key = B.o_key where id = '$id' order by num;";
               $result = mysqli_query($conn, $sql);
               $total_record = mysqli_num_rows($result); // 전체 글 수
 
-              $scale = 5;
-
-              // 전체 페이지 수($total_page) 계산
-              if ($total_record % $scale == 0) {
-                  $total_page = floor($total_record/$scale);
-              } // 소수점 내림, 반올림은 round, 올림은 ceil
-              else {
-                  $total_page = floor($total_record/$scale) + 1;
-              }
-
-              // 표시할 페이지($page)에 따라 $start 계산
-              $start = ($page - 1) * $scale; // 페이지 세팅 넘버!!!!!
-
-              $number = $total_record - $start;
-
-             for ($i=$start; $i<$start+$scale && $i < $total_record; $i++) {
-                 mysqli_data_seek($result, $i);
-                 // 가져올 레코드로 위치(포인터) 이동
+             for ($i=0; $i<$total_record; $i++) {
                  $row = mysqli_fetch_array($result);
                  // 하나의 레코드 가져오기
                  $num          = $row["num"];
@@ -159,13 +191,12 @@
                               </div>
                             </div>
                             <div class="checkbox_div">
-                              <input type="checkbox" name="no[]" value="<?=$num?>">
+                              <input type="checkbox" class="checked_num" name="no[]" value="<?=$num?>">
                             </div>
                           </div>
                         </li>
 
                   <?php
-                 $number--;
                   }
 
                   mysqli_close($conn);
@@ -188,32 +219,15 @@
                   </ul>
 
                 </form>
-                <ul id="page_num">
-          <?php
-              if ($total_page>=2 && $page >= 2) {
-                  $new_page = $page-1;
-                  echo "<li><a href='cart_list.php?page=$new_page'>◀ 이전</a> </li>";
-              } else {
-                  echo "<li>&nbsp;</li>";
-              }
-
-              // 게시판 목록 하단에 페이지 링크 번호 출력
-              for ($i=1; $i<=$total_page; $i++) {
-                  if ($page == $i) {     // 현재 페이지 번호 링크 안함
-                      echo "<li><b> $i </b></li>";
-                  } else {
-                      echo "<li><a href='cart_list.php?page=$i'>  $i  </a><li>";
-                  }
-              }
-              if ($total_page>=2 && $page != $total_page) {
-                  $new_page = $page+1;
-
-                  echo "<li> <a href='cart_list.php?page=$new_page'>다음 ▶</a> </li>";
-              } else {
-                  echo "<li>&nbsp;</li>";
-              }
-          ?>
-          </ul> <!-- page -->
+        </div>
+        <div id="calculate_price">
+          <div id="price_div">
+            총 결제 금액 : <span id="total_price">0</span> 원
+          </div>
+        </div>
+        <div id="calculate_buttons">
+          <button type="button" id="shopping_btn">계속 쇼핑하기</button>
+          <button type="button" id="select_buy_btn">구매하기</button>
         </div>
       </div>
     </section>

@@ -88,6 +88,10 @@
             $("#all_agree").prop("checked",false);
           }
 
+          if($("input[type=checkbox]:checked").length === $("input[type=checkbox]").length-1) {
+            $("#all_agree").prop("checked",true);
+          }
+
           if($("input[type=checkbox]:checked").length === 0) {
             $("#total_price").html("0");
           } else {

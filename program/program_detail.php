@@ -20,7 +20,35 @@
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <script src="./js/program_detail.js" charset="utf-8"></script>
     <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    function kmongHeaderHidingWhenScrolling() {
+        var navOffset = $(this).scrollTop(),
+            $overView = $('#overview').offset().top,
+            $similarGigDiv = $('.gig-detail-left-side-width').height(),
+            $gigDetailNavBar = $('#gigDetailNavBar'),
+            $kmongNavBar = $('#kmongNavBar'),
+            gigDetailNavBarTop = $overView + $('#overview').height() + 60;
 
+        if(($overView - 100) < navOffset){ // 100은 바뀌는 타이밍 조정으로 인해 추가
+            $kmongNavBar.hide();
+            // $gigDetailNavBar.fadeIn();
+        } else {
+            // $gigDetailNavBar.fadeOut();
+            $kmongNavBar.show();
+        }
+        if (gigDetailNavBarTop < navOffset
+            && !$gigDetailNavBar.hasClass('position-fixed')
+            && $similarGigDiv > navOffset
+        ){
+            $gigDetailNavBar.addClass('position-fixed');
+            $('#overview').addClass('margin-bottom-170');
+        } else if (gigDetailNavBarTop > navOffset || $similarGigDiv < navOffset) {
+            $gigDetailNavBar.removeClass('position-fixed');
+            $('#overview').removeClass('margin-bottom-170');
+        }
+    }
+
+    </script>
   </head>
   <body>
     <header>

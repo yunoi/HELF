@@ -20,7 +20,6 @@ session_start();
       <div id="header">
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
         <?php
-
         define('SCALE', 10);
 
         //*****************************************************

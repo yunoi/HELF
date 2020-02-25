@@ -45,7 +45,7 @@ function insert_init_data($conn, $table_name){
             $sql = "INSERT INTO `health_info` (`num`, `id`, `name`, `subject`, `content`, `regist_day`, `hit`, `file_name`, `file_type`, `file_copied`, `likeit`, `b_code`) VALUES (null, 'admin', '관리자', '제목입니다', '내용입니다', '2020-02-10 (21:32)', '100', 'sleepyHeadCat.png', 'image/png', '2020_02_11_14_43_36.png', '25', '레시피');";
             break;
           case 'together' :
-            $sql = "INSERT INTO `together` (`num`, `id`, `name`, `area`, `subject`, `content`, `regist_day`, `hit`, `file_name`, `file_type`, `file_copied`, `likeit`, `b_code`, `group_num`, `depth`, `ord`) VALUES (null, 'ysm2678', '유세미', '전북', '제목입니다', '내용입니다', '2020-02-11 (21:32)', '2000', 'sleepyHeadCat.png', 'image/png', '2020_02_11_14_43_36.png', '1999', '같이할건강', '0', '0', '0');";
+            $sql = "INSERT INTO `together` (`num`, `id`, `name`, `area`, `subject`, `content`, `regist_day`, `hit`, `file_name`, `file_type`, `file_copied`, `likeit`, `b_code`, `group_num`, `depth`, `ord`) VALUES (null, 'ysm2678', '유세미', '전북', '제목입니다', '내용입니다', '2020-02-11 (21:32)', '2000', 'sleepyHeadCat.png', 'image/png', '2020_02_11_14_43_36.png', '1999', '같이할건강', '1', '0', '0');";
             break;
 
       default:

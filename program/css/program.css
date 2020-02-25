@@ -13,6 +13,8 @@ a{
 }
 
 .div_program{
+  width: 1500px;
+  margin: 0 auto;
 }
 
 /* 카타고리 선택 */
@@ -22,16 +24,16 @@ a{
   border: 1px solid black;
   float: left;
   margin-left: 180px;
-  position: fixed;
+
 
 }
 
 
 /* 리스트 */
 .div_program_list{
-  width: 900px;
+  width: 800px;
   height: 1000px;
-  margin-left: 420px;
+  margin-left: 20px;
   float: left;
 
 }
@@ -40,12 +42,10 @@ aside{
   width: 150px;
   height: 200px;
   float: left;
-  margin-left: 1220px;
-  position: fixed;
 }
 
 .div_program_list_top{
-  position: fixed;
+
   width: 620px;
   padding: 30px;
   border: 1px solid gray;
@@ -54,7 +54,7 @@ aside{
 }
 
 .div_program_list_main{
-  margin-top: 30px;
+  margin-top: -70px;
   width: 682px;
 
 }

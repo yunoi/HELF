@@ -1,5 +1,10 @@
+#cart_main_content {
+  width: 1000px;
+  margin: 0 auto;
+}
+
 #program_list {
-  width: 714px;
+  width: 1000px;
 }
 
 .checkbox_div {
@@ -15,19 +20,20 @@
 }
 
 #all_check {
-  float: right;
   clear: both;
-  width: 714px;
+  width: 1000px;
+  height: 30px;
   padding-top: 5px;
   padding-bottom: 5px;
-  font-size: 13px;
+  font-size: 15px;
+  margin-bottom: 5px;
 }
 
 #all_check #btn_submit {
-  width: 100px;
+  width: 115px;
   height: 28px;
-  padding: 3px 15px;
-  font-size: 13px;
+  padding: 6px 18px;
+  font-size: 16px;
   border-radius: 2px;
   border: 0.5px solid black;
   background-color: white;
@@ -36,11 +42,18 @@
   float: right;
 }
 
+#all_check span {
+  float: right;
+  font-size: 16px;
+  padding-top: 3px;
+  margin-left: 15px;
+}
+
 #all_check input {
   float: right;
   margin-top: 6px;
   margin-right: 2px;
-  margin-left: 10px;
+  margin-left: 15px;
   width: 16px;
   height: 16px;
   border: 1px solid black;
@@ -49,8 +62,8 @@
 .program_cart_li {
   display: inline-block;
   float: left;
-  width: 714px;
-  height: 140px;
+  width: 1000px;
+  height: 160px;
   border-top: 0.5px solid lightgray;
   border-bottom: 0.5px solid lightgray;
   border-radius: 2px;
@@ -62,8 +75,8 @@
 .program_image {
   display: inline-block;
   float: left;
-  width: 160px;
-  height: 138px;
+  width: 180px;
+  height: 158px;
   border: 0px;
 }
 
@@ -71,16 +84,16 @@
   box-sizing: border-box;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
-  width: 160px;
-  height: 140px;
+  width: 180px;
+  height: 160px;
   border: 0;
 }
 
 .program_detail {
   display: inline-block;
   float: left;
-  width: 350px;
-  margin-top: 20px;
+  width: 620px;
+  margin-top: 15px;
   margin-left: 20px;
 }
 
@@ -89,11 +102,21 @@
 }
 
 .info_1 {
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .info_2 {
-  font-size: 17px;
+  font-size: 22px;
+}
+
+.info_3 {
+  font-size: 15px;
+  margin-bottom: 12px !important;
+}
+
+.info_4 {
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .program_price {
@@ -106,13 +129,13 @@
 }
 
 .program_price p {
-  font-size: 17px;
+  font-size: 20px;
   margin-bottom: 15px;
   font-weight: bold;
 }
 
 .program_price p span {
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .buttons {
@@ -121,7 +144,7 @@
 
 .buttons button {
   margin-bottom: 5px;
-  font-size: 13px;
+  font-size: 15px;
   padding: 3px 5px;
   border-radius: 2px;
 }
@@ -141,7 +164,7 @@
 #page_num {
   clear: both;
   text-align: center;
-  margin: 30px 0
+  width: 1000px;
 }
 
 #page_num li {

@@ -1,39 +1,5 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/db_connector.php";
-
-//*****************************************************
-$num=$id=$subject=$content=$day=$hit="";
-$mode="insert";
-$checked="";
-$disabled="";
-//*****************************************************
-if(!(isset($_SESSION['user_grade']))||!($_SESSION['user_grade']==="admin")){
-  echo "alert('관리자 접근이 아닙니다.')";
-  exit;
-}
-
-// 수정 추가 삭제 기능만 넣기
-if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
-    $mode=$_GET["mode"]; //$mode="update"or"response"
-    $num = test_input($_GET["num"]);
-    $q_num = mysqli_real_escape_string($conn, $num);
-
-    //update 이면 해당된글, response이면 부모의 해당된글을 가져옴.
-    $sql="SELECT * from `faq` where num ='$q_num';";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      die('Error: ' . mysqli_error($conn));
-    }
-    $row=mysqli_fetch_array($result);
-    $subject= htmlspecialchars($row['subject']);
-    $content= htmlspecialchars($row['content']);
-    $subject=str_replace("\n", "<br/>",$subject);
-    $subject=str_replace(" ", "&nbsp;",$subject);
-    $content=str_replace("\n", "<br/>",$content);
-    $content=str_replace(" ", "&nbsp;",$content);
-    mysqli_close($conn);
-}
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -53,6 +19,39 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
       <header>
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       </header>
+      <?php
+      $num=$id=$subject=$content=$day=$hit="";
+      $mode="insert";
+      $checked="";
+      $disabled="";
+
+      if(!(isset($_SESSION['user_grade']))||!($_SESSION['user_grade']==="admin")){
+        echo "alert('관리자 접근이 아닙니다.')";
+        exit;
+      }
+
+      // 수정 추가 삭제 기능만 넣기
+      if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
+          $mode=$_GET["mode"]; //$mode="update"or"response"
+          $num = test_input($_GET["num"]);
+          $q_num = mysqli_real_escape_string($conn, $num);
+
+          //update 이면 해당된글, response이면 부모의 해당된글을 가져옴.
+          $sql="SELECT * from `faq` where num ='$q_num';";
+          $result = mysqli_query($conn,$sql);
+          if (!$result) {
+            die('Error: ' . mysqli_error($conn));
+          }
+          $row=mysqli_fetch_array($result);
+          $subject= htmlspecialchars($row['subject']);
+          $content= htmlspecialchars($row['content']);
+          $subject=str_replace("\n", "<br/>",$subject);
+          $subject=str_replace(" ", "&nbsp;",$subject);
+          $content=str_replace("\n", "<br/>",$content);
+          $content=str_replace(" ", "&nbsp;",$content);
+          mysqli_close($conn);
+      }
+       ?>
       <div id="content">
        <div id="col2">
          <div id="title">FAQ</div>

@@ -1,35 +1,5 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/db_connector.php";
-
-//*****************************************************
-$num=$id=$subject=$content=$day=$hit="";
-//*****************************************************
-
-if(empty($_GET['page'])){
-  $page=1;
-}else{
-  $page=$_GET['page'];
-}
-
-if(isset($_GET["num"])&&!empty($_GET["num"])){
-    $num = test_input($_GET["num"]);
-    $q_num = mysqli_real_escape_string($conn, $num);
-    $sql="SELECT * from `faq` where num ='$q_num';";
-    $result = mysqli_query($conn,$sql);
-    if (!$result) {
-      die('Error: ' . mysqli_error($conn));
-    }
-    $row=mysqli_fetch_array($result);
-    $subject= htmlspecialchars($row['subject']);
-    $content= htmlspecialchars($row['content']);
-    $subject=str_replace("\n", "<br>",$subject);
-    $subject=str_replace(" ", "&nbsp;",$subject);
-    $content=str_replace("\n", "<br>",$content);
-    $content=str_replace(" ", "&nbsp;",$content);
-    mysqli_close($conn);
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -57,6 +27,32 @@ if(isset($_GET["num"])&&!empty($_GET["num"])){
       <header>
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       </header>
+      <?php
+      $num=$id=$subject=$content=$day=$hit="";
+
+      if(empty($_GET['page'])){
+        $page=1;
+      }else{
+        $page=$_GET['page'];
+      }
+
+      if(isset($_GET["num"])&&!empty($_GET["num"])){
+          $num = test_input($_GET["num"]);
+          $q_num = mysqli_real_escape_string($conn, $num);
+          $sql="SELECT * from `faq` where num ='$q_num';";
+          $result = mysqli_query($conn,$sql);
+          if (!$result) {
+            die('Error: ' . mysqli_error($conn));
+          }
+          $row=mysqli_fetch_array($result);
+          $subject= htmlspecialchars($row['subject']);
+          $content= htmlspecialchars($row['content']);
+          $subject=str_replace("\n", "<br>",$subject);
+          $subject=str_replace(" ", "&nbsp;",$subject);
+          $content=str_replace("\n", "<br>",$content);
+          $content=str_replace(" ", "&nbsp;",$content);
+          mysqli_close($conn);
+      }?>
       <div id="content">
        <div id="col1">
        </div><!--end of col1  -->

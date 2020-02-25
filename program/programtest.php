@@ -1,8 +1,7 @@
 <?php
   session_start();
- include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
- ?>
 
+ ?>
  <!DOCTYPE html>
  <html>
  <head>
@@ -28,15 +27,10 @@
  <section>
     <div class="div_program">
       <div class="div_program_category">
-        <br><br>
-        <h3 class="search_title">-카테고리 상세검색-</h2><br>
+        <br>
+        <h3 class="search_title">-카테고리 상세검색-</h2>
         <ul id="detail_search">
-          <br>&nbsp
-          <li>
-            <p>키워드검색</p>
-            <input type="text" name="" value="">
-          </li>
-          <br><br>
+          <br>
           <li>
             <p>운동종류</p>
             <select name="kind" class="kind_sel">
@@ -53,25 +47,24 @@
           </li>
           <br><br>
           <li>
-            <p>지역</p>
+            <p>지역선택</p>
             <?php include "select_location.php";?>
           </li>
           <br><br>
           <li>
-            <p>인원</p>
-            <p class="num">개인</p> : <input type="radio" name="gender" value="개인">
-            <p class="num">그룹</p> : <input type="radio" name="gender" value="그룹">
+            <p>인원수</p>
+            <p class="people_num">개인</p> : <input type="radio" name="gender" value="개인">&nbsp&nbsp&nbsp
+            <p class="people_num">그룹</p> : <input type="radio" name="gender" value="그룹">
           </li>
           <br><br>
           <li>
-            <p>가격</p><br>
-            <input type="number" name="" value="" style="width:100px;">원 부터<br>
-            <input type="number" name="" value=""style="width:100px;">원 까지
+            <p>가격</p>
+            <input type="number" name="" value="" style="width:100px;"> 원 부터<br>
+            <input type="number" name="" value="" style="width:100px;"> 원 까지
           </li>
           <br><br>
           <li class="li_ok">
             <input type="button" name="" value="검색">
-
           </li>
 
         </ul>
@@ -81,9 +74,9 @@
         <div class="div_program_list_top">
           <ul>
             <li class="li_order">
-              <b>정렬: </b>
+              <b>정렬 </b>
               <a href="#">인기순&nbsp|</a>
-              <a href="#">&nbsp마감임박순&nbsp|</a>
+              <a href="#">&nbsp거리순&nbsp|</a>
               <a href="#">&nbsp가격순&nbsp|</a>
               <a href="../admin/admin_page.php">&nbsp관리자페이지</a>
             </li>

@@ -7,7 +7,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>HELF :: 구매확인페이지</title>
     <link rel="stylesheet" href="./css/program_detail.css">
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <link
@@ -26,6 +26,7 @@
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
     </header>
+      <div class="clear"></div>
     <div id="div_main_body">
             <section>
               <div id="div_main">
@@ -170,12 +171,14 @@
                   <div class="">
                     <img src="" alt="">작업일 : 123 &nbsp;&nbsp; <img src="" alt="">수정 횟수 : 제한 없음
                   </div>
-                  <input type="button" name="" value="찜하기">&nbsp;&nbsp;<input type="button" name="" value="장바구니"> <br/>
+                  <input type="button" name="" value="찜하기">
+                  <input type="button" name="" value="장바구니">
                   <input type="submit" name="" value="구매하기">
                 </form>
               </div>
             </aside>
           </div>
+            <div class="clear"></div>
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
     </footer>

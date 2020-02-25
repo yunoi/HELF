@@ -1,3 +1,8 @@
+<?php
+  session_start();
+ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
+ ?>
+
  <!DOCTYPE html>
  <html>
  <head>
@@ -23,14 +28,17 @@
  <section>
     <div class="div_program">
       <div class="div_program_category">
-        <ul>
+        <br>
+        <h3 class="search_title">-카테고리 상세검색-</h2>
+        <ul id="detail_search">
           <br>&nbsp
           <li>
-            <h3>카테고리 상세검색</h2>
+            <p>키워드검색</p>
+            <input type="text" name="" value="">
           </li>
-          <br>&nbsp
+          <br><br>
           <li>
-            <em>운동종류</em><br>
+            <p>운동종류</p>
             <select name="kind" class="kind_sel">
               <option value="전체">전체</option>
               <option value="헬스">헬스</option>
@@ -41,28 +49,29 @@
               <option value="수영">클라이밍</option>
               <option value="요가/필라테스">요가/필라테스</option>
               <option value="기타">기타</option>
-
             </select>
           </li>
-          <br><br>&nbsp
+          <br><br>
           <li>
-            <em>지역선택</em><?php include "select_location.php";?>
+            <p>지역</p>
+            <?php include "select_location.php";?>
           </li>
-          <br><br>&nbsp
+          <br><br>
           <li>
-            <em>인원수</em><br>
-            개인 : <input type="radio" name="gender" value="개인">&nbsp&nbsp&nbsp
-            그룹 : <input type="radio" name="gender" value="그룹">
+            <p>인원</p>
+            <p class="num">개인</p> : <input type="radio" name="gender" value="개인">
+            <p class="num">그룹</p> : <input type="radio" name="gender" value="그룹">
           </li>
-          <br><br>&nbsp
+          <br><br>
           <li>
-            <em> 가격&nbsp</em><br>
-            &nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" name="" value="" style="width:100px;">원~<br>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" name="" value=""style="width:100px;">원
+            <p>가격</p><br>
+            <input type="number" name="" value="" style="width:100px;">원 부터<br>
+            <input type="number" name="" value=""style="width:100px;">원 까지
           </li>
-          <br><br>&nbsp
+          <br><br>
           <li class="li_ok">
             <input type="button" name="" value="검색">
+
           </li>
 
         </ul>
@@ -72,9 +81,9 @@
         <div class="div_program_list_top">
           <ul>
             <li class="li_order">
-              <b>정렬 </b>
+              <b>정렬: </b>
               <a href="#">인기순&nbsp|</a>
-              <a href="#">&nbsp거리순&nbsp|</a>
+              <a href="#">&nbsp마감임박순&nbsp|</a>
               <a href="#">&nbsp가격순&nbsp|</a>
               <a href="../admin/admin_page.php">&nbsp관리자페이지</a>
             </li>

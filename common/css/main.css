@@ -134,6 +134,10 @@
   height: 700px;
   margin-bottom: 20px;
 }
+#health_info_title{
+  margin-bottom: 8px;
+  color: #333333;
+}
 #health_info > ul >li {
   width: 237px;
   height: 228px;

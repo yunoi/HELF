@@ -89,6 +89,7 @@
   </div>
   </div>
   <div id="health_info">
+    <h3 id="health_info_title">건강 정보</h3>
     <ul>
     <?php
   $sql = "select * from health_info order by num desc limit 9";

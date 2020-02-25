@@ -1,37 +1,5 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/db_connector.php";
-// include $_SERVER['DOCUMENT_ROOT']."/helf/login/login.php";
-
-$num=$id=$subject=$content=$day=$hit="";
-$mode="insert";
-$checked="";
-$id=$_SESSION['user_id'];
-
-if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
-    $mode="update";
-    $num = test_input($_GET["num"]);
-    $q_num = mysqli_real_escape_string($conn, $num);
-
-    $sql="SELECT * from `notice` where num ='$q_num';";
-    $result = mysqli_query($conn,$sql);
-
-    if (!$result) alert_back("Error: " . mysqli_error($conn));
-
-    $row=mysqli_fetch_array($result);
-    $subject= htmlspecialchars($row['subject']);
-    $content= htmlspecialchars($row['content']);
-    $subject=str_replace("\n", "<br>",$subject);
-    $subject=str_replace(" ", "&nbsp;",$subject);
-    $content=str_replace("\n", "<br>",$content);
-    $content=str_replace(" ", "&nbsp;",$content);
-    $day=$row['regist_day'];
-    $hit=$row['hit'];
-    $file_name=$row['file_name'];
-    $file_type=$row['file_type'];
-    $file_copied=$row['file_copied'];
-    mysqli_close($conn);
-}
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -50,6 +18,38 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
     <div id="wrap">
       <div id="header">
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
+        <?php
+        include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
+
+        $num=$id=$subject=$content=$day=$hit="";
+        $mode="insert";
+        $checked="";
+        $id=$_SESSION['user_id'];
+
+        if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
+            $mode="update";
+            $num = test_input($_GET["num"]);
+            $q_num = mysqli_real_escape_string($conn, $num);
+
+            $sql="SELECT * from `notice` where num ='$q_num';";
+            $result = mysqli_query($conn,$sql);
+
+            if (!$result) alert_back("Error: " . mysqli_error($conn));
+
+            $row=mysqli_fetch_array($result);
+            $subject= htmlspecialchars($row['subject']);
+            $content= htmlspecialchars($row['content']);
+            $subject=str_replace("\n", "<br>",$subject);
+            $subject=str_replace(" ", "&nbsp;",$subject);
+            $content=str_replace("\n", "<br>",$content);
+            $content=str_replace(" ", "&nbsp;",$content);
+            $day=$row['regist_day'];
+            $hit=$row['hit'];
+            $file_name=$row['file_name'];
+            $file_type=$row['file_type'];
+            $file_copied=$row['file_copied'];
+            mysqli_close($conn);
+        } ?>
       </div><!--end of header  -->
 
       <div id="content">

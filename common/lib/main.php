@@ -39,19 +39,26 @@
   } else {
     while($row = mysqli_fetch_array($result)){
       $best_number = $row['post_id'];
-      $sql = "select distinct name, subject, regist_day from community inner join rating_info on community.num=rating_info.post_id where community.num=$best_number;";
+      $sql = "select distinct name, subject, regist_day, community.num, hit, community.b_code from community inner join rating_info on community.num=rating_info.post_id where community.num=$best_number;";
       $result2 = mysqli_query($conn, $sql);
       if(!$result2){
         echo "게시판 DB 테이블이 생성 전이거나 아직 게시글이 없습니다.";
       } else {
         while($row2 = mysqli_fetch_array($result2)){
+          $b_code = $row2["b_code"];
           $regist_day = substr($row2["regist_day"], 0, 10);
-          // $num = $row2['num'];
-          // $hit = $row2['hit'];
- 
+          $num = $row2['num'];
+          $hit = $row2['hit'];
+          if($b_code == "자유게시판"){
+            $location = "/helf/community/free/";
+          } else {
+            $location = "/helf/community/review/";
+          }
 ?>
       <li>
+        <a href="http://<?php echo $_SERVER['HTTP_HOST'].$location; ?>view.php?num=<?=$num?>&hit=<?=$hit=$hit+1?>">
         <span><?= $row2["subject"]?></span>
+        </a>
         <span><?= $row2["name"]?></span>
         <span><?= $regist_day?></span>
       </li>
@@ -75,9 +82,13 @@
   } else {
     while($row = mysqli_fetch_array($result)){
       $regist_day = substr($row["regist_day"], 0, 10);
-?>
+      $num = $row['num'];
+      $hit = $row['hit'];
+?>  
       <li>
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/view.php?num=<?=$num?>&hit=<?=$hit=$hit+1?>">
         <span><?= $row["subject"]?></span>
+        </a>
         <span><?= $row["name"]?></span>
         <span><?= $regist_day?></span>
       </li>
@@ -87,5 +98,47 @@
 ?>
       </ul>
   </div>
+  </div>
+  <div id="health_info">
+    <h3 id="health_info_title">건강 정보</h3>
+    <ul>
+    <?php
+  $sql = "select * from health_info order by num desc limit 9";
+  $result = mysqli_query($conn, $sql);
+
+  if(!$result){
+    echo "게시판 DB 테이블이 생성 전이거나 아직 게시글이 없습니다.";
+  } else {
+    while($row = mysqli_fetch_array($result)){
+      $b_code = $row["b_code"];
+      $file_copied = $row['file_copied'];
+      $data_location = "data/";
+      $num = $row['num'];
+      $hit = $row['hit'];
+      if($b_code == "레시피"){
+        $location = "/helf/health_info/recipe/";
+      } else {
+        $location = "/helf/health_info/exercise/";
+      }
+?>
+      <li>
+        <div class="img">
+          <a href="http://<?php echo $_SERVER['HTTP_HOST'].$location; ?>view.php?num=<?=$num?>&hit=<?=$hit=$hit+1?>">
+          <img src="http://<?php echo $_SERVER['HTTP_HOST'].$location.$data_location.$file_copied; ?>" alt="<?= $row["subject"]?>">
+          </a>
+        </div>
+        <div class="txt">
+          <p><?= $row["subject"]?></p>
+          <em><?= $b_code?></em>
+          <strong>|&nbsp;&nbsp;&nbsp;조회수
+          <span id="hit"><?= $row["hit"]?></span></strong>
+        </div>
+      </li>
+<?php
+    }
+  }
+?>
+ 
+    </ul>
   </div>
 </div>

@@ -114,7 +114,6 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
               break;
           }
         }
-
           $total_record=mysqli_num_rows($result);
           $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
 
@@ -126,8 +125,6 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
           }
           $start=($page -1) * SCALE;
           $number = $total_record - $start;
-
-
          ?>
 
       </div><!--end of header  -->
@@ -218,7 +215,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$space.$subject?></a>
               <?php
                 if (!($file_name === "")) {
-                    echo('<img src="../pic/disk.png" alt="">');
+                    echo('<img src="./data/disk.png" alt="">');
                 } else {
                     echo "";
                 } ?>

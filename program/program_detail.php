@@ -2,7 +2,15 @@
 <?php
   session_start();
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
-?>
+ if(isset($_GET['o_key'])){
+   $o_key=$_GET['o_key'];
+   $o_key=(int)$o_key;
+ }else{
+   echo "alert('접속 오류 발생');";
+   return;
+ }
+ ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -20,35 +28,6 @@
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <script src="./js/program_detail.js" charset="utf-8"></script>
     <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
-    <script type="text/javascript">
-    function kmongHeaderHidingWhenScrolling() {
-        var navOffset = $(this).scrollTop(),
-            $overView = $('#overview').offset().top,
-            $similarGigDiv = $('.gig-detail-left-side-width').height(),
-            $gigDetailNavBar = $('#gigDetailNavBar'),
-            $kmongNavBar = $('#kmongNavBar'),
-            gigDetailNavBarTop = $overView + $('#overview').height() + 60;
-
-        if(($overView - 100) < navOffset){ // 100은 바뀌는 타이밍 조정으로 인해 추가
-            $kmongNavBar.hide();
-            // $gigDetailNavBar.fadeIn();
-        } else {
-            // $gigDetailNavBar.fadeOut();
-            $kmongNavBar.show();
-        }
-        if (gigDetailNavBarTop < navOffset
-            && !$gigDetailNavBar.hasClass('position-fixed')
-            && $similarGigDiv > navOffset
-        ){
-            $gigDetailNavBar.addClass('position-fixed');
-            $('#overview').addClass('margin-bottom-170');
-        } else if (gigDetailNavBarTop > navOffset || $similarGigDiv < navOffset) {
-            $gigDetailNavBar.removeClass('position-fixed');
-            $('#overview').removeClass('margin-bottom-170');
-        }
-    }
-
-    </script>
   </head>
   <body>
     <header>
@@ -194,20 +173,60 @@
             </section>
             <aside>
               <div id="div_aside">
-                <h2>PT프로그램 과 식단을 드립니다.</h2>
+                <!-- 작업대 -->
+                <script type="text/javascript">
+                  let =
+                  function pay(x){
+                    let pay = document.getElementById("h_pay");
+                    pay.innerHTML=x;
+                  }
+                </script>
+                <?php
+                 // ==============================
+                 $sql = "select * from program where o_key=$o_key";
+                 $result = mysqli_query($conn, $sql);
+                 $row = mysqli_fetch_array($result);
+                 $shop = $row["shop"];
+                 $type = $row["type"];
+                 $subject = $row["subject"];
+                 $content = $row["content"];
+                 $location = $row["location"]; //주소
+                 ?>
+
+
+
+                <h2><?=$shop?></h2>
                 <form class="" action="index.html" method="post">
-                  <h3>11000원 : MAX</h3>
+                  <h3><span id="h_pay"></span>원</h3>
                   <p>
-                    운동 + 식단 프로그램PT때 사용했던 운동 프로그램과 식단 프로그램 (다이어트)드립니다.(2주 분량)<br/>
+                    <?=$subject?><br/>
+                    <?=$content?><br/>
                     1회당 레슨시간 (분) : 30 분<br/>
                     레슨 횟수 : 1 회<br/>
                   </p>
-                  <select class="" name="">
+                  <select class="" name="" id="choose" onchange="pay(this.value);">
                     <option value="0">옵션선택</option>
-                    <option value="1000">추가1 1000원</option>
-                    <option value="3000">추가2 3000원</option>
-                    <option value="5000">추가3 5000원</option>
-                    <option value="7000">추가4 7000원</option>
+                  <?php
+                  $sql="select * from program where shop='$shop'and type='$type' order by price";
+                  $result = mysqli_query($conn, $sql);
+                  while($row = mysqli_fetch_array($result)){
+                    $shop          = $row["shop"]; //장소 이름
+                    $type          = $row["type"]; //헬스나 pt
+                    $end_day      = $row["end_day"]; //날짜
+                    $choose       = $row["choose"]; //옵션 내용
+                    $price        = (int)$row["price"]; //옵션에 대한 가격
+                    $file_copied         = $row["file_copied"]; //이미지파일 이름
+                    $file_type         = $row["file_type"]; //이미지파일에 타입
+                    if(!($choose==="선택")){
+                   ?>
+                     <option value="<?=$price?>"><?=$choose?>횟수: <?=$price?>원</option>
+
+                    <?php
+                    }
+                  }
+
+                  mysqli_close($conn);
+                     ?>
                   </select>
                   <br/>
                   <div class="">
@@ -215,8 +234,7 @@
                   </div>
                   <input type="button" name="" value="찜하기">
                   <input type="button" name="" value="장바구니">
-                  <input type="submit" name="" value="구매하기">
-                </form>
+                  <input type="button" name="" value="구매하기" onclick="location.href='./program_purchase.php'">
               </div>
             </aside>
           </div>

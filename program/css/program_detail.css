@@ -80,8 +80,10 @@ p{
 }
 #myHeader ul li{
   display: inline-block;
+  width: 24%;
 }
 #myHeader ul li a{
+  width: 100%;
   border: 1px solid white;
   color: white;
 }

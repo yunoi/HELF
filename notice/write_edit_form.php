@@ -18,7 +18,10 @@ session_start();
     <div id="wrap">
       <div id="header">
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
-        <?php $num=$id=$subject=$content=$day=$hit="";
+        <?php
+        include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
+
+        $num=$id=$subject=$content=$day=$hit="";
         $mode="insert";
         $checked="";
         $id=$_SESSION['user_id'];

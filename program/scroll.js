@@ -1,6 +1,5 @@
 $(document).ready(function() {
-    var count=5
-    ;
+    var count=5;
     $(window).bind("scroll", function(){
         var documentHeight  = $(document).height();
         var scrollHeight = $(window).scrollTop()+$(window).height();
@@ -14,18 +13,24 @@ $(document).ready(function() {
                 success:function(data){
                   var data = JSON.parse(data);
                   console.log(data[0].o_key+","+data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
-                  +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
+                  +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied+","+data[0].pick);
+                  console.log(data[1].o_key+","+data[1].shop+","+data[1].type+","+data[1].subject+","+data[1].personnel
+                  +","+data[1].end_day+","+data[1].choose+","+data[1].price+","+data[1].location+","+data[1].file_copied+","+data[1].pick);
                   // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
                   // +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
                   // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
                   // +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
                   // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
                   // +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
-                  // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
-                  // +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
-
 
                   for(var i=0; i<5; i++){
+
+                    if(data[i].pick == null){
+                      var btn = "<button type='button' id='cart_btn' onclick=\"location.href='pick_db.php?o_key="+data[i].o_key+"&shop="+data[i].shop+"';\">찜하기</button><br>";
+                    }else{
+                      var btn = "<button type='button' id='cart_bt' disabled>이미찜</button><br>";
+                    }
+
                     var html = `<li><div class="program_li"><div class="program_image">`;
                     html += `<a href='../program/program_detail.php?o_key=`+data[i].o_key+`'>`;
                     html += `<img src='../admin/data/`+data[i].file_copied+`'>`;
@@ -35,18 +40,11 @@ $(document).ready(function() {
                     html += `<div class="info_2">`+data[i].subject+`</div>`;
                     html += `<div class="info_3">모집기간 : `+data[i].end_day+` 까지</div></a></div>`;
                     html += `<div class="program_price"><p>`+data[i].price+`<span> 원~</span>`;
-                    html += `<div class="buttons"><button type="button" id="cart_btn">장바구니</button> <br>`;
-                    html += `<button type="button" id="delete_btn">찜하기</button></div></div></div></li>`;
-
+                    html += `<div class="buttons">`;
+                    html += btn;
+                    html += `</div></div></div></li>`;
                     $("#board_list").append(html);
                   }
-
-
-
-
-
-
-
 
                 },
                 error:function(){

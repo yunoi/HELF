@@ -100,15 +100,15 @@
     </ul>
 </div>
 <nav id="menu_bar">
-    <ul>
-        <li id="li_img">
+    <ul class="tabs">
+        <li class="tab" id="li_img">
             <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/index.php">
                 <img
                     src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/helf_logo.png"
                     alt="헬프 로고">
             </a>
         </li>
-        <li class="down_menu">
+        <li class="tab down_menu">
         <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php"><span>&nbsp;&nbsp;&nbsp;소개</span></a>
         <ol class="menu_slide" id="about_slide">
                   <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/introduction/introduction.php">HELF</a></li>
@@ -116,11 +116,11 @@
                   <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/FAQ/list.php">FAQ</a></li>
                 </ol>
               </li>
-        <li>
+        <li class="tab">
             <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/programtest.php">
                 <span>프로그램</span></a>
         </li>
-        <li class="down_menu">
+        <li class="tab down_menu">
             <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">
                 <span>커뮤니티</span></a>
                 <ol class="menu_slide" id="community_slide">
@@ -129,15 +129,15 @@
                 </ol>
               </li>
 
-        <li class="down_menu">
-            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">
+        <li class="tab down_menu">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">
                 <span>건강정보</span></a>
                 <ol class="menu_slide" id="info_slide">
                 <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동 정보</a></li>
                   <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">레시피</a></li>
                 </ol>
         </li>
-        <li>
+        <li class="tab">
             <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php">
                 <span>같이할건강</span></a>
         </li>

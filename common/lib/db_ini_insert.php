@@ -22,10 +22,10 @@ function insert_init_data($conn, $table_name){
             최대한 원하는 목표를 성취하실 수 있도록 도와드립니다!', 3, '2020-03-05', 'PT 10회' , 500000 , '서울시 노원구 상계2동' , 'abc.jpg', 'abc.jpg', 'abc.jpg' , '2020-02-13');";
             break;
           case 'p_review' :
-            $sql = "insert into p_review values ('admin', 1, '여기 맛집이요', '2020-02-14');";
+            $sql = "insert into p_review values ('admin', 59, '여기 맛집이요', '2020-02-14');";
             break;
           case 'p_qna' :
-            $sql = "insert into p_qna values ('admin', 1, '오늘 점심은 뭔가요?', '2020-02-14',1,1);";
+            $sql = "insert into p_qna values ('admin', 59, '오늘 점심은 뭔가요?', '2020-02-14',1,1);";
             break;
             case 'notice' :
               $sql = "INSERT INTO `notice` (`num` , `subject` , `content` , `regist_day` , `hit` , `file_name` , `file_type` , `file_copied`)

@@ -53,14 +53,22 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
         $start=($page -1) * SCALE;
         $number = $total_record - $start;
+
+
+
+
+
         ?>
+
+
+
       </div><!--end of header  -->
       <div id="menu">
       </div><!--end of menu  -->
       <div id="content">
         <div id="col1">
          <div id="left_menu">
-           <div id="sub_title"><span>&nbsp</span></div>
+           <div id="sub_title"> <span>메뉴</span></div>
            <ul>
            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/review/list.php">다이어트 후기</a></li>
@@ -70,12 +78,12 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
        <div id="col2">
          <div id="title">
-           <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp다이어트후기</span>
+           <span>다이어트후기</span>
          </div>
          <form name="board_form" action="list.php?mode=search" method="post">
            <div id="list_search">
              <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
-             <div id="list_search2"><span></span></div>
+             <div id="list_search2"><span>SELECT</span></div>
              <div id="list_search3">
                <select name="find">
                  <option value="subject">제목</option>
@@ -84,7 +92,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
                </select>
              </div><!--end of list_search3  -->
              <div id="list_search4"><input type="text" name="search"></div>
-             <div id="list_search5"><input type="image" src="../pic/search.png"></div>
+             <div id="list_search5"><input type="submit" value="검색"> </div>
            </div><!--end of list_search  -->
          </form>
          <div id="clear"></div>
@@ -100,6 +108,8 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
          <div id="list_content">
 
          <?php
+
+
           for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++) {
               mysqli_data_seek($result, $i);
               $row=mysqli_fetch_array($result);
@@ -150,20 +160,20 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
         </div><!--end of page num -->
         <div id="button">
           <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
-          <a href="./list.php?page=<?=$page?>">목록</a>
+          <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button>&nbsp;</a>
           <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
             if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
-                echo '<a href="write_edit_form.php">글쓰기</a>';
+                echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
             }
           ?>
         </div><!--end of button -->
       </div><!--end of page button -->
       </div><!--end of list content -->
       </div><!--end of col2  -->
+      </div><!--end of content -->
       <aside>
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
       </aside>
-      </div><!--end of content -->
     </div><!--end of wrap  -->
   </body>
 </html>

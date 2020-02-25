@@ -15,12 +15,19 @@
 }
 
 #all_check {
-  float: right;
   clear: both;
   width: 714px;
+  height: 30px;
   padding-top: 5px;
   padding-bottom: 5px;
   font-size: 13px;
+  margin-bottom: 5px;
+}
+
+#all_check span {
+  float: right;
+  padding-top: 5px;
+  margin-left: 10px;
 }
 
 #all_check #btn_submit {
@@ -120,7 +127,7 @@
 .program_buy_day {
   margin-top: -5px;
   font-size: 13px;
-  color:#F23005;
+  color: #F23005;
 }
 
 .program_price {
@@ -164,8 +171,6 @@
   background-color: gray;
   color: white;
 }
-
-
 
 #page_num {
   clear: both;

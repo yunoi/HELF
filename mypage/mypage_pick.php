@@ -127,6 +127,7 @@
           <form id="delete_pick_form" action="mypage_pick.php?page=<?=$page?>" method="post">
             <div id="all_check">
               <input type="checkbox" id="all_agree">
+              <span>전체 선택</span>
               <input type="submit" id="btn_submit" value="선택 상품 삭제">
             </div>
           <ul id="program_list">
@@ -248,6 +249,7 @@
               }
           ?>
           </ul> <!-- page -->
+        </div>
       </div>
     </section>
     <footer>

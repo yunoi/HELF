@@ -92,6 +92,7 @@
           <form id="delete_cart_form" action="cart_list.php?page=<?=$page?>" method="post">
             <div id="all_check">
               <input type="checkbox" id="all_agree">
+              <span>전체 선택</span>
               <input type="submit" id="btn_submit" value="선택 상품 삭제">
             </div>
           <ul id="program_list">
@@ -213,6 +214,7 @@
               }
           ?>
           </ul> <!-- page -->
+        </div>
       </div>
     </section>
     <footer>

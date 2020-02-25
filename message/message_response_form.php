@@ -24,8 +24,9 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";?>
   </head>
   <body>
     <section>
-      <div id="message_box">
-        <h3 id="write_title">답변 메시지 보내기</h3>
+    <div id="message_main_content">
+
+        <h2 id="write_title">답변 메시지 보내기</h2>
 <?php
   $num = $_GET['num'];
 
@@ -47,6 +48,18 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";?>
   $record = mysqli_fetch_array($result2);
   $send_name = $record['name'];
 ?>
+<div id="message_buttons">
+                <ul class="tab">
+                    <li>
+                        <a href="./message_box.php?mode=receive" id="received">받은 메시지</a>
+                    </li>
+                    <li>
+                        <a href="./message_box.php?mode=send" id="sent">보낸 메시지</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="message_content">
+
         <form name="message_form" action="message_insert.php" method="post">
           <div id="write_msg">
             <ul>
@@ -56,7 +69,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";?>
                 <input type="hidden" name="send_id" value="<?=$user_id?>">
               </li>
               <li>
-                <span class="col1">수신 아이디: </span>
+                <span class="col1">받는 사람 <br>아이디: </span>
                 <span class="col2"><?=$send_name?>(<?=$send_id?>)</span>
                 <input type="hidden" name="rv_id" value="<?=$send_id?>">
               </li>
@@ -64,19 +77,20 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";?>
                 <span class="col1">제목: </span>
                 <span class="col2"><input type="text" name="subject" value="<?=$subject?>"></span>
               <li id="text_area">
-                <span class="col1">글 내용 : </span>
+                <span class="col1">내용 : </span>
                 <span class="col2">
                   <textarea name="content"><?=$content?></textarea>
                 </span>
               </li>
             </ul>
             <div class="bottom_buttons">
-            <button type="button" onclick="history.go(-1)">뒤로가기</button>
+            <button type="button" onclick="check_back()">뒤로가기</button>
             <button type="button" onclick="check_message()">보내기</button>
             </div>
           </div>
         </form>
-      </div>
+            </div>
+    </div>
     </section>
   </body>
 </html>

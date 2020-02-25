@@ -67,7 +67,7 @@
     <script type="text/javascript">
       $(document).ready(function() {
         // url에서 get 값 지워줌;
-        history.pushState(null, null, "http://localhost/helf/mypage/mypage_cart.php");
+        history.pushState(null, null, "http://localhost/helf/mypage/cart_list.php");
 
         $("#all_agree").click(function() {
           if($("#all_agree").prop("checked")) {
@@ -84,14 +84,15 @@
       <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
     </header>
     <section>
-      <div id="mypage_main_content">
+      <div id="cart_main_content">
         <div id="title_mypage">
           <h1>장바구니</h1>
         </div>
         <div id="mypage_content">
-          <form id="delete_cart_form" action="mypage_cart.php?page=<?=$page?>" method="post">
+          <form id="delete_cart_form" action="cart_list.php?page=<?=$page?>" method="post">
             <div id="all_check">
               <input type="checkbox" id="all_agree">
+              <span>전체 선택</span>
               <input type="submit" id="btn_submit" value="선택 상품 삭제">
             </div>
           <ul id="program_list">
@@ -128,6 +129,7 @@
                  $subject      = $row["subject"];
                  $end_day      = $row["end_day"];
                  $price        = $row["price"];
+                 $choose       = $row["choose"];
                  $location     = $row["location"];
                  $file_copied  = $row["file_copied"];
                  $file_type    = $row["file_type"];
@@ -146,10 +148,11 @@
                                 <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
                                 <div class="info_2"><?=$subject?></div>
                                 <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
+                                <div class="info_4">선택한 옵션 : <?=$choose?></div>
                               </a>
                             </div>
                             <div class="program_price">
-                              <p><?=$price?><span> 원~</span>
+                              <p><?=$price?><span> 원</span>
                               <div class="buttons">
                                 <button type="button" id="buy_btn">구매하기</button> <br>
                                 <button type="button" id="delete_btn" onclick="location.href='cart_list.php?num=<?=$num?>&page=<?=$page?>'">삭제</button>
@@ -211,6 +214,7 @@
               }
           ?>
           </ul> <!-- page -->
+        </div>
       </div>
     </section>
     <footer>

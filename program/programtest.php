@@ -32,14 +32,16 @@
           <li>
             <em>운동종류</em><br>
             <select name="kind" class="kind_sel">
-              <option value="name1">전체</option>
-              <option value="name2">전체</option>
-              <option value="name3">헬스</option>
-              <option value="name4">수영</option>
-              <option value="name5">자전거</option>
-              <option value="name6">요가/필라테스</option>
-              <option value="name7">기타</option>
-              <option value="name8">등등</option>
+              <option value="전체">전체</option>
+              <option value="헬스">헬스</option>
+              <option value="수영">수영</option>
+              <option value="축구">축구</option>
+              <option value="복싱">복싱</option>
+              <option value="등산">등산</option>
+              <option value="수영">클라이밍</option>
+              <option value="요가/필라테스">요가/필라테스</option>
+              <option value="기타">기타</option>
+
             </select>
           </li>
           <br><br>&nbsp
@@ -131,13 +133,10 @@
                    </div>
                    <div class="program_price">
                      <p><?=$price?><span> 원~</span>
-                     <div class="pick_buttons">
+                     <div class="buttons">
                        <button type="button" id="cart_btn">장바구니</button> <br>
-                       <button type="button" id="delete_btn">삭제</button>
+                       <button type="button" id="delete_btn">찜하기</button>
                      </div>
-                   </div>
-                   <div class="checkbox_div">
-                     <input type="checkbox" name="no[]">
                    </div>
                  </div>
                </li>

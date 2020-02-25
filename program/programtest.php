@@ -28,8 +28,8 @@
  <section>
     <div class="div_program">
       <div class="div_program_category">
-        <br>
-        <h3 class="search_title">-카테고리 상세검색-</h2>
+        <br><br>
+        <h3 class="search_title">-카테고리 상세검색-</h2><br>
         <ul id="detail_search">
           <br>&nbsp
           <li>
@@ -98,20 +98,12 @@
             <br><br><br><br><br>
 
             <?php
-              if (isset($_GET["page"])) {
-                  $page = $_GET["page"];
-              } else {
-                  $page = 1;
-              }
-
               $conn = mysqli_connect("localhost", "root", "123456", "helf");
-              $sql = "select * from program order by o_key desc";
+              $sql = "select p.*, i.num from program p left join pick i on p.o_key = i.o_key ";
+              $sql .= "where choose = '선택' order by p.o_key desc";
               $result = mysqli_query($conn, $sql);
 
               for ($i=0; $i<5; $i++) {
-                 $back_color = array('#04adbf', '#04d9d9', '#f2b705', '#d98e04','#f23005');
-
-
                // 가져올 레코드로 위치(포인터) 이동
                $row = mysqli_fetch_array($result);
                // 하나의 레코드 가져오기
@@ -120,12 +112,18 @@
                $type          = $row["type"];
                $subject        = $row["subject"];
                $end_day     = $row["end_day"];
-               $price  = $row["price"];
                $location         = $row["location"];
                $file_copied         = $row["file_copied"];
                $file_type         = $row["file_type"];
+               $pick              =  $row["num"];
 
-               ?>
+               $sql2 = "select price from program where shop='".$shop."' and type='".$type."' order by price asc";
+               $result2 = mysqli_query($conn, $sql2);
+               $row2 = mysqli_fetch_array($result2);
+               $price  = $row2["price"];
+
+
+              ?>
                <li>
                  <div class="program_li">
                    <div class="program_image">
@@ -143,8 +141,14 @@
                    <div class="program_price">
                      <p><?=$price?><span> 원~</span>
                      <div class="buttons">
-                       <button type="button" id="cart_btn">장바구니</button> <br>
-                       <button type="button" id="delete_btn">찜하기</button>
+
+                       <?php
+                       if($pick==""){
+                        echo "<button type='button' id='cart_btn' onclick=\"location.href='pick_db.php?o_key=$o_key&shop=$shop';\">찜하기</button><br>";
+                      }else{
+                        echo "<button type='button' id='cart_bt' disabled>이미찜</button><br>";
+                      }
+                      ?>
                      </div>
                    </div>
                  </div>

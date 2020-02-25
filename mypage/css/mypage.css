@@ -10,6 +10,7 @@
 
 #mypage_buttons {
   height: 60px;
+  cursor: pointer;
 }
 
 .select_tap {

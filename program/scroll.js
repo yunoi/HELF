@@ -35,9 +35,8 @@ $(document).ready(function() {
                     html += `<div class="info_2">`+data[i].subject+`</div>`;
                     html += `<div class="info_3">모집기간 : `+data[i].end_day+` 까지</div></a></div>`;
                     html += `<div class="program_price"><p>`+data[i].price+`<span> 원~</span>`;
-                    html += `<div class="pick_buttons"><button type="button" id="cart_btn">장바구니</button> <br>`;
-                    html += `<button type="button" id="delete_btn">삭제</button></div></div>`;
-                    html += ` <div class="checkbox_div"><input type="checkbox" name="no[]"></div></div></li>`;
+                    html += `<div class="buttons"><button type="button" id="cart_btn">장바구니</button> <br>`;
+                    html += `<button type="button" id="delete_btn">찜하기</button></div></div></div></li>`;
 
                     $("#board_list").append(html);
                   }

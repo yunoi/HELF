@@ -27,35 +27,29 @@ function create_table($conn, $table_name){
            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
           case 'pick' :
-            $sql = "create table pick (
+            $sql = "CREATE TABLE pick( 
               num int not null auto_increment,
-              id char(20) not null,
-              o_key int not null,
-              PRIMARY KEY(num),
-              FOREIGN KEY (id) REFERENCES members (id),
-              FOREIGN KEY (o_key) REFERENCES program (o_key)
-           ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+               id char(20) not null,
+               o_key int not null,
+               primary key (num),
+                
+              constraint pick_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
+               constraint pick_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
+         )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+         ";
             break;
             case 'cart' :
-              $sql = "create table cart (
+              $sql = "CREATE TABLE cart( 
                 num int not null auto_increment,
-                id char(20) not null,
-                o_key int not null,
-                PRIMARY KEY(num),
-                FOREIGN KEY (id) REFERENCES members (id),
-                FOREIGN KEY (o_key) REFERENCES program (o_key)
-             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+                 id char(20) not null,
+                 o_key int not null,
+                 primary key (num),
+                  
+                constraint cart_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
+                 constraint cart_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
+           )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
               break;
-          case 'buy' :
-            $sql = "create table buy (
-              num int not null auto_increment,
-              id char(20) not null,
-              o_key int not null,
-              PRIMARY KEY(num),
-              FOREIGN KEY (id) REFERENCES members (id),
-              FOREIGN KEY (o_key) REFERENCES program (o_key)
-           ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-            break;
+    
           case 'message' :
             $sql = "create table message (
               num int not null auto_increment,
@@ -88,18 +82,19 @@ function create_table($conn, $table_name){
           )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
           case 'p_review' :
-            $sql = "CREATE TABLE p_review(
+            $sql = "CREATE TABLE p_review( 
               id char(20) not null,
               o_key int not null,
               content text not null,
               regist_day char(15),
               primary key (id, o_key),
-            constraint fk_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade,
-              constraint fk_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade
+               
+             constraint review_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
+              constraint review_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
         )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
           case 'p_qna' :
-            $sql = "CREATE TABLE p_qna(
+            $sql = "CREATE TABLE p_qna( 
               id char(20) not null,
               o_key int not null,
               content text not null,
@@ -107,9 +102,9 @@ function create_table($conn, $table_name){
               group_num int UNSIGNED NOT NULL,
               depth int UNSIGNED NOT NULL,
               primary key (id, o_key),
-
-            constraint fk_members_id2 FOREIGN KEY (id) REFERENCES members(id) on delete cascade,
-              constraint fk_program_o_key2 FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade
+               
+             constraint qna_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
+              constraint qna_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
         )ENGINE=InnoDB DEFAULT CHARSET=utf8;
         ";
             break;
@@ -226,13 +221,14 @@ function create_table($conn, $table_name){
             break;
             case 'sales' :
               $sql = "CREATE TABLE sales(
+                num int not null auto_increment,
                 id char(20) not null,
                 o_key int not null,
                 sales_day char(15) not null,
-                primary key (id, o_key),
-
-               constraint fk_members_id3 FOREIGN KEY (id) REFERENCES members(id) on delete cascade,
-                constraint fk_program_o_key3 FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade
+                primary key (num),
+                 
+               constraint sales_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
+                constraint sales_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
           )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
               break;
               case 'deleted_members' :

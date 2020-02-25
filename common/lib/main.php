@@ -88,4 +88,41 @@
       </ul>
   </div>
   </div>
+  <div id="health_info">
+    <h3 id="health_info_title">건강 정보</h3>
+    <ul>
+    <?php
+  $sql = "select * from health_info order by num desc limit 9";
+  $result = mysqli_query($conn, $sql);
+
+  if(!$result){
+    echo "게시판 DB 테이블이 생성 전이거나 아직 게시글이 없습니다.";
+  } else {
+    while($row = mysqli_fetch_array($result)){
+      $b_code = $row["b_code"];
+      $file_copied = $row['file_copied'];
+      if($b_code == "레시피"){
+        $data = "/helf/health_info/recipe/data/";
+      } else {
+        $data = "/helf/health_info/exercise/data/";
+      }
+?>
+      <li>
+        <div class="img">
+          <img src="http://<?php echo $_SERVER['HTTP_HOST'].$data.$file_copied; ?>" alt="<?= $row["subject"]?>">
+        </div>
+        <div class="txt">
+          <p><?= $row["subject"]?></p>
+          <em><?= $b_code?></em>
+          <strong>|&nbsp;&nbsp;&nbsp;조회수
+          <span id="hit"><?= $row["hit"]?></span></strong>
+        </div>
+      </li>
+<?php
+    }
+  }
+?>
+ 
+    </ul>
+  </div>
 </div>

@@ -52,6 +52,7 @@ p{
   width: 240px;
   margin: 0px auto;
   margin-left: 30px;
+  margin-top: 19px;
 }
 #div_aside *{
   padding: 10px;
@@ -70,15 +71,19 @@ p{
   background-color: white;
 }
 #pay{
-  width: 300px;
+  width: 600px;
+  height: 450px;
+  border: 1px solid #F23005;
 }
 #myHeader ul{
   list-style: none;
 }
 #myHeader ul li{
   display: inline-block;
+  width: 24%;
 }
 #myHeader ul li a{
+  width: 100%;
   border: 1px solid white;
   color: white;
 }

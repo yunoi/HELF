@@ -16,6 +16,7 @@
   <head>
     <meta charset="utf-8">
     <title>HELF :: 구매확인페이지</title>
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="./css/program_detail.css">
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <link
@@ -27,7 +28,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <script src="./js/program_detail.js" charset="utf-8"></script>
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+
   </head>
   <body>
     <header>
@@ -174,13 +175,7 @@
             <aside>
               <div id="div_aside">
                 <!-- 작업대 -->
-                <script type="text/javascript">
-                  let =
-                  function pay(x){
-                    let pay = document.getElementById("h_pay");
-                    pay.innerHTML=x;
-                  }
-                </script>
+
                 <?php
                  // ==============================
                  $sql = "select * from program where o_key=$o_key";
@@ -228,6 +223,12 @@
                   mysqli_close($conn);
                      ?>
                   </select>
+                  <script type="text/javascript">
+                  // $('#h_pay').on('change',pay(this.value));
+                    function pay(x){
+                      document.getElementById("h_pay").innerHTML=x;
+                    }
+                  </script>
                   <br/>
                   <div class="">
                     <img src="" alt="">작업일 : 123 &nbsp;&nbsp; <img src="" alt="">수정 횟수 : 제한 없음

@@ -28,6 +28,7 @@ session_start();
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       </header>
       <?php
+      include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
       $num=$id=$subject=$content=$day=$hit="";
 
       if(empty($_GET['page'])){

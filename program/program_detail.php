@@ -30,7 +30,7 @@
     <div id="div_main_body">
             <section>
               <div id="div_main">
-                <img src="./img/hells.jpg" alt="" width="400">
+                <img src="./img/hells.jpg" alt="">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -58,46 +58,61 @@
                 </script>
                 <div class="" id="see">
                   <h3>서비스 설명</h3>
-                  <p>운동 하려고 할때마다 무슨운동을 얼마나 해야할지 막막하시죠?<br/>
-                  그동안 크몽 포함 여러 Personal Training 을 서비스해주며,<br/>
-                  온라인과 오프라인 PT를 진행하며 만들어온<br/>
-                  (크몽 온라인코칭 : https://kmong.com/gig/129951)<br/>
+                  <div class="see_body">
 
-                  다이어트용 운동 프로그램, 근육성장용 프로그램 등<br/>
-                  <span>"운동 프로그램"</span> 및 <span>"식단 모음집"</span>을 드립니다.
+                  <p>운동 하려고 할때마다 무슨운동을 얼마나 해야할지 막막하시죠?<br/><br/>
+                  그동안 크몽 포함 여러 Personal Training 을 서비스해주며,<br/><br/>
+                  온라인과 오프라인 PT를 진행하며 만들어온<br/><br/>
+                  (크몽 온라인코칭 : https://kmong.com/gig/129951)<br/><br/>
+
+                  다이어트용 운동 프로그램, 근육성장용 프로그램 등<br/><br/>
+                  <span>"운동 프로그램"</span> 및 <span>"식단 모음집"</span>을 드립니다.<br/><br/>
                   <ol>
-                    <li>STANDARD : 운동 프로그램만을 드립니다.</li>
-                    <li>DELUXE : 운동 + 식단 프로그램을 드립니다.</li>
-                    <li>PREMIUM : 스스로 운동 계획하기 노하우 PDF를 드립니다. (약 40p 분량)</li>
+                    <li>STANDARD : 운동 프로그램만을 드립니다.</li><br/>
+                    <li>DELUXE : 운동 + 식단 프로그램을 드립니다.</li><br/>
+                    <li>PREMIUM : 스스로 운동 계획하기 노하우 PDF를 드립니다. (약 40p 분량)</li><br/>
                   </ol>
                   <br/>
 
-                  기존의 운동 프로그램과는 다른점은,<br/>
-                  다양한 운동 프로그램이 세트로 들어있는 모읍집의 개념이기에,<br/>
-                  여러 시도를 해볼 수 있는 기회가 생깁니다.<br/>
+                  기존의 운동 프로그램과는 다른점은,<br/><br/>
+                  다양한 운동 프로그램이 세트로 들어있는 모읍집의 개념이기에,<br/><br/>
+                  여러 시도를 해볼 수 있는 기회가 생깁니다.<br/><br/>
 
-
-                  <span>파일은<br/>
-                  PDF형식으로 전송드립니다.
+                  <span>파일은<br/><br/>
+                  PDF형식으로 전송드립니다.<br/><br/>
                   </span>
-
+                  <br/><br/>
                 <h4>**경력사항</h4>
+                <br/>
+                <br/>
                 <ul>
                   <li> 온라인 코치 경험 다수(크몽 포함)</li>
                   <li> 퍼스널 트레이너 3년차</li>
                   <li> 생활스포츠지도사 (보디빌딩) 자격증</li>
                   <li> 국제 퍼스널트레이너 자격증(FISAF)</li>
                 </ul>
-                  지역
-                    <b>비대면</b>
-                  분야
-                  <b>피트니스</b>
-                  모집 형태
-                  <b>개인레슨</b>
-                  교육 횟수
-                  <b>원데이클래스</b>
+                <div class="clear"></div>
+                <br/>
+                <ul>
+                  <li>지역</li><br/>
+                  <li><b>비대면</b></li>
+                </ul><br/>
+                <ul>
+                  <li>분야</li><br/>
+                  <li><b>피트니스</b></li>
+                </ul><br/>
+                <ul>
+                    <li>모집 형태</li><br/>
+                    <li><b>개인레슨</b></li>
+                </ul><br/>
+                <ul>
+                  <li>교육 횟수</li><br/>
+                  <li><b>원데이클래스</b></li>
+                </ul><br/>
                 </p>
                 </div>
+                </div>
+              <!--  -->
                 <div id="div_review">
                   <h3>자신에 구매 후기 평가를 적어주세요</h3>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

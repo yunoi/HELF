@@ -49,9 +49,8 @@
 
             <h3 class="menu-title">-통계-</h3>
             <ul>
-              <li><a href="admin_statistics1.php">월별매출</a></li>
-              <li><a href="admin_statistics2.php">프로그램별 매출</a></li>
-              <li><a href="admin_statistics3.php">회원별 매출</a></li>
+              <li><a href="admin_statistics1.php">매출 분석</a></li>
+              <li><a href="admin_statistics2.php">인기 프로그램</a></li>
             </ul>
 
 
@@ -78,6 +77,10 @@
     $choose = $row["choose"];
     $price = $row["price"];
     $location = $row["location"];
+    $location = explode(",", $row["location"]);
+    $location1 = $location[0];
+    $location2 = $location[1];
+    $location3 = $location[2];
     $file_name = $row["file_name"];
     $file_type = $row["file_type"];
     $file_copied = $row["file_copied"];
@@ -85,6 +88,8 @@
 
     mysqli_close($conn);
   }else{
+
+    $o_key = "";
     $shop = "";
     $type = "";
     $subject = "";
@@ -103,7 +108,7 @@
      <div id="content">
     			<h3>프로그램 관리 > 등록</h3><br>
           <form name="program_regist" class="" action="program_curd.php?mode=<?=$mod?>&o_key=<?=$o_key?>" method="post" enctype="multipart/form-data">
-            <table>
+            <table id="regist_table">
               <tr>
                 <td>샵 이름</td>
                 <td>
@@ -114,13 +119,13 @@
                 <td>운동 종류</td>
                 <td>
                   <select name="type" class="kind_sel">
-                    <option value="선택" selected>-선택-</option>
-                    <option value="헬스">헬스</option>
-                    <option value="수영">수영</option>
-                    <option value="자전거">자전거</option>
-                    <option value="요가/필라테스">요가/필라테스</option>
-                    <option value="기타">기타</option>
-                    <option value="등등">등등</option>
+                    <option value="선택">-선택-</option>
+                    <option value="헬스" <?php if ($type === '헬스') echo "selected";?>>헬스</option>
+                    <option value="수영" <?php if ($type === '수영') echo "selected";?>>수영</option>
+                    <option value="자전거" <?php if ($type === '자전거') echo "selected";?>>자전거</option>
+                    <option value="요가/필라테스" <?php if ($type === '요가/필라테스') echo "selected";?>>요가/필라테스</option>
+                    <option value="기타" <?php if ($type === '기타') echo "selected";?>>기타</option>
+                    <option value="등등" <?php if ($type === '등등') echo "selected";?>>등등</option>
                   </select>
                 </td>
               </tr>
@@ -164,6 +169,7 @@
                 <td>지역
                 <td>
                   <?php include "../program/select_location.php";?>
+
                 </td>
               </tr>
               <tr>
@@ -183,9 +189,9 @@
                 <td>
                   <?php
                     if(isset($_GET["o_key"])){
-                      echo "<input type='submit' value='수정1'>";
+                      echo "<input type='submit' value='수정'>";
                     }else{
-                      echo "<input type='submit' value='등록1'>";
+                      echo "<input type='submit' value='등록'>";
                     }
 
                    ?>

@@ -7,6 +7,7 @@
  <link rel="stylesheet" type="text/css" href="../common/css/common.css">
  <link rel="stylesheet" type="text/css" href="../common/css/main.css">
  <link rel="stylesheet" type="text/css" href="./css/program.css?ver=1">
+ <link rel="stylesheet" href="../mypage/css/program.css">
  <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
  <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
  <script src="./scroll.js?ver=3"></script>
@@ -86,54 +87,60 @@
             <br><br><br><br><br>
 
             <?php
-    if (isset($_GET["page"])) {
-        $page = $_GET["page"];
-    } else {
-        $page = 1;
-    }
+              if (isset($_GET["page"])) {
+                  $page = $_GET["page"];
+              } else {
+                  $page = 1;
+              }
 
-    $conn = mysqli_connect("localhost", "root", "123456", "helf");
-    $sql = "select * from program order by o_key desc";
-    $result = mysqli_query($conn, $sql);
+              $conn = mysqli_connect("localhost", "root", "123456", "helf");
+              $sql = "select * from program order by o_key desc";
+              $result = mysqli_query($conn, $sql);
 
-    for ($i=0; $i<5; $i++) {
-       $back_color = array('#04adbf', '#04d9d9', '#f2b705', '#d98e04','#f23005');
+              for ($i=0; $i<5; $i++) {
+                 $back_color = array('#04adbf', '#04d9d9', '#f2b705', '#d98e04','#f23005');
 
 
-       // 가져올 레코드로 위치(포인터) 이동
-       $row = mysqli_fetch_array($result);
-       // 하나의 레코드 가져오기
-       $shop         = $row["shop"];
-       $type          = $row["type"];
-       $subject        = $row["subject"];
-       $end_day     = $row["end_day"];
-       $price  = $row["price"];
-       $location         = $row["location"];
-       $file_copied         = $row["file_copied"];
-       $file_type         = $row["file_type"];
+               // 가져올 레코드로 위치(포인터) 이동
+               $row = mysqli_fetch_array($result);
+               // 하나의 레코드 가져오기
+               $o_key        = $row["o_key"];
+               $shop         = $row["shop"];
+               $type          = $row["type"];
+               $subject        = $row["subject"];
+               $end_day     = $row["end_day"];
+               $price  = $row["price"];
+               $location         = $row["location"];
+               $file_copied         = $row["file_copied"];
+               $file_type         = $row["file_type"];
 
-       ?>
-       <a href="program_detail.php">
-				<li class="li_program_list">
-          <div class="div_list" style="background:<?=$back_color[$i]?>">
-          <div class="pro1">
-            <div class="main_image">
-              <img src='../admin/data/<?=$file_copied?>' class='image_vertical'>
-            </div>
-          </div>
-          <div class="pro2">
-            <div class="abc">
-              <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
-              <div class="info_2"><?=$subject?></div>
-              <div class="info_3">모집기간: <?=$end_day?> 까지</div>
-            </div>
-          </div>
-          <div class="pro3">
-            <em><strong><?=$price?></strong> 원</em>
-          </div>
-            </div>
-				</li>
-        </a>
+               ?>
+               <li>
+                 <div class="program_li">
+                   <div class="program_image">
+                     <a href="../program/program_detail.php?o_key=<?=$o_key?>">
+                     <img src='../admin/data/<?=$file_copied?>'>
+                     </a>
+                   </div>
+                   <div class="program_detail">
+                     <a href="../program/program_detail.php?o_key=<?=$o_key?>">
+                       <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
+                       <div class="info_2"><?=$subject?></div>
+                       <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
+                     </a>
+                   </div>
+                   <div class="program_price">
+                     <p><?=$price?><span> 원~</span>
+                     <div class="pick_buttons">
+                       <button type="button" id="cart_btn">장바구니</button> <br>
+                       <button type="button" id="delete_btn">삭제</button>
+                     </div>
+                   </div>
+                   <div class="checkbox_div">
+                     <input type="checkbox" name="no[]">
+                   </div>
+                 </div>
+               </li>
 <?php
 }
   mysqli_close($conn);

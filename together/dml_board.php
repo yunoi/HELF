@@ -27,8 +27,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
 
 
     $area = test_input($_POST["area"]);
-    echo "<script>alert('{$area}');</script>";
-
 
     $user_id = test_input($user_id);
     $hit = 0;

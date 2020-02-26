@@ -222,7 +222,7 @@
             }
 
 
-              $conn = mysqli_connect("localhost", "root", "123456", "helf");
+              // $conn = mysqli_connect("localhost", "root", "123456", "helf");
               $sql = "select * from program ";
               $sql .= "where choose = '선택' and type like '".$s_type."%' and location like '".$s_area."%' and price between ".$s_min_price." and ".$s_max_price." order by o_key desc";
               $result = mysqli_query($conn, $sql);
@@ -284,7 +284,6 @@
                </li>
 <?php
 }
-  mysqli_close($conn);
 ?>
           </ul>
         </div><!-- (end)div_program_list_main -->

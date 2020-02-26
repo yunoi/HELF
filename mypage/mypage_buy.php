@@ -145,7 +145,7 @@
             <ul id="program_list">
             <?php
 
-                $sql = "select sales.*, program.* from sales, program where id='$id' and sales.o_key = program.o_key;";
+                $sql = "select * from sales A inner join program B on A.o_key = B.o_key where id = '$id' order by num;";
                 $result = mysqli_query($conn, $sql);
                 $total_record = mysqli_num_rows($result); // 전체 글 수
 
@@ -215,7 +215,7 @@
                     <?php
                    $number--;
                     }
-                    
+
                    function str_cutting($string, $len){
                     if(strlen($string)<$len) {
                          return $string; //자를길이보다 문자열이 작으면 그냥 리턴

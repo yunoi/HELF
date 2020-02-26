@@ -91,7 +91,7 @@
                     $page = 1;
                 }
 
-                $sql = "select * from comment where id='$id' order by num desc";
+                $sql = "select * from comment where id='$id' order by regist_day desc";
                 $result = mysqli_query($conn, $sql);
                 $total_record = mysqli_num_rows($result); // 전체 글 수
 

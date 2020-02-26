@@ -93,7 +93,10 @@
                     $page = 1;
                 }
 
-                $sql = "select * from community where id='$id' order by num desc";
+                $sql = "select * from community where id = '$id' union ";
+                $sql .= "select num,id,name,subject,content,regist_day,hit,file_name,file_type,file_copied,likeit,b_code ";
+                $sql .= "from together where id = '$id' order by regist_day desc;";
+
                 $result = mysqli_query($conn, $sql);
                 $total_record = mysqli_num_rows($result); // 전체 글 수
 
@@ -131,7 +134,13 @@
                     <li id="board_content">
                       <span class="col1"><?=$number?></span>
                       <span class="col2"><?=$b_code?></span>
-                      <span class="col3"><a href="board_view.php?num=<?=$num?>&page=<?=$page?>"><?=str_cutting($subject,75)?></a></span>
+                    <?php if ($b_code === "자유게시판") { ?>
+                      <span class="col3"><a href="../community/free/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                    <?php } else if ($b_code === "다이어트후기") { ?>
+                      <span class="col3"><a href="../community/review/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                    <?php } else { ?>
+                      <span class="col3"><a href="../together/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                    <?php } ?>
                       <span class="col4"><?=$regist_day?></span>
                       <span class="col5"><?=$likeit?></span>
                       <span class="col6"><?=$hit?></span>

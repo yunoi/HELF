@@ -136,16 +136,16 @@
         <ol id="keyword_area">
 
             <li>
-            <a href="../../tour/package/package_view.php?mode=<?=$cookie1?>"><img class="side_bar_recent_img" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$menu1?>"></a>
-    <div class="side_bar_recent_val"><a href="../../program/program_detale.php?o_key=<?=$cookie1?>" style=" text-decoration:none;font-size:0.7em; color:gray; <?=$color1?>"><?=$mt1?></a></div>
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie1?>"><img class="side_bar_recent_img" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$menu1?>"></a>
+    <div class="side_bar_recent_val"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie1?>" style=" text-decoration:none;font-size:0.7em; color:gray; <?=$color1?>"><?=$mt1?></a></div>
             </li>
             <li>
-            <a href="../../tour/package/package_view.php?mode=<?=$cookie1?>"><img class="side_bar_recent_img" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$menu2?>"></a>
-    <div class="side_bar_recent_val"><a href="../../program/program_detale.php?o_key=<?=$cookie2?>" style="text-decoration:none; font-size:0.7em; color:gray; <?=$color2?>"><?=$mt2?></a></div>
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie1?>"><img class="side_bar_recent_img" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$menu2?>"></a>
+    <div class="side_bar_recent_val"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie2?>" style="text-decoration:none; font-size:0.7em; color:gray; <?=$color2?>"><?=$mt2?></a></div>
             </li>
             <li>
-            <a href="../../tour/package/package_view.php?mode=<?=$cookie1?>"><img class="side_bar_recent_img" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$menu3?>"></a>
-    <div class="side_bar_recent_val"><a href="../../program/program_detale.php?o_key=<?=$cookie3?>" style="text-decoration:none; font-size:0.7em; color:gray; <?=$color3?>"><?=$mt3?></a></div>
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie1?>"><img class="side_bar_recent_img" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$menu3?>"></a>
+    <div class="side_bar_recent_val"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie3?>" style="text-decoration:none; font-size:0.7em; color:gray; <?=$color3?>"><?=$mt3?></a></div>
             </li>
 
         </ul>

@@ -18,7 +18,6 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $q_num = mysqli_real_escape_string($conn, $num);
 
     // echo "<script>alert('게시글 번호 : {$num}');</script>";
-
     $sql="UPDATE `community` SET `hit`=$hit WHERE b_code='다이어트후기' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
@@ -80,7 +79,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
         '<form style="display:inline" action="'.$page1.'?mode=delete_ripple&page='.$page.'&hit='.$hit.'" method="post">
           <input type="hidden" name="num" value="'.$num1.'">
           <input type="hidden" name="parent" value="'.$parent.'">
-          <input type="submit" value="삭제">
+          <input type="submit" style="border:1px solid #F23005; color:#F23005; background-color:white;" value="&nbsp&nbsp삭제&nbsp&nbsp">
         </form>';
         }
         return $message;
@@ -91,6 +90,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/community.css">
+    <link rel="stylesheet" href="../css/memo.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
@@ -98,7 +98,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
-    <title>HELF :: 커뮤니티게시판</title>
+    <title>HELF :: 후기게시판</title>
     <script type="text/javascript">
     function check_delete(num) {
       var result=confirm("삭제하시겠습니까?");
@@ -117,7 +117,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
       <div id="content">
         <div id="col1">
          <div id="left_menu">
-           <div id="sub_title"> <span>메뉴</span></div>
+           <div id="sub_title"><span></span></div>
            <ul>
            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/review/list.php">다이어트 후기</a></li>
@@ -126,7 +126,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
        </div><!--end of col1  -->
 
        <div id="col2">
-         <div id="title">다이어트 후기</div>
+         <div id="title">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp다이어트 후기</div>
          <div class="clear"></div>
          <div id="write_form_title"></div>
          <div class="clear"></div>
@@ -157,7 +157,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                       echo("
                       ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
+                      <a href='download.php?mode=download&num=$q_num'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br><br>
                     ");
                         echo "<img src='./data/$file_copied' width='$image_width'><br>";
 
@@ -193,7 +193,11 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                  data-id="<?php echo $post['num'] ?>"></i>
                <span class="likes"><?php echo getLikes($post['num']); ?></span>
 
-               &nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;
 
              <!-- if user dislikes post, style button differently -->
                <i
@@ -212,7 +216,6 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 
 <!--덧글내용시작  -->
 <div id="ripple">
-  <div id="ripple1">댓글</div>
   <div id="ripple2">
     <?php
       $sql="select * from `comment` where b_code='다이어트후기' and parent='$q_num' ";
@@ -250,35 +253,34 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
       <input type="hidden" name="user_id" value="<?=$user_id?>">
       <input type="hidden" name="b_code" value="다이어트후기">
       <div id="ripple_insert">
-        <div id="ripple_textarea"><textarea name="ripple_content" rows="3" cols="80"></textarea></div>
-        <div id="ripple_button"><input type="image" src="./lib/memo_ripple_button.png"></div>
+        <div id="ripple_textarea"><img src="../pic/ripple.png" alt=""><textarea name="ripple_content" rows="3" cols="86"></textarea><input type="submit" value="&nbsp&nbsp입력&nbsp&nbsp"></div>
       </div><!--end of ripple_insert -->
     </form>
   </div><!--end of ripple2  -->
 </div><!--end of ripple  -->
 
 <div id="write_button">
-    <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button></a>
+    <a href="./list.php?page=<?=$page?>">목록</a>&nbsp
   <?php
     //master or admin이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
     // echo "<script>alert('{$_SESSION['user_id']}');</script>";
     if (isset($_SESSION['user_id'])) {
         if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$id) {
-            echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
-            echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
+          echo('<a href="./write_edit_form.php?mode=update&num='.$num.'">수정</a>&nbsp&nbsp;');
+          echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp&nbsp;');
         }
     }
     //로그인하는 유저에게 글쓰기 기능을 부여함.
     if (!empty($_SESSION['user_id'])) {
-        echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
+        echo '<a href="write_edit_form.php">글쓰기</a>';
     }
   ?>
 </div><!--end of write_button-->
 </div><!--end of col2  -->
-</div><!--end of content -->
 <aside>
     <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
 </aside>
+</div><!--end of content -->
 </div><!--end of wrap  -->
 </body>
 </html>

@@ -181,24 +181,47 @@ header {
 
 .menu_slide {
   display: none;
-  background-color: white;
+  background-color: #f23005;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   width: 100px;
   cursor: pointer;
-  top: 100px;
+  top: 111px;
+  border-radius: 5px;
+
 }
 
 .menu_slide li {
   padding: 8px 2px;
   text-align: center;
 }
-
+#menu_bar .menu_slide li a{
+  color: white;
+  font-weight: 500;
+}
+#menu_bar .menu_slide li:hover{
+  color: white;
+  background-color: #d32700;
+  border-radius: 5px;
+}
 .down_menu:hover .menu_slide {
   display: block;
   position: absolute;
   z-index: 110;
 }
-
+.menu_slide:after {
+  top: -14px;
+  border-bottom-color: #f23005;
+}
+.menu_slide:before, .menu_slide:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-bottom-color: #f23005;
+  top: -1rem;
+  left: 1rem;
+}
 /* mypage hover */
 #mypage_slide {
   display: none;

@@ -94,6 +94,9 @@ p{
   list-style: decimal;
   padding-left: 10px;
 }
+.pay_table{
+  width: 100%;
+}
 /* 스크롤 내리면서 상단에 고정버튼 생기기게 하는 부분 */
 .buttons {
   width: 650px;

@@ -1,11 +1,11 @@
 <?php
   session_start();
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
-include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
+ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 ?>
 
  <meta charset="utf-8">
- <?php //faq
+ <?php
  //*****************************************************
  $content= $q_content = $sql= $result = $userid="";
 
@@ -18,10 +18,10 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
      }
      $id=$_SESSION["user_id"];
      $o_key=$_POST["o_key"];
-     $regist_day=$_POST["regist_day"];
      $type=$_POST["type"];
      $shop=$_POST["shop"];
-     $star=$_POST["star"];
+     $star=(int)$_POST["star"];
+     $regist_day=date("Y-m-d (H:i)");
      $content = test_input($_POST["content"]);
      $q_content = mysqli_real_escape_string($conn, $content);
      // 구성순서 (id,o_key,content,day,type,shop,star);
@@ -54,10 +54,10 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
    }
    $id=$_SESSION["user_id"];
    $o_key=$_POST["o_key"];
-   $regist_day=$_POST["regist_day"];
    $type=$_POST["type"];
    $shop=$_POST["shop"];
    $star=$_POST["star"];
+   $regist_day=date("Y-m-d (H:i)");
    $q_subject = mysqli_real_escape_string($conn, $subject);
    $q_content = mysqli_real_escape_string($conn, $content);
    $q_num = mysqli_real_escape_string($conn, $num);

@@ -9,6 +9,7 @@
    echo "alert('접속 오류 발생');";
    return;
  }
+ $mode="insert";
  ?>
 
 <!DOCTYPE html>
@@ -146,7 +147,7 @@
                          <th id="sol">가격</th>
                          <?php
                            $sql="select * from program where shop='$shop'and type='$type' order by price";
-                          $result = mysqli_query($conn, $sql);
+                           $result = mysqli_query($conn, $sql);
                          while($row = mysqli_fetch_array($result)){
                            $table_choose       = $row["choose"]; //옵션 내용
                            $table_price = (int)$row["price"]; //옵션에 대한 가격
@@ -225,7 +226,7 @@
                      ?>
                      <li>
                        <div class=""><!--댓글 달기 insert-->
-                         <form class="form_review" name="form_review" action="./program_review.php?mode=<?=$mode?>" method="post">
+                         <form class="form_review" name="form_review" action="program_review.php?mode=<?=$mode?>" method="post">
                           <h3>댓글</h3>
                            <textarea name="content" rows="3" cols="30"></textarea>
                            <div class="starRev">
@@ -241,13 +242,12 @@
                              <span class="starR2" >5</span>
                             </div>
                             <input type="hidden" name="o_key" value="<?=$o_key?>">
-                            <input type="hidden" name="regist_day" value="<?=$regist_day?>">
                             <input type="hidden" name="type" value="<?=$type?>">
                             <input type="hidden" name="shop" value="<?=$shop?>">
                             <input type="hidden" name="star" value="<?=$star_score?>">
                            <input type="button" onclick="review();" value="등록">
-                           <input type="button" onclick="delete();" value="삭제">
-                           <input type="button" onclick="update();" value="수정">
+                           <input type="button" onclick="review_delete();" value="삭제">
+                           <input type="button" onclick="review_update();" value="수정">
                          </form>
                        </div>
                      </li>
@@ -299,6 +299,7 @@
                       $(this).addClass('on').prevAll('span').addClass('on');
                       valr=$(this).text();
                       <?php
+                      $star_score=0;
                       $star_score="document.write(valr);";
                       ?>
                       return false;
@@ -309,13 +310,13 @@
                       ?>
                       document.form_review.submit();
                     }
-                    function delete(){
+                    function review_delete(){
                       <?php
                       $mode="delete";
                        ?>
                        document.form_review.submit();
                     }
-                    function update(){
+                    function review_update(){
                       <?php
                       $mode="update";
                        ?>

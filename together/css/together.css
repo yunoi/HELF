@@ -1,8 +1,5 @@
 #content {
-  padding-top: 150px;
-  width: 1250px;
-  position: relative;
-  margin: 0 auto;
+  padding-top: 100px;
 }
 
 #content #col1 {
@@ -82,9 +79,9 @@
 #list_top_title {
   height: 20px;
   padding: 7px;
-  background-color: #F23005;
+  border-top: solid 2px #aaaaaa;
+  background-color: #eeeeee;
   margin-bottom: 3px;
-  color: white;
 }
 
 #list_top_title li {

@@ -123,6 +123,28 @@
                     <div class="clear"></div><br/><br/>
                 <div class="" id="pay">
                   <h3>가격정보</h3>
+                  <div class="pay_table">
+                    <table>
+                      <tr>
+                        <th id="sol">&nbsp;</th>
+                        <th>STANDARD</th>
+                        <th>DELUXE</th>
+                        <th>PREMIUM</th>
+                      <tr>
+                      </tr>
+                        <th id="sol">1</th>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                      </tr>
+                      <tr>
+                        <th id="sol">1</th>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                      </tr>
+                    </table>
+                  </div>
                 </div>
                   <div class="clear"></div><br/><br/>
                 <div class="" id="cansel">
@@ -192,7 +214,7 @@
 
                 <h2><?=$shop?></h2>
                 <form class="" action="index.html" method="post">
-                  <h3><span id="h_pay"></span>원</h3>
+                  <h3><span id="h_pay">0</span>원</h3>
                   <p>
                     <?=$subject?><br/>
                     <?=$content?><br/>

@@ -1,9 +1,6 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
-// echo "<script>alert('현재 로그인한 아이디: {$_SESSION['user_id']}');</script>";
-
-
 ?>
 
 <!DOCTYPE html>
@@ -41,11 +38,9 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
         $result=mysqli_query($conn, $sql);
         $total_record=mysqli_num_rows($result);
-        // echo "<script>alert('{$total_record}');</script>";
-
         $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
 
-        //2.페이지가 없으면 디폴트 페이지 1페이지
+        //페이지가 없으면 디폴트 페이지 1페이지
         if (empty($_GET['page'])) {
             $page=1;
         } else {
@@ -102,10 +97,8 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
                  $file_name=$row['file_name'];
                  $file_copied=$row['file_copied'];
                  $file_type=$row['file_type'];
-
                  $file_type_tok=explode('/', $file_type);
                  $file_type=$file_type_tok[0];
-
 
                  if (!empty($file_copied)&&$file_type ==="image") {
                      //이미지 정보를 가져오기 위한 함수 width, height, type
@@ -116,15 +109,12 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
                      if (!($image_width===175) && !($image_height===130)) {
                          $image_width = 175;
                          $image_height = 120;
-                         // echo "<script>alert('{사진 있다}');</script>";
                      }
                  } else {
-                     // echo "<script>alert('{사진 없다}');</script>";
                      $image_width=0;
                      $image_height=0;
                      $image_type="";
                  } ?>
-
              <div id="list_item">
                <div id="list_item1">글번호<?=$number?></div>
                <div id="list_item2"><?=$subject?></div>

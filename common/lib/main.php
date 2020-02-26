@@ -84,10 +84,10 @@
       $regist_day = substr($row["regist_day"], 0, 10);
       $num = $row['num'];
       $hit = $row['hit'];
-?>  
+?>
       <li>
         <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/view.php?num=<?=$num?>&hit=<?=$hit=$hit+1?>">
-        <span><?= $row["subject"]?></span>
+        <span>[<?= $row['area']?>] <?= $row["subject"]?></span>
         </a>
         <span><?= $row["name"]?></span>
         <span><?= $regist_day?></span>
@@ -138,7 +138,7 @@
     }
   }
 ?>
- 
+
     </ul>
   </div>
 </div>

@@ -25,6 +25,7 @@ a{
   float: left;
   margin-left: 180px;
   text-align: center;
+  padding-top: 10px;
 
 
 }
@@ -133,11 +134,11 @@ aside{
   margin-bottom: 20px;
 }
 
-#detail_search li *{
-  margin-bottom: 5px;
+#detail_search *{
+  margin-bottom: 4px;
+
 }
 
-
-li .num{
+.people_num{
   display: inline-block;
 }

@@ -161,12 +161,54 @@
   color: white;
 }
 
-#page_num {
+#calculate_price {
+  display: inline-block;
   clear: both;
-  text-align: center;
   width: 1000px;
+  height: 60px;
+  border: 5px solid lightgray;
+  margin-top: 30px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-#page_num li {
-  display: inline;
+#price_div {
+  margin-top: 5px;
+  margin-right: 5px;
+  text-align: center;
+}
+
+#price_div span {
+  font-size: 25px;
+  font-weight: bold;
+  color: #F23005;
+}
+
+#calculate_buttons {
+  display: inline-block;
+  clear: both;
+  width: 1000px;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+#calculate_buttons button {
+  font-size: 25px;
+  width: 210px;
+  border-radius: 2px;
+  padding: 10px 0px;
+}
+
+#select_buy_btn {
+  border: 1px solid #F23005;
+  background-color: #F23005;
+  color: white;
+  margin-left: 5px;
+}
+
+#shopping_btn {
+  border: 1px solid #F23005;
+  background-color: white;
+  color: #F23005;
 }

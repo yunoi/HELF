@@ -1,9 +1,7 @@
-#content {
-  padding-top: 150px;
-  width: 1250px;
-  position: relative;
-  margin: 0 auto;
+#content{
+  padding-top: 100px;
 }
+
 
 #content #col1 {
     margin-top: 20px;
@@ -83,11 +81,11 @@
 }
 
 #list_top_title {
-  height: 20px;
-  padding: 7px;
-  background-color: #F23005;
-  margin-bottom: 3px;
-  color: white;
+	height:20px;
+	padding:7px;
+	border-top:solid 2px #aaaaaa;
+	background-color:#eeeeee;
+	margin-bottom:3px;
 }
 
 #list_top_title li {

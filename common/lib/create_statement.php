@@ -86,7 +86,7 @@ function create_table($conn, $table_name){
               id char(20) not null,
                o_key int(11) not null,
                content text,
-               regist_day char(15) not null,
+               regist_day char(20) not null,
                type char(20) not null,
                shop char(10) not null,
                score int(10) not null,

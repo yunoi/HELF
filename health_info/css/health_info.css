@@ -140,28 +140,28 @@
 	padding:10px;
 	border:solid 2px #F23005;
   display: inline-block;
+  overflow: hidden;
 }
 
 #list_item_container{
   text-align: center;
-  background-color: black;
+  /* background-color: lightgray; */
 }
 
 #list_1542{
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
 
 #list_item3 img {
   display: inline-block;
 	/* border: 3px solid green; */
-  width: 175px;
-  height: 120px;
+  width: 100%;
+  height: 140px;
 }
 
 #list_item3:hover {
   z-index: -2;
   opacity: 0.5;
-  background-color: #F23005;
 }
 
 #list_item #list_item1{
@@ -177,7 +177,7 @@
 
 #list_item #list_item3{
 	/* float:left; */
-  padding: 2px;
+  /* padding: 2px; */
 }
 
 #list_item #list_item4{
@@ -312,6 +312,7 @@
 	margin-top:15px;
 	width:97%;
 	text-align:right;
+  padding-bottom: 10px;
 }
 
 #write_button button{
@@ -373,6 +374,7 @@
 	line-height:150%;
 	border-bottom:solid 1px #cccccc;
   text-align: center;
+  margin: auto;
 }
 #view_content #col2{
 

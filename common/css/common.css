@@ -384,7 +384,14 @@ header {
 #keyword_area li:first-child {
   border-top: 0 none;
 }
+#container #keyword_area li img {
+  width:120px;
 
+}
+#keyword_area li img {
+  width:120px;
+
+}
 #container #keyword_area li span {
   position: absolute;
   top: 3px;

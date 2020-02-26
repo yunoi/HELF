@@ -82,12 +82,12 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
         $message="";
         if ($_SESSION['user_grade']=="admin"||$_SESSION['user_grade']=="master"||$_SESSION['user_id']==$id1) {
             $message=
-        '<form style="display:inline" action="'.$page1.'?mode=delete_ripple&page='.$page.'&hit='.$hit.'" method="post">
-          <input type="hidden" name="num" value="'.$num1.'">
-          <input type="hidden" name="parent" value="'.$parent.'">
-          <input type="submit" value="삭제">
-        </form>';
-        }
+            '<form style="display:inline;" action="'.$page1.'?mode=delete_ripple&page='.$page.'&hit='.$hit.'" method="post">
+              <input type="hidden" name="num" value="'.$num1.'">
+              <input type="hidden" name="parent" value="'.$parent.'">
+              <input type="submit" style="border:1px solid #F23005; color:#F23005; background-color:white;" value="&nbsp&nbsp삭제&nbsp&nbsp">
+            </form>';
+            }
         return $message;
     }
 }
@@ -134,7 +134,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
        <div id="col2">
          <div id="title"><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp요리 레시피</span></div>
          <div class="clear"></div>
-         <div id="write_form_title"></div>
+         <div id="write_form_title"><?=$subject?></div>
          <div class="clear"></div>
             <div id="write_form">
               <div class="write_line"></div>

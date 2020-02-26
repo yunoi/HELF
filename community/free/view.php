@@ -128,7 +128,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
        <div id="col2">
          <div id="title"><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp자유게시판</span></div>
          <div class="clear"></div>
-         <div id="write_form_title"></div>
+         <div id="write_form_title"><?=$subject?></div>
          <div class="clear"></div>
             <div id="write_form">
               <div class="write_line"></div>

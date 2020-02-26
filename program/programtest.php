@@ -22,7 +22,7 @@
  </head>
  <body>
  <header>
-     <?php include "../common/lib/header.php";?>
+     <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
  </header>
  <section>
     <div class="div_program">
@@ -91,9 +91,15 @@
             <br><br><br><br><br>
 
             <?php
+            if(isset($_SESSION["user_id"])){
+              $user_id = $_SESSION["user_id"];
+            } else{
+              $user_id = "로그인안함";
+            }
+
               $conn = mysqli_connect("localhost", "root", "123456", "helf");
-              $sql = "select p.*, i.num from program p left join pick i on p.o_key = i.o_key ";
-              $sql .= "where choose = '선택' order by p.o_key desc";
+              $sql = "select * from program ";
+              $sql .= "where choose = '선택' order by o_key desc";
               $result = mysqli_query($conn, $sql);
 
               for ($i=0; $i<5; $i++) {
@@ -108,12 +114,16 @@
                $location         = $row["location"];
                $file_copied         = $row["file_copied"];
                $file_type         = $row["file_type"];
-               $pick              =  $row["num"];
 
                $sql2 = "select price from program where shop='".$shop."' and type='".$type."' order by price asc";
                $result2 = mysqli_query($conn, $sql2);
                $row2 = mysqli_fetch_array($result2);
                $price  = $row2["price"];
+
+               $sql3 = "select num from pick where id ='".$user_id."' and o_key =".$o_key;
+               $result3 = mysqli_query($conn, $sql3);
+               $row3 = mysqli_fetch_array($result3);
+               $pick  = $row3["num"];
 
 
               ?>

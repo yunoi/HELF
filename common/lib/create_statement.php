@@ -89,9 +89,7 @@ function create_table($conn, $table_name){
                regist_day char(20) not null,
                type char(20) not null,
                shop char(10) not null,
-               score int(10) not null,
-               primary key(id,o_key),
-               
+               score int(10) not null,               
              constraint review_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
               constraint review_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
         )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
@@ -103,9 +101,7 @@ function create_table($conn, $table_name){
               content text not null,
               regist_day char(15),
               group_num int UNSIGNED NOT NULL,
-              depth int UNSIGNED NOT NULL,
-              primary key (id, o_key),
-               
+              depth int UNSIGNED NOT NULL,               
              constraint qna_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
               constraint qna_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
         )ENGINE=InnoDB DEFAULT CHARSET=utf8;

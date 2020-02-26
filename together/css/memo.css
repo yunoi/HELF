@@ -29,8 +29,8 @@
 }
 
 #memo_row1 #memo_writer {
-	margin-top:10px; 
-	margin-bottom:10px;   
+	margin-top:10px;
+	margin-bottom:10px;
 }
 
 #memo1 textarea {
@@ -39,7 +39,7 @@
 
 #memo_writer_title {
 	height:26px;
-	padding-top:10px; 
+	padding-top:10px;
 	margin-bottom:10px;
 	border-top:solid 1px #cccccc;
 	border-bottom:dotted 1px #cccccc;
@@ -108,6 +108,7 @@
 	padding-left:10px;
 	padding-bottom:10px;
 	border-bottom:dotted 1px #cccccc;
+	overflow: auto;
 }
 
 #ripple_insert {

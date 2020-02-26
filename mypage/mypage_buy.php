@@ -1,47 +1,6 @@
 <?php
   session_start();
   $id = $_SESSION["user_id"];
-
-  if(isset($_GET["page"])) {
-    $page = $_GET["page"];
-  } else {
-    $page = "1";
-  }
-
-  if(isset($_GET["num"])) {
-    $num = $_GET["num"];
-
-    $sql = "delete from sales where num=$num;";
-    mysqli_query($conn, $sql);
-
-    echo "
-    <script>
-      alert('삭제되었습니다.');
-    </script>
-    ";
-
-  } else {
-    $num = "";
-  }
-
-  if(isset($_POST["no"])) {
-    $no = $_POST["no"];
-
-    for ($i=0; $i<count($no); $i++) {
-      $sql = "delete from sales where num=$no[$i];";
-      mysqli_query($conn, $sql);
-    }
-
-    echo "
-    <script>
-      alert('삭제되었습니다.');
-    </script>
-    ";
-
-  } else {
-    $no = "";
-  }
-
 ?>
 
 <!DOCTYPE html>
@@ -97,6 +56,50 @@
     <header>
       <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
     </header>
+    <?php
+
+
+      if(isset($_GET["page"])) {
+        $page = $_GET["page"];
+      } else {
+        $page = "1";
+      }
+
+      if(isset($_GET["num"])) {
+        $num = $_GET["num"];
+
+        $sql = "delete from sales where num=$num;";
+        mysqli_query($conn, $sql);
+
+        echo "
+        <script>
+          alert('삭제되었습니다.');
+        </script>
+        ";
+
+      } else {
+        $num = "";
+      }
+
+      if(isset($_POST["no"])) {
+        $no = $_POST["no"];
+
+        for ($i=0; $i<count($no); $i++) {
+          $sql = "delete from sales where num=$no[$i];";
+          mysqli_query($conn, $sql);
+        }
+
+        echo "
+        <script>
+          alert('삭제되었습니다.');
+        </script>
+        ";
+
+      } else {
+        $no = "";
+      }
+
+    ?>
     <div id="mypage_container">
       <section>
         <div id="mypage_main_content">

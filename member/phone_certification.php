@@ -46,7 +46,7 @@ if($mode == "send") {
 	srand((double)microtime()*1000000); //난수값 초기화
 	$code=rand(100000,999999);
 
-	$message = "문자 인증번호 입니다.\n인증번호 : ".$code."\n정확히 입력해주세요.";
+	$message = "HELF 문자 인증번호 입니다.\n인증번호 : ".$code."\n정확히 입력해주세요.";
 	$id = "a980721";
 	$pw = "635d401afedb9ccfcb347288094ccc";
 

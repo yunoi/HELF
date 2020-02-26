@@ -174,7 +174,7 @@
             <script type="text/javascript">
             	var naver_id_login = new naver_id_login("imJpReP1ZuJ368WTaKMU", "http://localhost/helf/member/member_form.php");
             	var state = naver_id_login.getUniqState();
-            	naver_id_login.setButton("green", 3, 40);
+            	naver_id_login.setButton("green", 3, 43);
             	naver_id_login.setDomain("./login_form.php");
             	naver_id_login.setState(state);
             	naver_id_login.init_naver_id_login();

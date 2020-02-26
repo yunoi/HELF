@@ -35,8 +35,8 @@ $sql = "insert into pick values (null,'$user_id','$o_key')";
 mysqli_query($conn, $sql);
 mysqli_close($conn);
 
-echo "<script>alert('$o_key'+' 찜 목록에 추가완료!');</script>";
-echo "<script>document.location.href='./programtest.php';</script>";
+echo "<script>alert('$shop'+' 찜 목록에 추가완료!');</script>";
+echo "<script>document.location.href='./program.php';</script>";
 
 
 

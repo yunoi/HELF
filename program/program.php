@@ -87,6 +87,14 @@
 
             </ul>
 
+            <form name="temp" action="index.html" method="post">
+              <input type="text" name="aaa" value="">
+              <input type="text" name="bbb" value="">
+              <input type="text" name="ccc" value="">
+              <input type="text" name="ddd" value="">
+              <input type="text" name="eee" value="">
+            </form>
+
           </form>
 
 

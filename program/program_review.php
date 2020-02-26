@@ -1,14 +1,13 @@
 <?php
   session_start();
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
-include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
+ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 ?>
 
  <meta charset="utf-8">
- <?php //faq
+ <?php
  //*****************************************************
  $content= $q_content = $sql= $result = $userid="";
- $group_num = 0;
 
  // 삽입하는경우
  if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
@@ -17,12 +16,12 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
        echo "<script>alert('내용을 입력해주세요');history.go(-1);</script>";
        exit;
      }
-     $id=$_POST["id"];
+     $id=$_SESSION["user_id"];
      $o_key=$_POST["o_key"];
-     $regist_day=$_POST["regist_day"];
      $type=$_POST["type"];
      $shop=$_POST["shop"];
-     $star=$_GET["star"]
+     $star=(int)$_POST["star"];
+     $regist_day=date("Y-m-d (H:i)");
      $content = test_input($_POST["content"]);
      $q_content = mysqli_real_escape_string($conn, $content);
      // 구성순서 (id,o_key,content,day,type,shop,star);
@@ -33,9 +32,9 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
      }
      mysqli_close($conn);
 
-     echo "<script>location.href='./programtest.php';</script>";
+     echo "<script>location.href='./program.php';</script>";
  }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
-   $id=$_POST["id"];
+   $id=$_SESSION["user_id"];
    $o_key=$_POST["o_key"];
    $type=$_POST["type"];
    $shop=$_POST["shop"];
@@ -53,12 +52,12 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
      echo "<script>alert('내용을 입력해주세요');history.go(-1);</script>";
      exit;
    }
-   $id=$_POST["id"];
+   $id=$_SESSION["user_id"];
    $o_key=$_POST["o_key"];
-   $regist_day=$_POST["regist_day"];
    $type=$_POST["type"];
    $shop=$_POST["shop"];
-   $star=$_GET["star"]
+   $star=$_POST["star"];
+   $regist_day=date("Y-m-d (H:i)");
    $q_subject = mysqli_real_escape_string($conn, $subject);
    $q_content = mysqli_real_escape_string($conn, $content);
    $q_num = mysqli_real_escape_string($conn, $num);

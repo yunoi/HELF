@@ -57,14 +57,14 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
          <div id="left_menu">
            <div id="sub_title"><span></span></div>
            <ul>
-           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
-           <li><a href="#">다이어트 후기</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/review/list.php">다이어트후기</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
 
        <div id="col2">
-         <div id="title"><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp자유게시판</span></div>
+         <div id="title"><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp다이어트후기</span></div>
          <div class="clear"></div>
          <div id="write_form_title">글쓰기</div>
          <div class="clear"></div>
@@ -122,10 +122,13 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
             </div><!--end of write_button-->
          </form>
       </div><!--end of col2  -->
-      </div><!--end of content -->
       <aside>
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
       </aside>
-    </div><!--end of wrap  -->
-  </body>
-</html>
+      </div><!--end of content -->
+      <footer>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+      </footer>
+      </div><!--end of wrap  -->
+    </body>
+    </html>

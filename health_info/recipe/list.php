@@ -46,7 +46,6 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
         } else {
             $page=$_GET['page'];
         }
-
         $start=($page -1) * SCALE;
         $number = $total_record - $start;
         ?>
@@ -54,22 +53,22 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
       <div id="content">
         <div id="col1">
          <div id="left_menu">
-           <div id="sub_title"> <span>메뉴</span></div>
+           <div id="sub_title"><span></span></div>
            <ul>
              <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동 정보</a></li>
-           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">다이어트 레시피</a></li>
+           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">요리 레시피</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
 
        <div id="col2">
          <div id="title">
-           <span>다이어트 레시피</span>
+           <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp다이어트 레시피</span>
          </div>
          <form name="board_form" action="list.php?mode=search" method="post">
            <div id="list_search">
              <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
-             <div id="list_search2"><span>SELECT</span></div>
+             <div id="list_search2"><span></span></div>
              <div id="list_search3">
                <select  name="find">
                  <option value="subject">제목</option>
@@ -77,7 +76,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
                </select>
              </div><!--end of list_search3  -->
              <div id="list_search4"><input type="text" name="search"></div>
-             <div id="list_search5"><input type="submit" value="검색"> </div>
+             <div id="list_search5"><input type="image" src="../pic/search.png"></div>
            </div><!--end of list_search  -->
          </form>
 
@@ -115,21 +114,29 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
                      $image_height=0;
                      $image_type="";
                  } ?>
-             <div id="list_item">
-               <div id="list_item1">글번호<?=$number?></div>
-               <div id="list_item2"><?=$subject?></div>
-               <div id="list_item4"><?=$date?></div>
-               <div id="list_item5">조회수<?=$hit?></div>
-               <div id="list_item3">
-                  <?php
-                  if (!($file_name === "")) {
-                      $hit=$hit+1;
-                      echo "<a href='./view.php?num=$num&page=$page&hit=$hit'><img src='./data/$file_copied' width='$image_width'> </a><br>";
-                  } else {
-                      echo "사진이 존재하지 않습니다.";
-                  } ?>
-                </div>
-             </div><!--end of list_item -->
+
+                 <div id="list_item">
+                   <div id="list_item_container">
+                     <div id="list_item3">
+                        <?php
+                        if (!($file_name === "")) {
+                            $hit=$hit+1;
+                            echo "<a href='./view.php?num=$num&page=$page&hit=$hit'><img src='./data/$file_copied' width='$image_width'></a><br>";
+                        } else {
+                            echo "사진이 존재하지 않습니다.";
+                        } ?>
+                      </div>
+                   </div>
+
+                   <div id="list_1542">
+                     <strong>
+                     <div id="list_item1">글번호 <?=$number?></div>
+                     <div id="list_item5">조회수 <?=$hit?></div>
+                     <div id="list_item4"><?=$date?></div>
+                     </strong>
+                     <div id="list_item2"> <img src="../pic/exercise_icon.png" alt=""> <?=$subject?></div>
+                   </div>
+                 </div><!--end of list_item -->
          <?php
              $number--;
              }//end of for
@@ -152,11 +159,11 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
           <div id="button">
             <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
-            <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button>&nbsp;</a>
+            <a href="./list.php?page=<?=$page?>">목록</a>
             <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
               if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
                 if($_SESSION["user_grade"]==="admin" || $_SESSION["user_grade"]==="master"){
-                  echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
+                  echo '<a href="write_edit_form.php">글쓰기</a>';
                 }
               }
             ?>
@@ -164,10 +171,13 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
         </div><!--end of page button -->
         </div><!--end of list content -->
       </div><!--end of col2  -->
-      </div><!--end of content -->
       <aside>
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
       </aside>
+      </div><!--end of content -->
+      <footer>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+      </footer>
     </div><!--end of wrap  -->
   </body>
 </html>

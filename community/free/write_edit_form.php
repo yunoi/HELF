@@ -2,6 +2,7 @@
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
+
 $num=$id=$subject=$content=$day=$hit="";
 $mode="insert";
 $checked="";
@@ -121,10 +122,13 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
             </div><!--end of write_button-->
          </form>
       </div><!--end of col2  -->
-      </div><!--end of content -->
       <aside>
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
       </aside>
+      </div><!--end of content -->
+      <footer>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+      </footer>
     </div><!--end of wrap  -->
   </body>
 </html>

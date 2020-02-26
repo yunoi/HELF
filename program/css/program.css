@@ -134,20 +134,11 @@ aside{
   margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
-#detail_search li *{
-  margin-bottom: 5px;
-}
-
-
-li .num{
-=======
 #detail_search *{
   margin-bottom: 4px;
 
 }
 
 .people_num{
->>>>>>> aef5d2bf3939dc17f8494721ef009ee3c8481111
   display: inline-block;
 }

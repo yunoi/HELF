@@ -1,23 +1,29 @@
-#content{
-  padding-top: 100px;
+#content {
+  padding-top: 150px;
+  width: 1250px;
+  position: relative;
+  margin: 0 auto;
 }
 
 
 #content #col1 {
-    margin-top: 20px;
-    width: 160px;
-    min-height: 600px;
-    float: left;
-    border-right: solid 1px #dddddd;
+  margin-top: 35px;
+  width: 120px;
+  min-height: 1020px;
+  float: left;
+  border-right: solid 1px #dddddd;
 }
 
 #left_menu {
-    width: 92%;
-    height: 270px;
-    margin-left: 7px;
-    padding-top: 20px;
+  width: 92%;
+  height: 270px;
+  font-size: 17px;
 }
-
+#left_menu #sub_title {
+  background-image: url(../pic/category.png);
+  background-repeat: no-repeat;
+  height: 50px;
+}
 
 #content #col2 {
 	width:807px;
@@ -27,65 +33,72 @@
 }
 
 #content #col2 #title{
-	margin-top:30px;
-	height:30px;
-	border-bottom:solid 1px #cccccc;
+  margin-top: 35px;
+  height: 30px;
+  border-bottom: solid 1px #cccccc;
+  background-image: url(../pic/talk.png);
+  background-repeat: no-repeat;
+  font-size: 15px;
+}
+
+#view_content strong{
+  font-size: 20px;
 }
 
 /* list css */
-
 #list_search {
-	height:30px;
-	padding-top:10px;
+  height: 30px;
+  padding-top: 10px;
 }
 
 #list_search #list_search1 {
-	float:left;
-	margin-top:2px;
+  float: left;
+  margin-top: 2px;
 }
 
-#list_search #list_search2 {
-	float:left;
-	margin-left:300px;
-	margin-top:4px;
+#list_search #list_search2 span{
+  float: left;
+  margin-left: 350px;
+  margin-top: 4px;
+  background-image: url(../pic/search.png);
+  background-repeat: no-repeat;
 }
-
 
 #list_search #list_search3 {
-	float:left;
-	margin-left:5px;
-	margin-top:1px;
+  float: left;
+  margin-left: 20px;
 }
 
 #list_search #list_search3 select {
-	width:80px;
-	height:21px;
-	border:solid 1px #cccccc;
+  width: 80px;
+  height: 22px;
+  border: solid 1px #cccccc;
 }
 
 #list_search #list_search4 {
-	float:left;
-	margin-left:3px;
+  float: left;
+  margin-left: 3px;
 }
 
 #list_search #list_search4 input {
-	width:120px;
-	height:18px;
-	border:solid 1px #cccccc;
+  width: 120px;
+  height: 20px;
+  border: solid 1px #cccccc;
 }
 
 #list_search #list_search5 {
-	float:left;
-	margin-left:5px;
-	margin-top:1px;
+  float: left;
+  margin-left: 5px;
+  position: relative;
+  top: -20%;
 }
 
 #list_top_title {
-	height:20px;
-	padding:7px;
-	border-top:solid 2px #aaaaaa;
-	background-color:#eeeeee;
-	margin-bottom:3px;
+  height: 20px;
+  padding: 7px;
+  background-color: #F23005;
+  margin-bottom: 3px;
+  color: white;
 }
 
 #list_top_title li {
@@ -115,30 +128,40 @@
 #list_content {
 	height:380px;
 }
+.list_content {
+  margin: 10px;
+}
 
 
 #list_item {
 	height:200px;
-  width: 200px;
-	margin-top:2px;
-	padding:6px;
-	border:solid 2px blue;
+  width: 215px;
+	margin: 10px;
+	padding:10px;
+	border:solid 2px #F23005;
   display: inline-block;
-
 }
 
-#list_item img {
-	border: 1px solid green;
+#list_item_container{
+  text-align: center;
+  background-color: black;
+}
+
+#list_1542{
+  padding-top: 10px;
+}
+
+#list_item3 img {
+  display: inline-block;
+	/* border: 3px solid green; */
   width: 175px;
   height: 120px;
-  left: 0px;
-  top: 0px;
 }
 
 #list_item3:hover {
   z-index: -2;
   opacity: 0.5;
-  background-color: blue;
+  background-color: #F23005;
 }
 
 #list_item #list_item1{
@@ -149,17 +172,18 @@
 #list_item #list_item2{
 	float:left;
   padding: 2px;
+  overflow: hidden;
 }
 
 #list_item #list_item3{
-	float:left;
+	/* float:left; */
   padding: 2px;
-
 }
 
 #list_item #list_item4{
-	float:left;
+	/* float:left; */
   padding: 2px;
+  text-align: center;
 }
 
 #list_item #list_item5{
@@ -168,32 +192,33 @@
 }
 
 #page_button {
-	margin-top:20px;
+  margin-top: 20px;
 }
 
 #page_num {
-	float:left;
-	width:80%;
-	margin-top:10px;
-	text-align:center;
+  float: left;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
 }
 
 #button {
-	float:left;
-	width:18%;
-	text-align:right;
+  float: left;
+  width: 100%;
+  text-align: right;
+  padding-bottom: 10px;
 }
 
 /* write_form css */
 
 #write_form_title {
-	margin-top:20px;
-	width:99%;
-	height:20px;
-	text-align:center;
-	padding-top:7px;
-	border-top:solid 2px #aaaaaa;
-	background-color:#eeeeee;
+  margin-top: 20px;
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  padding-top: 7px;
+  background-color: #F23005;
+  color: white;
 }
 
 #write_form {
@@ -201,25 +226,36 @@
 }
 
 #write_form #write_row1 {
-    width:99%;
+  width:100%;
 	height:25px;
 	margin:2px 0 2px 0;
 }
 
 #write_form #write_row2 {
-    width:99%;
+  width:100%;
+	height:25px;
+	margin:2px 0 2px 0;
+}
+#write_form #write_row4 {
+  width:100%;
 	height:25px;
 	margin:2px 0 2px 0;
 }
 
 #write_form #write_row3 {
-    width:99%;
-	height:251px;
+  width:100%;
+	height:260px;
+	margin:2px 0 2px 0;
+}
+
+#write_form #write_row3_video {
+  width:100%;
+	height:25px;
 	margin:2px 0 2px 0;
 }
 
 .write_line {
-    width:99%;
+  width:100%;
 	border-bottom:solid 1px #cccccc;
 }
 
@@ -232,7 +268,7 @@
 }
 
 #write_form #write_row3 .col1 {
-	height:126px;
+	height:132px;
 	padding-top:120px;
 }
 
@@ -257,7 +293,9 @@
 	width:650px;
 	height:17px;
 	border:solid 1px #cccccc;
+  overflow: visible;
 }
+
 #write_row3_video .col2 input {
 	width:650px;
 	height:17px;
@@ -265,7 +303,7 @@
 }
 
 #write_row3 .col2 textarea {
-    margin-top:1px;
+  margin-top:1px;
 	border:solid 1px #cccccc;
   width: 650px;
 }
@@ -275,6 +313,32 @@
 	width:97%;
 	text-align:right;
 }
+
+#write_button button{
+  border:1px solid #F23005;
+  text-align: center;
+  color: #F23005;
+  background-color: white;
+  font-size: 15px;
+  width: 38px;
+  height: 23.2px;
+}
+
+#write_button a{
+  border:1px solid #F23005;
+  text-align: center;
+  color: #F23005;
+  background-color: white;
+  font-size: 15px;
+}
+#write_button input{
+  border:1px solid #F23005;
+  text-align: center;
+  color: #F23005;
+  background-color: white;
+  font-size: 15px;
+}
+
 
 /* view.php css */
 
@@ -308,6 +372,10 @@
 	overflow:hidden;
 	line-height:150%;
 	border-bottom:solid 1px #cccccc;
+  text-align: center;
+}
+#view_content #col2{
+
 }
 
 #view_button {
@@ -319,4 +387,42 @@
 
 #aside_menu {
   margin-top: 61px;
+}
+
+#button a{
+  border:1px solid #F23005;
+  text-align: center;
+  color: #F23005;
+  background-color: white;
+  font-size: 15px;
+}
+
+
+
+/* 좋아요 */
+.posts-wrapper i{
+  color: #04ADBF;
+}
+.posts-wrapper .fa {
+  font-size: 4em;
+}
+.posts-wrapper .post {
+  width: 100%;
+}
+.posts-wrapper {
+  width: 70%;
+  margin: 10px auto;
+}
+
+.posts-wrapper .post-info {
+  margin: 10px auto 0px;
+  padding: 5px;
+
+}
+
+.posts-wrapper .fa-thumbs-down, .fa-thumbs-o-down {
+  transform:rotateY(180deg);
+}
+.posts-wrapper .logged_in_user {
+  padding: 10px 30px 0px;
 }

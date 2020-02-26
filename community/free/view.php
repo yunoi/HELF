@@ -1,7 +1,6 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
-// include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 
 include('server.php');
 
@@ -276,7 +275,9 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
 </aside>
 </div><!--end of content -->
+<footer>
+<?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+</footer>
 </div><!--end of wrap  -->
-
 </body>
 </html>

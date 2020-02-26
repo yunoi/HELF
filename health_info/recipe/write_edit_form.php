@@ -32,17 +32,9 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
     $file_copied=$row['file_copied'];
     $day=$row['regist_day'];
     $hit=$row['hit'];
-
-    ////
-
     $video_name= htmlspecialchars($row['video_name']);
     $video_name=str_replace("\n", "<br>", $video_name);
     $video_name=str_replace(" ", "&nbsp;", $video_name);
-
-
-    /////
-
-
 
     mysqli_close($conn);
 }
@@ -66,16 +58,16 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
       <div id="content">
         <div id="col1">
          <div id="left_menu">
-           <div id="sub_title"> <span>메뉴</span></div>
+           <div id="sub_title"><span></span></div>
            <ul>
              <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동 정보</a></li>
-             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">다이어트 레시피</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">요리 레시피</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
 
        <div id="col2">
-         <div id="title">다이어트 레시피</div>
+         <div id="title">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp요리 레시피</div>
          <div class="clear"></div>
          <div id="write_form_title">글쓰기</div>
          <div class="clear"></div>
@@ -90,23 +82,28 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
                 <div class="col3">
                 </div>
               </div><!--end of write_row1  -->
+
               <div class="write_line"></div>
+
               <div id="write_row2">
                 <div class="col1">제&nbsp;&nbsp;목</div>
                 <div class="col2"><input type="text" name="subject" value=<?=$subject?>></div>
-              </div><!--end of write_row2  -->
+              </div><!--end of write_row2 -->
               <div class="write_line"></div>
 
               <div id="write_row3">
                 <div class="col1">내&nbsp;&nbsp;용</div>
-                <div class="col2"><textarea name="content" rows="15" cols="79"><?=$content?></textarea></div>
+                <div class="col2"><textarea name="content" rows="17" cols="80"><?=$content?></textarea></div>
               </div><!--end of write_row3  -->
-                <div id="write_row3_video">
-                  <div class="col1">첨부 동영상 소스</div>
-                  <div class="col2"><input type="text" name="video_name" value=<?=$video_name?>></div>
-                </div><!--end of write_row3  -->
-              <br><br>
+            <div class="write_line"></div>
+              <!-- <div class="write_line"></div> -->
+
+              <div id="write_row3_video">
+                <div class="col1">첨부 동영상 소스</div>
+                <div class="col2"><input type="text" name="video_name" value=<?=$video_name?>></div>
+              </div><!--end of write_row3_video  -->
               <div class="write_line"></div>
+
               <div id="write_row4">
                 <div class="col1">파일업로드</div>
                 <div class="col2">
@@ -128,20 +125,24 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
                   ?>
                 </div><!--end of col2  -->
               </div><!--end of write_row4  -->
+
               <div class="clear"></div>
               <div class="write_line"></div>
               <div class="clear"></div>
             </div><!--end of write_form  -->
             <div id="write_button">
               <input type="submit" onclick='document.getElementById("del_file").disabled=false' value="완료">
-              <a href="./list.php"><button type="button">목록</button></a>
+              <a href="./list.php">목록</a>
             </div><!--end of write_button-->
          </form>
       </div><!--end of col2  -->
-      </div><!--end of content -->
       <aside>
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
       </aside>
+      </div><!--end of content -->
+      <footer>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+      </footer>
     </div><!--end of wrap  -->
   </body>
 </html>

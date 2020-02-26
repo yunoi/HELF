@@ -1,7 +1,6 @@
 <!-- 구매전 페이지 -->
 <?php
   session_start();
- include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
  if(isset($_GET['o_key'])){
    $o_key=$_GET['o_key'];
    $o_key=(int)$o_key;
@@ -10,6 +9,9 @@
    return;
  }
  $mode="insert";
+ if(isset($_COOKIE["cookie2"])){  setcookie("cookie3",$_COOKIE["cookie2"],time() + 3600,'/');}
+if(isset($_COOKIE["cookie1"])){  setcookie("cookie2",$_COOKIE["cookie1"],time() + 3600,'/');}
+setcookie("cookie1",$o_key,time() + 3600,'/');
  ?>
 
 <!DOCTYPE html>

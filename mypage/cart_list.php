@@ -1,6 +1,5 @@
 <?php
   session_start();
-  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
   $id = $_SESSION["user_id"];
 
   if(isset($_GET["page"])) {
@@ -48,10 +47,10 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>HELF :: Health friends, healthier life</title>
+    <title>HELF :: 장바구니</title>
     <link rel="stylesheet" href="./css/mypage.css">
     <link rel="stylesheet" href="./css/cart.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <link
         rel="stylesheet"
         type="text/css"
@@ -63,7 +62,10 @@
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-    <script type="text/javascript" src="./common/js/main.js"></script>
+
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+    <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
         // url에서 get 값 지워줌;
@@ -78,8 +80,6 @@
              $("input[type=checkbox]").prop("checked",false);
           }
         });
-
-
 
         // 체크된 프로그램 가격 계산
         $("input[type=checkbox]").change(function () {
@@ -136,105 +136,106 @@
     <header>
       <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
     </header>
-    <section>
-      <div id="cart_main_content">
-        <div id="title_mypage">
-          <h1>장바구니</h1>
-        </div>
-        <div id="mypage_content">
-          <form id="delete_cart_form" method="post">
-            <div id="all_check">
-              <input type="checkbox" id="all_agree" value="0">
-              <span>전체선택</span>
-              <input type="submit" id="btn_submit" value="선택 상품 삭제">
-            </div>
-          <ul id="program_list">
-          <?php
+    <div id="mypage_container">
+      <section>
+        <div id="cart_main_content">
+          <div id="title_mypage">
+            <h1>장바구니</h1>
+          </div>
+          <div id="mypage_content">
+            <form id="delete_cart_form" method="post">
+              <div id="all_check">
+                <input type="checkbox" id="all_agree" value="0">
+                <span>전체선택</span>
+                <input type="submit" id="btn_submit" value="선택 상품 삭제">
+              </div>
+            <ul id="program_list">
+            <?php
 
-              $sql = "select * from cart A inner join program B on A.o_key = B.o_key where id = '$id' order by num;";
-              $result = mysqli_query($conn, $sql);
-              $total_record = mysqli_num_rows($result); // 전체 글 수
+                $sql = "select * from cart A inner join program B on A.o_key = B.o_key where id = '$id' order by num;";
+                $result = mysqli_query($conn, $sql);
+                $total_record = mysqli_num_rows($result); // 전체 글 수
 
-             for ($i=0; $i<$total_record; $i++) {
-                 $row = mysqli_fetch_array($result);
-                 // 하나의 레코드 가져오기
-                 $num          = $row["num"];
-                 $o_key        = $row["o_key"];
-                 $shop         = $row["shop"];
-                 $type         = $row["type"];
-                 $subject      = $row["subject"];
-                 $end_day      = $row["end_day"];
-                 $price        = $row["price"];
-                 $choose       = $row["choose"];
-                 $location     = $row["location"];
-                 $file_copied  = $row["file_copied"];
-                 $file_type    = $row["file_type"];
+               for ($i=0; $i<$total_record; $i++) {
+                   $row = mysqli_fetch_array($result);
+                   // 하나의 레코드 가져오기
+                   $num          = $row["num"];
+                   $o_key        = $row["o_key"];
+                   $shop         = $row["shop"];
+                   $type         = $row["type"];
+                   $subject      = $row["subject"];
+                   $end_day      = $row["end_day"];
+                   $price        = $row["price"];
+                   $choose       = $row["choose"];
+                   $location     = $row["location"];
+                   $file_copied  = $row["file_copied"];
+                   $file_type    = $row["file_type"];
 
-                  ?>
+                    ?>
 
-                        <li>
-                          <div class="program_cart_li">
-                            <div class="program_image">
-                              <a href="../program/program_detail.php?o_key=<?=$o_key?>">
-                              <img src='../admin/data/<?=$file_copied?>'>
-                              </a>
-                            </div>
-                            <div class="program_detail">
-                              <a href="../program/program_detail.php?o_key=<?=$o_key?>">
-                                <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
-                                <div class="info_2"><?=$subject?></div>
-                                <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
-                                <div class="info_4">선택한 옵션 : <?=$choose?></div>
-                              </a>
-                            </div>
-                            <div class="program_price">
-                              <p><?=$price?><span> 원</span>
-                              <div class="buttons">
-                                <button type="button" id="buy_btn">구매하기</button> <br>
-                                <button type="button" id="delete_btn" onclick="location.href='cart_list.php?num=<?=$num?>&page=<?=$page?>'">삭제</button>
+                          <li>
+                            <div class="program_cart_li">
+                              <div class="program_image">
+                                <a href="../program/program_detail.php?o_key=<?=$o_key?>">
+                                <img src='../admin/data/<?=$file_copied?>'>
+                                </a>
+                              </div>
+                              <div class="program_detail">
+                                <a href="../program/program_detail.php?o_key=<?=$o_key?>">
+                                  <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
+                                  <div class="info_2"><?=$subject?></div>
+                                  <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
+                                  <div class="info_4">선택한 옵션 : <?=$choose?></div>
+                                </a>
+                              </div>
+                              <div class="program_price">
+                                <p><?=$price?><span> 원</span>
+                                <div class="buttons">
+                                  <button type="button" id="buy_btn">구매하기</button> <br>
+                                  <button type="button" id="delete_btn" onclick="location.href='cart_list.php?num=<?=$num?>&page=<?=$page?>'">삭제</button>
+                                </div>
+                              </div>
+                              <div class="checkbox_div">
+                                <input type="checkbox" class="checked_num" name="no[]" value="<?=$num?>">
                               </div>
                             </div>
-                            <div class="checkbox_div">
-                              <input type="checkbox" class="checked_num" name="no[]" value="<?=$num?>">
-                            </div>
-                          </div>
-                        </li>
+                          </li>
 
-                  <?php
+                    <?php
+                    }
+
+                   function str_cutting($string, $len){
+                    if(strlen($string)<$len) {
+                         return $string; //자를길이보다 문자열이 작으면 그냥 리턴
+                    }
+                    else {
+                         $string = substr($string, 0, $len);
+                         $cnt = 0;
+                         for ($i=0; $i<strlen($string); $i++)
+                             if (ord($string[$i]) > 127) $cnt++; //한글일 경우 2byte 옮김,자릿수
+                             $string = substr($string, 0, $len - ($cnt % 3));
+                         $string.="..."; //커팅된 문자열에 꼬리부분을 붙여서 리턴
+                         return $string;
+                    }
                   }
+            ?>
+                    </ul>
 
-                  mysqli_close($conn);
-
-                 function str_cutting($string, $len){
-                  if(strlen($string)<$len) {
-                       return $string; //자를길이보다 문자열이 작으면 그냥 리턴
-                  }
-                  else {
-                       $string = substr($string, 0, $len);
-                       $cnt = 0;
-                       for ($i=0; $i<strlen($string); $i++)
-                           if (ord($string[$i]) > 127) $cnt++; //한글일 경우 2byte 옮김,자릿수
-                           $string = substr($string, 0, $len - ($cnt % 3));
-                       $string.="..."; //커팅된 문자열에 꼬리부분을 붙여서 리턴
-                       return $string;
-                  }
-                }
-          ?>
-                  </ul>
-
-                </form>
-        </div>
-        <div id="calculate_price">
-          <div id="price_div">
-            총 결제 금액 : <span id="total_price">0</span> 원
+                  </form>
+          </div>
+          <div id="calculate_price">
+            <div id="price_div">
+              총 결제 금액 : <span id="total_price">0</span> 원
+            </div>
+          </div>
+          <div id="calculate_buttons">
+            <button type="button" id="shopping_btn">계속 쇼핑하기</button>
+            <button type="button" id="select_buy_btn">구매하기</button>
           </div>
         </div>
-        <div id="calculate_buttons">
-          <button type="button" id="shopping_btn">계속 쇼핑하기</button>
-          <button type="button" id="select_buy_btn">구매하기</button>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
+
     <footer>
     <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
     </footer>

@@ -1,6 +1,21 @@
+#mypage_container {
+  width: 1000px;
+  margin: 0 auto;
+}
+section {
+  display: inline;
+  float: left;
+}
+
+aside {
+  display: inline;
+  float: right;
+  margin-top: 88px;
+}
+
 #mypage_main_content {
   width: 716px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 #title_mypage {

@@ -214,7 +214,10 @@
                    ?>
                    <li>
                      <div class="review">
-                      <span><?=$review_id?></span>&nbsp;<span><?=$review_regist_day?></span>&nbsp;<span><?=$review_score?></span>&nbsp;
+                       <div class="h_review">
+                         <span>ID&nbsp;:&nbsp;<?=$review_id?></span>&nbsp;&nbsp;<span><?=$review_regist_day?></span>
+
+                       </div>
                       <div class="review_content"><?=$review_content?></div>
                      </div>
                    </li>
@@ -223,10 +226,22 @@
                      ?>
                      <li>
                        <div class=""><!--댓글 달기 insert-->
-                         <form class="" action="index.html" method="post">
-                           <textarea name="content" rows="8" cols="80"></textarea>리뷰글
-                           <input type="text" name="" value="">평점
-                           <input type="submit" name="" value="">등록
+                         <form class="form_review" name="form_review" action="#" method="post">
+                          <h3>댓글</h3>
+                           <textarea name="content" rows="3" cols="30"></textarea>
+                           <div class="starRev">
+                             <span class="starR1" >0.5</span>
+                             <span class="starR2" >1</span>
+                             <span class="starR1" >1.5</span>
+                             <span class="starR2" >2</span>
+                             <span class="starR1" >2.5</span>
+                             <span class="starR2" >3</span>
+                             <span class="starR1" >3.5</span>
+                             <span class="starR2" >4</span>
+                             <span class="starR1" >4.5</span>
+                             <span class="starR2" >5</span>
+                            </div>
+                           <input type="button" onclick="review();" value="등록">
                          </form>
                        </div>
                      </li>
@@ -273,6 +288,18 @@
                   </select>
                   <script type="text/javascript">
                   // $('#h_pay').on('change',pay(this.value));
+                    $('.starRev span').click(function(){
+                      $(this).parent().children('span').removeClass('on');
+                      $(this).addClass('on').prevAll('span').addClass('on');
+                      valr=$(this).text();
+                      return false;
+                    });
+                    function review(){
+                      <?php
+                      $star_score="document.write(valr);";
+                       ?>
+                      document.form_review.submit();
+                    }
                     function pay(x){
                       document.getElementById("h_pay").innerHTML=x;
                     }

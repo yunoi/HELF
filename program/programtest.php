@@ -65,7 +65,6 @@
           <br><br>
           <li class="li_ok">
             <input type="button" name="" value="검색">
-
           </li>
 
         </ul>
@@ -75,9 +74,9 @@
         <div class="div_program_list_top">
           <ul>
             <li class="li_order">
-              <b>정렬: </b>
+              <b>정렬 </b>
               <a href="#">인기순&nbsp|</a>
-              <a href="#">&nbsp마감임박순&nbsp|</a>
+              <a href="#">&nbsp거리순&nbsp|</a>
               <a href="#">&nbsp가격순&nbsp|</a>
               <a href="../admin/admin_page.php">&nbsp관리자페이지</a>
             </li>

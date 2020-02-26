@@ -8,7 +8,7 @@
 #content #col1 {
   margin-top: 35px;
   width: 120px;
-  min-height: 1000px;
+  min-height: 700px;
   float: left;
   border-right: solid 1px #dddddd;
 }
@@ -177,6 +177,7 @@
   float: left;
   width: 100%;
   text-align: right;
+  padding-bottom: 10px;
 }
 
 /* write_form css */
@@ -265,6 +266,7 @@
   margin-top: 15px;
   width: 97%;
   text-align: right;
+  padding-bottom: 10px;
 }
 
 #write_button button{
@@ -354,14 +356,14 @@
   color: #04ADBF;
 }
 .posts-wrapper .fa {
-  font-size: 3em;
+  font-size: 4em;
 }
 .posts-wrapper .post {
   width: 100%;
 }
 .posts-wrapper {
-  width: 50%;
-  margin: 20px auto;
+  width: 70%;
+  margin: 10px auto;
 }
 
 .posts-wrapper .post-info {

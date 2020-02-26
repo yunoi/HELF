@@ -3,13 +3,7 @@ session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 ?>
-<?php
 
-if (!($_SESSION['user_grade']==="admin")&&!($_SESSION['user_grade']==="master")) {
-    echo "<script>alert('권한이 없습니다.');history.go(-1);</script>";
-    exit;
-}
-?>
 <meta charset="utf-8">
 
 <?php

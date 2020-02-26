@@ -257,10 +257,10 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
       </div><!--end of page button -->
       </div><!--end of list content -->
       </div><!--end of col2  -->
-      </div><!--end of content -->
       <aside>
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
       </aside>
+      </div><!--end of content -->
     </div><!--end of wrap  -->
   </body>
 </html>

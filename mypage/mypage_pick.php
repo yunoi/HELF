@@ -145,7 +145,7 @@
             <ul id="program_list">
             <?php
 
-                $sql = "select pick.*, program.* from pick, program where id='$id' and pick.o_key = program.o_key;";
+                $sql = "select * from pick A inner join program B on A.o_key = B.o_key where id = '$id' order by num;";
                 $result = mysqli_query($conn, $sql);
                 $total_record = mysqli_num_rows($result); // 전체 글 수
 

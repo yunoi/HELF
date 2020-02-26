@@ -119,10 +119,22 @@
                    $b_code      = $row["b_code"];
                    $content     = $row["content"];
                    $regist_day  = $row["regist_day"];
+                   $hit         = $row["hit"];
                     ?>
             				<li id="board_content">
             					<span class="col1"><?=$number?></span>
             					<span class="col2"><?=$b_code?></span>
+                      <?php if ($b_code === "자유게시판") { ?>
+                        <span class="col3"><a href="../community/free/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                      <?php } else if ($b_code === "다이어트후기") { ?>
+                        <span class="col3"><a href="../community/review/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                      <?php } else if ($b_code === "같이할건강") { ?>
+                        <span class="col3"><a href="../together/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                      <?php } else if ($b_code === "레시피") { ?>
+                        <span class="col3"><a href="../health_info/recipe/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                      <?php } else { ?>
+                        <span class="col3"><a href="../health_info/exercise/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                      <?php } ?>
             					<span class="col7"><a href="board_view.php?num=<?=$num?>&page=<?=$page?>"><?=str_cutting($content,93)?></a></span>
                       <span class="col8"><?=$regist_day?></span>
             				</li>

@@ -1,7 +1,6 @@
 <!-- 구매전 페이지 -->
 <?php
   session_start();
- include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
  if(isset($_GET['o_key'])){
    $o_key=$_GET['o_key'];
    $o_key=(int)$o_key;
@@ -9,6 +8,10 @@
    echo "alert('접속 오류 발생');";
    return;
  }
+ $mode="insert";
+ if(isset($_COOKIE["cookie2"])){  setcookie("cookie3",$_COOKIE["cookie2"],time() + 3600,'/');}
+if(isset($_COOKIE["cookie1"])){  setcookie("cookie2",$_COOKIE["cookie1"],time() + 3600,'/');}
+setcookie("cookie1",$o_key,time() + 3600,'/');
  ?>
 
 <!DOCTYPE html>
@@ -146,7 +149,7 @@
                          <th id="sol">가격</th>
                          <?php
                            $sql="select * from program where shop='$shop'and type='$type' order by price";
-                          $result = mysqli_query($conn, $sql);
+                           $result = mysqli_query($conn, $sql);
                          while($row = mysqli_fetch_array($result)){
                            $table_choose       = $row["choose"]; //옵션 내용
                            $table_price = (int)$row["price"]; //옵션에 대한 가격
@@ -199,31 +202,60 @@
 <br/>
 * 총 레슨 시간의 레슨비 징수기간 중의 총레슨시간을 말하며, 반환 금액의 산정은 반환 사유가 발생한 날까지 경과 된 레슨시간을 기준으로 함<br/>
 </p>  </div>
-  <div class="clear"></div><br/><br/>
+                <div class="clear"></div><br/><br/>
                 <div id="div_review">
-                  <h3>자신에 구매 후기 평가를 적어주세요</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <h3>서비스 평가</h3>
+                  <ul>
+                  <?php
+                    $sql="select * from `p_review` where `shop`='$shop' and `type`='$type'";
+                    $result = mysqli_query($conn, $sql);
+                  while($row = mysqli_fetch_array($result)){
+                    $review_id = $row["id"];
+                    $review_content = $row["content"];
+                    $review_regist_day = $row["regist_day"];
+                    $review_score = $row["score"];
+                   ?>
+                   <li>
+                     <div class="review">
+                       <div class="h_review">
+                         <span>ID&nbsp;:&nbsp;<?=$review_id?></span>&nbsp;&nbsp;<span><?=$review_regist_day?></span>
+                       </div>
+                      <div class="review_content"><?=$review_content?></div>
+                     </div>
+                   </li>
+                    <?php
+                  }
+                     ?>
+                     <li>
+                       <div class=""><!--댓글 달기 insert-->
+                         <form class="form_review" name="form_review" action="program_review.php?mode=<?=$mode?>" method="post">
+                          <h3>댓글</h3>
+                           <textarea name="content" rows="3" cols="30"></textarea>
+                           <div class="starRev">
+                             <span class="starR1" >0.5</span>
+                             <span class="starR2" >1</span>
+                             <span class="starR1" >1.5</span>
+                             <span class="starR2" >2</span>
+                             <span class="starR1" >2.5</span>
+                             <span class="starR2" >3</span>
+                             <span class="starR1" >3.5</span>
+                             <span class="starR2" >4</span>
+                             <span class="starR1" >4.5</span>
+                             <span class="starR2" >5</span>
+                            </div>
+                            <input type="hidden" name="o_key" value="<?=$o_key?>">
+                            <input type="hidden" name="type" value="<?=$type?>">
+                            <input type="hidden" name="shop" value="<?=$shop?>">
+                            <input type="hidden" name="star" value="<?=$star_score?>">
+                           <input type="button" onclick="review();" value="등록">
+                           <input type="button" onclick="review_delete();" value="삭제">
+                           <input type="button" onclick="review_update();" value="수정">
+                         </form>
+                       </div>
+                     </li>
+                   </ul>
                 </div>
-              </div>
+              </div><!--main-->
             </section>
             <aside>
               <div id="div_aside">
@@ -264,6 +296,34 @@
                   </select>
                   <script type="text/javascript">
                   // $('#h_pay').on('change',pay(this.value));
+                    $('.starRev span').click(function(){
+                      $(this).parent().children('span').removeClass('on');
+                      $(this).addClass('on').prevAll('span').addClass('on');
+                      valr=$(this).text();
+                      <?php
+                      $star_score=0;
+                      $star_score="document.write(valr);";
+                      ?>
+                      return false;
+                    });
+                    function review(){
+                      <?php
+                      $mode="insert";
+                      ?>
+                      document.form_review.submit();
+                    }
+                    function review_delete(){
+                      <?php
+                      $mode="delete";
+                       ?>
+                       document.form_review.submit();
+                    }
+                    function review_update(){
+                      <?php
+                      $mode="update";
+                       ?>
+                       document.form_review.submit();
+                    }
                     function pay(x){
                       document.getElementById("h_pay").innerHTML=x;
                     }

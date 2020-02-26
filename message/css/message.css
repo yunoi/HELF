@@ -124,3 +124,17 @@ ul.tab li a:hover {
 .buttons { text-align: right; margin: 20px 20px 40px 0; padding-right: 20px;}
 .buttons li { display: inline; }
 .buttons button { padding: 5px 10px; cursor: pointer; }
+
+/* 아이디 자동완성 */
+#receive_id_list {
+	display: none;
+}
+#write_msg #receive_id_list .id_lists{
+  position: relative;
+  left:60px;
+  border: 0;
+  padding: 12px;
+  color: #999;
+  vertical-align: top;
+  cursor: pointer;
+}

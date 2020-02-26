@@ -1,13 +1,13 @@
 <?php
   session_start();
-  
+
 	if (isset($_SESSION["user_id"])) {
 		  $id = $_SESSION["user_id"];
 	} else {
 		$id = "";
 	}
 
-	
+
 	// 카카오 로그인버튼 누른 후 회원가입 폼으로 들어온것인지 판별
 	if(isset($_POST["hidden_kakao_name"])) {
 			$hidden_kakao_name = $_POST["hidden_kakao_name"];
@@ -30,11 +30,11 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>HELF :: Health friends, healthier life</title>
+        <title>HELF :: 회원가입</title>
         <link rel="stylesheet" href="./css/member.css">
-        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
         <script src="./js/member_form.js" charset="utf-8"></script>
-
+        <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
         <link
             rel="stylesheet"
             type="text/css"
@@ -47,10 +47,8 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
-        <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
-
-        <script type="text/javascript" src="./common/js/main.js"></script>
-
+        <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+        <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
         <!-- 우편번호 api 참조 스크립트 -->
         <script
             src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -110,10 +108,9 @@
 
                 var name_value = input_name.val(),
                     email_one_value = email_one.val();
-                email_two_value = email_two.val();
+                    email_two_value = email_two.val();
 
-                $
-                    .ajax({
+                $.ajax({
                         url: '../login/forgot_id_pw_check.php',
                         type: 'POST',
                         data: {
@@ -275,7 +272,7 @@
                         <?php
               if($hidden_kakao_name) {
             ?>
-                        <input type="text" name="name" id="input_name" value=<?=$hidden_kakao_name?>>
+                        <input type="text" name="name" id="input_name" value=<?=$hidden_kakao_name?> readonly>
                         <br>
                     <?php
 						} else if($modify){
@@ -350,13 +347,15 @@
                                     type="text"
                                     name="email_one"
                                     id="email_one"
-                                    value="<?=$hidden_kakao_email_one?>">
+                                    value="<?=$hidden_kakao_email_one?>"
+                                    readonly>
                                 @
                                 <input
                                     type="text"
                                     name="email_two"
                                     id="email_two"
-                                    value="<?=$hidden_kakao_email_two?>">
+                                    value="<?=$hidden_kakao_email_two?>"
+                                    readonly>
                                 <script type="text/javascript">
                                     signup_duplicate_check();
                                 </script>

@@ -130,20 +130,51 @@
                         <th>STANDARD</th>
                         <th>DELUXE</th>
                         <th>PREMIUM</th>
-                      <tr>
                       </tr>
-                        <th id="sol">1</th>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
+                        <?php
+                         // ==============================
+                         $sql = "select * from program where o_key=$o_key";
+                         $result = mysqli_query($conn, $sql);
+                         $row = mysqli_fetch_array($result);
+                         $shop = $row["shop"];
+                         $type = $row["type"];
+                         $subject = $row["subject"];
+                         $content = $row["content"];
+                         $location = $row["location"]; //주소
+                         ?>
+                       <tr>
+                         <th id="sol">가격</th>
+                         <?php
+                           $sql="select * from program where shop='$shop'and type='$type' order by price";
+                          $result = mysqli_query($conn, $sql);
+                         while($row = mysqli_fetch_array($result)){
+                           $table_choose       = $row["choose"]; //옵션 내용
+                           $table_price = (int)$row["price"]; //옵션에 대한 가격
+                           if(!($table_choose==="선택")){
+                          ?>
+                          <td><?=$table_price?>원</td>
+                           <?php
+                         }
+                         }
+                            ?>
                       </tr>
-                      <tr>
-                        <th id="sol">1</th>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                      </tr>
+                       <tr>
+                         <th id="sol">옵션</th>
+                         <?php
+                           $sql="select * from program where shop='$shop'and type='$type' order by price";
+                          $result = mysqli_query($conn, $sql);
+                         while($row = mysqli_fetch_array($result)){
+                           $table_choose       = $row["choose"]; //옵션 내용
+                           if(!($table_choose==="선택")){
+                          ?>
+                          <td><?=$table_choose?>횟수</td>
+                           <?php
+                          }
+                         }
+                            ?>
+                        </tr>
                     </table>
+
                   </div>
                 </div>
                   <div class="clear"></div><br/><br/>
@@ -197,20 +228,6 @@
             <aside>
               <div id="div_aside">
                 <!-- 작업대 -->
-
-                <?php
-                 // ==============================
-                 $sql = "select * from program where o_key=$o_key";
-                 $result = mysqli_query($conn, $sql);
-                 $row = mysqli_fetch_array($result);
-                 $shop = $row["shop"];
-                 $type = $row["type"];
-                 $subject = $row["subject"];
-                 $content = $row["content"];
-                 $location = $row["location"]; //주소
-                 ?>
-
-
 
                 <h2><?=$shop?></h2>
                 <form class="" action="index.html" method="post">

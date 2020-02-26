@@ -54,16 +54,16 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
       <div id="content">
         <div id="col1">
          <div id="left_menu">
-           <div id="sub_title"><span></span></div>
+           <div id="sub_title"> <span>메뉴</span></div>
            <ul>
            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
-           <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/review/list.php">다이어트 후기</a></li>
+           <li><a href="#">다이어트 후기</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
 
        <div id="col2">
-         <div id="title"><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp자유게시판</span></div>
+         <div id="title">자유게시판</div>
          <div class="clear"></div>
          <div id="write_form_title">글쓰기</div>
          <div class="clear"></div>
@@ -117,7 +117,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
             </div><!--end of write_form  -->
             <div id="write_button">
               <input type="submit" onclick='document.getElementById("del_file").disabled=false' value="완료">
-              <a href="./list.php">목록</a>
+              <a href="./list.php"><button type="button">목록</button></a>
             </div><!--end of write_button-->
          </form>
       </div><!--end of col2  -->

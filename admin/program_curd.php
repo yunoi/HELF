@@ -35,8 +35,8 @@
   if (isset($_POST["price"])) $price = $_POST["price"];
   else $price = "";
 
-  if (isset($_POST["h_area1"])){
-    switch ($_POST["h_area1"]) {
+  if (isset($_POST["s_area1"])){
+    switch ($_POST["s_area1"]) {
       case '1':
         $h_area1 = "서울";
         break;

@@ -117,7 +117,7 @@
                 </ol>
               </li>
         <li class="tab">
-            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/programtest.php">
+            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/program/program.php">
                 <span>프로그램</span></a>
         </li>
         <li class="tab down_menu">

@@ -302,7 +302,7 @@ header {
   background: #fff;
 }
 
-#notice_title {
+.aside_title {
   color: #1e1d1d;
   font-size: 15px;
   font-weight: bold;
@@ -345,7 +345,79 @@ header {
   white-space: nowrap;
   letter-spacing: 0px;
 }
+/* 인기검색어 */
+#container #aside_keyword {
+  position: relative;
+  box-sizing: border-box;
+  width: 252px;
+  margin: 36px 0;
+  border: 1px solid #dbdbdb;
+  padding: 10px 30px 6px 20px;
+  background: #fff;
+}
+#aside_keyword {
+  position: relative;
+  box-sizing: border-box;
+  width: 231px;
+  margin: 36px 0;
+  border: 1px solid #dbdbdb;
+  padding: 10px 30px 6px 20px;
+  background: #fff;
+}
 
+#keyword_area {
+  margin: 0 20px;
+  padding-top: 6px;
+}
+#keyword_area li {
+  position: relative;
+  margin: 0 auto;
+  border-top: 1px solid #f4f4f4;
+  width: 190px;
+  line-height: 28px;
+  padding: 5px 0;
+  font-size: 14px;
+  color: #f23005;
+  font-weight: 700;
+  text-align: center;
+}
+#keyword_area li:first-child {
+  border-top: 0 none;
+}
+#container #keyword_area li img {
+  width:120px;
+
+}
+#keyword_area li img {
+  width:120px;
+
+}
+#container #keyword_area li span {
+  position: absolute;
+  top: 3px;
+  display: inline-block;
+  margin-top: 2px;
+  overflow: hidden;
+  width: 180px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0px;
+  color: #333;
+  text-align: center;
+
+}
+#keyword_area li span {
+  position: absolute;
+  top: 3px;
+  display: inline-block;
+  margin-top: 2px;
+  overflow: hidden;
+  width: 130px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0px;
+  color: #333;
+}
 /* 하단 푸터 */
 footer {
   border-top: 1px solid #333333;

@@ -1,15 +1,40 @@
 $(document).ready(function() {
     var count=5;
+
+    var s_type = "";
+    var s_area1 = "";
+    var s_area2 = "";
+    var s_min_price = "";
+    var s_max_price = "";
+
+
+    $("#btn_search").click(function(){
+
+     s_type = document.frm.s_type.value;
+     s_area1 =document.frm.s_area1.value;
+     s_area2 =document.frm.s_area2.value;
+     s_min_price =document.frm.s_min_price.value;
+     s_max_price =document.frm.s_max_price.value;
+
+     console.log(s_type);
+
+    });
+
+
+
+
     $(window).bind("scroll", function(){
         var documentHeight  = $(document).height();
         var scrollHeight = $(window).scrollTop()+$(window).height();
+
+
+
 
         if(scrollHeight > documentHeight*0.95) {
               $.ajax({
                 url:'program_db.php',
                 type:'POST',
                 data:{'list':count},
-
                 success:function(data){
                   var data = JSON.parse(data);
                   console.log(data[0].o_key+","+data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
@@ -54,4 +79,5 @@ $(document).ready(function() {
               count+=5;
         }
     });
+
 });

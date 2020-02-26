@@ -110,6 +110,7 @@
 	padding-left:10px;
 	padding-bottom:10px;
 	border-bottom:dotted 1px #cccccc;
+	overflow: auto;
 }
 
 #ripple_insert {

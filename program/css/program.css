@@ -3,7 +3,7 @@ ul{
   padding: 0;
 }
 
-li{
+.div_program li{
   display: inline-block;
   vertical-align: top;
 }
@@ -133,6 +133,11 @@ aside{
 .li_program_list{
   margin-bottom: 20px;
 }
+
+#detail_search li *{
+  margin-bottom: 5px;
+}
+
 
 #detail_search *{
   margin-bottom: 4px;

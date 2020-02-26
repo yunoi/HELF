@@ -59,27 +59,13 @@ input {
   color: #1C1C1C;
 }
 
-/* #kakao_login {
+#kakao-login-btn {
   width: 225px;
-  height: 40px;
+  height: 43px;
   margin-bottom: 10px;
   background-color: yellow;
   border-radius: 2px;
 }
-
-#kakao_login a {
-  text-decoration: none;
-  color: black;
-}
-
-#kakao_login a p {
-  width: 225px;
-  height: 38px;
-  text-align: center;
-  font-size: 14px;
-  margin: 0px;
-  padding: 9px 0px 0px 0px;
-} */
 
 #naver_id_login img {
   width: 225px;

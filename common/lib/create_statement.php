@@ -82,12 +82,15 @@ function create_table($conn, $table_name){
           )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
           case 'p_review' :
-            $sql = "CREATE TABLE p_review( 
+            $sql = "create table p_review(
               id char(20) not null,
-              o_key int not null,
-              content text not null,
-              regist_day char(15),
-              primary key (id, o_key),
+               o_key int(11) not null,
+               content text,
+               regist_day char(15) not null,
+               type char(20) not null,
+               shop char(10) not null,
+               score int(10) not null,
+               primary key(id,o_key),
                
              constraint review_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
               constraint review_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade

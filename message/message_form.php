@@ -11,7 +11,8 @@ if(isset($_SESSION["user_id"])){
   <head>
     <meta charset="utf-8">
     <title>HELF :: 메시지함</title>
-    <link rel="stylesheet" type="text/css" href="./css/common.css">
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/message.css">
     <link rel="shortcut icon" href="./favicon.ico">
     <script src="./js/message.js"></script>
@@ -50,7 +51,9 @@ if(isset($_SESSION["user_id"])){
               </li>
               <li>
                 <span class="col1">받는 사람 <br>아이디: </span>
-                <span class="col2"><input type="text" name="rv_id" value=""></span>
+                <span class="col2"><input type="text" id="id_input" name="rv_id" value="" onkeyup="complete_id()"></span>
+                <ul id="receive_id_list"></ul>
+
               </li>
               <li>
                 <span class="col1">제목: </span>

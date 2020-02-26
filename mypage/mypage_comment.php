@@ -115,27 +115,36 @@
                    // 가져올 레코드로 위치(포인터) 이동
                    $row = mysqli_fetch_array($result);
                    // 하나의 레코드 가져오기
-                   $num         = $row["num"];
+                   $parent      = $row["parent"];
                    $b_code      = $row["b_code"];
                    $content     = $row["content"];
                    $regist_day  = $row["regist_day"];
-                   $hit         = $row["hit"];
+
+
+                   $sql2 = "select num,hit from community where num=$parent and b_code='$b_code' union ";
+                   $sql2 .= "select num,hit from together where num=$parent and b_code='$b_code' union ";
+                   $sql2 .= "select num,hit from health_info where num=$parent and b_code='$b_code';";
+
+                   $result2 = mysqli_query($conn, $sql2);
+                   $row2 = mysqli_fetch_array($result2);
+                   $num       = $row2["num"];
+                   $hit       = $row2["hit"];
+
                     ?>
             				<li id="board_content">
             					<span class="col1"><?=$number?></span>
             					<span class="col2"><?=$b_code?></span>
                       <?php if ($b_code === "자유게시판") { ?>
-                        <span class="col3"><a href="../community/free/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                        <span class="col7"><a href="../community/free/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($content,93)?></a></span>
                       <?php } else if ($b_code === "다이어트후기") { ?>
-                        <span class="col3"><a href="../community/review/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                        <span class="col7"><a href="../community/review/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($content,93)?></a></span>
                       <?php } else if ($b_code === "같이할건강") { ?>
-                        <span class="col3"><a href="../together/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                        <span class="col7"><a href="../together/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($content,93)?></a></span>
                       <?php } else if ($b_code === "레시피") { ?>
-                        <span class="col3"><a href="../health_info/recipe/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                        <span class="col7"><a href="../health_info/recipe/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($content,93)?></a></span>
                       <?php } else { ?>
-                        <span class="col3"><a href="../health_info/exercise/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($subject,75)?></a></span>
+                        <span class="col7"><a href="../health_info/exercise/view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=str_cutting($content,93)?></a></span>
                       <?php } ?>
-            					<span class="col7"><a href="board_view.php?num=<?=$num?>&page=<?=$page?>"><?=str_cutting($content,93)?></a></span>
                       <span class="col8"><?=$regist_day?></span>
             				</li>
             <?php

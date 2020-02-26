@@ -204,7 +204,7 @@
                   <h3>서비스 평가</h3>
                   <ul>
                   <?php
-                    $sql="select * from p_review where shop='$shop'and type='$type'";
+                    $sql="select * from `p_review` where `shop`='$shop' and `type`='$type'";
                     $result = mysqli_query($conn, $sql);
                   while($row = mysqli_fetch_array($result)){
                     $review_id = $row["id"];
@@ -216,7 +216,6 @@
                      <div class="review">
                        <div class="h_review">
                          <span>ID&nbsp;:&nbsp;<?=$review_id?></span>&nbsp;&nbsp;<span><?=$review_regist_day?></span>
-
                        </div>
                       <div class="review_content"><?=$review_content?></div>
                      </div>
@@ -226,7 +225,7 @@
                      ?>
                      <li>
                        <div class=""><!--댓글 달기 insert-->
-                         <form class="form_review" name="form_review" action="#" method="post">
+                         <form class="form_review" name="form_review" action="./program_review.php?mode=<?=$mode?>" method="post">
                           <h3>댓글</h3>
                            <textarea name="content" rows="3" cols="30"></textarea>
                            <div class="starRev">
@@ -241,7 +240,14 @@
                              <span class="starR1" >4.5</span>
                              <span class="starR2" >5</span>
                             </div>
+                            <input type="hidden" name="o_key" value="<?=$o_key?>">
+                            <input type="hidden" name="regist_day" value="<?=$regist_day?>">
+                            <input type="hidden" name="type" value="<?=$type?>">
+                            <input type="hidden" name="shop" value="<?=$shop?>">
+                            <input type="hidden" name="star" value="<?=$star_score?>">
                            <input type="button" onclick="review();" value="등록">
+                           <input type="button" onclick="delete();" value="삭제">
+                           <input type="button" onclick="update();" value="수정">
                          </form>
                        </div>
                      </li>
@@ -292,13 +298,28 @@
                       $(this).parent().children('span').removeClass('on');
                       $(this).addClass('on').prevAll('span').addClass('on');
                       valr=$(this).text();
+                      <?php
+                      $star_score="document.write(valr);";
+                      ?>
                       return false;
                     });
                     function review(){
                       <?php
-                      $star_score="document.write(valr);";
-                       ?>
+                      $mode="insert";
+                      ?>
                       document.form_review.submit();
+                    }
+                    function delete(){
+                      <?php
+                      $mode="delete";
+                       ?>
+                       document.form_review.submit();
+                    }
+                    function update(){
+                      <?php
+                      $mode="update";
+                       ?>
+                       document.form_review.submit();
                     }
                     function pay(x){
                       document.getElementById("h_pay").innerHTML=x;

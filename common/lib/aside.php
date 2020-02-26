@@ -110,7 +110,7 @@
     $row1 = mysqli_fetch_array($side_result1);
     $menu1 = $row1['file_copied'];
     $mt1 = $row1['subject'];
-    $color1="color:blue;";
+    $color1="color:#333;";
   }
   if(isset($_COOKIE["cookie2"])){
     $cookie2=$_COOKIE["cookie2"];
@@ -119,7 +119,7 @@
     $row2 = mysqli_fetch_array($side_result2);
     $menu2 = $row2['file_copied'];
     $mt2 = $row2['subject'];
-    $color2="color:blue;";
+    $color2="color:#333;";
   }
   if(isset($_COOKIE["cookie3"])){
     $cookie3=$_COOKIE["cookie3"];
@@ -128,7 +128,7 @@
     $row3 = mysqli_fetch_array($side_result3);
     $menu3 = $row3['file_copied'];
     $mt3 = $row3['subject'];
-    $color3="color:blue;";
+    $color3="color:#333;";
   }
  ?>
     <div id="aside_keyword">

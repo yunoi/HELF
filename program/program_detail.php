@@ -126,19 +126,19 @@
                   <div class="pay_table">
                     <table>
                       <tr>
-                        <th>&nbsp;</th>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
+                        <th id="sol">&nbsp;</th>
+                        <th>STANDARD</th>
+                        <th>DELUXE</th>
+                        <th>PREMIUM</th>
                       <tr>
                       </tr>
-                        <td>1</td>
+                        <th id="sol">1</th>
                         <td>2</td>
                         <td>3</td>
                         <td>4</td>
                       </tr>
                       <tr>
-                        <td>1</td>
+                        <th id="sol">1</th>
                         <td>2</td>
                         <td>3</td>
                         <td>4</td>

@@ -3,13 +3,7 @@ session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 ?>
-<?php
 
-if (!($_SESSION['user_grade']==="admin")&&!($_SESSION['user_grade']==="master")) {
-    echo "<script>alert('권한이 없습니다.');history.go(-1);</script>";
-    exit;
-}
-?>
 <meta charset="utf-8">
 
 <?php
@@ -18,6 +12,12 @@ $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 
 if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
+
+  // if (!($_SESSION['user_grade']==="admin")&&!($_SESSION['user_grade']==="master")) {
+  //     echo "<script>alert('권한이 없습니다.');history.go(-1);</script>";
+  //     exit;
+  // }
+
     $content = trim($_POST["content"]);
     $subject = trim($_POST["subject"]);
     if (empty($content)||empty($subject)) {
@@ -33,14 +33,8 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
     $q_userid = mysqli_real_escape_string($conn, $user_id);
     $q_username = mysqli_real_escape_string($conn, $user_name);
     $regist_day=date("Y-m-d (H:i)");
-
-    //////
-
-
-  $video_name=$_POST["video_name"];
-  $video_name=substr($video_name, -11);
-
-    ///////
+    $video_name=$_POST["video_name"];
+    $video_name=substr($video_name, -11);
 
     //include 파일업로드기능
     include  "../lib/file_upload.php";

@@ -76,7 +76,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 {
     if (isset($_SESSION['user_id'])) {
         $message="";
-        if ($_SESSION['user_grade']=="admin"||$_SESSION['user_grade']=="master") {
+        if ($_SESSION['user_grade']=="admin"||$_SESSION['user_grade']=="master"||$_SESSION['user_id']==$id1) {
             $message=
         '<form style="display:inline" action="'.$page1.'?mode=delete_ripple&page='.$page.'&hit='.$hit.'" method="post">
           <input type="hidden" name="num" value="'.$num1.'">

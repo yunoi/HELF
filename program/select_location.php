@@ -1,7 +1,6 @@
-<form name="form1">
-  <select name="h_area1" onchange="cat1_change(this.value,h_area2)" style="width:80px; height:20px;">
-    <option selected>-선택-</option>
-    <option value='0' >전체</option>
+
+  <select name="s_area1" onchange="cat1_change(this.value,s_area2)" style="width:80px; height:20px;">
+    <option value='0' selected >전체</option>
     <option value='1' >서울</option>
     <option value='2' >부산</option>
     <option value='3' >대구</option>
@@ -22,8 +21,8 @@
   </select>
 
   &nbsp
-  <select id="h_area2" name="h_area2" style="width:80px; height:20px;">
-    <option selected>-선택-</option>
+  <select name="s_area2" style="width:80px; height:20px;">
+    <option value ='' selected>-선택-</option>
   </select>
 <script language=javascript>
 
@@ -140,4 +139,3 @@ function cat1_change(key,sel){
 
 -->
 </script>
-</form>

@@ -2,9 +2,25 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>HELF :: Health friends, healthier life</title>
+    <title>HELF :: 로그인</title>
     <link rel="stylesheet" href="./css/login.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+    <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
+
     <script type="text/javascript">
       $(document).ready(function() {
         $("#id").keydown(function(key) {
@@ -35,22 +51,6 @@
           document.login_form.submit();
       }
     </script>
-
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-
-        <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
-
-    <script type="text/javascript" src="./common/js/main.js"></script>
     <!-- 네이버 로그인 -->
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 
@@ -174,7 +174,7 @@
             <script type="text/javascript">
             	var naver_id_login = new naver_id_login("imJpReP1ZuJ368WTaKMU", "http://localhost/helf/member/member_form.php");
             	var state = naver_id_login.getUniqState();
-            	naver_id_login.setButton("green", 3, 40);
+            	naver_id_login.setButton("green", 3, 43);
             	naver_id_login.setDomain("./login_form.php");
             	naver_id_login.setState(state);
             	naver_id_login.init_naver_id_login();

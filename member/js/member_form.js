@@ -63,6 +63,14 @@ $(document).ready(function() {
     isAllPass();
   } else {
     input_id.blur(function() {
+
+      if(input_name.attr("readonly")) {
+        name_pass = true;
+        email_one_pass = true;
+        email_two_pass = true;
+        isAllPass();
+      }
+
       var id_value = input_id.val();
       var exp = /^[a-z0-9]{5,20}$/;
       if (id_value === "") {
@@ -109,7 +117,6 @@ $(document).ready(function() {
       }
     }); //input_id.blur end
   }
-
 
   input_password.blur(function() {
     var password_value = input_password.val();

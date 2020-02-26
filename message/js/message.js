@@ -26,6 +26,30 @@ if(con_val === true){
 else if(con_val === false){
 return;
 }
-  
-  
+}
+
+// autocomplet : this function will be executed every time we change the text
+function complete_id() {
+	var min_length = 0; // min caracters to display the autocomplete
+	var keyword = $('#id_input').val();
+	if (keyword.length > min_length) {
+		$.ajax({
+			url: './id_auto_complete.php',
+			type: 'POST',
+			data: {keyword:keyword},
+			success:function(data){
+				$('#receive_id_list').show();
+				$('#receive_id_list').html(data);
+			}
+		});
+	} else {
+		$('#receive_id_list').hide();
+  }
+}
+
+function set_item(item) {
+	// change input value
+	$('#id_input').val(item);
+	// hide proposition list
+	$('#receive_id_list').hide();
 }

@@ -46,7 +46,6 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
         //2.페이지가 없으면 디폴트 페이지 1페이지
         if (empty($_GET['page'])) {
             $page=1;
-
         } else {
             $page=$_GET['page'];
         }
@@ -111,8 +110,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
               $subject=$row['subject'];
               $subject=str_replace("\n", "<br>", $subject);
               $subject=str_replace(" ", "&nbsp;", $subject);
-              $file_name=$row['file_name'];
-          ?>
+              $file_name=$row['file_name']; ?>
             <div id="list_item">
               <div id="list_item1"><?=$number?></div>
               <div id="list_item2">
@@ -159,11 +157,14 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
         </div><!--end of button -->
       </div><!--end of page button -->
       </div><!--end of list content -->
-      </div><!--end of col2  -->
-      <aside>
-          <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
-      </aside>
-      </div><!--end of content -->
+    </div><!--end of col2  -->
+    <aside>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+    </aside>
+    </div><!--end of content -->
+    <footer>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+    </footer>
     </div><!--end of wrap  -->
   </body>
 </html>

@@ -99,7 +99,6 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
          <div id="list_content">
          <?php
-
           for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++) {
               mysqli_data_seek($result, $i);
               $row=mysqli_fetch_array($result);
@@ -164,6 +163,9 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
       </aside>
       </div><!--end of content -->
+      <footer>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+      </footer>
     </div><!--end of wrap  -->
   </body>
 </html>

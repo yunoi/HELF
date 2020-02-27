@@ -8,14 +8,11 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>HELF :: 회사 소개</title>
+    <title>HELF :: HELF 소개</title>
     <link
         rel="stylesheet"
         type="text/css"
         href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
-    <script src="./js/vendor/modernizr.custom.min.js"></script>
-    <script src="./js/vendor/jquery-1.10.2.min.js"></script>
-    <script src="./js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="./common/js/main.js"></script>
     <link rel="stylesheet" href="./css/introduction.css">
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
@@ -28,7 +25,7 @@
     <section>
       <article>
         <div id="div_header">
-          <b>★★회사소개★★</b>
+          <b>HELF 소개</b>
         </div>
         <div id="div_introduction">
           <p>안녕하세요 대표자 <b><?=$mater?></b> 입니다. <br/>
@@ -68,7 +65,6 @@
             dolore eu fugiat nulla pariatur. Excepteur sint occaecat <br/>
             cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br/>
           </p>
-          <img src="" alt="조직도 이미지">
         </div>
       </article>
     </section>

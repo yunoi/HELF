@@ -1,3 +1,26 @@
 td{
   border: 1px solid black;
 }
+
+#input_shop{
+  width: 300px;
+}
+#input_subject{
+  width: 638px;
+}
+#input_num{
+  width: 105px;
+}
+#input_location{
+  width: 638px;
+}
+
+input[type="date"]::-webkit-outer-spin-button,
+input[type="date"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#td_width{
+  width: 1-0px;
+}

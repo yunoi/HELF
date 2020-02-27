@@ -3,6 +3,10 @@
 	position: relative;
 	margin: 0 auto;
 }
+#title span{
+	font-size: 17px;
+	font-weight: bold;
+   }
 #aside{
 	position: absolute;
 	top: 100px;
@@ -17,7 +21,7 @@
 }
 
 #content #col2 #title{
-	margin-top:30px;
+	margin-top:61px;
 	height:30px;
 	border-bottom:solid 1px #cccccc;
 }
@@ -73,9 +77,9 @@
 #list_top_title {
 	height:20px;
 	padding:7px;
-	border-top:solid 2px #aaaaaa;
-	background-color:#eeeeee;
+	background-color: #F23005;
 	margin-bottom:3px;
+	color: white;
 }
 
 #list_top_title li {

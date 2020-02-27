@@ -1,7 +1,6 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
-
 include('server.php');
 
 $num=$id=$subject=$content=$day=$hit=$image_width=$q_num="";
@@ -16,7 +15,6 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $num = test_input($_GET["num"]);
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
-
 
     $sql="UPDATE `together` SET `hit`=$hit WHERE b_code='같이할건강' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
@@ -91,6 +89,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/together.css">
+    <link rel="stylesheet" href="./css/memo.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
@@ -98,7 +97,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
-    <title>HELF :: 커뮤니티게시판</title>
+    <title>HELF :: 같이할건강게시판</title>
     <script type="text/javascript">
     function check_delete(num) {
       var result=confirm("삭제하시겠습니까?");
@@ -117,34 +116,40 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
       <div id="content">
         <div id="col1">
          <div id="left_menu">
-           <div id="sub_title"> <span>메뉴</span></div>
+           <div id="sub_title"><span>&nbsp</span></div>
            <ul>
              <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php">전국</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=서울">서울</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=부산">부산</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대구">대구</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=인천">인천</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=광주">광주</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대전">대전</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=울산">울산</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=강원">강원</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경기">경기</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경남">경남</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경북">경북</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전남">전남</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전북">전북</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=제주">제주</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충남">충남</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충북">충북</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=세종">세종</a></li>
+             <p>경기도</p>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=서울">서울</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경기">경기</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=인천">인천</a></li>
+             <p>충청도</p>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충북">충북</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충남">충남</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=세종">세종</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대전">대전</a></li>
+             <p>전라도</p>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전북">전북</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전남">전남</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=광주">광주</a></li>
+             <p>경상도</p>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경북">경북</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경남">경남</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=부산">부산</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=울산">울산</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대구">대구</a></li>
+             <p>강원도</p>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=강원">강원</a></li>
+             <p>기타</p>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=제주">제주</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
 
        <div id="col2">
-         <div id="title">같이할건강</div>
+         <div id="title">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp같이할건강</div>
          <div class="clear"></div>
-         <div id="write_form_title"></div>
+         <div id="write_form_title"><?=$subject?></div>
          <div class="clear"></div>
             <div id="write_form">
               <div class="write_line"></div>
@@ -173,7 +178,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                         echo("
                       ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
+                      <a href='download.php?mode=download&num=$q_num'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br><br>
                     ");
                         echo "<img src='./data/$file_copied' width='$image_width'><br>";
                     } elseif (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
@@ -194,9 +199,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 
         <div class="posts-wrapper">
            <?php foreach ($communities as $post): ?>
-             <!-- foreach($array as $value)  value 값만 가져오기-->
               <div class="post">
-              <!-- <?php echo $post['text']; ?> -->
               <div class="post-info">
                  <i <?php if (userLiked($post['num'])): ?>
                       class="fa fa-thumbs-up like-btn"
@@ -206,10 +209,11 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    data-id="<?php echo $post['num'] ?>">
                  </i>
                  <span class="likes"><?php echo getLikes($post['num']); ?></span>
-
-                 &nbsp;&nbsp;&nbsp;&nbsp;
-
-               <!-- if user dislikes post, style button differently -->
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;
                  <i
                    <?php if (userDisliked($post['num'])): ?>
                       class="fa fa-thumbs-down dislike-btn"
@@ -228,7 +232,6 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 
 <!--덧글내용시작  -->
 <div id="ripple">
-  <div id="ripple1">댓글</div>
   <div id="ripple2">
     <?php
       $sql="select * from `comment` where b_code='같이할건강' and parent='$q_num' ";
@@ -266,39 +269,37 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
       <input type="hidden" name="user_id" value="<?=$user_id?>">
       <input type="hidden" name="b_code" value="같이할건강">
       <div id="ripple_insert">
-        <div id="ripple_textarea"><textarea name="ripple_content" rows="3" cols="80"></textarea></div>
-        <div id="ripple_button"><input type="image" src="./lib/memo_ripple_button.png"></div>
+        <div id="ripple_textarea"><img src="../pic/ripple.png" alt=""><textarea name="ripple_content" rows="3" cols="86"></textarea><input type="submit" value="&nbsp&nbsp입력&nbsp&nbsp"></div>
       </div><!--end of ripple_insert -->
     </form>
   </div><!--end of ripple2  -->
 </div><!--end of ripple  -->
 
 <div id="write_button">
-    <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button></a>
+    <a href="./list.php?page=<?=$page?>">목록</a>
   <?php
     //master or admin이거나 해당된 작성자일경우 수정, 삭제가 가능하도록 설정
     if (isset($_SESSION['user_id'])) {
         if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$id) {
-            echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"> <button type="button">수정</button></a>&nbsp;');
+            echo('<a href="./write_edit_form.php?mode=update&num='.$num.'">수정</a>&nbsp;');
             echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
         }
     }
-
     //로그인하는 유저에게 답변기능과 글쓰기 기능을 부여함.
     if (!empty($_SESSION['user_id'])) {
-        echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
-        echo '<a href="write_edit_form.php?mode=response&num='.$num.'"><button type="button">답변</button></a>';
+        echo '<a href="write_edit_form.php">글쓰기</a>&nbsp;';
+        echo '<a href="write_edit_form.php?mode=response&num='.$num.'">답변</a>';
     }
-
-
   ?>
-</div><!--end of write_button-->
-</div><!--end of col2  -->
-</div><!--end of content -->
-<aside>
-    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
-</aside>
-</div><!--end of wrap  -->
-
+      </div><!--end of write_button-->
+    </div><!--end of col2  -->
+    <aside>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+    </aside>
+    </div><!--end of content -->
+  <footer>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+  </footer>
+  </div><!--end of wrap  -->
 </body>
 </html>

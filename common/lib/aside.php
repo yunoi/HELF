@@ -99,55 +99,51 @@
 ?>
         </ul>
     </div>
+
     <?php
-  $menu1="none.png";$mt1="최근 본 상품이 없습니다.";$color1="";
-  $menu2="none.png";$mt2="최근 본 상품이 없습니다.";$color2="";
-  $menu3="none.png";$mt3="최근 본 상품이 없습니다.";$color3="";
-  if(isset($_COOKIE["cookie1"])){
-    $cookie1=$_COOKIE["cookie1"];
-    $sql_side1="SELECT * from `program` where `o_key`='$cookie1';";
-    $side_result1 = mysqli_query($conn,$sql_side1) or die("실패원인1: ".mysqli_error($conn));
-    $row1 = mysqli_fetch_array($side_result1);
-    $menu1 = $row1['file_copied'];
-    $mt1 = $row1['subject'];
-    $color1="color:#333;";
-  }
-  if(isset($_COOKIE["cookie2"])){
-    $cookie2=$_COOKIE["cookie2"];
-    $sql_side2="SELECT * from `program` where `o_key`='$cookie2';";
-    $side_result2 = mysqli_query($conn,$sql_side2) or die("실패원인1: ".mysqli_error($conn));
-    $row2 = mysqli_fetch_array($side_result2);
-    $menu2 = $row2['file_copied'];
-    $mt2 = $row2['subject'];
-    $color2="color:#333;";
-  }
-  if(isset($_COOKIE["cookie3"])){
-    $cookie3=$_COOKIE["cookie3"];
-    $sql_side3="SELECT * from `program` where `o_key`='$cookie3';";
-    $side_result3 = mysqli_query($conn,$sql_side3) or die("실패원인1: ".mysqli_error($conn));
-    $row3 = mysqli_fetch_array($side_result3);
-    $menu3 = $row3['file_copied'];
-    $mt3 = $row3['subject'];
-    $color3="color:#333;";
-  }
+
  ?>
     <div id="aside_keyword">
         <p class="aside_title">최근 본 상품</p>
         <ol id="keyword_area">
+        <?
+      $photo="none.png";
+      $subject="최근 본 상품이 없습니다.";
+      $shop=$type="";
+        if(isset($_COOKIE['today_view'])){
+            $cookie_array=explode(",", $_COOKIE['today_view']);
+            $cookie_count=sizeof($cookie_array);
+            if($cookie_count>3){
+                $cookie_count = 3;
+            }
+            $recent_array=array_reverse($cookie_array);
+            for($i=0; $i < $cookie_count; $i++){
 
-            <li>
-            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie1?>"><img class="side_bar_recent_img" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$menu1?>"></a>
-    <div class="side_bar_recent_val"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie1?>" style=" text-decoration:none;font-size:0.7em; color:gray; <?=$color1?>"><?=$mt1?></a></div>
-            </li>
-            <li>
-            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie1?>"><img class="side_bar_recent_img" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$menu2?>"></a>
-    <div class="side_bar_recent_val"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie2?>" style="text-decoration:none; font-size:0.7em; color:gray; <?=$color2?>"><?=$mt2?></a></div>
-            </li>
-            <li>
-            <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie1?>"><img class="side_bar_recent_img" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$menu3?>"></a>
-    <div class="side_bar_recent_val"><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie3?>" style="text-decoration:none; font-size:0.7em; color:gray; <?=$color3?>"><?=$mt3?></a></div>
-            </li>
+                    $sql = "SELECT * from `program` where `o_key`='$recent_array[$i]';";
+                    $result = mysqli_query($conn, $sql) or die("최근 본 상품 불러오기 실패: ".mysqli_error($conn));
+                    $row = mysqli_fetch_array($result);
+                    $photo = $row['file_copied'];
+                    $subject = $row['subject'];
+                    $shop = $row['shop']." / ";
+                    $type = $row['type'];                
+                                         
+    ?>
+        <li>
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie_array[$i]?>"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$photo?>"></a>
+<div><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie_array[$i]?>"><?=$shop?><?=$type?><br><?=$subject?></a></div>
+        </li>
+    <?php		
+        }	
+            } else {
+                ?>
+                  <li>
+        <a href="#"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$photo?>"></a>
+<div><a href="#" style="color:gray;"><?=$shop?><?=$type?><?=$subject?></a></div>
+        </li>
+                <?php
 
+            }
+    ?>
         </ul>
     </div>
 </div>

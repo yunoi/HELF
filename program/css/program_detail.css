@@ -24,7 +24,7 @@ p{
   width: 700px;
   padding: 20px 10px;
 }
-#div_main img{
+#div_main #main{
   width: 100%;
 }
 /* 설명란 또는 구매후기나 평가 적는 부분 */
@@ -69,6 +69,7 @@ p{
   border: 1px solid #F23005;
   font-size: 12px;
   background-color: white;
+  cursor: pointer;
 }
 #pay{
   width: 100%;
@@ -113,6 +114,7 @@ p{
   width: 9%;
 }
 .h_review{
+  height: 32px;
   border: 1px solid #F23005;
 }
 .review_content{
@@ -124,9 +126,56 @@ p{
 }
 #program_qna{
   width: 100%;
-  
-}
+  border: 1px solid black;
 
+}
+.div_qna{
+  width: 100%;
+  border:1px solid #F23005;
+}
+.qna_head{
+  width: 100%;
+    height: 20px;
+    text-align: initial;
+    background: lightgray;
+    margin-bottom: 4px;
+}
+.qna_subject{
+  display: inline-block;
+  width: 50%;
+  text-align: left;
+}
+.qna_id{
+  display: inline-block;
+  width: 24%;
+  text-align: right;
+}
+.qna_regist_day  {
+  display: inline-block;
+  width: 24%;
+  text-align: right;
+}
+.qna_body{
+  text-align: left;
+    width: 100%;
+    height: 100px;
+}
+.qna_buttons{
+  width: 100%;
+  text-align: right;
+}
+#div_review #user_star{
+  background: url('http://localhost/HELF/program/img/five_star.png') no-repeat;
+  background-size: auto 100%;
+  height: 30px;
+  float:left;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.review_start_img{
+  display: inline-block;
+  width: 150px;
+}
 
 /* 스크롤 내리면서 상단에 고정버튼 생기기게 하는 부분 */
 .buttons {

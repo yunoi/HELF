@@ -84,28 +84,33 @@ function create_table($conn, $table_name){
           case 'p_review' :
             $sql = "create table p_review(
               id char(20) not null,
-               o_key int(11) not null,
-               content text,
-               regist_day char(20) not null,
-               type char(20) not null,
-               shop char(10) not null,
-               score int(10) not null,               
+              o_key int(11) not null,
+              content text,
+              regist_day char(30) not null,
+              type char(20) not null,
+              shop char(10) not null,
+              score float not null,        
              constraint review_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
               constraint review_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
         )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
           case 'p_qna' :
-            $sql = "CREATE TABLE p_qna( 
-              id char(20) not null,
-              o_key int not null,
-              content text not null,
-              regist_day char(15),
-              group_num int UNSIGNED NOT NULL,
-              depth int UNSIGNED NOT NULL,               
-             constraint qna_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
-              constraint qna_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-        ";
+            $sql = "create table p_qna(
+              num int not null auto_increment,
+              group_num int not null,
+              depth int not null,
+              ord int not null,
+               id char(20) not null,
+               o_key int not null,
+               shop char(20) not null,
+               type char(20) not null,
+               subject char(200) not null,
+               content text not null,
+               regist_day char(20),
+               primary key(num),
+               constraint qna_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
+               constraint qna_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
+           )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
             case 'notice' :
               $sql = "create table notice(
@@ -250,7 +255,7 @@ function create_table($conn, $table_name){
     if(mysqli_query($conn,$sql)){
       echo "<script>alert('$table_name 테이블이 생성되었습니다.');</script>";
     }else{
-      echo "실패원인".mysqli_error($conn);
+      echo "table 생성 실패원인: ".mysqli_error($conn);
     }
   }//end of if flag
 

@@ -20,7 +20,7 @@ $(document).ready(function() {
       },
       success: function(data) {
         res = JSON.parse(data);
-        console.log(res);
+        // console.log(res);
         if (action == "like") {
           $clicked_btn.removeClass('fa-thumbs-o-up');
           $clicked_btn.addClass('fa-thumbs-up');

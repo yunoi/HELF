@@ -12,12 +12,12 @@
  <link rel="stylesheet" type="text/css" href="../common/css/main.css">
  <link rel="stylesheet" type="text/css" href="./css/program.css?ver=1">
  <link rel="stylesheet" href="../mypage/css/program.css">
+ <link href="dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+ <script src="dist/js/datepicker.min.js"></script>
+ <script src="dist/js/i18n/datepicker.en.js"></script>
  <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
  <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
- <script src="./scroll.js?ver=3"></script>
-
- </script>
-
+ <!-- <script src="./scroll.js?ver=3"></script> -->
 
  </head>
  <body>
@@ -81,12 +81,18 @@
                 <input type="number" name="s_max_price" value="" style="width:100px;"> 원 까지
               </li>
               <br><br>
+              <li>
+                <p>날짜</p>
+                <input type="text" id="datepicker">
+                <script>
+                       $("#datepicker").datepicker();
+                 </script>
+              </li>
+              <br><br>
               <li class="li_ok">
                 <input id="btn_search" type="button" onclick="send1(this.form);" name="" value="검색">
               </li>
-
             </ul>
-
           </form>
 
 
@@ -96,14 +102,12 @@
           <ul>
             <li class="li_order">
               <b>정렬 </b>
-              <a href="#">인기순&nbsp|</a>
-              <a href="#">&nbsp거리순&nbsp|</a>
-              <a href="#">&nbsp가격순&nbsp|</a>
+              <a href="program.php">인기순&nbsp|</a>
+              <a href="program.php?order=end_day asc">&nbsp마감임박순&nbsp|</a>
+              <a href="program.php?order=price desc">&nbsp가격순&nbsp|</a>
               <a href="../admin/admin_page.php">&nbsp관리자페이지</a>
             </li>
-            <li class="li_search">
-              <input type="text" class="pdt_search" placeholder="상품 상세 검색"><button type="button" class="btn_pdt_search"><span>검색</span></button>
-            </li>
+
           </ul>
         </div> <!-- (end)div_program_list_top -->
 
@@ -118,6 +122,17 @@
               $user_id = "로그인안함";
             }
 
+            if (isset($_GET["page"])) {
+              $page = $_GET["page"];
+            } else {
+              $page = 1;
+            }
+
+            if (isset($_GET["order"])) {
+              $order = $_GET["order"];
+            } else {
+              $order = "o_key desc";
+            }
 
             if(isset($_POST["s_type"])){
               $s_type = $_POST["s_type"];
@@ -222,37 +237,52 @@
             }
 
 
-              $conn = mysqli_connect("localhost", "root", "123456", "helf");
+              // $conn = mysqli_connect("localhost", "root", "123456", "helf");
               $sql = "select * from program ";
-              $sql .= "where choose = '선택' and type like '".$s_type."%' and location like '".$s_area."%' and price between ".$s_min_price." and ".$s_max_price." order by o_key desc";
+              $sql .= "where choose = '선택' and type like '".$s_type."%' and location like '".$s_area."%' and price between ".$s_min_price." and ".$s_max_price." order by ".$order;
               $result = mysqli_query($conn, $sql);
-              $listcount = mysqli_num_rows($result);
+              $total_record = mysqli_num_rows($result); // 전체 글 수
 
-              for ($i=0; $i<5 && $i<$listcount; $i++) {
-               // 가져올 레코드로 위치(포인터) 이동
-               $row = mysqli_fetch_array($result);
+              $scale = 10;
+
+              // 전체 페이지 수($total_page) 계산
+              if ($total_record % $scale == 0) {
+                  $total_page = floor($total_record/$scale);
+              } else {
+                  $total_page = floor($total_record/$scale) + 1;
+              }
+
+              // 표시할 페이지($page)에 따라 $start 계산
+              $start = ($page - 1) * $scale;
+
+              $number = $total_record - $start;
+
+              for ($i=$start; $i<$start+$scale && $i < $total_record; $i++) {
+                 mysqli_data_seek($result, $i);
+                 // 가져올 레코드로 위치(포인터) 이동
+                 $row = mysqli_fetch_array($result);
                // 하나의 레코드 가져오기
-               $o_key        = $row["o_key"];
-               $shop         = $row["shop"];
-               $type          = $row["type"];
-               $subject        = $row["subject"];
-               $end_day     = $row["end_day"];
-               $location         = $row["location"];
-               $file_copied         = $row["file_copied"];
-               $file_type         = $row["file_type"];
+                 $o_key        = $row["o_key"];
+                 $shop         = $row["shop"];
+                 $type          = $row["type"];
+                 $subject        = $row["subject"];
+                 $end_day     = $row["end_day"];
+                 $location         = $row["location"];
+                 $file_copied         = $row["file_copied"];
+                 $file_type         = $row["file_type"];
 
-               $sql2 = "select price from program where shop='".$shop."' and type='".$type."' order by price asc";
-               $result2 = mysqli_query($conn, $sql2);
-               $row2 = mysqli_fetch_array($result2);
-               $price  = $row2["price"];
+                 $sql2 = "select price from program where shop='".$shop."' and type='".$type."' order by price asc";
+                 $result2 = mysqli_query($conn, $sql2);
+                 $row2 = mysqli_fetch_array($result2);
+                 $price  = $row2["price"];
 
-               $sql3 = "select num from pick where id ='".$user_id."' and o_key =".$o_key;
-               $result3 = mysqli_query($conn, $sql3);
-               $row3 = mysqli_fetch_array($result3);
-               $pick  = $row3["num"];
+                 $sql3 = "select num from pick where id ='".$user_id."' and o_key =".$o_key;
+                 $result3 = mysqli_query($conn, $sql3);
+                 $row3 = mysqli_fetch_array($result3);
+                 $pick  = $row3["num"];
 
 
-              ?>
+                ?>
                <li>
                  <div class="program_li">
                    <div class="program_image">
@@ -273,9 +303,9 @@
 
                        <?php
                        if($pick==""){
-                        echo "<button type='button' id='cart_btn' onclick=\"location.href='pick_db.php?o_key=$o_key&shop=$shop';\">찜하기</button><br>";
+                        echo "<button type='button' id='btn_pick' onclick=\"location.href='pick_db.php?mode=insert&o_key=$o_key&shop=$shop';\">찜하기</button><br>";
                       }else{
-                        echo "<button type='button' id='cart_bt' disabled>이미찜</button><br>";
+                        echo "<button type='button' id='cancel_pick' onclick=\"location.href='pick_db.php?mode=delete&o_key=$o_key&shop=$shop';\">이미찜</button><br>";
                       }
                       ?>
                      </div>
@@ -283,10 +313,35 @@
                  </div>
                </li>
 <?php
+$number--;
 }
-  mysqli_close($conn);
 ?>
           </ul>
+          <ul id="page_num">
+            <?php
+    if ($total_page>=2 && $page >= 2) {
+        $new_page = $page-1;
+        echo "<li><a href='program.php?page=$new_page'>◀ 이전</a> </li>";
+    } else {
+        echo "<li>&nbsp;</li>";
+    }
+
+    // 게시판 목록 하단에 페이지 링크 번호 출력
+    for ($i=1; $i<=$total_page; $i++) {
+        if ($page == $i) {     // 현재 페이지 번호 링크 안함
+            echo "<li><b> $i </b></li>";
+        } else {
+            echo "<li><a href='program.php?page=$i'> $i </a><li>";
+        }
+    }
+    if ($total_page>=2 && $page != $total_page) {
+        $new_page = $page+1;
+        echo "<li> <a href='program.php?page=$new_page'>다음 ▶</a> </li>";
+    } else {
+        echo "<li>&nbsp;</li>";
+    }
+?>
+</ul> <!-- page -->
         </div><!-- (end)div_program_list_main -->
 
       </div>

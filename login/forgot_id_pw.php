@@ -6,11 +6,23 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>HELF :: Health friends, healthier life</title>
+  <title>HELF :: 아이디 / 비밀번호 찾기</title>
   <link rel="stylesheet" href="./css/forgot_id_pw.css">
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
   <script>
     $(document).ready(function () {
+
+      $("#find_id_name").keydown(function(key) {
+        if(key.keyCode == 13) {
+          $("#find_id_button").click();
+        }
+      });
+      $("#find_id_email").keydown(function(key) {
+        if(key.keyCode == 13) {
+          $("#find_id_button").click();
+        }
+      });
+
       var find_id_name = $("#find_id_name"),
        find_id_email = $("#find_id_email"),
        find_password_id = $("#find_password_id"),
@@ -58,12 +70,34 @@
         }
       });
 
+      $("#find_password_id").keydown(function(key) {
+        if(key.keyCode == 13) {
+          $("#find_password_button").click();
+        }
+      });
+      $("#phone_one").keydown(function(key) {
+        if(key.keyCode == 13) {
+          $("#find_password_button").click();
+        }
+      });
+      $("#phone_two").keydown(function(key) {
+        if(key.keyCode == 13) {
+          $("#find_password_button").click();
+        }
+      });
+      $("#phone_three").keydown(function(key) {
+        if(key.keyCode == 13) {
+          $("#find_password_button").click();
+        }
+      });
+
       $("#find_password_button").click(function() {
+          var id_value = find_password_id.val();
           var phone_one_value = phone_one.val();
           var phone_two_value = phone_two.val();
           var phone_three_value = phone_three.val();
         if(phone_one_value === "" || phone_two_value === "" || phone_two_value === "") {
-          alert("휴대폰 번호가 제대로 입력되지 않았습니다!");
+          alert("입력하지 않은 사항이 있습니다. 다시 확인해주세요!");
         }  else if ( !exp.test(phone_two_value) || !exp.test(phone_three_value)) {
           alert("번호는 3~4자의 숫자만 사용 할 수 있습니다.");
         } else {
@@ -97,6 +131,12 @@
               console.log("complete");
             });
           }
+      });
+
+      $("#password_certification").keydown(function(key) {
+        if(key.keyCode == 13) {
+            $("#password_certification_button").click();
+        }
       });
 
       $("#password_certification_button").click(function () {

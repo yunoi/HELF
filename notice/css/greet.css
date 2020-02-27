@@ -24,7 +24,7 @@
 }
 
 #content #col2 #title{
-	margin-top:35px;
+	margin-top:61px;
 	height:30px;
 	border-bottom:solid 1px #cccccc;
 }
@@ -43,7 +43,7 @@
 
 #list_search #list_search2 {
 	float:left;
-	margin-left:300px;
+	margin-left:350px;
 	margin-top:4px;
 }
 
@@ -80,9 +80,9 @@
 #list_top_title {
 	height:20px;
 	padding:7px;
-	border-top:solid 2px #aaaaaa;
-	background-color:antiquewhite;
+	background-color: #F23005;
 	margin-bottom:3px;
+	color: white;
 }
 
 #list_top_title li {

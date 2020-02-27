@@ -193,7 +193,7 @@
                     echo "<li>&nbsp;</li>";
                 }
             ?>
-                  </ul> <!-- page -->
+            </ul> <!-- page -->
           </div>
         </div>
       </section>

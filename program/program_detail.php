@@ -8,12 +8,35 @@
    echo "alert('접속 오류 발생');";
    return;
  }
+ define('SCALE', 5);
+$user_id=$_SESSION['user_id'];
+$user_grade=$_SESSION["user_grade"];
  $mode="insert";
- if(isset($_COOKIE["cookie2"])){  setcookie("cookie3",$_COOKIE["cookie2"],time() + 3600,'/');}
-if(isset($_COOKIE["cookie1"])){  setcookie("cookie2",$_COOKIE["cookie1"],time() + 3600,'/');}
-setcookie("cookie1",$o_key,time() + 3600,'/');
- ?>
+ if(!isset($_COOKIE['today_view'])){
+ 	setcookie('today_view', $o_key, time() + 21600, "/");
+ } else {
+   $tmp_array=explode(",", $_COOKIE['today_view']); // today_view 쿠키를 ','로 나누어 구분한다.
+   $tv_array=array_reverse($tmp_array); // 최근 목록 3개를 뽑기 위해 배열을 최신 것부터로 반대로 정렬해준다.
+     setcookie('today_view', $_COOKIE['today_view'].", ".$o_key, time() + 21600, "/");
 
+   // if(!in_array($o_key, $tv_array)){ // 저장된 쿠키값이 존재하고, 중복된 값이 아닌 경우 기존의 today_view 쿠키에 현재 쿠키를 추가하는 소스
+
+   //   }
+ }
+ ?>
+ <script type="text/javascript">
+     function qna_mode(modetype,key,num) {
+        if(modetype==="delete"){
+            location.href="./p_qna_db.php?mode="+modetype+"&num="+num+"&o_key="+key;
+        }
+         window.open(
+             "http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/program/p_qna.php?mode="+modetype+"&o_key="+key+"&num="+num,
+             "QnA",
+             "_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
+                     "ft=100px , width=500px, height=250px"
+         );
+     }
+ </script>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -41,7 +64,7 @@ setcookie("cookie1",$o_key,time() + 3600,'/');
     <div id="div_main_body">
             <section>
               <div id="div_main">
-                <img src="./img/hells.jpg" alt="">
+                <img id="main" src="./img/hells.jpg" alt="">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -207,15 +230,97 @@ setcookie("cookie1",$o_key,time() + 3600,'/');
                 <div id="program_qna"> <!--프로그램 qna 게시판이 들어갈 자리-->
                   <h3>QnA</h3>
                   <p>구매하시려는 상품에 대해 궁금하신 점이 있으신 경우 문의해주세요.</p>
+                  <button type="button" onclick="qna_mode(this.value,<?=$o_key?>,null)" name="button" value="new_insert">문의하기</button>
                   <?php
-                  $sql="select * from `p_qna` where `shop`='$shop' and `type`='$type'";
+                  $sql="select * from `p_qna` where `shop`='$shop' and `type`='$type' order by group_num desc, ord asc;";
                   $result = mysqli_query($conn, $sql);
-                    while($row = mysqli_fetch_array($result)){
-                      
+                  $total_record=mysqli_num_rows($result);
+                  $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
+                  if (empty($_GET['page'])) {
+                      $page=1;
+                  } else {
+                      $page=$_GET['page'];
+                  }
+                  $start=($page -1) * SCALE;
+                  $number = $total_record - $start;
+                  for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++) {
+                      mysqli_data_seek($result, $i);
+                      $row = mysqli_fetch_array($result);
+                      $qna_num=$row['num'];
+                      $qna_o_key=$row['o_key'];
+                      $qna_group_num=$row['group_num'];
+                      $qna_id=$row['id'];
+                      $qna_regist_day=$row['regist_day'];
+                      $qna_subject=$row['subject'];
+                      $qna_content=$row['content'];
+                      $qna_depth=(int)$row['depth'];
+                      $space="";
+                      for ($j=0;$j<$qna_depth;$j++) {
+                          $space="&nbsp;&nbsp;".$space;
+                      }
+                      if(!($space==="")){
+                        $space=$space."[답변]";
+                      }
+                      ?>
+                    <div class="div_qna">
+                      <div class="qna_head"><!--제목 머릿부분-->
+                        <div class="qna_subject">
+                          <span>제목&nbsp;:&nbsp;<?=$space.$qna_subject?></span>
+                        </div>
+                        <div class="qna_id">
+                          <span>작성자&nbsp;:&nbsp;<?=$qna_id?></span>
+                        </div>
+                        <div class="qna_regist_day">
+                          <span>작성일&nbsp;:&nbsp;<?=$qna_regist_day?></span>
+                        </div>
+                      </div>
+                      <div class="qna_body"><!--내용부분-->
+                        <div class="qna_content">
+                          내용&nbsp;:&nbsp;<?=$qna_content?>
+                        </div>
+                      </div>
+                      <div class="qna_buttons">
+                        <button type="button" onclick="qna_mode(this.value,<?=$o_key?>,<?=$qna_num?>)" name="button" value="insert">답글달기</button>
+                        <?php
+                        if($qna_id===$user_id || $user_grade ==="admin"){
+                          echo '<button type="button" onclick="qna_mode(this.value,'.$o_key.','.$qna_num.')" name="button" value="delete">삭제</button>';
+                          echo '<button type="button" onclick="qna_mode(this.value,'.$o_key.','.$qna_num.')" name="button" value="update">수정</button>';
+                        }
+                        ?>
+                      </div>
+                    </div>
+                    <?php
+                      $number--;
                     }
                    ?>
+                   <div id="page_button">
+                     <div id="page_num">
+                       <?php
+                       if($page>1){
+                         $val=(int)$page-1;
+                         echo "<a href='./program_detail.php?page=$val&o_key=$o_key'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
+                       }?>
+                     <?php
+                       for ($i=1; $i <= $total_page ; $i++) {
+                           if ($page==$i) {
+                               echo "<b>&nbsp;$i&nbsp;</b>";
+                           } else {
+                               echo "<a href='./program_detail.php?page=$i&o_key=$o_key'>&nbsp;$i&nbsp;</a>";
+                           }
+                       }
+                     ?>
+                     <?php
+                     if($page>=1 && $total_page!=$page){
+                       $val=(int)$page+1;
+                       echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./program_detail.php?page=$val&o_key=$o_key'>▶ 다음</a>";
+                     }
+
+                      ?>
+                      <a href="./program_detail.php?page=1&o_key=<?=$o_key?>"> <button type="button"> 목록</button></a>
+                     <br><br><br><br><br><br><br>
+                   </div>
                 </div>
-                <div class="clear"></div><br/><br/>
+                <div class="clear"></div><br/>
                 <div id="div_review">
                   <h3>서비스 평가</h3>
                   <ul>
@@ -227,18 +332,45 @@ setcookie("cookie1",$o_key,time() + 3600,'/');
                     $review_content = $row["content"];
                     $review_regist_day = $row["regist_day"];
                     $review_score = $row["score"];
+                    switch ($review_score) {
+                      case 0: $width=0;  break;
+                      case 0.5: $width=16;  break;
+                      case 1: $width=31;  break;
+                      case 1.5: $width=46;  break;
+                      case 2: $width=61;  break;
+                      case 2.5: $width=75;  break;
+                      case 3: $width=89;  break;
+                      case 3.5: $width=102;  break;
+                      case 4: $width=118;  break;
+                      case 4.5: $width=131;  break;
+                      case 5: $width=147;  break;
+                      default: break;
+                    }
                    ?>
                    <li>
                      <div class="review">
                        <div class="h_review">
+                         <div class="review_start_img">
+                           <img id="user_star" width="<?=$width?>"/>
+                         </div>
                          <span>ID&nbsp;:&nbsp;<?=$review_id?></span>&nbsp;&nbsp;<span><?=$review_regist_day?></span>
                        </div>
                       <div class="review_content"><?=$review_content?></div>
+                      <?php if ($review_id===$user_id ||$user_grade==="admin"): ?>
+                        <form class="" action="program_review.php?mode=delete" method="post">
+                          <input type="hidden" name="shop" value="<?=$shop?>">
+                          <input type="hidden" name="type" value="<?=$type?>">
+                          <input type="hidden" name="o_key" value="<?=$o_key?>">
+                          <input type="submit" value="삭제">
+                        </form>
+                      <?php endif; ?>
                      </div>
                    </li>
                     <?php
                   }
                      ?>
+
+                     <div class="clear"></div><br/>
                      <li>
                        <div class=""><!--댓글 달기 insert-->
                          <form class="form_review" name="form_review" action="program_review.php?mode=<?=$mode?>" method="post">
@@ -261,8 +393,6 @@ setcookie("cookie1",$o_key,time() + 3600,'/');
                             <input type="hidden" name="shop" value="<?=$shop?>">
                             <input type="hidden" name="star" value="<?=$star_score?>">
                            <input type="button" onclick="review();" value="등록">
-                           <input type="button" onclick="review_delete();" value="삭제">
-                           <input type="button" onclick="review_update();" value="수정">
                          </form>
                        </div>
                      </li>
@@ -294,8 +424,8 @@ setcookie("cookie1",$o_key,time() + 3600,'/');
                     $end_day      = $row["end_day"]; //날짜
                     $choose       = $row["choose"]; //옵션 내용
                     $price        = (int)$row["price"]; //옵션에 대한 가격
-                    $file_copied         = $row["file_copied"]; //이미지파일 이름
-                    $file_type         = $row["file_type"]; //이미지파일에 타입
+                    $file_copied   = $row["file_copied"]; //이미지파일 이름
+                    $file_type     = $row["file_type"]; //이미지파일에 타입
                     if(!($choose==="선택")){
                    ?>
                      <option value="<?=$price?>"><?=$choose?>횟수: <?=$price?>원</option>
@@ -308,7 +438,6 @@ setcookie("cookie1",$o_key,time() + 3600,'/');
                      ?>
                   </select>
                   <script type="text/javascript">
-                  // $('#h_pay').on('change',pay(this.value));
                     $('.starRev span').click(function(){
                       $(this).parent().children('span').removeClass('on');
                       $(this).addClass('on').prevAll('span').addClass('on');
@@ -324,18 +453,6 @@ setcookie("cookie1",$o_key,time() + 3600,'/');
                       $mode="insert";
                       ?>
                       document.form_review.submit();
-                    }
-                    function review_delete(){
-                      <?php
-                      $mode="delete";
-                       ?>
-                       document.form_review.submit();
-                    }
-                    function review_update(){
-                      <?php
-                      $mode="update";
-                       ?>
-                       document.form_review.submit();
                     }
                     function pay(x){
                       document.getElementById("h_pay").innerHTML=x;

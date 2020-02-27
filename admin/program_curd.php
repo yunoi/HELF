@@ -95,11 +95,11 @@
 
   }
 
-  if (isset($_POST["h_area2"])){
-    if($_POST["h_area2"] === "-선택-"){
+  if (isset($_POST["s_area2"])){
+    if($_POST["s_area2"] === "-선택-"){
       $h_area2 = "전체";
     }else{
-      $h_area2 = $_POST["h_area2"];
+      $h_area2 = $_POST["s_area2"];
     }
   }
 
@@ -176,13 +176,26 @@
   function program_insert($conn, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location,
     $upfile_name, $upfile_type, $copied_file_name, $regist_day)
   {
-
+    for($i=0; $i<count($_POST["choose"]); $i++){
+      $choose = $_POST["choose"][$i];
+      $price = $_POST["price"][$i];
 
       $sql = "insert into program (shop , type, subject, content, personnel, end_day, choose, price, location, file_name, file_type, file_copied, regist_day) ";
       $sql .= "values('$shop', '$type', '$subject', '$content', $personnel,'$end_day','$choose', $price,'$location', ";
       $sql .= "'$upfile_name', '$upfile_type', '$copied_file_name','$regist_day')";
 
       mysqli_query($conn, $sql);
+    }
+    $choose = "선택";
+    $price = 10000000;
+
+    $sql = "insert into program (shop , type, subject, content, personnel, end_day, choose, price, location, file_name, file_type, file_copied, regist_day) ";
+    $sql .= "values('$shop', '$type', '$subject', '$content', $personnel,'$end_day','$choose', $price,'$location', ";
+    $sql .= "'$upfile_name', '$upfile_type', '$copied_file_name','$regist_day')";
+
+    mysqli_query($conn, $sql);
+
+
       mysqli_close($conn);                // DB 연결 끊기
   }
 

@@ -6,21 +6,20 @@
 
 #admin_border {
   width: 1100px;
-  height: 700px;
   margin: 40px auto;
 }
 
 #snb {
   float: left;
   width: 175px;
-  border: 1px solid #F23005;
+  border: 1px solid lightgray;
   border-radius: 2px;
   box-sizing: border-box;
 }
 
 #snb_title {
   width: 174px;
-  height: 120px;
+  height: 85px;
   background-color: #F23005;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
@@ -30,7 +29,7 @@
 }
 
 #snb_title h1 {
-  padding-top: 45px;
+  padding-top: 25px;
 }
 
 #admin_menu_bar {
@@ -59,7 +58,10 @@
 
 #content {
   width: 870px;
-  height: 628px;
+<<<<<<< HEAD
+  height: 1500px;
+=======
+>>>>>>> 24b8126fdd6e4e2ce673d8323a841ef6d8455471
   float: right;
   box-sizing: border-box;
   padding: 10px;
@@ -79,14 +81,14 @@ a:hover {
 }
 
 #user_table {
-  width: 825px;
+  width: 870px;
   text-align: center;
   border: 1px solid black;
   border-collapse: collapse;
 }
 
 #board1_table {
-  width: 825px;
+  width: 850px;
   text-align: center;
   border: 1px solid black;
   border-collapse: collapse;
@@ -100,10 +102,33 @@ a:hover {
 }
 
 #regist_table {
-  width: 825px;
-  text-align: center;
+  width: 850px;
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+#regist_table tr{
+  margin: 5px;
+}
+
+#regist_table *{
+  padding: 5px;
+
+}
+
+#td_plus{
+  padding: 0;
+  margin: 0;
+}
+
+#td_plus li{
+  margin: 0;
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+#regist_table {
+  padding: 5px;
 }
 
 #manage_table {
@@ -117,6 +142,9 @@ a:hover {
   border: 1px solid black;
 }
 
+#board1_table tr {
+  height: 25px;
+}
 #board1_table td {
   border: 1px solid black;
 }
@@ -131,4 +159,14 @@ a:hover {
 
 #manage_table td {
   border: 1px solid black;
+}
+
+#hot_program {
+  width: 870px;
+  height: 670px;
+  margin-bottom: 40px;
+}
+
+#p_ranking {
+  width: 870px;
 }

@@ -98,7 +98,6 @@
       } else {
         $no = "";
       }
-
     ?>
     <div id="mypage_container">
       <section>

@@ -22,7 +22,6 @@ session_start();
         <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
         <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
         <link rel="stylesheet" href="./css/greet.css">
-        <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
         <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
         <script type="text/javascript" src="./js/member_form.js"></script>
 </head>
@@ -65,12 +64,12 @@ session_start();
     <div id="content">
      <div id="col2">
        <div id="title">
-         <span>인바디 보건소 위치</span>
+         <span>인바디 측정 가능 보건소 위치</span>
        </div>
        <form name="board_form" action="list.php?mode=search" method="post">
          <div id="list_search">
            <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
-           <div id="list_search2"><span>SELECT</span></div>
+           <div id="list_search_right">
            <div id="list_search3">
              <select  name="find">
                <option value="city">지역</option>
@@ -81,7 +80,9 @@ session_start();
            </div><!--end of list_search3  -->
            <div id="list_search4"><input type="text" name="search"></div>
            <div id="list_search5"><input type="submit" value="검색"></div>
+           </div>
          </div><!--end of list_search  -->
+
        </form>
        <div id="clear"></div>
        <div id="list_top_title">

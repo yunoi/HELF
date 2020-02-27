@@ -10,7 +10,6 @@ session_start();
     <link rel="stylesheet" href="./css/greet.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
-    <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
 <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
 <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <title>HELF :: 공지사항</title>
@@ -70,7 +69,7 @@ session_start();
          <form name="board_form" action="./notice.php?mode=search" method="post">
            <div id="list_search">
              <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
-             <div id="list_search2"><span>SELECT</span></div>
+             <div id="list_search2"><span></span></div>
              <div id="list_search3">
                <select  name="find">
                  <option value="subject">제목</option>

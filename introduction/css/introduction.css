@@ -12,18 +12,15 @@ section{
 }
 #div_introduction{
   margin: 0 auto;
-  border:2px solid black;
   width: 800px;
-  font-family: cursive;
+  text-align: center;
 }
 #div_header{
-  margin: 0 auto;
+  margin: 35px auto;
   width: 800px;
   height: 50px;
-  border: 1px solid lightgray;
   text-align: center;
   font-size: 24px;
-  font-family: "맑은 고딕";
 }
 #aside_introduction{
   padding-top: 71px;

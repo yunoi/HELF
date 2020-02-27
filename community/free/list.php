@@ -69,7 +69,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
        <div id="col2">
          <div id="title">
-           <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp자유게시판</span>
+           <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp커뮤니티 > 자유게시판</span>
          </div>
          <form name="board_form" action="list.php?mode=search" method="post">
            <div id="list_search">
@@ -148,7 +148,6 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
           <br><br><br><br><br><br><br>
         </div><!--end of page num -->
         <div id="button">
-          <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
           <a href="./list.php?page=<?=$page?>">목록</a>
           <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
             if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴

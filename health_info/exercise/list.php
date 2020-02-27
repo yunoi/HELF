@@ -53,7 +53,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
          <div id="left_menu">
            <div id="sub_title"><span>&nbsp</span></div>
            <ul>
-             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동 정보</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동</a></li>
              <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">요리 레시피</a></li>
            </ul>
          </div>
@@ -61,7 +61,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
        <div id="col2">
          <div id="title">
-           <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp운동 정보</span>
+           <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp건강정보 > 운동(홈트레이닝)</span>
          </div>
          <form name="board_form" action="list.php?mode=search" method="post">
            <div id="list_search">

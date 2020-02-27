@@ -13,6 +13,11 @@
   border-right: solid 1px #dddddd;
 }
 
+#title span{
+ font-size: 17px;
+ font-weight: bold;
+}
+
 #left_menu {
   width: 92%;
   height: 270px;
@@ -47,10 +52,11 @@
 #content #col2 #title {
   margin-top: 35px;
   height: 30px;
-  border-bottom: solid 1px #cccccc;
+  border-bottom: solid 2px #cccccc;
   background-image: url(../pic/talk.png);
   background-repeat: no-repeat;
   font-size: 15px;
+  padding-bottom: 5px;
 }
 
 /* list css */
@@ -275,9 +281,9 @@
 
 
 #write_button {
-  margin-top: 15px;
-  width: 97%;
-  text-align: right;
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
   padding-bottom: 10px;
 }
 
@@ -297,6 +303,7 @@
   color: #F23005;
   background-color: white;
   font-size: 15px;
+  width: 148px;
 }
 #write_button input{
   border:1px solid #F23005;
@@ -304,6 +311,7 @@
   color: #F23005;
   background-color: white;
   font-size: 15px;
+  width: 148px;
 }
 
 /* view.php css */

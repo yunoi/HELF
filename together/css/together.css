@@ -12,6 +12,11 @@
   border-right: solid 1px #dddddd;
 }
 
+#title span{
+ font-size: 17px;
+ font-weight: bold;
+}
+
 #left_menu {
   width: 92%;
   height: 270px;
@@ -51,10 +56,11 @@
 #content #col2 #title {
   margin-top: 35px;
   height: 30px;
-  border-bottom: solid 1px #cccccc;
+  border-bottom: solid 2px #cccccc;
   background-image: url(../pic/talk.png);
   background-repeat: no-repeat;
   font-size: 15px;
+  padding-bottom: 5px;
 }
 
 

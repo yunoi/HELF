@@ -77,7 +77,6 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
              <div id="list_search5"><input type="image" src="../pic/search.png"></div>
            </div><!--end of list_search  -->
          </form>
-
            <div class="list_content">
              <?php
              for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++) {

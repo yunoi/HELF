@@ -18,6 +18,19 @@
   height: 270px;
   font-size: 17px;
 }
+
+
+#left_menu li{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 17px;
+  font-style: normal;
+}
+
+#left_menu li a:hover{
+  color: #F23005;
+}
+
 #left_menu #sub_title {
   background-image: url(../pic/category.png);
   background-repeat: no-repeat;
@@ -39,7 +52,6 @@
   background-repeat: no-repeat;
   font-size: 15px;
 }
-
 
 /* list css */
 #list_search {
@@ -326,6 +338,7 @@
   line-height: 150%;
   border-bottom: solid 1px #cccccc;
 }
+
 #view_content .col2 a{
   text-align: center;
   border: solid 1px #F23005;

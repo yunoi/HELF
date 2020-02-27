@@ -19,6 +19,18 @@
   height: 270px;
   font-size: 17px;
 }
+
+#left_menu li{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 17px;
+  font-style: normal;
+}
+
+#left_menu li a:hover{
+  color: #F23005;
+}
+
 #left_menu #sub_title {
   background-image: url(../pic/category.png);
   background-repeat: no-repeat;

@@ -1,7 +1,6 @@
 <?php
 session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
-
 include('server.php');
 
 $num=$id=$subject=$content=$day=$hit=$image_width=$q_num="";
@@ -16,7 +15,6 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $num = test_input($_GET["num"]);
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
-
 
     $sql="UPDATE `community` SET `hit`=$hit WHERE b_code='자유게시판' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
@@ -180,7 +178,6 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
            <?php foreach ($communities as $post): ?>
              <!-- foreach($array as $value)  value 값만 가져오기-->
               <div class="post">
-              <!-- <?php echo $post['text']; ?> -->
               <div class="post-info">
                  <i <?php if (userLiked($post['num'])): ?>
                       class="fa fa-thumbs-up like-btn"
@@ -208,6 +205,8 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
            <?php endforeach ?>
           </div>
           <script src="scripts.js"></script>
+
+
 <!--덧글내용시작  -->
 <div class="write_line"></div>
 <div id="ripple">

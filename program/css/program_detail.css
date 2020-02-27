@@ -125,9 +125,44 @@ p{
 }
 #program_qna{
   width: 100%;
-  
-}
+  border: 1px solid black;
 
+}
+.div_qna{
+  width: 100%;
+  border:1px solid #F23005;
+}
+.qna_head{
+  width: 100%;
+    height: 20px;
+    text-align: initial;
+    background: lightgray;
+    margin-bottom: 4px;
+}
+.qna_subject{
+  display: inline-block;
+  width: 50%;
+  text-align: left;
+}
+.qna_id{
+  display: inline-block;
+  width: 24%;
+  text-align: right;
+}
+.qna_regist_day  {
+  display: inline-block;
+  width: 24%;
+  text-align: right;
+}
+.qna_body{
+  text-align: left;
+    width: 100%;
+    height: 100px;
+}
+.qna_buttons{
+  width: 100%;
+  text-align: right;
+}
 
 /* 스크롤 내리면서 상단에 고정버튼 생기기게 하는 부분 */
 .buttons {

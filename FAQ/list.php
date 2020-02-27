@@ -67,7 +67,7 @@ session_start();
          <form name="board_form" action="./list.php?mode=search" method="post">
            <div id="list_search">
              <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
-             <div id="list_search2"><span>SELECT</span></div>
+             <div id="list_search2"><span></span></div>
              <div id="list_search3">
                <select  name="find">
                  <option value="subject">제목</option>

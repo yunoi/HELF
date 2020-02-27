@@ -5,6 +5,7 @@
     <title>HELF :: 관리자페이지</title>
     <link rel="stylesheet" type="text/css" href="./css/admin.css">
     <link rel="stylesheet" href="./css/program_regist.css">
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <script src="./js/register.js"></script>
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <link
@@ -18,8 +19,6 @@
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
   </head>
@@ -109,78 +108,80 @@
               <form name="program_regist" class="" action="program_curd.php?mode=<?=$mod?>&o_key=<?=$o_key?>" method="post" enctype="multipart/form-data">
                 <table id="regist_table">
                   <tr>
-                    <td>샵 이름</td>
+                    <td id="td_width">샵 이름</td>
                     <td>
-                      <input type="text" name="shop" value=<?=$shop?>>
+                      <input id="input_shop" type="text" name="shop" value=<?=$shop?>>
                     </td>
                   </tr>
                   <tr>
                     <td>운동 종류</td>
                     <td>
                       <select name="type" class="kind_sel">
-                        <option value="선택">-선택-</option>
-                        <option value="헬스" <?php if ($type === '헬스') echo "selected";?>>헬스</option>
+                        <option value="pt" <?php if ($type === 'pt') echo "selected";?>>pt</option>
                         <option value="수영" <?php if ($type === '수영') echo "selected";?>>수영</option>
                         <option value="자전거" <?php if ($type === '자전거') echo "selected";?>>자전거</option>
                         <option value="요가/필라테스" <?php if ($type === '요가/필라테스') echo "selected";?>>요가/필라테스</option>
+                        <option value="복싱" <?php if ($type === '복싱') echo "selected";?>>복싱</option>
+                        <option value="클라이밍" <?php if ($type === '클라이밍') echo "selected";?>>클라이밍</option>
+                        <option value="등산" <?php if ($type === '등산') echo "selected";?>>등산</option>
+                        <option value="축구" <?php if ($type === '축구') echo "selected";?>>축구</option>
                         <option value="기타" <?php if ($type === '기타') echo "selected";?>>기타</option>
-                        <option value="등등" <?php if ($type === '등등') echo "selected";?>>등등</option>
                       </select>
                     </td>
                   </tr>
                   <tr>
                     <td>제목</td>
                     <td>
-                      <input type="text" name="subject" value=<?=$subject?>>
+                      <input id="input_subject" type="text" name="subject" value=<?=$subject?>>
                     </td>
                   </tr>
                   <tr>
                     <td>내용</td>
                     <td>
-                      <input type="text" name="content" value=<?=$content?>>
+                      <textarea name="content" rows="10" cols="87"  value=<?=$content?>></textarea>
                     </td>
                   </tr>
                   <tr>
                     <td>모집인원</td>
                     <td>
-                      <input type="number" name="personnel" value=<?=$personnel?>>
+                      <input id="input_num" type="number" name="personnel" value=<?=$personnel?>> 명
                     </td>
                   </tr>
                   <tr>
                     <td>모집 마감일</td>
                     <td>
-                      <input type="text" name="end_day" value=<?=$end_day?>>
+                      <input type="date" name="end_day" value=<?=$end_day?>>
                     </td>
                   </tr>
                   <tr>
                     <td>옵션</td>
-                    <td>
-                      <input type="text" name="choose" value=<?=$choose?>>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>가격</td>
-                    <td>
-                      <input type="number" name="price" value=<?=$price?>> 원
+                    <td id="td_plus">
+                      <ul id="ul_plus">
+                        <li>
+                          옵션명: <input type="text" name="choose[]" value=<?=$choose?>> &
+                          가격: <input type="number" name="price[]" value=<?=$price?>> 원 ㅣ
+                          <button id="option_plus" type="button" name="button">옵션추가</button>
+                          <button id="option_minus" type="button" name="button">옵션삭제</button>
+                        </li>
+                      </ul>
                     </td>
                   </tr>
                   <tr>
                     <td>지역
                     <td>
                       <?php include "../program/select_location.php";?>
-
                     </td>
                   </tr>
                   <tr>
                     <td>상세주소
                     <td>
-                      <input type="text" name="detail" value="">
+                      <input id="input_location" type="text" name="detail" value="">
                     </td>
                   </tr>
                   <tr>
                     <td>파일선택</td>
                     <td>
-                      <?=$file_name?>&nbsp&nbsp<input type="file" name="upfile" value="">
+                      <?=$file_name?><input type="file" name="upfile" value="">
                     </td>
                   </tr>
                   <tr>

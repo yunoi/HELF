@@ -11,6 +11,12 @@
   margin-left: 25px;
 	margin-top: 61px;
 }
+
+#title span{
+	font-size: 17px;
+	font-weight: bold;
+   }
+   
 #content #col2 {
 	width:807px;
 	min-height:558px;
@@ -20,7 +26,7 @@
 }
 
 #content #col2 #title{
-	margin-top:30px;
+	margin-top:61px;
 	height:30px;
 	border-bottom:solid 1px #cccccc;
 }
@@ -39,7 +45,7 @@
 
 #list_search #list_search2 {
 	float:left;
-	margin-left:300px;
+	margin-left:350px;
 	margin-top:4px;
 }
 
@@ -76,9 +82,9 @@
 #list_top_title {
 	height:20px;
 	padding:7px;
-	border-top:solid 2px #aaaaaa;
-	background-color:antiquewhite;
+	background-color: #F23005;
 	margin-bottom:3px;
+	color: white;
 }
 
 #list_top_title li {
@@ -143,8 +149,8 @@
 	height:20px;
 	text-align:center;
 	padding-top:7px;
-	border-top:solid 2px #aaaaaa;
-	background-color:#eeeeee;
+	background-color: #F23005;
+	color: white;
 }
 
 #write_form {

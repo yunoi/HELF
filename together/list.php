@@ -36,7 +36,6 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
         }
         $result=mysqli_query($conn, $sql);
 
-
         if (isset($_GET["search_area"])) {
             switch ($_GET["search_area"]) {
             case '전국':
@@ -114,6 +113,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
               break;
           }
         }
+
           $total_record=mysqli_num_rows($result);
           $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
 
@@ -133,47 +133,54 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
       <div id="content">
         <div id="col1">
          <div id="left_menu">
-           <div id="sub_title"> <span>메뉴</span></div>
+           <div id="sub_title"><span>&nbsp</span></div>
            <ul>
-             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php">전국</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=서울">서울</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=부산">부산</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대구">대구</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=인천">인천</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=광주">광주</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대전">대전</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=울산">울산</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=강원">강원</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경기">경기</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경남">경남</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경북">경북</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전남">전남</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전북">전북</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=제주">제주</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충남">충남</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충북">충북</a></li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=세종">세종</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php">전국</a></li>
+            <p>경기도</p>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=서울">서울</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경기">경기</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=인천">인천</a></li>
+            <p>충청도</p>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충북">충북</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=충남">충남</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=세종">세종</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대전">대전</a></li>
+            <p>전라도</p>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전북">전북</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=전남">전남</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=광주">광주</a></li>
+            <p>경상도</p>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경북">경북</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=경남">경남</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=부산">부산</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=울산">울산</a></li>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=대구">대구</a></li>
+            <p>강원도</p>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=강원">강원</a></li>
+            <p>기타</p>
+            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/together/list.php?search_area=제주">제주</a></li>
            </ul>
          </div>
        </div><!--end of col1  -->
 
        <div id="col2">
          <div id="title">
-           <span>같이할건강</span>
+           <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp같이할건강</span>
          </div>
          <form name="board_form" action="list.php?mode=search" method="post">
            <div id="list_search">
              <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
-             <div id="list_search2"><span>SELECT</span></div>
+             <div id="list_search2"><span></span></div>
              <div id="list_search3">
                <select  name="find">
                  <option value="subject">제목</option>
                  <option value="content">내용</option>
                  <option value="id">아이디</option>
+                 <option value="area">지역</option>
                </select>
              </div><!--end of list_search3  -->
              <div id="list_search4"><input type="text" name="search"></div>
-             <div id="list_search5"><input type="submit" value="검색"> </div>
+             <div id="list_search5"><input type="image" src="../community/pic/search.png"></div>
            </div><!--end of list_search  -->
          </form>
          <div id="list_top_title">
@@ -189,7 +196,6 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
          <div id="list_content">
          <?php
-
           for ($i = $start; $i < $start+SCALE && $i<$total_record; $i++) {
               mysqli_data_seek($result, $i);
               $row=mysqli_fetch_array($result);
@@ -215,7 +221,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$space.$subject?></a>
               <?php
                 if (!($file_name === "")) {
-                    echo('<img src="./data/disk.png" alt="">');
+                    echo('<img src="../community/pic/disk.png" alt="">');
                 } else {
                     echo "";
                 } ?>
@@ -247,10 +253,10 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
         </div><!--end of page num -->
         <div id="button">
           <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
-          <a href="./list.php?page=<?=$page?>"> <button type="button">목록</button>&nbsp;</a>
+          <a href="./list.php?page=<?=$page?>">목록</a>
           <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
             if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
-                echo '<a href="write_edit_form.php"><button type="button">글쓰기</button></a>';
+                echo '<a href="write_edit_form.php">글쓰기</a>';
             }
           ?>
         </div><!--end of button -->
@@ -261,6 +267,9 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
       </aside>
       </div><!--end of content -->
+      <footer>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+      </footer>
     </div><!--end of wrap  -->
   </body>
 </html>

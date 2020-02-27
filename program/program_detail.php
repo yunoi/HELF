@@ -60,6 +60,7 @@ if(!isset($_COOKIE['today_view'])){
                     <li><a href="#see">서비스 설명</a> </li>
                     <li><a href="#pay">가격정보</a></li>
                     <li><a href="#cansel">취소및환불규정</a> </li>
+                    <li><a href="#program_qna">QnA</a> </li>
                     <li><a href="#div_review">서비스 평가</a> </li>
                   </ul>
                 </div>
@@ -212,6 +213,18 @@ if(!isset($_COOKIE['today_view'])){
 <br/>
 * 총 레슨 시간의 레슨비 징수기간 중의 총레슨시간을 말하며, 반환 금액의 산정은 반환 사유가 발생한 날까지 경과 된 레슨시간을 기준으로 함<br/>
 </p>  </div>
+                <div class="clear"></div><br/><br/>
+                <div id="program_qna"> <!--프로그램 qna 게시판이 들어갈 자리-->
+                  <h3>QnA</h3>
+                  <p>구매하시려는 상품에 대해 궁금하신 점이 있으신 경우 문의해주세요.</p>
+                  <?php
+                  $sql="select * from `p_qna` where `shop`='$shop' and `type`='$type'";
+                  $result = mysqli_query($conn, $sql);
+                    while($row = mysqli_fetch_array($result)){
+                      
+                    }
+                   ?>
+                </div>
                 <div class="clear"></div><br/><br/>
                 <div id="div_review">
                   <h3>서비스 평가</h3>

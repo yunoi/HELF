@@ -69,7 +69,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
        <div id="col2">
          <div id="title">
-           <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp다이어트후기</span>
+           <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp커뮤니티 > 다이어트후기</span>
          </div>
          <form name="board_form" action="list.php?mode=search" method="post">
            <div id="list_search">

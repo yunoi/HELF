@@ -4,34 +4,65 @@
   position: relative;
   margin: 0 auto;
 }
-
 #content #col1 {
-  margin-top: 20px;
-  width: 160px;
-  min-height: 600px;
+  margin-top: 35px;
+  width: 120px;
+  min-height: 962px;
   float: left;
   border-right: solid 1px #dddddd;
+}
+
+#title span{
+ font-size: 17px;
+ font-weight: bold;
 }
 
 #left_menu {
   width: 92%;
   height: 270px;
-  margin-left: 7px;
-  padding-top: 20px;
+  font-size: 17px;
+}
+
+#left_menu li{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#left_menu li a:hover{
+  color: #F23005;
+}
+
+#left_menu #sub_title {
+  background-image: url(../pic/category.png);
+  background-repeat: no-repeat;
+  height: 50px;
+}
+
+#left_menu p{
+  font-size: 17px;
+  color: gray;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(238,238,238);
 }
 
 #content #col2 {
-  width: 900px;
+  width: 807px;
   min-height: 558px;
   float: left;
   margin-left: 15px;
 }
 
 #content #col2 #title {
-  margin-top: 30px;
+  margin-top: 35px;
   height: 30px;
-  border-bottom: solid 1px #cccccc;
+  border-bottom: solid 2px #cccccc;
+  background-image: url(../pic/talk.png);
+  background-repeat: no-repeat;
+  font-size: 15px;
+  padding-bottom: 5px;
 }
+
 
 /* list css */
 #list_search {
@@ -44,21 +75,22 @@
   margin-top: 2px;
 }
 
-#list_search #list_search2 {
+#list_search #list_search2 span{
   float: left;
-  margin-left: 300px;
+  margin-left: 350px;
   margin-top: 4px;
+  background-image: url(../pic/search.png);
+  background-repeat: no-repeat;
 }
 
 #list_search #list_search3 {
   float: left;
-  margin-left: 5px;
-  margin-top: 1px;
+  margin-left: 20px;
 }
 
 #list_search #list_search3 select {
   width: 80px;
-  height: 21px;
+  height: 22px;
   border: solid 1px #cccccc;
 }
 
@@ -69,22 +101,23 @@
 
 #list_search #list_search4 input {
   width: 120px;
-  height: 18px;
+  height: 20px;
   border: solid 1px #cccccc;
 }
 
 #list_search #list_search5 {
   float: left;
   margin-left: 5px;
-  margin-top: 1px;
+  position: relative;
+  top: -20%;
 }
 
 #list_top_title {
   height: 20px;
   padding: 7px;
-  border-top: solid 2px #aaaaaa;
-  background-color: #eeeeee;
+  background-color: #F23005;
   margin-bottom: 3px;
+  color: white;
 }
 
 #list_top_title li {
@@ -92,15 +125,15 @@
 }
 
 #list_top_title #list_title1 {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 #list_top_title #list_title2 {
-  margin-left: 250px;
+  margin-left: 220px;
 }
 
 #list_top_title #list_title3 {
-  margin-left: 290px;
+  margin-left: 220px;
 }
 
 #list_top_title #list_title4 {
@@ -108,10 +141,10 @@
 }
 
 #list_top_title #list_title5 {
-  margin-left: 26px;
+  margin-left: 30px;
 }
 #list_top_title #list_title6 {
-  margin-left: 26px;
+  margin-left: 30px;
 }
 
 #list_content {
@@ -127,13 +160,14 @@
 
 #list_item #list_item1 {
   float: left;
-  width: 40px;
+  width: 50px;
   text-align: center;
 }
 
 #list_item #list_item2 {
   float: left;
-  width: 560px;
+  width: 455px;
+  overflow: hidden;
 }
 
 #list_item #list_item3 {
@@ -144,15 +178,16 @@
 
 #list_item #list_item4 {
   float: left;
-  width: 80px;
+  width: 95px;
   text-align: center;
 }
 
 #list_item #list_item5 {
   float: left;
-  width: 60px;
+  width: 50px;
   text-align: center;
 }
+
 #list_item #list_item6 {
   float: left;
   width: 70px;
@@ -165,26 +200,28 @@
 
 #page_num {
   float: left;
-  width: 80%;
-  margin-top: 10px;
+  width: 100%;
+  margin-top: 20px;
   text-align: center;
 }
 
 #button {
   float: left;
-  width: 18%;
+  width: 100%;
   text-align: right;
+  padding-bottom: 10px;
 }
+
 
 /* write_form css */
 #write_form_title {
   margin-top: 20px;
-  width: 99%;
+  width: 100%;
   height: 20px;
   text-align: center;
   padding-top: 7px;
-  border-top: solid 2px #aaaaaa;
-  background-color: #eeeeee;
+  background-color: #F23005;
+  color: white;
 }
 
 #write_form {
@@ -192,25 +229,25 @@
 }
 
 #write_form #write_row1 {
-  width: 99%;
+  width: 100%;
   height: 25px;
   margin: 2px 0 2px 0;
 }
 
 #write_form #write_row2 {
-  width: 99%;
+  width: 100%;
   height: 25px;
   margin: 2px 0 2px 0;
 }
 
 #write_form #write_row3 {
-  width: 99%;
+  width: 100%;
   height: 251px;
   margin: 2px 0 2px 0;
 }
 
 .write_line {
-  width: 99%;
+  width: 100%;
   border-bottom: solid 1px #cccccc;
 }
 
@@ -243,11 +280,15 @@
   margin-top: 4px;
   margin-left: 100px;
 }
+#write_form #write_row1 .col3 select{
+  height: 20px;
+}
 
 #write_row2 .col2 input {
   width: 650px;
   height: 17px;
   border: solid 1px #cccccc;
+  overflow: visible;
 }
 
 #write_row3 .col2 textarea {
@@ -256,11 +297,39 @@
   width: 650px;
 }
 
+
 #write_button {
   margin-top: 15px;
   width: 97%;
   text-align: right;
+  padding-bottom: 10px;
 }
+
+#write_button button{
+  border:1px solid #F23005;
+  text-align: center;
+  color: #F23005;
+  background-color: white;
+  font-size: 15px;
+  width: 38px;
+  height: 23.2px;
+}
+
+#write_button a{
+  border:1px solid #F23005;
+  text-align: center;
+  color: #F23005;
+  background-color: white;
+  font-size: 15px;
+}
+#write_button input{
+  border:1px solid #F23005;
+  text-align: center;
+  color: #F23005;
+  background-color: white;
+  font-size: 15px;
+}
+
 
 /* view.php css */
 #view_comment {
@@ -295,6 +364,12 @@
   border-bottom: solid 1px #cccccc;
 }
 
+#view_content .col2 a{
+  text-align: center;
+  border: solid 1px #F23005;
+  color: #F23005;
+}
+
 #view_button {
   width: 98%;
   text-align: right;
@@ -302,6 +377,37 @@
   margin-bottom: 15px;
 }
 
-#aside_menu {
-  margin-top: 61px;
+#button a{
+  border:1px solid #F23005;
+  text-align: center;
+  color: #F23005;
+  background-color: white;
+  font-size: 15px;
+}
+
+/* 좋아요 */
+.posts-wrapper i{
+  color: #04ADBF;
+}
+.posts-wrapper .fa {
+  font-size: 4em;
+}
+.posts-wrapper .post {
+  width: 100%;
+}
+.posts-wrapper {
+  width: 70%;
+  margin: 10px auto;
+}
+
+.posts-wrapper .post-info {
+  margin: 10px auto 0px;
+  padding: 5px;
+}
+
+.posts-wrapper .fa-thumbs-down, .fa-thumbs-o-down {
+  transform:rotateY(180deg);
+}
+.posts-wrapper .logged_in_user {
+  padding: 10px 30px 0px;
 }

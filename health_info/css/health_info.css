@@ -14,11 +14,28 @@
   border-right: solid 1px #dddddd;
 }
 
+#title span{
+ font-size: 17px;
+ font-weight: bold;
+}
+
 #left_menu {
   width: 92%;
   height: 270px;
   font-size: 17px;
 }
+
+#left_menu li{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 17px;
+  font-style: normal;
+}
+
+#left_menu li a:hover{
+  color: #F23005;
+}
+
 #left_menu #sub_title {
   background-image: url(../pic/category.png);
   background-repeat: no-repeat;
@@ -35,10 +52,11 @@
 #content #col2 #title{
   margin-top: 35px;
   height: 30px;
-  border-bottom: solid 1px #cccccc;
+  border-bottom: solid 2px #cccccc;
   background-image: url(../pic/talk.png);
   background-repeat: no-repeat;
   font-size: 15px;
+  padding-bottom: 5px;
 }
 
 #view_content strong{

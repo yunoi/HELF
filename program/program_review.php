@@ -35,11 +35,8 @@
 
      echo "<script>location.href='./program.php';</script>";
  }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
-   $id=$_SESSION["user_id"];
-   $o_key=(int)$_POST["o_key"];
-   $type=$_POST["type"];
-   $shop=$_POST["shop"];
-     $sql ="DELETE FROM `p_review` WHERE id='$id' and o_key=$o_key and type='$type' and shop='$shop';";
+    $num = $_GET['num'];
+     $sql ="DELETE FROM `p_review` WHERE num='$num';";
      $result = mysqli_query($conn,$sql);
      if (!$result) {
        die('Error: ' . mysqli_error($conn));
@@ -48,20 +45,17 @@
      echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
 
  }else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
+   $num = $_GET['num'];
    $content = trim($_POST["content"]);
    if(empty($content)){
      echo "<script>alert('내용을 입력해주세요');history.go(-1);</script>";
      exit;
    }
-   $id=$_SESSION["user_id"];
-   $o_key=$_POST["o_key"];
-   $type=$_POST["type"];
-   $shop=$_POST["shop"];
-   $star=$_POST["star"];
+   $score=$_POST['score'];
    $regist_day=date("Y-m-d (H:i)");
    $q_content = mysqli_real_escape_string($conn, $content);
 
-   $sql="UPDATE `p_review` SET `content`='$q_content' WHERE `id`='$id' and o_key='$o_key' and type='$type' and shop='$shop';";
+   $sql="UPDATE `p_review` SET `content`='$q_content',`score`='$score' WHERE num='$num';";
    $result = mysqli_query($conn,$sql);
    if (!$result) {
      die('Error: ' . mysqli_error($conn));

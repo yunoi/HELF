@@ -12,10 +12,7 @@
  <link rel="stylesheet" type="text/css" href="../common/css/main.css">
  <link rel="stylesheet" type="text/css" href="./css/program.css?ver=1">
  <link rel="stylesheet" href="../mypage/css/program.css">
- <link href="dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
- <script src="dist/js/datepicker.min.js"></script>
- <script src="dist/js/i18n/datepicker.en.js"></script>
- <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+ <script src="http://code.jquery.com/jquery-latest.min.js"></script>
  <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
  <!-- <script src="./scroll.js?ver=3"></script> -->
 
@@ -26,17 +23,10 @@
  </header>
 
  <script type="text/javascript">
- function send2(search)
+ function search(date)
  {
-   search.action = "./program_db.php";
-   search.submit();
-   // a.article = "program_db.php";
- }
- function send1(search)
- {
-   search.action = "./program.php";
-   search.submit();
-   // a.article = "program_db.php";
+   date.action = "./program.php";
+   date.submit();
  }
 
  </script>
@@ -82,15 +72,12 @@
               </li>
               <br><br>
               <li>
-                <p>날짜</p>
-                <input type="text" id="datepicker">
-                <script>
-                       $("#datepicker").datepicker();
-                 </script>
+                <p>마감날짜</p>
+                <input type="date" name="s_date" value="">
               </li>
               <br><br>
               <li class="li_ok">
-                <input id="btn_search" type="button" onclick="send1(this.form);" name="" value="검색">
+                <input id="btn_search" type="button" onclick="search(this.form);" name="" value="검색">
               </li>
             </ul>
           </form>
@@ -101,11 +88,12 @@
         <div class="div_program_list_top">
           <ul>
             <li class="li_order">
-              <b>정렬 </b>
-              <a href="program.php">인기순&nbsp|</a>
-              <a href="program.php?order=end_day asc">&nbsp마감임박순&nbsp|</a>
-              <a href="program.php?order=price desc">&nbsp가격순&nbsp|</a>
-              <a href="../admin/admin_page.php">&nbsp관리자페이지</a>
+              <b>정렬&nbsp&nbsp</b>
+              <a href="program.php?order=o_key desc">|&nbsp최근 등록순&nbsp|</a>
+              <a href="program.php?order=end_day asc">&nbsp마감 임박순&nbsp|</a>
+              <a href="program.php?order=price desc">&nbsp높은 가격순&nbsp|</a>
+              <a href="program.php?order=price asc">&nbsp낮은 가격순&nbsp|</a>
+              <!-- <a href="../admin/admin_page.php">&nbsp관리자페이지</a> -->
             </li>
 
           </ul>
@@ -129,16 +117,24 @@
             }
 
             if (isset($_GET["order"])) {
-              $order = $_GET["order"];
+              $_SESSION["order"] = $_GET["order"];
+              $order = $_SESSION["order"];
             } else {
               $order = "o_key desc";
             }
 
-            if(isset($_POST["s_type"])){
-              $s_type = $_POST["s_type"];
-            } else{
-              $s_type = "";
+            $today = "2020-01-01";
+
+            if(isset($_POST["s_date"])){
+              if($_POST["s_date"] != ""){
+                $s_date = $_POST["s_date"];
+              }else{
+                $s_date = "2099-12-31";
+              }
+            }else{
+              $s_date = "2099-12-31";
             }
+
 
             if (isset($_POST["s_area1"])){
               switch ($_POST["s_area1"]) {
@@ -214,7 +210,11 @@
                $s_area = "";
              }
 
-
+             if(isset($_POST["s_type"])){
+               $s_type = $_POST["s_type"];
+             } else{
+               $s_type = "";
+             }
 
             if(isset($_POST["s_min_price"])){
               if($_POST["s_min_price"] !=""){
@@ -236,10 +236,9 @@
               $s_max_price = 10000000;
             }
 
-
               // $conn = mysqli_connect("localhost", "root", "123456", "helf");
               $sql = "select * from program ";
-              $sql .= "where choose = '선택' and type like '".$s_type."%' and location like '".$s_area."%' and price between ".$s_min_price." and ".$s_max_price." order by ".$order;
+              $sql .= "where choose = '선택' and type like '".$s_type."%' and location like '".$s_area."%' and price between ".$s_min_price." and ".$s_max_price." and end_day between '".$today."' and '".$s_date."' order by ".$order;
               $result = mysqli_query($conn, $sql);
               $total_record = mysqli_num_rows($result); // 전체 글 수
 
@@ -321,7 +320,7 @@ $number--;
             <?php
     if ($total_page>=2 && $page >= 2) {
         $new_page = $page-1;
-        echo "<li><a href='program.php?page=$new_page'>◀ 이전</a> </li>";
+        echo "<li><a href='program.php?page=$new_page&order=$order'>◀ 이전</a> </li>";
     } else {
         echo "<li>&nbsp;</li>";
     }
@@ -331,12 +330,12 @@ $number--;
         if ($page == $i) {     // 현재 페이지 번호 링크 안함
             echo "<li><b> $i </b></li>";
         } else {
-            echo "<li><a href='program.php?page=$i'> $i </a><li>";
+            echo "<li><a href='program.php?page=$i&order=$order'> $i </a><li>";
         }
     }
     if ($total_page>=2 && $page != $total_page) {
         $new_page = $page+1;
-        echo "<li> <a href='program.php?page=$new_page'>다음 ▶</a> </li>";
+        echo "<li> <a href='program.php?page=$new_page&order=$order'>다음 ▶</a> </li>";
     } else {
         echo "<li>&nbsp;</li>";
     }

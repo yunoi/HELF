@@ -1,5 +1,5 @@
 
-  <select name="s_area1" onchange="cat1_change(this.value,s_area2)" style="width:80px; height:20px;">
+  <select name="s_area1" onchange="cat1_change(this.value,s_area2)">
     <option value='0' selected >전체</option>
     <option value='1' >서울</option>
     <option value='2' >부산</option>
@@ -21,7 +21,7 @@
   </select>
 
   &nbsp
-  <select name="s_area2" style="width:80px; height:20px;">
+  <select name="s_area2" >
     <option value ='' selected>-선택-</option>
   </select>
 <script language=javascript>

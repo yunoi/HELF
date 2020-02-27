@@ -1,26 +1,30 @@
 $(document).ready(function() {
+  var child = 2;
+
   $(".btn_regist").click(function(){
     document.program_regist.submit();
 
   });
 
   $("#option_plus").click(function(){
-    $.ajax({
-      url:'',
-      type:'',
-      // data:{'list':count},
-      success:function(data){
+    console.dir('들어옴');
+    
+    var html = `<li>옵션명: <input type="text" name="choose[]" value=""> &
+    가격: <input type="number" name="price[]" value=""> 원</li>`;
+    $("#ul_plus").append(html);
+    child++;
 
 
 
 
-      },
-      error:function(){
-        var html = `<br><input type="text" name="choose" value="">`;
-        $("#td_plus").append(html);
-      }
-    });
+  });
 
-  })
+  $("#option_minus").click(function(){
+    if(child != 1){
+      var list = document.getElementById("ul_plus");
+      list.removeChild(list.childNodes[child]);
+      child--;
+    }
+  });
 
 });

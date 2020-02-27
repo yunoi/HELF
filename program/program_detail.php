@@ -8,6 +8,7 @@
    echo "alert('접속 오류 발생');";
    return;
  }
+ define('SCALE', 5);
 $user_id=$_SESSION['user_id'];
 $user_grade=$_SESSION["user_grade"];
  $mode="insert";
@@ -63,7 +64,7 @@ $user_grade=$_SESSION["user_grade"];
     <div id="div_main_body">
             <section>
               <div id="div_main">
-                <img src="./img/hells.jpg" alt="">
+                <img id="main" src="./img/hells.jpg" alt="">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -331,16 +332,38 @@ $user_grade=$_SESSION["user_grade"];
                     $review_content = $row["content"];
                     $review_regist_day = $row["regist_day"];
                     $review_score = $row["score"];
-                    ?>
-                      <img src="" alt="">
-                    <?php
+                    switch ($review_score) {
+                      case 0: $width=0;  break;
+                      case 0.5: $width=16;  break;
+                      case 1: $width=31;  break;
+                      case 1.5: $width=46;  break;
+                      case 2: $width=61;  break;
+                      case 2.5: $width=75;  break;
+                      case 3: $width=89;  break;
+                      case 3.5: $width=102;  break;
+                      case 4: $width=118;  break;
+                      case 4.5: $width=131;  break;
+                      case 5: $width=147;  break;
+                      default: break;
+                    }
                    ?>
                    <li>
                      <div class="review">
                        <div class="h_review">
+                         <div class="review_start_img">
+                           <img id="user_star" width="<?=$width?>"/>
+                         </div>
                          <span>ID&nbsp;:&nbsp;<?=$review_id?></span>&nbsp;&nbsp;<span><?=$review_regist_day?></span>
                        </div>
                       <div class="review_content"><?=$review_content?></div>
+                      <?php if ($review_id===$user_id ||$user_grade==="admin"): ?>
+                        <form class="" action="program_review.php?mode=delete" method="post">
+                          <input type="hidden" name="shop" value="<?=$shop?>">
+                          <input type="hidden" name="type" value="<?=$type?>">
+                          <input type="hidden" name="o_key" value="<?=$o_key?>">
+                          <input type="submit" value="삭제">
+                        </form>
+                      <?php endif; ?>
                      </div>
                    </li>
                     <?php
@@ -370,8 +393,6 @@ $user_grade=$_SESSION["user_grade"];
                             <input type="hidden" name="shop" value="<?=$shop?>">
                             <input type="hidden" name="star" value="<?=$star_score?>">
                            <input type="button" onclick="review();" value="등록">
-                           <input type="button" onclick="review_delete();" value="삭제">
-                           <input type="button" onclick="review_update();" value="수정">
                          </form>
                        </div>
                      </li>
@@ -403,8 +424,8 @@ $user_grade=$_SESSION["user_grade"];
                     $end_day      = $row["end_day"]; //날짜
                     $choose       = $row["choose"]; //옵션 내용
                     $price        = (int)$row["price"]; //옵션에 대한 가격
-                    $file_copied         = $row["file_copied"]; //이미지파일 이름
-                    $file_type         = $row["file_type"]; //이미지파일에 타입
+                    $file_copied   = $row["file_copied"]; //이미지파일 이름
+                    $file_type     = $row["file_type"]; //이미지파일에 타입
                     if(!($choose==="선택")){
                    ?>
                      <option value="<?=$price?>"><?=$choose?>횟수: <?=$price?>원</option>
@@ -432,18 +453,6 @@ $user_grade=$_SESSION["user_grade"];
                       $mode="insert";
                       ?>
                       document.form_review.submit();
-                    }
-                    function review_delete(){
-                      <?php
-                      $mode="delete";
-                       ?>
-                       document.form_review.submit();
-                    }
-                    function review_update(){
-                      <?php
-                      $mode="update";
-                       ?>
-                       document.form_review.submit();
                     }
                     function pay(x){
                       document.getElementById("h_pay").innerHTML=x;

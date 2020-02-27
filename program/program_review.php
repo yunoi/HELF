@@ -1,4 +1,5 @@
 <?php
+// 후기 작성하는것에 기능만을 구현중
   session_start();
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";

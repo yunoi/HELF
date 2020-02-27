@@ -27,7 +27,7 @@ function insert_init_data($conn, $table_name){
             $sql = "insert into p_review values ('admin', 1, '여기 맛집이요', '2020-02-14', 'pt', '판규헬스장', '5');";
             break;
           case 'p_qna' :
-            $sql = "insert into p_qna values ('admin', 1, '오늘 점심은 뭔가요?', '2020-02-14',1,1);";
+            $sql = "insert into p_qna values (null, 1, 0, 0, 'admin', 1, '판규헬스장', 'pt', '오늘 점심은 뭔가요?', '기대된다', '2020-02-14');";
             break;
             case 'notice' :
               $sql = "INSERT INTO `notice` (`num` , `subject` , `content` , `regist_day` , `hit` , `file_name` , `file_type` , `file_copied`)

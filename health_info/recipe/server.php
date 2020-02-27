@@ -1,8 +1,4 @@
 <?php
-// connect to database
-// session_start();
-// include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
-// $conn = mysqli_connect('localhost', 'root', '123456', 'helf');
 if (!$conn) {
     die("Error connecting to database: " . mysqli_connect_error($conn));
     exit();
@@ -14,8 +10,6 @@ if(!isset($_SESSION['user_id'])){
 
 $user_id = $_SESSION['user_id'];
 
-
-// echo "<script>alert('server.php에서 접속한 게시판 아이디{$num}, 접속아이디: {$_SESSION['user_id']} ');</script>";
 
 // 사용자가 좋아요 혹은 싫어요 버튼을 눌렀을 경우
 if (isset($_POST['action'])) {

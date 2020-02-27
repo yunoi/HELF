@@ -62,7 +62,7 @@
          </div><!--  end of sub -->
 
        <div id="content">
-         <h3>관리자페이지 > 메인</h3><br>
+         <h1>관리자페이지 > 메인</h1><br>
        </div> <!--  end of content -->
 
      </div><!--  end of admin_board -->

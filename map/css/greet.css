@@ -38,10 +38,8 @@
 	margin-top:2px;
 }
 
-#list_search #list_search2 {
-	float:left;
-	margin-left:300px;
-	margin-top:4px;
+#list_search_right {
+	float:right;
 }
 
 

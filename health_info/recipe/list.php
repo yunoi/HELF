@@ -129,12 +129,10 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
                    </div>
 
                    <div id="list_1542">
-                     <strong>
-                     <div id="list_item1">글번호 <?=$number?></div>
-                     <div id="list_item5">조회수 <?=$hit?></div>
-                     <div id="list_item4"><?=$date?></div>
-                     </strong>
-                     <div id="list_item2"> <img src="../pic/exercise_icon.png" alt=""> <?=$subject?></div>
+                     <!-- <div id="list_item1"><em>번호</em><span><?=$number?></span></div> -->
+                     <div id="list_item5"><em>조회수</em><span><?=$hit?></span></div>
+                     <div id="list_item4"><em>날짜</em><span><?=$date?></span></div>
+                     <div id="list_item2"><img src="../pic/exercise_icon.png" alt=""><?=$subject?></div>
                    </div>
                  </div><!--end of list_item -->
          <?php

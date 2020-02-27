@@ -138,7 +138,7 @@
   width: 215px;
 	margin: 10px;
 	padding:10px;
-	border:solid 2px #F23005;
+	border:solid 1px #e8e8e8;
   display: inline-block;
   overflow: hidden;
 }
@@ -148,9 +148,17 @@
   /* background-color: lightgray; */
 }
 
-#list_1542{
+#list_1542 em{
   /* padding-top: 10px; */
+  color: #7f7f7f;
+  font-style: normal;
+  margin-right: 6px;
+  font-size: 13px;
 }
+#list_1542 span{
+  color: #f23005;
+}
+
 
 #list_item3 img {
   display: inline-block;

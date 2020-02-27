@@ -9,10 +9,20 @@
    return;
  }
  $mode="insert";
- if(isset($_COOKIE["cookie2"])){  setcookie("cookie3",$_COOKIE["cookie2"],time() + 3600,'/');}
-if(isset($_COOKIE["cookie1"])){  setcookie("cookie2",$_COOKIE["cookie1"],time() + 3600,'/');}
-setcookie("cookie1",$o_key,time() + 3600,'/');
- ?>
+
+if(!isset($_COOKIE['today_view'])){
+	setcookie('today_view', $o_key, time() + 21600, "/");
+} else {
+  $tmp_array=explode(",", $_COOKIE['today_view']); // today_view 쿠키를 ','로 나누어 구분한다.
+  $tv_array=array_reverse($tmp_array); // 최근 목록 3개를 뽑기 위해 배열을 최신 것부터로 반대로 정렬해준다.
+    setcookie('today_view', $_COOKIE['today_view'].", ".$o_key, time() + 21600, "/");
+
+  // if(!in_array($o_key, $tv_array)){ // 저장된 쿠키값이 존재하고, 중복된 값이 아닌 경우 기존의 today_view 쿠키에 현재 쿠키를 추가하는 소스
+
+  //   } 
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

@@ -59,7 +59,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
       <div id="content">
         <div id="col1">
          <div id="left_menu">
-           <div id="sub_title"><span>&nbsp</span></div>
+           <div id="sub_title"><span></span></div>
            <ul>
            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/free/list.php">자유게시판</a></li>
            <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/community/review/list.php">다이어트 후기</a></li>
@@ -148,10 +148,11 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
           <br><br><br><br><br><br><br>
         </div><!--end of page num -->
         <div id="button">
-          <a href="./list.php?page=<?=$page?>">목록</a>
+          <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
+          <a href="./list.php?page=<?=$page?>"><button type="button" class="button_category">목록</button></a>
           <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
             if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
-                echo '<a href="write_edit_form.php">글쓰기</a>';
+                echo '<a href="write_edit_form.php"><button type="button" class="button_write">글쓰기</button></a>';
             }
           ?>
         </div><!--end of button -->

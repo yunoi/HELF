@@ -153,11 +153,11 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
           <div id="button">
             <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
-            <a href="./list.php?page=<?=$page?>">목록</a>
+            <a href="./list.php?page=<?=$page?>"><button type="button" class="button_category">목록</button></a>
             <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
               if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
                 if ($_SESSION["user_grade"]==="admin" || $_SESSION["user_grade"]==="master") {
-                    echo '<a href="write_edit_form.php">글쓰기</a>';
+                    echo '<a href="write_edit_form.php"><button type="button" class="button_write">글쓰기</button></a>';
                 }
               }
             ?>

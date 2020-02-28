@@ -25,6 +25,14 @@ $user_grade=$_SESSION["user_grade"];
  }
  ?>
  <script type="text/javascript">
+       function review_update(num,contenttext){
+         let number=num;
+         <?php
+         $mode="update";
+         ?>
+         document.getElementById('num').value=num;
+         document.getElementById('reviwe_content').value=contenttext;
+       }
      function qna_mode(modetype,key,num) {
         if(modetype==="delete"){
             location.href="./p_qna_db.php?mode="+modetype+"&num="+num+"&o_key="+key;
@@ -328,6 +336,7 @@ $user_grade=$_SESSION["user_grade"];
                     $sql="select * from `p_review` where `shop`='$shop' and `type`='$type'";
                     $result = mysqli_query($conn, $sql);
                   while($row = mysqli_fetch_array($result)){
+                    $num=$row['num'];
                     $review_id = $row["id"];
                     $review_content = $row["content"];
                     $review_regist_day = $row["regist_day"];
@@ -356,14 +365,15 @@ $user_grade=$_SESSION["user_grade"];
                          <span>ID&nbsp;:&nbsp;<?=$review_id?></span>&nbsp;&nbsp;<span><?=$review_regist_day?></span>
                        </div>
                       <div class="review_content"><?=$review_content?></div>
-                      <?php if ($review_id===$user_id ||$user_grade==="admin"): ?>
-                        <form class="" action="program_review.php?mode=delete" method="post">
+                      <?php if ($review_id===$user_id ||$user_grade==="admin"){ ?>
+                        <form class="" action="program_review.php?mode=delete&num=<?=$num?>" method="post">
                           <input type="hidden" name="shop" value="<?=$shop?>">
                           <input type="hidden" name="type" value="<?=$type?>">
                           <input type="hidden" name="o_key" value="<?=$o_key?>">
+                          <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>
                           <input type="submit" value="삭제">
                         </form>
-                      <?php endif; ?>
+                      <?php } ?>
                      </div>
                    </li>
                     <?php
@@ -375,7 +385,7 @@ $user_grade=$_SESSION["user_grade"];
                        <div class=""><!--댓글 달기 insert-->
                          <form class="form_review" name="form_review" action="program_review.php?mode=<?=$mode?>" method="post">
                           <h3>댓글</h3>
-                           <textarea name="content" rows="3" cols="30"></textarea>
+                           <textarea name="content" id="reviwe_content" rows="3" cols="30"></textarea>
                            <div class="starRev">
                              <span class="starR1" >0.5</span>
                              <span class="starR2" >1</span>
@@ -388,11 +398,12 @@ $user_grade=$_SESSION["user_grade"];
                              <span class="starR1" >4.5</span>
                              <span class="starR2" >5</span>
                             </div>
+                            <input type="hidden" id="num" name="num" value="">
                             <input type="hidden" name="o_key" value="<?=$o_key?>">
                             <input type="hidden" name="type" value="<?=$type?>">
                             <input type="hidden" name="shop" value="<?=$shop?>">
                             <input type="hidden" name="star" value="<?=$star_score?>">
-                           <input type="button" onclick="review();" value="등록">
+                           <input type="submit" value="등록">
                          </form>
                        </div>
                      </li>
@@ -446,17 +457,12 @@ $user_grade=$_SESSION["user_grade"];
                       ?>
                       return false;
                     });
-                    function review(){
-                      <?php
-                      $mode="insert";
-                      ?>
-                      document.form_review.submit();
-                    }
                     function pay(x){
                       // var op_split = x.split(',');
                       // document.getElementById("h_pay").innerHTML=op_split[0];
                       document.getElementById("h_pay").innerHTML= x;
                     }
+
                   </script>
                   <br/>
                   <div class="">

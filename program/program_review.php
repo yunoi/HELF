@@ -3,6 +3,7 @@
   session_start();
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
+    $mode=$_GET["mode"];
 ?>
 
  <meta charset="utf-8">
@@ -26,7 +27,7 @@
      $content = test_input($_POST["content"]);
      $q_content = mysqli_real_escape_string($conn, $content);
      // 구성순서 (id,o_key,content,day,type,shop,star);
-     $sql="INSERT INTO `p_review` VALUES ('$id',$o_key,'$q_content','$regist_day','$type','$shop',$star);";
+     $sql="INSERT INTO `p_review` VALUES (null,'$id',$o_key,'$q_content','$regist_day','$type','$shop',$star);";
      $result = mysqli_query($conn,$sql);
      if (!$result) {
        die('Error: '. mysqli_error($conn));
@@ -35,11 +36,8 @@
 
      echo "<script>location.href='./program.php';</script>";
  }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
-   $id=$_SESSION["user_id"];
-   $o_key=(int)$_POST["o_key"];
-   $type=$_POST["type"];
-   $shop=$_POST["shop"];
-     $sql ="DELETE FROM `p_review` WHERE id='$id' and o_key=$o_key and type='$type' and shop='$shop';";
+    $num = $_GET['num'];
+     $sql ="DELETE FROM `p_review` WHERE num='$num';";
      $result = mysqli_query($conn,$sql);
      if (!$result) {
        die('Error: ' . mysqli_error($conn));
@@ -48,24 +46,21 @@
      echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
 
  }else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
+   $num = $_POST['num'];
+   $o_key=$_POST["o_key"];
    $content = trim($_POST["content"]);
    if(empty($content)){
      echo "<script>alert('내용을 입력해주세요');history.go(-1);</script>";
      exit;
    }
-   $id=$_SESSION["user_id"];
-   $o_key=$_POST["o_key"];
-   $type=$_POST["type"];
-   $shop=$_POST["shop"];
-   $star=$_POST["star"];
-   $regist_day=date("Y-m-d (H:i)");
+   $star=(int)$_POST["star"];
    $q_content = mysqli_real_escape_string($conn, $content);
 
-   $sql="UPDATE `p_review` SET `content`='$q_content' WHERE `id`='$id' and o_key='$o_key' and type='$type' and shop='$shop';";
+   $sql="UPDATE `p_review` SET `content`='$q_content',`score`='$star' WHERE num='$num';";
    $result = mysqli_query($conn,$sql);
    if (!$result) {
      die('Error: ' . mysqli_error($conn));
    }
-   echo "<script>location.href='./program_detail.php';</script>";
+   echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
  }
  ?>

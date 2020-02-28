@@ -28,11 +28,22 @@ if (isset($_GET["shop"])){
   $shop = "";
 }
 
+if (isset($_POST["option"])){
+  $option = $_POST["option"];
+  $p_option = explode(',', $option );
+  $shop = $p_option[0];
+  $type = $p_option[1];
+  $choose = $p_option[2];
+}else{
+  $option = "";
+}
+
 if (isset($_GET["mode"])){
   $mode = $_GET["mode"];
 }else{
   $mode = "";
 }
+
 
 function pick_insert($conn, $user_id, $o_key, $shop){
 
@@ -42,7 +53,7 @@ function pick_insert($conn, $user_id, $o_key, $shop){
   mysqli_close($conn);
 
   echo "<script>alert('$shop'+' 찜 목록에 추가완료!');</script>";
-  echo "<script>document.location.href='./program.php';</script>";
+  echo "<script>history.go(-1);</script>";
 
 }
 
@@ -54,7 +65,35 @@ function pick_delete($conn, $user_id, $o_key, $shop){
   mysqli_close($conn);
 
   echo "<script>alert('$shop'+' 찜 삭제완료!');</script>";
-  echo "<script>document.location.href='./program.php';</script>";
+  echo "<script>history.go(-1);</script>";
+
+}
+
+function cart_insert($conn, $user_id, $shop, $type, $choose){
+
+  $sql = "select o_key from program where shop = '$shop' and type = '$type' and choose = '$choose'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_array($result);
+  $o_key = $row["o_key"];
+
+  $sql = "insert into cart values (null, '$user_id', '$o_key')";
+  mysqli_query($conn, $sql);
+  mysqli_close($conn);
+
+  echo "<script>alert('$choose'+' 장바구니에 추가완료!');</script>";
+  echo "<script>history.go(-1);</script>";
+
+}
+
+function cart_delete($conn, $user_id, $o_key, $shop){
+
+  $sql = "delete from cart where id ='$user_id' and o_key ='$o_key'";
+
+  mysqli_query($conn, $sql);
+  mysqli_close($conn);
+
+  echo "<script>alert('삭제완료!');</script>";
+  echo "<script>history.go(-1);</script>";
 
 }
 
@@ -65,6 +104,13 @@ switch ($mode) {
   case 'delete':
     pick_delete($conn, $user_id, $o_key, $shop);
     break;
+  case 'cart_insert':
+    cart_insert($conn, $user_id, $shop, $type, $choose);
+    break;
+  case 'cart_insert':
+    cart_delete($conn, $user_id, $o_key, $shop);
+    break;
+
 }
 
 ?>

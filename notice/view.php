@@ -65,7 +65,7 @@ session_start();
                 $file_copied=$row['file_copied'];
                 $file_type=$row['file_type'];
 
-                if (!empty($file_copied)&&$file_type =="image/png") {
+                if (!empty($file_copied)&&$file_type =="image") {
                     //이미지 정보를 가져오기 위한 함수 width, height, type
                     $image_info=getimagesize("./data/".$file_copied);
                     $image_width=$image_info[0];
@@ -99,16 +99,14 @@ session_start();
 
               <div id="write_row3">
                 <div class="col1">내&nbsp;&nbsp;용</div>
-                <div class="col2"><p><?=$content?> <br/>
-                <img src='./data/<?=$file_copied?>' width='<?=$image_width?>'>;</p></div>
+                <div class="col2"><?=$content?> <br/>
+                <img src='./data/<?=$file_copied?>' width='<?=$image_width?>'></div>
               </div><!--end of write_row3  -->
               <div class="write_line">
                 <div class="clear">
                 <div class="col2">
                   <?php
-                    if ($file_type =="image") {
-                        echo "<img src='./data/$file_copied' width='$image_width'><br>";
-                    } else if (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
+                    if (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
                         $file_path = "./data/".$file_copied;
                         $file_size = filesize($file_path);
                         //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.

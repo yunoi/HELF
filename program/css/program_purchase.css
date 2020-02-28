@@ -51,6 +51,13 @@
 #program{
   text-align:left;
 }
+#program .div_img{
+float: left;
+}
+#program .div_img img{
+  display: inline-block;
+  width: 100px;
+}
 .div_item2{border: 1px solid #e6e6e6; height: 170px;}
 .item2_left{
 width: 330px;

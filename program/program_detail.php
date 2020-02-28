@@ -5,7 +5,7 @@
    $o_key=$_GET['o_key'];
    $o_key=(int)$o_key;
  }else{
-   echo "alert('접속 오류 발생');";
+   echo "<script>alert('접속 오류 발생');</script>";
    return;
  }
  define('SCALE', 5);
@@ -26,7 +26,6 @@ $user_grade=$_SESSION["user_grade"];
  ?>
  <script type="text/javascript">
        function review_update(num,contenttext){
-         let number=num;
          <?php
          $mode="update";
          ?>
@@ -183,7 +182,7 @@ $user_grade=$_SESSION["user_grade"];
                            $sql="select * from program where shop='$shop'and type='$type' order by price";
                            $result = mysqli_query($conn, $sql);
                          while($row = mysqli_fetch_array($result)){
-                           $table_choose       = $row["choose"]; //옵션 내용
+                           $table_choose = $row["choose"]; //옵션 내용
                            $table_price = (int)$row["price"]; //옵션에 대한 가격
                            if(!($table_choose==="선택")){
                           ?>
@@ -418,6 +417,7 @@ $user_grade=$_SESSION["user_grade"];
                 <h2><?=$shop?></h2>
                 <form class="" action="index.html" method="post">
                   <h3><span id="h_pay">0</span>원</h3>
+                  <input type="hidden" id="input_h_pay" name="" value="">
                   <p>
                     <?=$subject?><br/>
                     <?=$content?><br/>
@@ -439,13 +439,10 @@ $user_grade=$_SESSION["user_grade"];
                     $file_type     = $row["file_type"]; //이미지파일에 타입
                     if(!($choose==="선택")){
                    ?>
-                     <option value="<?=$price?>"><?=$choose?>횟수: <?=$price?>원</option>
-
+                     <option value="<?=$price?>"><?=$choose?> : <?=$price?>원</option>
                     <?php
                     }
                   }
-
-                  mysqli_close($conn);
                      ?>
                   </select>
                   <script type="text/javascript">
@@ -461,8 +458,12 @@ $user_grade=$_SESSION["user_grade"];
                     });
                     function pay(x){
                       document.getElementById("h_pay").innerHTML=x;
+                      document.getElementById("input_h_pay").value=x;
                     }
-
+                    function program_purchase(){
+                      let price = document.getElementById("input_h_pay").value;
+                      location.href='./program_purchase.php?o_key=<?=$o_key?>&shop=<?=$shop?>&type=<?=$type?>&price='+price;
+                    }
                   </script>
                   <br/>
                   <div class="">
@@ -470,7 +471,7 @@ $user_grade=$_SESSION["user_grade"];
                   </div>
                   <input type="button" name="" value="찜하기">
                   <input type="button" name="" value="장바구니">
-                  <input type="button" name="" value="구매하기" onclick="location.href='./program_purchase.php'">
+                  <input type="button" name="" value="구매하기" onclick="program_purchase();">
               </div>
             </aside>
           </div>

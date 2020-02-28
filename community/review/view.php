@@ -182,7 +182,6 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
          <?php foreach ($communities as $post): ?>
            <!-- foreach($array as $value)  value 값만 가져오기-->
             <div class="post">
-            <!-- <?php echo $post['text']; ?> -->
             <div class="post-info">
              <!-- if user likes post, style button differently -->
                <i <?php if (userLiked($post['num'])): ?>
@@ -267,7 +266,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     if (isset($_SESSION['user_id'])) {
         if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$id) {
           echo('<a href="./write_edit_form.php?mode=update&num='.$num.'">수정</a>&nbsp&nbsp;');
-          echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp&nbsp;');
+          echo('<button type="button" id="write_button_delete" onclick="check_delete('.$num.')">삭제</button>&nbsp&nbsp;');
         }
     }
     //로그인하는 유저에게 글쓰기 기능을 부여함.

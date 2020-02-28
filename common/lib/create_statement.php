@@ -22,7 +22,7 @@ function create_table($conn, $table_name){
               phone char(13) not null,
               email char(40) not null,
               address char(50),
-              grade char(10),
+              grade char(10) not null default 'user',
               primary key(id)
            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;

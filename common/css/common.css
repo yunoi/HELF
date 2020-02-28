@@ -273,6 +273,7 @@ header {
   background: none;
   padding: 0;
   width: 250px;
+  z-index: 199;
 }
 
 #container #aside_shortcut {
@@ -378,6 +379,7 @@ header {
   border: 1px solid #dbdbdb;
   padding: 10px 30px 6px 20px;
   background: #fff;
+  z-index: 200;
 }
 #aside_keyword {
   position: relative;
@@ -387,6 +389,7 @@ header {
   border: 1px solid #dbdbdb;
   padding: 10px 30px 6px 20px;
   background: #fff;
+  z-index: 200;
 }
 
 #keyword_area {
@@ -462,8 +465,9 @@ header {
 /* 하단 푸터 */
 footer {
   border-top: 1px solid #333333;
+  position: relative;
   height: 150px;
-  z-index: 1;
+  z-index: 999;
   clear: both;
 }
 
@@ -473,14 +477,18 @@ footer {
   min-width: 1100px;
   margin: 0 auto;
   color: #222222;
+  z-index: 998;
 }
 
 #footer_top {
+  position: relative;
   overflow: hidden;
   width: 100%;
   margin: 0px auto;
   height: 48px;
   border-bottom: 1px solid #eee;
+  z-index: 997;
+
 }
 
 .footer_notice {
@@ -500,6 +508,8 @@ footer {
 #footer_bottom {
   margin: 0 auto;
   position: relative;
+  z-index: 997;
+
 }
 
 #footer_logo {

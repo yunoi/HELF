@@ -270,7 +270,7 @@
 
 #write_form #write_row3 {
   width:100%;
-	height:260px;
+	height:280px;
 	margin:2px 0 2px 0;
 }
 
@@ -294,7 +294,7 @@
 }
 
 #write_form #write_row3 .col1 {
-	height:132px;
+	height:155px;
 	padding-top:120px;
 }
 
@@ -417,13 +417,25 @@
   margin-top: 61px;
 }
 
-#button a{
-  border:1px solid #F23005;
+.button_category{
+  background-color: #cccccc;
+  width: 80px;
+  height: 38px;
   text-align: center;
-  color: #F23005;
-  background-color: white;
-  font-size: 15px;
+  font-size: 13px;
+  color: white;
+  border-radius: 5px;
 }
+
+.button_write{
+   background-color: #F23005;
+   width: 80px;
+   height: 38px;
+   text-align: center;
+   font-size: 13px;
+   color: white;
+   border-radius: 5px;
+ }
 
 
 

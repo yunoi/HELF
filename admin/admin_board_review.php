@@ -7,7 +7,6 @@
     $page = "1";
   }
 ?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>

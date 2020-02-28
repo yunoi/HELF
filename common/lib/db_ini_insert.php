@@ -14,7 +14,7 @@ function insert_init_data($conn, $table_name){
     switch($table_name){
           case 'members' :
             $sql = "
-            insert into members values ('admin', 'aaa123', '관리자', '010-1234-5678', 'admin@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'admin'), ('yunhae', 'aaa123', '강유내', '010-1111-1111', 'yunhae@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'master'), ('pangyu', 'aaa123', '김팡규', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', null);";
+            insert into members values ('admin', 'aaa123', '관리자', '010-1234-5678', 'admin@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'admin'), ('yunhae', 'aaa123', '강유내', '010-1111-1111', 'yunhae@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'master'), ('pangyu', 'aaa123', '김팡규', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user');";
             break;
           case 'program' :
             $sql = "insert into program values(null, '판규헬스장', 'PT', '판규헬스장에서 피티받으실분 모집합니다', '먼저 현대인의 가장 큰 문제점인 불균형한 자세 체크 후 앞으로의 방향을 제시합니다.

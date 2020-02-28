@@ -30,6 +30,7 @@ session_start();
       <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
       <?php
       define('SCALE', 10);
+      define('BLOCK', 10); // 한번에 보여질 페이지 수
       //*****************************************************
       $sql=$result=$total_record=$total_page=$start="";
       $row="";
@@ -56,6 +57,18 @@ session_start();
 
       $start=($page -1) * SCALE;
       $number = $total_record - $start;
+      $block_num = ceil($total_page/BLOCK);
+      $now_block = ceil($page/BLOCK);
+      $start_page = ($now_block * BLOCK) - (BLOCK - 1);
+
+if ($start_page <= 1) {
+    $start_page = 1;
+}
+$end_page = $now_block*BLOCK;
+if ($total_page <= $end_page) {
+    $end_page = $total_page;
+}
+
        ?>
   </header>
 
@@ -137,7 +150,7 @@ session_start();
             echo "<a href='./map.php?page=$val'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
           }?>
         <?php
-          for ($i=1; $i <= $total_page ; $i++) {
+          for ($i=$start_page; $i <= $end_page ; $i++) {
               if ($page==$i) {
                   echo "<b>&nbsp;$i&nbsp;</b>";
               } else {
@@ -152,7 +165,6 @@ session_start();
         }
 
          ?>
-         <a href="./map.php?page=1"> <button type="button"> 목록</button></a>
         <br><br><br><br><br><br><br>
       </div><!--end of page num -->
     </div><!--end of page button -->

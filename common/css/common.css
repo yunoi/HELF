@@ -379,7 +379,7 @@ header {
   border: 1px solid #dbdbdb;
   padding: 10px 30px 6px 20px;
   background: #fff;
-  z-index: 200;
+  z-index: 100;
 }
 #aside_keyword {
   position: relative;
@@ -389,7 +389,7 @@ header {
   border: 1px solid #dbdbdb;
   padding: 10px 30px 6px 20px;
   background: #fff;
-  z-index: 200;
+  z-index: 100;
 }
 
 #keyword_area {
@@ -469,6 +469,7 @@ footer {
   height: 150px;
   z-index: 999;
   clear: both;
+  background-color: white;
 }
 
 #footer_content {

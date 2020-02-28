@@ -74,12 +74,13 @@
         $end_day = $row["end_day"];
         $choose = $row["choose"];
         $price = $row["price"];
-        $location = $row["location"];
-        $location = explode(",", $row["location"]);
-        $location1 = $location[0];
-        $location2 = $location[1];
-        $location3 = $location[2];
-        $file_name = $row["file_name"];
+
+        if(isset($row["file_name"])){
+          $file_name = $row["file_name"];
+        }else{
+          $file_name = "";
+        }
+        
         $file_type = $row["file_type"];
         $file_copied = $row["file_copied"];
         $mod = "modify";

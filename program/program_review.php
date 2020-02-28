@@ -3,6 +3,7 @@
   session_start();
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
+    $mode=$_GET["mode"];
 ?>
 
  <meta charset="utf-8">
@@ -26,7 +27,7 @@
      $content = test_input($_POST["content"]);
      $q_content = mysqli_real_escape_string($conn, $content);
      // 구성순서 (id,o_key,content,day,type,shop,star);
-     $sql="INSERT INTO `p_review` VALUES ('$id',$o_key,'$q_content','$regist_day','$type','$shop',$star);";
+     $sql="INSERT INTO `p_review` VALUES (null,'$id',$o_key,'$q_content','$regist_day','$type','$shop',$star);";
      $result = mysqli_query($conn,$sql);
      if (!$result) {
        die('Error: '. mysqli_error($conn));
@@ -46,20 +47,20 @@
 
  }else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
    $num = $_GET['num'];
+   $o_key=$_POST["o_key"];
    $content = trim($_POST["content"]);
    if(empty($content)){
      echo "<script>alert('내용을 입력해주세요');history.go(-1);</script>";
      exit;
    }
-   $score=$_POST['score'];
-   $regist_day=date("Y-m-d (H:i)");
+   $star=(int)$_POST["star"];
    $q_content = mysqli_real_escape_string($conn, $content);
 
-   $sql="UPDATE `p_review` SET `content`='$q_content',`score`='$score' WHERE num='$num';";
+   $sql="UPDATE `p_review` SET `content`='$q_content',`score`='$star' WHERE num='$num';";
    $result = mysqli_query($conn,$sql);
    if (!$result) {
      die('Error: ' . mysqli_error($conn));
    }
-   echo "<script>location.href='./program_detail.php';</script>";
+   echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
  }
  ?>

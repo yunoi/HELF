@@ -1,4 +1,13 @@
-<?php session_start(); ?>
+<?php
+  session_start();
+
+  if(isset($_GET["page"])) {
+    $page = $_GET["page"];
+  } else {
+    $page = "1";
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>

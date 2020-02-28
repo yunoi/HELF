@@ -49,7 +49,7 @@ function getLikes($id)
     global $conn;
     // $id=(int)$id;
     $sql = "SELECT COUNT(*) FROM rating_info
-          WHERE post_id = $id AND rating_action='like'";
+          WHERE b_code='레시피' and post_id = $id AND rating_action='like'";
     $rs = mysqli_query($conn, $sql);
     $result = mysqli_fetch_array($rs);
     return $result[0];
@@ -60,7 +60,7 @@ function getDislikes($id)
 {
     global $conn;
     $sql = "SELECT COUNT(*) FROM rating_info
-          WHERE post_id = $id AND rating_action='dislike'";
+          WHERE b_code='레시피' and post_id = $id AND rating_action='dislike'";
     $rs = mysqli_query($conn, $sql);
     $result = mysqli_fetch_array($rs);
     return $result[0];
@@ -71,9 +71,9 @@ function getRating($id)
 {
     global $conn;
     $rating = array();
-    $likes_query = "SELECT COUNT(*) FROM rating_info WHERE post_id = $id AND rating_action='like'";
+    $likes_query = "SELECT COUNT(*) FROM rating_info WHERE b_code='레시피' and post_id = $id AND rating_action='like'";
     $dislikes_query = "SELECT COUNT(*) FROM rating_info
-                 WHERE post_id = $id AND rating_action='dislike'";
+                 WHERE b_code='레시피' and post_id = $id AND rating_action='dislike'";
     $likes_rs = mysqli_query($conn, $likes_query);
     $dislikes_rs = mysqli_query($conn, $dislikes_query);
     $likes = mysqli_fetch_array($likes_rs);
@@ -90,7 +90,7 @@ function userLiked($post_id)
 {
     global $conn;
     global $user_id;
-    $sql = "SELECT * FROM rating_info WHERE user_id='$user_id'
+    $sql = "SELECT * FROM rating_info WHERE b_code='레시피' and user_id='$user_id'
           AND post_id=$post_id AND rating_action='like'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
@@ -105,7 +105,7 @@ function userDisliked($post_id)
 {
     global $conn;
     global $user_id;
-    $sql = "SELECT * FROM rating_info WHERE user_id='$user_id'
+    $sql = "SELECT * FROM rating_info WHERE b_code='레시피' and user_id='$user_id'
           AND post_id=$post_id AND rating_action='dislike'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
@@ -117,7 +117,7 @@ function userDisliked($post_id)
 
 $num = test_input($_GET["num"]);
 
-$sql = "SELECT * FROM health_info where num=$num"; //게시판 번호
+$sql = "SELECT * FROM health_info where b_code='레시피' and num=$num"; //게시판 번호
 $result_com = mysqli_query($conn, $sql);
 
 if(empty($result_com)){

@@ -13,7 +13,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
-    <title>HELF :: 건강정보게시판</title>
+    <title>HELF :: 레시피</title>
   </head>
   <body>
     <div id="wrap">
@@ -157,12 +157,12 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
           <div id="button">
             <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
-            <a href="./list.php?page=<?=$page?>"><button type="button" class="button_category">목록</button></a>
             <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
-              if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
-                  echo '<a href="write_edit_form.php"><button type="button" class="button_write">글쓰기</button></a>';
-              }
+            if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
+              echo '<a href="write_edit_form.php"><button type="button" class="button_write">글쓰기</button></a>';
+            }
             ?>
+            <a href="./list.php?page=<?=$page?>"><button type="button" class="button_category">목록</button></a>
           </div><!--end of button -->
         </div><!--end of page button -->
         </div><!--end of list content -->

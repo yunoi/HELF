@@ -277,7 +277,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     if (isset($_SESSION['user_id'])) {
         if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master") {
             echo('<a href="./write_edit_form.php?mode=update&num='.$num.'">수정</a>&nbsp;');
-            echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
+            echo('<button type="button" id="write_button_delete" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
         }
     }
 

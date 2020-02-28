@@ -194,7 +194,7 @@
 #button {
   float: left;
   width: 100%;
-  text-align: right;
+  text-align: center;
   padding-bottom: 10px;
 }
 
@@ -279,13 +279,13 @@
   width: 650px;
 }
 
-
 #write_button {
-  margin-top: 50px;
+  margin-top: 80px;
   width: 100%;
   text-align: center;
   padding-bottom: 10px;
 }
+
 
 #write_button button{
   border:1px solid #F23005;
@@ -297,21 +297,29 @@
   height: 23.2px;
 }
 
+
 #write_button a{
-  border:1px solid #F23005;
+  border:1px solid #cccccc;
   text-align: center;
-  color: #F23005;
-  background-color: white;
+  color: white;
+  background-color: #cccccc;
   font-size: 15px;
   width: 148px;
+  cursor: default;
+  padding: 4px;
+  border-radius: 2px
 }
+
+
 #write_button input{
   border:1px solid #F23005;
   text-align: center;
-  color: #F23005;
-  background-color: white;
+  color: white;
+  background-color: #F23005;
   font-size: 15px;
-  width: 148px;
+  width: 158px;
+  padding: 4px;
+  border-radius: 2px
 }
 
 /* view.php css */
@@ -364,25 +372,41 @@
   margin-top: 61px;
 }
 
-
 .button_category{
   background-color: #cccccc;
-  width: 80px;
-  height: 38px;
   text-align: center;
-  font-size: 13px;
   color: white;
-  border-radius: 5px;
+  width: 158px;
+  font-size: 15px;
+  padding: 4px;
+  border-radius: 2px;
+  height: 30px;
+  border: 1px solid #cccccc;
 }
 
 .button_write{
    background-color: #F23005;
-   width: 80px;
-   height: 38px;
    text-align: center;
-   font-size: 13px;
    color: white;
-   border-radius: 5px;
+   font-size: 15px;
+   width: 158px;
+   padding: 4px;
+   border-radius: 2px;
+   height: 30px;
+   border: 1px solid #F23005;
+ }
+
+ #write_button #write_button_delete{
+   background-color: #cccccc;
+   text-align: center;
+   color: white;
+   width: 158px;
+   font-size: 15px;
+   padding: 4px;
+   border-radius: 2px;
+   height: 30px;
+   border: 1px solid #cccccc;
+   cursor: default;
  }
 
 /* 좋아요 */

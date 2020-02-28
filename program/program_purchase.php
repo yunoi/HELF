@@ -34,7 +34,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
     pg : 'kakaopay',
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
-    name : '<?=substr($user_id, 0, 5);?>' + new Date().getTime(),
+     name : '구매상품',
     amount : 1,
     buyer_name : '구매자이름',
     m_redirect_url :'../common/lib/payment_complete.php'
@@ -53,6 +53,21 @@ https://kmong.com/order/2518542 참고한 사이트 화면
     }
     alert(msg);
 });
+      }
+      function bank(){ // 무통장 입금 버튼 누르면 작동할 함수
+        document.getElementById('bank').innerHTML="<select id='bank_name' title='무통장은행선택'><option value=''>은행 선택</option><option value='shinhan'>신한 은행</option><option value='hana'>하나 은행</option><option value='woori'>우리 은행</option></select>";
+        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="banked_clik()">주문하기</button> </a>;';
+      }
+      function banked_clik(){
+        let bank_name = document.getElementById('bank_name').value;
+        <?php
+        $user_id=$_SESSION['user_id'];
+        ?>
+        location.href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php?bank="+bank_name+"&id=<?=$user_id?>";
+      }
+      function kakao(){
+        document.getElementById('bank').innerHTML="";
+        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="payment()">결제하기</button> </a>;';
       }
     </script>
   </head>
@@ -219,23 +234,6 @@ https://kmong.com/order/2518542 참고한 사이트 화면
           <div class="btn" id="btn_pay">
 
           </div>
-          <script type="text/javascript">
-          function bank(){ // 무통장 입금 버튼 누르면 작동할 함수
-            document.getElementById('bank').innerHTML="<select id='bank_name' title='무통장은행선택'><option value=''>은행 선택</option><option value='shinhan'>신한 은행</option><option value='hana'>하나 은행</option><option value='woori'>우리 은행</option></select>";
-            document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="banked_clik()">주문하기</button> </a>;';
-          }
-          function banked_clik(){
-            let bank_name = document.getElementById('bank_name').value;
-            <?php
-            $user_id=$_SESSION['user_id'];
-            ?>
-            location.href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php?bank="+bank_name+"&id=<?=$user_id?>";
-          }
-          function kakao(){
-            document.getElementById('bank').innerHTML="";
-            document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="payment()">결제하기</button> </a>;';
-          }
-          </script>
       </div><!--end of div_body-->
     </div><!--end of item_all-->
     </section>

@@ -228,9 +228,10 @@ function create_table($conn, $table_name){
             case 'sales' :
               $sql = "CREATE TABLE sales(
                 num int not null auto_increment,
+                ord_num char(25) not null,
                 id char(20) not null,
                 o_key int not null,
-                sales_day char(15) not null,
+                sales_day char(20) not null,
                 primary key (num),
                  
                constraint sales_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,

@@ -405,15 +405,15 @@ $user_grade=$_SESSION["user_grade"];
                 <!-- 작업대 -->
 
                 <h2><?=$shop?></h2>
-                <form class="" action="index.html" method="post">
-                  <h3><span id="h_pay">0</span>원</h3>
+                <form class="" action="pick_db.php?mode=cart_insert" method="post">
+                  <h3><span id="h_pay"></span></h3>
                   <p>
                     <?=$subject?><br/>
                     <?=$content?><br/>
                     1회당 레슨시간 (분) : 30 분<br/>
                     레슨 횟수 : 1 회<br/>
                   </p>
-                  <select class="" name="" id="choose" onchange="pay(this.value);">
+                  <select class="" name="option" id="choose" onchange="pay(this.value);">
                     <option value="0">옵션선택</option>
                   <?php
                   $sql="select * from program where shop='$shop'and type='$type' order by price";
@@ -428,13 +428,11 @@ $user_grade=$_SESSION["user_grade"];
                     $file_type     = $row["file_type"]; //이미지파일에 타입
                     if(!($choose==="선택")){
                    ?>
-                     <option value="<?=$price?>"><?=$choose?>횟수: <?=$price?>원</option>
+                     <option value="<?=$shop?>,<?=$type?>,<?=$choose?>,<?=$price?>"><?=$choose?> : <?=$price?>원</option>
 
                     <?php
                     }
                   }
-
-                  mysqli_close($conn);
                      ?>
                   </select>
                   <script type="text/javascript">
@@ -455,16 +453,31 @@ $user_grade=$_SESSION["user_grade"];
                       document.form_review.submit();
                     }
                     function pay(x){
-                      document.getElementById("h_pay").innerHTML=x;
+                      // var op_split = x.split(',');
+                      // document.getElementById("h_pay").innerHTML=op_split[0];
+                      document.getElementById("h_pay").innerHTML= x;
                     }
                   </script>
                   <br/>
                   <div class="">
                     <img src="" alt="">작업일 : 123 &nbsp;&nbsp; <img src="" alt="">수정 횟수 : 제한 없음
                   </div>
-                  <input type="button" name="" value="찜하기">
-                  <input type="button" name="" value="장바구니">
+                  <?php
+                  $sql4 = "select num from pick where id ='$user_id' and o_key = $o_key";
+                  $result4 = mysqli_query($conn, $sql4);
+                  $row4 = mysqli_fetch_array($result4);
+                  $pick  = $row4["num"];
+
+                  if($pick==""){
+                   echo "<input type='button' value='찜하기' onclick=\"location.href='pick_db.php?mode=insert&o_key=$o_key&shop=$shop';\"><br>";
+                 }else{
+                   echo "<input type='button' value='이미찜' onclick=\"location.href='pick_db.php?mode=delete&o_key=$o_key&shop=$shop';\"><br>";
+                 }
+                   ?>
+                  <input type="submit" name="" value="장바구니" onclick="location.href='./pick_db.php?mode=cart_insert'" >
                   <input type="button" name="" value="구매하기" onclick="location.href='./program_purchase.php'">
+
+                </form>
               </div>
             </aside>
           </div>

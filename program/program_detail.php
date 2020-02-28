@@ -9,7 +9,6 @@
    return;
  }
  define('SCALE', 5);
- $num="";
 $user_id=$_SESSION['user_id'];
 $user_grade=$_SESSION["user_grade"];
  $mode="insert";
@@ -26,13 +25,14 @@ $user_grade=$_SESSION["user_grade"];
  }
  ?>
  <script type="text/javascript">
- function review_update(num,contenttext){
-   <?php
-   $num="document.write(num);";
-   $mode="update";
-   ?>
-   document.getElementById('reviwe_content').value=contenttext;
- }
+       function review_update(num,contenttext){
+         let number=num;
+         <?php
+         $mode="update";
+         ?>
+         document.getElementById('num').value=num;
+         document.getElementById('reviwe_content').value=contenttext;
+       }
      function qna_mode(modetype,key,num) {
         if(modetype==="delete"){
             location.href="./p_qna_db.php?mode="+modetype+"&num="+num+"&o_key="+key;
@@ -336,7 +336,7 @@ $user_grade=$_SESSION["user_grade"];
                     $sql="select * from `p_review` where `shop`='$shop' and `type`='$type'";
                     $result = mysqli_query($conn, $sql);
                   while($row = mysqli_fetch_array($result)){
-                    $up_num=$row['num'];
+                    $num=$row['num'];
                     $review_id = $row["id"];
                     $review_content = $row["content"];
                     $review_regist_day = $row["regist_day"];
@@ -366,11 +366,11 @@ $user_grade=$_SESSION["user_grade"];
                        </div>
                       <div class="review_content"><?=$review_content?></div>
                       <?php if ($review_id===$user_id ||$user_grade==="admin"){ ?>
-                        <form class="" action="program_review.php?mode=delete&num=<?=$up_num?>" method="post">
+                        <form class="" action="program_review.php?mode=delete&num=<?=$num?>" method="post">
                           <input type="hidden" name="shop" value="<?=$shop?>">
                           <input type="hidden" name="type" value="<?=$type?>">
                           <input type="hidden" name="o_key" value="<?=$o_key?>">
-                          <input type="button" value="수정" onclick="review_update(<?=$up_num?>,'<?=$review_content?>')"/>
+                          <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>
                           <input type="submit" value="삭제">
                         </form>
                       <?php } ?>
@@ -383,7 +383,7 @@ $user_grade=$_SESSION["user_grade"];
                      <div class="clear"></div><br/>
                      <li>
                        <div class=""><!--댓글 달기 insert-->
-                         <form class="form_review" name="form_review" action="program_review.php?mode=<?=$mode?>&num=<?=$num?>" method="post">
+                         <form class="form_review" name="form_review" action="program_review.php?mode=<?=$mode?>" method="post">
                           <h3>댓글</h3>
                            <textarea name="content" id="reviwe_content" rows="3" cols="30"></textarea>
                            <div class="starRev">
@@ -398,6 +398,7 @@ $user_grade=$_SESSION["user_grade"];
                              <span class="starR1" >4.5</span>
                              <span class="starR2" >5</span>
                             </div>
+                            <input type="hidden" id="num" name="num" value="">
                             <input type="hidden" name="o_key" value="<?=$o_key?>">
                             <input type="hidden" name="type" value="<?=$type?>">
                             <input type="hidden" name="shop" value="<?=$shop?>">

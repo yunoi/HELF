@@ -46,7 +46,7 @@
      echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
 
  }else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
-   $num = $_GET['num'];
+   $num = $_POST['num'];
    $o_key=$_POST["o_key"];
    $content = trim($_POST["content"]);
    if(empty($content)){

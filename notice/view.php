@@ -65,7 +65,7 @@ session_start();
                 $file_copied=$row['file_copied'];
                 $file_type=$row['file_type'];
 
-                if (!empty($file_copied)&&$file_type =="image/png") {
+                if (!empty($file_copied)&&$file_type =="image") {
                     //이미지 정보를 가져오기 위한 함수 width, height, type
                     $image_info=getimagesize("./data/".$file_copied);
                     $image_width=$image_info[0];
@@ -76,6 +76,7 @@ session_start();
                     }
                 } else {
                     $image_width=0;
+                    
                     $image_height=0;
                     $image_type="";
                 }
@@ -99,8 +100,8 @@ session_start();
 
               <div id="write_row3">
                 <div class="col1">내&nbsp;&nbsp;용</div>
-                <div class="col2"><p><?=$content?> <br/>
-                <img src='./data/<?=$file_copied?>' width='<?=$image_width?>'>;</p></div>
+                <div class="col2"><?=$content?> <br/>
+                <img src='./data/<?=$file_copied?>' width='<?=$image_width?>'></div>
               </div><!--end of write_row3  -->
               <div class="write_line">
                 <div class="clear">
@@ -119,7 +120,8 @@ session_start();
                     }
                   ?>
                 </div><!--end of col2  -->
-              </div><!--end of view_content  --></div>
+              </div><!--end of view_content  -->
+            </div>
             </div><!--end of write_form  -->
 
             <div id="write_button">

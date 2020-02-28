@@ -13,7 +13,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/carousel.css">
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
-    <title>HELF :: 건강정보게시판</title>
+    <title>HELF :: 레시피</title>
   </head>
   <body>
     <div id="wrap">

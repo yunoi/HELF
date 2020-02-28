@@ -107,9 +107,7 @@ session_start();
                 <div class="clear">
                 <div class="col2">
                   <?php
-                    if ($file_type =="image") {
-                        echo "<img src='./data/$file_copied' width='$image_width'><br>";
-                    } else if (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
+                    if (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
                         $file_path = "./data/".$file_copied;
                         $file_size = filesize($file_path);
                         //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.

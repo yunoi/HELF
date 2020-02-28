@@ -56,26 +56,25 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
   		$copied_file_name = $new_file_name.".".$file_ext;
   		$uploaded_file = $upload_dir.$copied_file_name;
 
-  		if( $upfile_size  > 1000000 ) {
-  				echo("
-  				<script>
-  				alert('업로드 파일 크기가 지정된 용량(1MB)을 초과합니다!<br>파일 크기를 체크해주세요! ');
-  				history.go(-1)
-  				</script>
-  				");
-  				exit;
-  		}
+      $type=explode("/", $upfile_type);
 
-  		if (!move_uploaded_file($upfile_tmp_name, $uploaded_file) )
-  		{
-  				echo("
-  					<script>
-  					alert('파일을 지정한 디렉토리에 복사하는데 실패했습니다.');
-  					history.go(-1)
-  					</script>
-  				");
-  				exit;
-  		}
+      if ($type[0]=='image') {
+          switch ($type[1]) {
+      case 'gif': case 'jpg': case 'png': case 'jpeg':
+        case 'pjpeg': break;
+        default:alert_back('3. gif jpg png 확장자가아닙니다.');
+      }
+          if ($upfile_size>2000000) {
+              alert_back('2. 이미지파일사이즈가 2MB이상입니다.');
+          }
+      } else {
+          if ($upfile_size>500000) {
+              alert_back('2. 파일사이즈가 500KB이상입니다.');
+          }
+      }
+      if (!move_uploaded_file($upfile_tmp_name, $uploaded_file)) {
+          alert_back('4. 서버 전송에러!!');
+      }
   	}
   	else
   	{
@@ -86,7 +85,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
 
 
     //그룹번호, 들여쓰기 기본값
-    $sql="INSERT INTO `notice` VALUES (null,'$q_subject','$q_content','$regist_day',$hit,'$upfile_name','$upfile_type','$copied_file_name');";
+    $sql="INSERT INTO `notice` VALUES (null,'$q_subject','$q_content','$regist_day',$hit,'$upfile_name','$type[0]','$copied_file_name');";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
@@ -145,25 +144,24 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $copied_file_name = $new_file_name.".".$file_ext;
     $uploaded_file = $upload_dir.$copied_file_name;
 
-    if( $upfile_size  > 1000000 ) {
-        echo("
-        <script>
-        alert('업로드 파일 크기가 지정된 용량(1MB)을 초과합니다!<br>파일 크기를 체크해주세요! ');
-        history.go(-1)
-        </script>
-        ");
-        exit;
-    }
+    $type=explode("/", $upfile_type);
 
-    if (!move_uploaded_file($upfile_tmp_name, $uploaded_file) )
-    {
-        echo("
-          <script>
-          alert('파일을 지정한 디렉토리에 복사하는데 실패했습니다.');
-          history.go(-1)
-          </script>
-        ");
-        exit;
+    if ($type[0]=='image') {
+        switch ($type[1]) {
+    case 'gif': case 'jpg': case 'png': case 'jpeg':
+      case 'pjpeg': break;
+      default:alert_back('3. gif jpg png 확장자가아닙니다.');
+    }
+        if ($upfile_size>2000000) {
+            alert_back('2. 이미지파일사이즈가 2MB이상입니다.');
+        }
+    } else {
+        if ($upfile_size>500000) {
+            alert_back('2. 파일사이즈가 500KB이상입니다.');
+        }
+    }
+    if (!move_uploaded_file($upfile_tmp_name, $uploaded_file)) {
+        alert_back('4. 서버 전송에러!!');
     }
   }
   else
@@ -175,7 +173,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
   if($upfile_name==="" || $upfile_type==="" || $copied_file_name===""){
     $sql="UPDATE `notice` SET `subject`='$q_subject',`content`='$q_content',`regist_day`='$regist_day' WHERE `num`=$q_num;";
   }else{
-    $sql="UPDATE `notice` SET `subject`='$q_subject',`content`='$q_content',`regist_day`='$regist_day',`file_name`='$upfile_name',`file_type`='$upfile_type',`file_copied`='$copied_file_name' WHERE `num`=$q_num;";
+    $sql="UPDATE `notice` SET `subject`='$q_subject',`content`='$q_content',`regist_day`='$regist_day',`file_name`='$upfile_name',`file_type`='$type[0]',`file_copied`='$copied_file_name' WHERE `num`=$q_num;";
   }
   $result = mysqli_query($conn,$sql);
   if (!$result) {

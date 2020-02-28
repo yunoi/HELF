@@ -35,21 +35,22 @@
   padding: 20px;
 }
 #title1{
-  text-align: left;
-  width: 450px;
+  width: 100px;
 }
 #title2{
-  width: 110px;
+  width: 300px;
 }
 #title3{
-  width: 80px;
+  width: 75px;
 }
 #title4{
-  text-align: right;
-  width: 110px;
+  width: 80px;
 }
 #program{
   text-align:left;
+}
+.content{
+  text-align:center;
 }
 #program .div_img{
 float: left;

@@ -84,7 +84,7 @@ function cart_insert($conn, $user_id, $shop, $type, $price){
   mysqli_query($conn, $sql);
   mysqli_close($conn);
 
-  echo "<script>alert('$choose'+' 장바구니에 추가완료!');</script>";
+  echo "<script>alert('$price'+' 장바구니에 추가완료!');</script>";
   echo "<script>history.go(-1);</script>";
 
 }

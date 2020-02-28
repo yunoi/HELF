@@ -468,7 +468,8 @@ $user_grade=$_SESSION["user_grade"];
                       document.getElementById("h_pay").innerHTML= x;
                     }
                     function program_pick_db(){
-                      location.href='./program_pick_db.php?mode=cart_insert&shop=<?=$shop?>&type=<?=$type?>&price='+price;
+                      let price = document.getElementById("input_h_pay").value;
+                      location.href='./pick_db.php?mode=cart_insert&shop=<?=$shop?>&type=<?=$type?>&price='+price;
                     }
                   </script>
                   <br/>

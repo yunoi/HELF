@@ -45,7 +45,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
         // msg += '상점 거래ID : ' + rsp.merchant_uid;
         // msg += '결제 금액 : ' + rsp.paid_amount;
         // msg += '카드 승인번호 : ' + rsp.apply_num;
-        
+
         location.href = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php";
     } else {
         var msg = '결제에 실패하였습니다.';
@@ -92,7 +92,6 @@ https://kmong.com/order/2518542 참고한 사이트 화면
           echo "<script>alert('접속 오류 발생');</script>";
           return;
         }
-
         ?>
     </header>
 <div class="clear"></div>
@@ -105,12 +104,14 @@ https://kmong.com/order/2518542 참고한 사이트 화면
           <div class="div_center">
             <table>
               <tr>
-                <th id="title1">기복항목</th>
-                <th id="title2">옵션확인</th>
-                <th id="title3">마감일</th>
-                <th id="title4">가격</th>
+                <th id="title1">&nbsp;</th>
+                <th id="title2">프로그램</th>
+                <th id="title3">옵션확인</th>
+                <th id="title4">마감일</th>
+                <th id="title5">가격</th>
               </tr>
               <?php
+              $total_pay=0;
               if($pay==="post"){
                 for ($i=0; $i < count($o_key); $i++) {
                   $sql = "select * from `program` where o_key=".$o_key[$i].";";
@@ -125,6 +126,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                   $choose = $row["choose"]; //가격
                   $end_day = $row["end_day"]; //종료 날짜
                   $file_copied = $row["file_copied"]; //파일 이름
+                  $total_pay=$total_pay+$price;
                    ?>
                   <tr>
                     <td id="program">
@@ -135,7 +137,6 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                       <strong><?=$subject?></strong>
                       <ul>
                         <!-- 설명 -->
-                        <li><?=$content?></li>
                         <li><?=$location?></li>
                       </ul></td>
                     <td><div class="">
@@ -144,20 +145,18 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                       </div></td>
                     <td>
                         <span id="item3"><?=$end_day?></span>
-                          &nbsp;일
                     </td>
                     <td>
-                      <span id="pay"><?=$price?></span>
-                      &nbsp;원
+                      <span id="pay"><?=$price?></span>원
                     </td>
                   </tr>
               <?php
                 }
               }else{
-                $sql = "select * from program where o_key=$o_key;";
+                  $sql = "select * from program where o_key=$o_key;";
                   $result = mysqli_query($conn, $sql);
                   $row = mysqli_fetch_array($result);
-                  
+
                   $shop = $row["shop"];  //샵
                   $type = $row["type"];  //pt , 헬스 종류
                   $subject = $row["subject"]; //프로그램 이름
@@ -167,6 +166,8 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                   $choose = $row["choose"]; //가격
                   $end_day = $row["end_day"]; //종료 날짜
                   $file_copied = $row["file_copied"]; //파일 이름
+
+                  $total_pay=$total_pay+$price;
                    ?>
                   <tr>
                     <td id="program">
@@ -174,23 +175,23 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                       <div class="div_img">
                         <img src='../admin/data/<?=$file_copied?>'>
                       </div>
-                      <strong><?=$subject?></strong>
-                      <ul>
-                        <!-- 설명 -->
-                        <li><?=$content?></li>
-                        <li><?=$location?></li>
-                      </ul></td>
-                    <td><div class="">
+                      </td>
+                      <td>
+                      <div class="content">
+                        <span><?=$subject?></span><br/>
+                        <span><?=$location?></span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="">
                       <!-- 옶션이 넣어질 자리 -->
                         <b><?=$choose?></b>
                       </div></td>
                     <td>
                         <span id="item3"><?=$end_day?></span>
-                          &nbsp;일
                     </td>
                     <td>
-                      <span id="pay"><?=$price?></span>
-                      &nbsp;원
+                      <span id="pay"><?=$price?></span>원
                     </td>
                   </tr>
               <?php
@@ -201,7 +202,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
         </div><!--end of div_item1-->
       <div class="clear"></div>
 <!-- 총결제금액 표시 할 장소 -->
-
+      <div class="">총 결제 금액 <?=$total_pay?> 원</div>
 
      <div class="clear"></div>
         <div class="div_item4">

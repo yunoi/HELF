@@ -96,60 +96,6 @@
           </div><!--  end of sub -->
 
           <div id="content">
-<<<<<<< HEAD
-            <h1>회원관리 > 회원</h1><br>
-              <table id="user_table">
-                <tr>
-                  <td>아이디</td>
-                  <td>이름</td>
-                  <td>전화번호</td>
-                  <td>이메일</td>
-                  <td>주소</td>
-                  <td>등급</td>
-                  <td>수정</td>
-                  <td>삭제</td>
-                </tr>
-
-          <?php
-          $sql = "select * from members";
-          $result = mysqli_query($conn, $sql);
-          $total_record = mysqli_num_rows($result); // 전체 회원 수
-
-          $number = $total_record;
-
-           while ($row = mysqli_fetch_array($result)){
-            $id        = $row["id"];
-            $name      = $row["name"];
-            $phone     = $row["phone"];
-            $email     = $row["email"];
-            $address     = $row["address"];
-            $grade     = $row["grade"];
-          ?>
-            <tr>
-                <form method="post" action="user_curd.php?id=<?=$id?>&mode=modify">
-              <td><?=$id?></td>
-              <td><?=$name?></td>
-              <td><?=$phone ?></td>
-              <td><?=$email?></td>
-              <td><?=$address?></td>
-              <td>
-                <select class="grade" name="grade" style="width:70px;">
-                  <option value="master" <?php if ($grade === 'master') echo "selected";?>>master</option>
-                  <option value="admin" <?php if ($grade === 'admin') echo "selected";?>>admin</option>
-                  <option value="user" <?php if ($grade === 'user') echo "selected";?>>user</option>
-                </select>
-              </td>
-              <td><button type="submit">수정</button></td>
-              <td><button type="button" onclick="location.href='user_curd.php?id=<?=$id?>&mode=delete'">탈퇴</button></td>
-            </form>
-           </tr>
-
-          <?php
-               $number--;
-           }
-          ?>
-              </table>
-=======
             <h1 id="content_title">회원관리 > 회원<p>아이디를 클릭하시면 해당 회원의 상세 정보를 보실 수 있습니다.</p></h1><br>
             <ul class = "collapsible" data-collapsible = "accordion" style="width:700px;">
 
@@ -236,7 +182,6 @@
                 }
             ?>
             </ul> <!-- page -->
->>>>>>> d3bbc56a9dac7fb666014c6ae03b20e4c27012fd
           </div>		<!-- end of content -->
 
         </div><!--  end of admin_board -->

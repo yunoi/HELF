@@ -403,7 +403,7 @@ $user_grade=$_SESSION["user_grade"];
                   <input type="hidden" id="input_h_pay" name="" value="">
                   <p>
                     <?=$subject?><br/>
-                    <?=$content?><br/>
+                
                     1회당 레슨시간 (분) : 30 분<br/>
                     레슨 횟수 : 1 회<br/>
                   </p>
@@ -492,9 +492,9 @@ $user_grade=$_SESSION["user_grade"];
                   $pick  = $row4["num"];
 
                   if($pick==""){
-                   echo "<input type='button' value='찜하기' onclick=\"location.href='pick_db.php?mode=insert&o_key=$o_key&shop=$shop';\"><br>";
+                   echo "<input type='button' value='찜하기' onclick=\"location.href='pick_db.php?detail=ok&mode=insert&o_key=$o_key&shop=$shop';\"><br>";
                  }else{
-                   echo "<input type='button' value='이미찜' onclick=\"location.href='pick_db.php?mode=delete&o_key=$o_key&shop=$shop';\"><br>";
+                   echo "<input type='button' value='이미찜' onclick=\"location.href='pick_db.php?detail=ok&mode=delete&o_key=$o_key&shop=$shop';\"><br>";
                  }
                    ?>
                   <input type="button" name="" value="장바구니" onclick="program_pick_db();">

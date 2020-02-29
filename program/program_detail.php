@@ -346,8 +346,9 @@ $user_grade=$_SESSION["user_grade"];
                        </div>
                       <div class="review_content"><?=$review_content?></div>
                       <?php if ($review_id===$user_id ||$user_grade==="admin"){ ?>
-                        <form class="" action="program_review.php?mode=delete&num=<?=$num?>" method="post">
+                        <form class="" action="program_review.php?mode=delete" method="post">
                           <input type="hidden" name="shop" value="<?=$shop?>">
+                          <input type="hidden" name="num" value="<?=$num?>">
                           <input type="hidden" name="type" value="<?=$type?>">
                           <input type="hidden" name="o_key" value="<?=$o_key?>">
                           <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>

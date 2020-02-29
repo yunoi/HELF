@@ -269,7 +269,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
       <input type="hidden" name="user_id" value="<?=$user_id?>">
       <input type="hidden" name="b_code" value="같이할건강">
       <div id="ripple_insert">
-        <div id="ripple_textarea"><img src="../pic/ripple.png" alt=""><textarea name="ripple_content" rows="3" cols="86"></textarea><input type="submit" value="&nbsp&nbsp입력&nbsp&nbsp"></div>
+        <div id="ripple_textarea"><img src="./pic/ripple.png" alt=""><textarea name="ripple_content" rows="3" cols="86"></textarea><input type="submit" value="&nbsp&nbsp입력&nbsp&nbsp"></div>
       </div><!--end of ripple_insert -->
     </form>
   </div><!--end of ripple2  -->
@@ -282,7 +282,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     if (isset($_SESSION['user_id'])) {
         if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$id) {
             echo('<a href="./write_edit_form.php?mode=update&num='.$num.'">수정</a>&nbsp;');
-            echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
+            echo('<button type="button" id="write_button_delete" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
         }
     }
     //로그인하는 유저에게 답변기능과 글쓰기 기능을 부여함.

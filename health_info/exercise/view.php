@@ -18,6 +18,8 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $q_num = mysqli_real_escape_string($conn, $num);
 
 
+echo "<script>alert('게시판 번호 : {$num}');</script>";
+
     $sql="UPDATE `health_info` SET `hit`=$hit WHERE b_code='운동' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
@@ -277,7 +279,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     if (isset($_SESSION['user_id'])) {
         if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master") {
             echo('<a href="./write_edit_form.php?mode=update&num='.$num.'">수정</a>&nbsp;');
-            echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
+            echo('<button type="button" id="write_button_delete" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
         }
     }
     //로그인하는 유저에게 글쓰기 기능을 부여함.

@@ -18,6 +18,8 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
+    echo "<script>alert('게시판 번호 : {$num}');</script>";
+
 
     $sql="UPDATE `health_info` SET `hit`=$hit WHERE b_code='레시피' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
@@ -193,9 +195,9 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
         <div class="posts-wrapper">
            <?php foreach ($communities as $post): ?>
               <div class="post">
-              <!-- <?php echo $post['text']; ?> -->
               <div class="post-info">
-                 <i <?php if (userLiked($post['num'])): ?>
+                 <i
+                 <?php if (userLiked($post['num'])): ?>
                       class="fa fa-thumbs-up like-btn"
                    <?php else: ?>
                       class="fa fa-thumbs-o-up like-btn"
@@ -277,7 +279,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     if (isset($_SESSION['user_id'])) {
         if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master") {
             echo('<a href="./write_edit_form.php?mode=update&num='.$num.'">수정</a>&nbsp;');
-            echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
+            echo('<button type="button" id="write_button_delete" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
         }
     }
 

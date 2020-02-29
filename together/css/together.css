@@ -33,7 +33,7 @@
 }
 
 #left_menu #sub_title {
-  background-image: url(../pic/category.png);
+  background-image: url(./pic/category.png);
   background-repeat: no-repeat;
   height: 50px;
 }
@@ -208,7 +208,7 @@
 #button {
   float: left;
   width: 100%;
-  text-align: right;
+  text-align: center;
   padding-bottom: 10px;
 }
 
@@ -299,9 +299,9 @@
 
 
 #write_button {
-  margin-top: 15px;
-  width: 97%;
-  text-align: right;
+  margin-top: 80px;
+  width: 100%;
+  text-align: center;
   padding-bottom: 10px;
 }
 
@@ -316,20 +316,28 @@
 }
 
 #write_button a{
-  border:1px solid #F23005;
+  border:1px solid #cccccc;
   text-align: center;
-  color: #F23005;
-  background-color: white;
+  color: white;
+  background-color: #cccccc;
   font-size: 15px;
+  width: 148px;
+  cursor: default;
+  padding: 4px;
+  border-radius: 2px
 }
+
+
 #write_button input{
   border:1px solid #F23005;
   text-align: center;
-  color: #F23005;
-  background-color: white;
+  color: white;
+  background-color: #F23005;
   font-size: 15px;
+  width: 158px;
+  padding: 4px;
+  border-radius: 2px
 }
-
 
 /* view.php css */
 #view_comment {
@@ -376,25 +384,41 @@
   margin-top: 15px;
   margin-bottom: 15px;
 }
-
 .button_category{
   background-color: #cccccc;
-  width: 80px;
-  height: 38px;
   text-align: center;
-  font-size: 13px;
   color: white;
-  border-radius: 5px;
+  width: 158px;
+  font-size: 15px;
+  padding: 4px;
+  border-radius: 2px;
+  height: 30px;
+  border: 1px solid #cccccc;
 }
 
 .button_write{
    background-color: #F23005;
-   width: 80px;
-   height: 38px;
    text-align: center;
-   font-size: 13px;
    color: white;
-   border-radius: 5px;
+   font-size: 15px;
+   width: 158px;
+   padding: 4px;
+   border-radius: 2px;
+   height: 30px;
+   border: 1px solid #F23005;
+ }
+
+ #write_button #write_button_delete{
+   background-color: #cccccc;
+   text-align: center;
+   color: white;
+   width: 158px;
+   font-size: 15px;
+   padding: 4px;
+   border-radius: 2px;
+   height: 30px;
+   border: 1px solid #cccccc;
+   cursor: default;
  }
 
 /* 좋아요 */

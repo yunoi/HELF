@@ -117,8 +117,8 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
               <div class="clear"></div>
             </div><!--end of write_form  -->
             <div id="write_button">
-              <input type="submit" onclick='document.getElementById("del_file").disabled=false' value="완료">
-              <a href="./list.php">취소</a>
+               <input type="submit" onclick='document.getElementById("del_file").disabled=false' value="완료"></input>
+               <a href="./list.php">취소</a>
             </div><!--end of write_button-->
          </form>
       </div><!--end of col2  -->

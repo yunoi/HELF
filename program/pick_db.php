@@ -28,15 +28,19 @@ if (isset($_GET["shop"])){
   $shop = "";
 }
 
-if (isset($_POST["option"])){
-  $option = $_POST["option"];
-  $p_option = explode(',', $option );
-  $shop = $p_option[0];
-  $type = $p_option[1];
-  $choose = $p_option[2];
+if (isset($_GET["type"])){
+  $type = $_GET["type"];
 }else{
-  $option = "";
+  $type = "";
 }
+
+if (isset($_GET["price"])){
+  $price = $_GET["price"];
+}else{
+  $price = "";
+}
+
+
 
 if (isset($_GET["mode"])){
   $mode = $_GET["mode"];
@@ -69,9 +73,9 @@ function pick_delete($conn, $user_id, $o_key, $shop){
 
 }
 
-function cart_insert($conn, $user_id, $shop, $type, $choose){
+function cart_insert($conn, $user_id, $shop, $type, $price){
 
-  $sql = "select o_key from program where shop = '$shop' and type = '$type' and choose = '$choose'";
+  $sql = "select o_key from program where shop = '$shop' and type = '$type' and price = '$price'";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_array($result);
   $o_key = $row["o_key"];
@@ -80,7 +84,7 @@ function cart_insert($conn, $user_id, $shop, $type, $choose){
   mysqli_query($conn, $sql);
   mysqli_close($conn);
 
-  echo "<script>alert('$choose'+' 장바구니에 추가완료!');</script>";
+  echo "<script>alert('$price'+' 장바구니에 추가완료!');</script>";
   echo "<script>history.go(-1);</script>";
 
 }
@@ -105,7 +109,7 @@ switch ($mode) {
     pick_delete($conn, $user_id, $o_key, $shop);
     break;
   case 'cart_insert':
-    cart_insert($conn, $user_id, $shop, $type, $choose);
+    cart_insert($conn, $user_id, $shop, $type, $price);
     break;
   case 'cart_insert':
     cart_delete($conn, $user_id, $o_key, $shop);

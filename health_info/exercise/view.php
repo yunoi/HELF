@@ -18,7 +18,7 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $q_num = mysqli_real_escape_string($conn, $num);
 
 
-echo "<script>alert('게시판 번호 : {$num}');</script>";
+// echo "<script>alert('게시판 번호 : {$num}');</script>";
 
     $sql="UPDATE `health_info` SET `hit`=$hit WHERE b_code='운동' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);

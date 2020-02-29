@@ -24,20 +24,20 @@ if (isset($_POST['action'])) {
     $action = $_POST['action'];
     switch ($action) {
     case 'like':
-         $sql="INSERT INTO rating_info (user_id, post_id, rating_action, b_code)
+         $sql="INSERT INTO rating_health_info (user_id, post_id, rating_action, b_code)
                VALUES ('$user_id', $post_id, 'like', '운동')
                ON DUPLICATE KEY UPDATE rating_action='like'";
          break;
     case 'dislike':
-          $sql="INSERT INTO rating_info (user_id, post_id, rating_action, b_code)
+          $sql="INSERT INTO rating_health_info (user_id, post_id, rating_action, b_code)
                VALUES ('$user_id', $post_id, 'dislike', '운동')
                ON DUPLICATE KEY UPDATE rating_action='dislike'";
          break;
     case 'unlike':
-          $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='운동'";
+          $sql="DELETE FROM rating_health_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='운동'";
           break;
     case 'undislike':
-            $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='운동'";
+            $sql="DELETE FROM rating_health_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='운동'";
       break;
     default:
         break;
@@ -53,7 +53,7 @@ function getLikes($id)
 {
     global $conn;
     // $id=(int)$id;
-    $sql = "SELECT COUNT(*) FROM rating_info
+    $sql = "SELECT COUNT(*) FROM rating_health_info
           WHERE b_code='운동' and post_id = $id AND rating_action='like'";
     $rs = mysqli_query($conn, $sql);
     $result = mysqli_fetch_array($rs);
@@ -64,7 +64,7 @@ function getLikes($id)
 function getDislikes($id)
 {
     global $conn;
-    $sql = "SELECT COUNT(*) FROM rating_info
+    $sql = "SELECT COUNT(*) FROM rating_health_info
           WHERE b_code='운동' and post_id = $id AND rating_action='dislike'";
     $rs = mysqli_query($conn, $sql);
     $result = mysqli_fetch_array($rs);
@@ -76,8 +76,8 @@ function getRating($id)
 {
     global $conn;
     $rating = array();
-    $likes_query = "SELECT COUNT(*) FROM rating_info WHERE b_code='운동' and post_id = $id AND rating_action='like'";
-    $dislikes_query = "SELECT COUNT(*) FROM rating_info
+    $likes_query = "SELECT COUNT(*) FROM rating_health_info WHERE b_code='운동' and post_id = $id AND rating_action='like'";
+    $dislikes_query = "SELECT COUNT(*) FROM rating_health_info
                  WHERE b_code='운동' and post_id = $id AND rating_action='dislike'";
     $likes_rs = mysqli_query($conn, $likes_query);
     $dislikes_rs = mysqli_query($conn, $dislikes_query);
@@ -95,7 +95,7 @@ function userLiked($post_id)
 {
     global $conn;
     global $user_id;
-    $sql = "SELECT * FROM rating_info WHERE b_code='운동' and user_id='$user_id'
+    $sql = "SELECT * FROM rating_health_info WHERE b_code='운동' and user_id='$user_id'
           AND post_id=$post_id AND rating_action='like'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
@@ -110,7 +110,7 @@ function userDisliked($post_id)
 {
     global $conn;
     global $user_id;
-    $sql = "SELECT * FROM rating_info WHERE b_code='운동' and user_id='$user_id'
+    $sql = "SELECT * FROM rating_health_info WHERE b_code='운동' and user_id='$user_id'
           AND post_id=$post_id AND rating_action='dislike'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {

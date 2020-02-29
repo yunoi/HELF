@@ -223,23 +223,38 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    <?php endif ?>
                    data-id="<?php echo $post['num'] ?>"></i>
                  <span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
-
+<!-- ///////////////////////////// -->
              <script>
              var value1;
              var value2;
+             var like_result;
              value1=document.getElementsByClassName('likes');
              value2=document.getElementsByClassName('dislikes');
-             console.log(value1[0]);
-             console.log(value2[0]);
+
+             like_result=value1[0].innerText - value2[0].innerText;
+             console.log(like_result);
              </script>
-
-
+<!-- ///////////////////////////////////////// -->
 
               </div>
               </div>
            <?php endforeach ?>
           </div>
           <script src="scripts.js"></script>
+
+<!-- ////////////////////// -->
+          <?php
+           $like_result = "<script>document.write(like_result);</script>";
+           echo "$like_result";
+
+           // $sql="UPDATE together SET likeit=$like_result WHERE b_code='같이할건강' and num=$num;";
+           // $result = mysqli_query($conn, $sql);
+           // if (!$result) {
+           //     die('Error: ' . mysqli_error($conn));
+           // }
+           ?>
+
+<!-- ////////////////////////////// -->
 
 
 <!--덧글내용시작  -->

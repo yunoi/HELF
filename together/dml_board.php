@@ -24,8 +24,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     }
     $subject = test_input($_POST["subject"]);
     $content = test_input($_POST["content"]);
-
-
     $area = test_input($_POST["area"]);
 
     $user_id = test_input($user_id);

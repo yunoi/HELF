@@ -99,7 +99,7 @@
 ?>
     </ul>
 </div>
-<nav id="menu_bar">
+<nav id="menu_bar" class="no-autoinit">
     <ul class="tabs">
         <li class="tab" id="li_img">
             <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/index.php">

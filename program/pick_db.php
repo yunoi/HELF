@@ -8,6 +8,8 @@ if (!$conn) {
     exit();
 }
 
+echo "<script>console.log('들어는 왔네')</script>";
+
 if(isset($_SESSION["user_id"])){
   $user_id = $_SESSION["user_id"];
 } else {
@@ -20,6 +22,7 @@ if (isset($_GET["o_key"])){
   $o_key = $_GET["o_key"];
 }else{
   $o_key = "";
+  echo "<script>alert('오키없음')</script>";
 }
 
 if (isset($_GET["shop"])){
@@ -42,6 +45,7 @@ if (isset($_GET["mode"])){
   $mode = $_GET["mode"];
 }else{
   $mode = "";
+  echo "<script>alert('모드없음')</script>";
 }
 
 
@@ -52,8 +56,8 @@ function pick_insert($conn, $user_id, $o_key, $shop){
   mysqli_query($conn, $sql);
   mysqli_close($conn);
 
-  echo "<script>alert('$shop'+' 찜 목록에 추가완료!');</script>";
-  echo "<script>history.go(-1);</script>";
+  // echo "<script>alert('$shop'+' 찜 목록에 추가완료!');</script>";
+  // echo "<script>history.go(-1);</script>";
 
 }
 
@@ -64,8 +68,8 @@ function pick_delete($conn, $user_id, $o_key, $shop){
   mysqli_query($conn, $sql);
   mysqli_close($conn);
 
-  echo "<script>alert('$shop'+' 찜 삭제완료!');</script>";
-  echo "<script>history.go(-1);</script>";
+  // echo "<script>alert('$shop'+' 찜 삭제완료!');</script>";
+  // echo "<script>history.go(-1);</script>";
 
 }
 

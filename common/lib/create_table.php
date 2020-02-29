@@ -20,7 +20,9 @@ create_table($conn, 'together');
 create_table($conn, 'carecenter');
 create_table($conn, 'pick');
 create_table($conn, 'cart');
-create_table($conn, 'rating_info');
+create_table($conn, 'rating_health_info');
+create_table($conn, 'rating_together_info');
+create_table($conn, 'rating_community_info');
 create_table($conn, 'deleted_members');
 
 insert_init_data($conn, 'members');

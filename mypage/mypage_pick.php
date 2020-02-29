@@ -142,7 +142,7 @@
               <div id="all_check">
                 <input type="checkbox" id="all_agree">
                 <span>전체 선택</span>
-                <input type="submit" id="btn_submit" value="선택 상품 삭제">
+                <input type="button" id="btn_submit" onclick="delete_pick();" value="선택 상품 삭제">
               </div>
             <ul id="program_list">
             <?php
@@ -197,13 +197,61 @@
                                   <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
                                   <div class="info_2"><?=$subject?></div>
                                   <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
-                                  <div class="info_4">선택한 옵션 : <?=$choose?></div>
+                                  <div class="info_4">선택한 옵션 : <span id="choose_option"><?=$choose?></span> </div>
                                 </a>
+
+                                  <select id="choose_box" name="choose_box" onchange="select_option(this.value);">
+                                  <?php
+                                    $sql2 = "select * from program where shop='$shop' and type='$type' order by price";
+                                    $result2 = mysqli_query($conn, $sql2);
+                                    for ($i=0; $i < 3 ; $i++) { //여기 물어바야함,,
+                                      $row2 = mysqli_fetch_array($result2);
+                                      $option = $row2["choose"];
+                                      $price2 = $row2["price"];
+                                      ?>
+                                      <option value="<?=$option?>"><?=$option?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                  </select>
+
+                                  <script type="text/javascript">
+                                  function select_option(x){
+                                    document.getElementById("choose_option").innerHTML= x ;
+                                  }
+                                  </script>
+
                               </div>
                               <div class="program_price">
-                                <p><?=$price?><span> 원</span>
+                                <script type="text/javascript">
+                                  $("#choose_box").change(function() {
+                                  var selected_option =   $("#choose_box option:selected").val()
+                                    $.ajax({
+                                        url: 'cart_price_cal.php',
+                                        type: 'POST',
+                                        data: {
+                                          "shop": "<?=$shop?>",
+                                          "type": "<?=$type?>",
+                                          "choose": selected_option
+                                        },
+                                        success: function(data) {
+                                          $("#p_price").html(data+"<span> 원</span>");
+                                        }
+                                      })
+                                      .done(function() {
+                                        console.log("done");
+                                      })
+                                      .fail(function() {
+                                        console.log("error");
+                                      })
+                                      .always(function() {
+                                        console.log("complete");
+                                      });
+                                  })
+                                </script>
+                                <p id="p_price">0<span> 원</span></p>
                                 <div class="buttons">
-                                  <button type="button" id="cart_btn">장바구니</button> <br>
+                                  <button type="button" id="cart_btn" onclick="go_cart();">장바구니</button>
                                   <button type="button" id="delete_btn" onclick="location.href='mypage_pick.php?num=<?=$num?>&page=<?=$page?>'">삭제</button>
                                 </div>
                               </div>
@@ -235,6 +283,17 @@
                     </ul>
 
                   </form>
+                  <script type="text/javascript">
+                    function delete_pick() {
+                      $("#delete_pick_form").prop("action","mypage_pick.php?page=<?=$page?>");
+                      $("#delete_pick_form").submit();
+                    }
+
+                    function go_cart() {
+                      $("#delete_pick_form").prop("action","go_cart.php?shop=<?=$shop?>&type=<?=$type?>");
+                      $("#delete_pick_form").submit();
+                    }
+                  </script>
                   <ul id="page_num">
             <?php
                 if ($total_page>=2 && $page >= 2) {

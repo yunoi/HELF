@@ -33,7 +33,7 @@
 }
 
 #left_menu #sub_title {
-  background-image: url(../pic/category.png);
+  background-image: url(./pic/category.png);
   background-repeat: no-repeat;
   height: 50px;
 }

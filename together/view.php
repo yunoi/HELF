@@ -209,6 +209,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    data-id="<?php echo $post['num'] ?>">
                  </i>
                  <span class="likes"><?php echo getLikes($post['num']); ?></span>
+
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -222,10 +223,21 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    <?php endif ?>
                    data-id="<?php echo $post['num'] ?>"></i>
                  <span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
+
+             <script>
+             var value1;
+             var value2;
+             value1=document.getElementsByClassName('likes');
+             value2=document.getElementsByClassName('dislikes');
+             console.log(value1[0]);
+             console.log(value2[0]);
+             </script>
+
+
+
               </div>
               </div>
            <?php endforeach ?>
-
           </div>
           <script src="scripts.js"></script>
 
@@ -269,7 +281,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
       <input type="hidden" name="user_id" value="<?=$user_id?>">
       <input type="hidden" name="b_code" value="같이할건강">
       <div id="ripple_insert">
-        <div id="ripple_textarea"><img src="../pic/ripple.png" alt=""><textarea name="ripple_content" rows="3" cols="86"></textarea><input type="submit" value="&nbsp&nbsp입력&nbsp&nbsp"></div>
+        <div id="ripple_textarea"><img src="./pic/ripple.png" alt=""><textarea name="ripple_content" rows="3" cols="86"></textarea><input type="submit" value="&nbsp&nbsp입력&nbsp&nbsp"></div>
       </div><!--end of ripple_insert -->
     </form>
   </div><!--end of ripple2  -->

@@ -197,13 +197,35 @@
                                   <div class="info_1"><?=$shop?> | <?=$type?> | <?=$location?></div>
                                   <div class="info_2"><?=$subject?></div>
                                   <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
-                                  <div class="info_4">선택한 옵션 : <?=$choose?></div>
+                                  <!-- <div class="info_4">선택한 옵션 : <span id="choose_option"><?=$choose?></span> </div> -->
                                 </a>
+
+                                  <select id="choose_box" name="choose_box" onchange="pay(this.value);">
+                                  <?php
+                                    $sql2 = "select * from program where shop='$shop' and type='$type' order by price";
+                                    $result2 = mysqli_query($conn, $sql2);
+                                    for ($i=0; $i < 2 ; $i++) {
+                                      $row2 = mysqli_fetch_array($result2);
+                                      $option = $row2["choose"];
+                                      $price2 = $row2["price"];
+                                      ?>
+                                      <option value="<?=$option?>"><?=$option?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                  </select>
+
+                                  <script type="text/javascript">
+                                  function pay(x){
+                                    document.getElementById("p_price").innerHTML= x +"<span> 원</span>";
+                                  }
+                                  </script>
+
                               </div>
                               <div class="program_price">
-                                <p><?=$price?><span> 원</span>
+                                <p id="p_price"><?=$price?><span> 원</span></p>
                                 <div class="buttons">
-                                  <button type="button" id="cart_btn">장바구니</button> <br>
+                                  <button type="button" id="cart_btn" onclick="">장바구니</button>
                                   <button type="button" id="delete_btn" onclick="location.href='mypage_pick.php?num=<?=$num?>&page=<?=$page?>'">삭제</button>
                                 </div>
                               </div>

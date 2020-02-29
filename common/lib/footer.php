@@ -9,6 +9,7 @@
 			</ul>
         </div>
         <div id="footer_bottom">
+          <div id="footer_bottom_align">
         <p id="footer_logo"> 모두의 건강친구, HELF | <span>서울시 성동구</span></p>
   <ul id="download">
     <li>대표자</li>
@@ -19,5 +20,5 @@
     <li> - yunoek@gmail.com</li>
   </ul>
         </div>
-
+        </div>
 </div>

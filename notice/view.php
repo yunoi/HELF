@@ -23,14 +23,11 @@ session_start();
 window.onload = function()
 {
  // div height 설정
- setDivHeight('content_col1','content_col2');
+ //sibling div의 길이가 늘어날 때 같이 길이가 늘어날 수 있도록
+ setDivHeight('content_col1','content_col2'); // 매개변수(heigth값 가져올 대상 div id, 변경할 div id)
 }
-/*------------------------------------------------------------------------------------------
-// div height 설정
-// objSet : 변경할 div id
-// objTar : height값을 구할 대상 div id
-------------------------------------------------------------------------------------------*/
-function setDivHeight(objSet, objTar)
+
+function setDivHeight(objSet, objTar)// objSet : 변경할 div id, objTar : height값을 구할 대상 div id
 {
   var objSet   = document.getElementById(objSet);
   var objTarHeight= document.getElementById(objTar).offsetHeight;

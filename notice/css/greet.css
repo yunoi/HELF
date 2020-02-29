@@ -2,6 +2,8 @@
 	width: 1100px;
 	position: relative;
 	margin: 0 auto;
+	padding-top: 100px;
+
 }
 #title span{
 	font-size: 17px;

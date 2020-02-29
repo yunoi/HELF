@@ -125,12 +125,11 @@ function userDisliked($post_id)
 
 $num = test_input($_GET["num"]);
 
-$sql = "SELECT * FROM community where b_code='같이할건강' and num=$num"; //게시판 번호
+$sql = "SELECT * FROM together where b_code='같이할건강' and num=$num"; //게시판 번호
 $result_com = mysqli_query($conn, $sql);
 // fetch all community from database
 // return them as an associative array called $communities
 $communities = mysqli_fetch_all($result_com, MYSQLI_ASSOC);
 // $communities는 array로 리턴
-
 
 ?>

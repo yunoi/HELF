@@ -15,11 +15,28 @@ session_start();
     <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <script type="text/javascript">
     function check_delete(num) {
-      var result=confirm("삭제하시겠습니까?\n Either OK or Cancel.");
+      var result=confirm("삭제하시겠습니까?");
       if(result){
             window.location.href='./dml_board.php?mode=delete&num='+num;
       }
     }
+window.onload = function()
+{
+ // div height 설정
+ setDivHeight('content_col1','content_col2');
+}
+/*------------------------------------------------------------------------------------------
+// div height 설정
+// objSet : 변경할 div id
+// objTar : height값을 구할 대상 div id
+------------------------------------------------------------------------------------------*/
+function setDivHeight(objSet, objTar)
+{
+  var objSet   = document.getElementById(objSet);
+  var objTarHeight= document.getElementById(objTar).offsetHeight;
+  objSet.style.height  = objTarHeight + "px";
+}
+
     </script>
   </head>
   <body>
@@ -99,8 +116,8 @@ session_start();
               <div class="write_line"></div>
 
               <div id="write_row3">
-                <div class="col1">내&nbsp;&nbsp;용</div>
-                <div class="col2"><?=$content?> <br/>
+                <div class="col1" id="content_col1">내&nbsp;&nbsp;용</div>
+                <div class="col2" id="content_col2"><?=$content?> <br/>
                 <img src='./data/<?=$file_copied?>' width='<?=$image_width?>'></div>
               </div><!--end of write_row3  -->
               <div class="write_line">

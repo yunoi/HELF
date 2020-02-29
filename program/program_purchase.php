@@ -34,7 +34,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
     pg : 'kakaopay',
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
-    name : '<?=substr($user_id, 0, 5);?>' + new Date().getTime(),
+     name : '구매상품',
     amount : 1,
     buyer_name : '구매자이름',
     m_redirect_url :'../common/lib/payment_complete.php'

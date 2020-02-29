@@ -269,7 +269,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
       <input type="hidden" name="user_id" value="<?=$user_id?>">
       <input type="hidden" name="b_code" value="같이할건강">
       <div id="ripple_insert">
-        <div id="ripple_textarea"><img src="../pic/ripple.png" alt=""><textarea name="ripple_content" rows="3" cols="86"></textarea><input type="submit" value="&nbsp&nbsp입력&nbsp&nbsp"></div>
+        <div id="ripple_textarea"><img src="./pic/ripple.png" alt=""><textarea name="ripple_content" rows="3" cols="86"></textarea><input type="submit" value="&nbsp&nbsp입력&nbsp&nbsp"></div>
       </div><!--end of ripple_insert -->
     </form>
   </div><!--end of ripple2  -->

@@ -209,6 +209,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    data-id="<?php echo $post['num'] ?>">
                  </i>
                  <span class="likes"><?php echo getLikes($post['num']); ?></span>
+
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -222,10 +223,21 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    <?php endif ?>
                    data-id="<?php echo $post['num'] ?>"></i>
                  <span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
+
+             <script>
+             var value1;
+             var value2;
+             value1=document.getElementsByClassName('likes');
+             value2=document.getElementsByClassName('dislikes');
+             console.log(value1[0]);
+             console.log(value2[0]);
+             </script>
+
+
+
               </div>
               </div>
            <?php endforeach ?>
-
           </div>
           <script src="scripts.js"></script>
 

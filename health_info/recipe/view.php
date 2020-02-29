@@ -12,14 +12,12 @@ if (empty($_GET['page'])) {
     $page=$_GET['page'];
 }
 
-
 if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $num = test_input($_GET["num"]);
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    echo "<script>alert('게시판 번호 : {$num}');</script>";
-
+    // echo "<script>alert('게시판 번호 : {$num}');</script>";
 
     $sql="UPDATE `health_info` SET `hit`=$hit WHERE b_code='레시피' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);

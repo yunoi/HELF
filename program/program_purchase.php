@@ -3,6 +3,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
  -->
 <?php
   session_start();
+  $id = $_SESSION["user_id"];
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -87,6 +88,26 @@ https://kmong.com/order/2518542 참고한 사이트 화면
           $pay="get";
         }else if(isset($_POST['o_key'])){
           $o_key=(int)$_POST['o_key'];
+          $pay="post";
+        }else if($_GET['num']){
+          $num = (int)$_GET['num'];
+
+          $sql="select B.o_key from cart A inner join program B on A.o_key = B.o_key where id = '$id' and num=$num;";
+          $result = mysqli_query($conn, $sql);
+          $row = mysqli_fetch_array($result);
+
+          $o_key=$row['o_key'];
+          $pay="get";
+        }else if($_POST['no']){
+          $no = $_POST['no'];
+
+          $o_key = array();
+          for ($i=0; $i<count($no); $i++) {
+            $sql="select B.o_key from cart A inner join program B on A.o_key = B.o_key where id = '$id' and num=$no[$i];";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($result);
+            array_push($o_key, $row['o_key']);
+          }
           $pay="post";
         }else{
           echo "<script>alert('접속 오류 발생');</script>";

@@ -128,28 +128,31 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                   $file_copied = $row["file_copied"]; //파일 이름
                   $total_pay=$total_pay+$price;
                    ?>
-                  <tr>
-                    <td id="program">
-                      <!-- 판매 프로그램 이름 자리 -->
-                      <div class="div_img">
-                        <img src='../admin/data/<?=$file_copied?>'>
-                      </div>
-                      <strong><?=$subject?></strong>
-                      <ul>
-                        <!-- 설명 -->
-                        <li><?=$location?></li>
-                      </ul></td>
-                    <td><div class="">
-                      <!-- 옶션이 넣어질 자리 -->
-                        <b><?=$choose?></b>
-                      </div></td>
-                    <td>
-                        <span id="item3"><?=$end_day?></span>
-                    </td>
-                    <td>
-                      <span id="pay"><?=$price?></span>원
-                    </td>
-                  </tr>
+                   <tr>
+                     <td id="program">
+                       <!-- 판매 프로그램 이름 자리 -->
+                       <div class="div_img">
+                         <img src='../admin/data/<?=$file_copied?>'>
+                       </div>
+                       </td>
+                       <td>
+                       <div class="content">
+                         <span><?=$subject?></span><br/>
+                         <span><?=$location?></span>
+                       </div>
+                     </td>
+                     <td>
+                       <div class="">
+                       <!-- 옶션이 넣어질 자리 -->
+                         <b><?=$choose?></b>
+                       </div></td>
+                     <td>
+                         <span id="item3"><?=$end_day?></span>
+                     </td>
+                     <td>
+                       <span id="pay"><?=$price?></span>원
+                     </td>
+                   </tr>
               <?php
                 }
               }else{

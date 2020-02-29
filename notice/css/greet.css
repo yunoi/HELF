@@ -1,8 +1,9 @@
 #content{
-	padding-top: 100px;
 	width: 1100px;
 	position: relative;
 	margin: 0 auto;
+	padding-top: 100px;
+
 }
 #title span{
 	font-size: 17px;
@@ -187,8 +188,9 @@
 }
 
 #write_form #write_row3 {
-    width:99%;
-	height:251px;
+	width:99%;
+	overflow:hidden;
+	height:auto;
 	margin:2px 0 2px 0;
 }
 
@@ -206,7 +208,7 @@
 }
 
 #write_form #write_row3 .col1 {
-	height:126px;
+	height:100%;
 	padding-top:120px;
 }
 
@@ -239,7 +241,7 @@
 }
 
 #write_button {
-	margin-top:15px;
+	margin:16px 0 64px 0;
 	width:97%;
 	text-align:right;
 }

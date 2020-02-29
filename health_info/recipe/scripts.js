@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   // if the user clicks on the like button ...
   $('.like-btn').on('click', function() {
     var post_id = $(this).data('id');
@@ -20,7 +19,6 @@ $(document).ready(function() {
       },
       success: function(data) {
         res = JSON.parse(data);
-        // console.log(res);
         if (action == "like") {
           $clicked_btn.removeClass('fa-thumbs-o-up');
           $clicked_btn.addClass('fa-thumbs-up');
@@ -42,6 +40,7 @@ $(document).ready(function() {
   // if the user clicks on the dislike button ...
   $('.dislike-btn').on('click', function() {
     var post_id = $(this).data('id');
+    console.log(post_id);
     $clicked_btn = $(this);
     if ($clicked_btn.hasClass('fa-thumbs-o-down')) {
       action = 'dislike';

@@ -209,6 +209,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    data-id="<?php echo $post['num'] ?>">
                  </i>
                  <span class="likes"><?php echo getLikes($post['num']); ?></span>
+
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -222,12 +223,38 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    <?php endif ?>
                    data-id="<?php echo $post['num'] ?>"></i>
                  <span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
+<!-- ///////////////////////////// -->
+             <script>
+             var value1;
+             var value2;
+             var like_result;
+             value1=document.getElementsByClassName('likes');
+             value2=document.getElementsByClassName('dislikes');
+
+             like_result=value1[0].innerText - value2[0].innerText;
+             console.log(like_result);
+             </script>
+<!-- ///////////////////////////////////////// -->
+
               </div>
               </div>
            <?php endforeach ?>
-
           </div>
           <script src="scripts.js"></script>
+
+<!-- ////////////////////// -->
+          <?php
+           $like_result = "<script>document.write(like_result);</script>";
+           echo "$like_result";
+
+           // $sql="UPDATE together SET likeit=$like_result WHERE b_code='같이할건강' and num=$num;";
+           // $result = mysqli_query($conn, $sql);
+           // if (!$result) {
+           //     die('Error: ' . mysqli_error($conn));
+           // }
+           ?>
+
+<!-- ////////////////////////////// -->
 
 
 <!--덧글내용시작  -->
@@ -269,7 +296,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
       <input type="hidden" name="user_id" value="<?=$user_id?>">
       <input type="hidden" name="b_code" value="같이할건강">
       <div id="ripple_insert">
-        <div id="ripple_textarea"><img src="../pic/ripple.png" alt=""><textarea name="ripple_content" rows="3" cols="86"></textarea><input type="submit" value="&nbsp&nbsp입력&nbsp&nbsp"></div>
+        <div id="ripple_textarea"><img src="./pic/ripple.png" alt=""><textarea name="ripple_content" rows="3" cols="86"></textarea><input type="submit" value="&nbsp&nbsp입력&nbsp&nbsp"></div>
       </div><!--end of ripple_insert -->
     </form>
   </div><!--end of ripple2  -->
@@ -282,7 +309,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
     if (isset($_SESSION['user_id'])) {
         if ($_SESSION["user_grade"]=="admin" ||$_SESSION['user_grade']=="master" || $_SESSION['user_id']==$id) {
             echo('<a href="./write_edit_form.php?mode=update&num='.$num.'">수정</a>&nbsp;');
-            echo('<button type="button" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
+            echo('<button type="button" id="write_button_delete" onclick="check_delete('.$num.')">삭제</button>&nbsp;');
         }
     }
     //로그인하는 유저에게 답변기능과 글쓰기 기능을 부여함.

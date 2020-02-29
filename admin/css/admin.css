@@ -41,6 +41,7 @@
 #admin_menu_bar h2 {
   margin-top: 20px;
   color: #424242;
+  line-height:
 }
 
 #admin_menu_bar ul {
@@ -68,7 +69,7 @@
   padding: 10px;
 }
 
-#content h1 {
+#content #content_title {
   border-bottom: 2px solid #424242;
   padding-bottom: 15px;
 }
@@ -94,21 +95,20 @@ a:hover {
   width: 850px;
 }
 
-#regist_table tr{
+#regist_table tr {
   margin: 5px;
 }
 
-#regist_table *{
+#regist_table * {
   padding: 5px;
-
 }
 
-#td_plus{
+#td_plus {
   padding: 0;
   margin: 0;
 }
 
-#td_plus li{
+#td_plus li {
   margin: 0;
   padding: 0;
   margin-bottom: 4px;
@@ -126,6 +126,19 @@ a:hover {
 }
 
 #user_table td {
+<<<<<<< HEAD
+=======
+  border: 1px solid black;
+}
+
+#board1_table tr {
+  height: 25px;
+}
+
+#board1_table td {
+  border: 1px solid black;
+}
+>>>>>>> d3bbc56a9dac7fb666014c6ae03b20e4c27012fd
 
 }
 

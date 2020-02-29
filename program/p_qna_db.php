@@ -54,8 +54,8 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="new_insert"){
 
   mysqli_close($conn);
 
-echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
-
+// echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
+echo "<script>self.close()</script>" ;
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $id = $_POST["id"];
     $o_key = $_POST["o_key"];
@@ -83,7 +83,8 @@ echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
     mysqli_close($conn);
 
     // echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
-    echo "<script>location.href='./program_detail.php?o_key=$group_num';</script>";
+    // echo "<script>location.href='./program_detail.php?o_key=$group_num';</script>";
+    echo "<script>self.close()</script>";
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
     $o_key = $_GET["o_key"];
     $num = test_input($_GET["num"]);
@@ -95,8 +96,8 @@ echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
       die('Error: ' . mysqli_error($conn));
     }
     mysqli_close($conn);
-    echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
-
+    // echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
+echo "<script>self.close()</script>";
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
   $group_num = $_POST["group_num"];
   $shop = $_POST["shop"];
@@ -120,6 +121,7 @@ echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
   if (!$result) {
     die('Error: ' . mysqli_error($conn));
   }
-  echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
+  // echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
+  echo "<script>self.close()</script>";
 }
 ?>

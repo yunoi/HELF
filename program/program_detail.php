@@ -5,13 +5,14 @@
    $o_key=$_GET['o_key'];
    $o_key=(int)$o_key;
  }else{
-   echo "alert('접속 오류 발생');";
+   echo "<script>alert('접속 오류 발생');</script>";
    return;
  }
  define('SCALE', 5);
+ $mode="insert";
+ $update="";
 $user_id=$_SESSION['user_id'];
 $user_grade=$_SESSION["user_grade"];
- $mode="insert";
  if(!isset($_COOKIE['today_view'])){
  	setcookie('today_view', $o_key, time() + 21600, "/");
  } else {
@@ -24,27 +25,6 @@ $user_grade=$_SESSION["user_grade"];
    //   }
  }
  ?>
- <script type="text/javascript">
-       function review_update(num,contenttext){
-         let number=num;
-         <?php
-         $mode="update";
-         ?>
-         document.getElementById('num').value=num;
-         document.getElementById('reviwe_content').value=contenttext;
-       }
-     function qna_mode(modetype,key,num) {
-        if(modetype==="delete"){
-            location.href="./p_qna_db.php?mode="+modetype+"&num="+num+"&o_key="+key;
-        }
-         window.open(
-             "http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/program/p_qna.php?mode="+modetype+"&o_key="+key+"&num="+num,
-             "QnA",
-             "_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
-                     "ft=100px , width=500px, height=250px"
-         );
-     }
- </script>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -183,7 +163,7 @@ $user_grade=$_SESSION["user_grade"];
                            $sql="select * from program where shop='$shop'and type='$type' order by price";
                            $result = mysqli_query($conn, $sql);
                          while($row = mysqli_fetch_array($result)){
-                           $table_choose       = $row["choose"]; //옵션 내용
+                           $table_choose = $row["choose"]; //옵션 내용
                            $table_price = (int)$row["price"]; //옵션에 대한 가격
                            if(!($table_choose==="선택")){
                           ?>
@@ -366,8 +346,9 @@ $user_grade=$_SESSION["user_grade"];
                        </div>
                       <div class="review_content"><?=$review_content?></div>
                       <?php if ($review_id===$user_id ||$user_grade==="admin"){ ?>
-                        <form class="" action="program_review.php?mode=delete&num=<?=$num?>" method="post">
+                        <form class="" action="program_review.php?mode=delete" method="post">
                           <input type="hidden" name="shop" value="<?=$shop?>">
+                          <input type="hidden" name="num" value="<?=$num?>">
                           <input type="hidden" name="type" value="<?=$type?>">
                           <input type="hidden" name="o_key" value="<?=$o_key?>">
                           <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>
@@ -383,7 +364,7 @@ $user_grade=$_SESSION["user_grade"];
                      <div class="clear"></div><br/>
                      <li>
                        <div class=""><!--댓글 달기 insert-->
-                         <form class="form_review" name="form_review" action="program_review.php?mode=<?=$mode?>" method="post">
+                         <form class="form_review" name="form_review" action="./program_review.php" method="post">
                           <h3>댓글</h3>
                            <textarea name="content" id="reviwe_content" rows="3" cols="30"></textarea>
                            <div class="starRev">
@@ -403,7 +384,8 @@ $user_grade=$_SESSION["user_grade"];
                             <input type="hidden" name="type" value="<?=$type?>">
                             <input type="hidden" name="shop" value="<?=$shop?>">
                             <input type="hidden" name="star" value="<?=$star_score?>">
-                           <input type="submit" value="등록">
+                            <input type="hidden" id="mode" name="mode" value="<?=$mode?>">
+                           <input type="button" value="등록" onclick="review_insert();">
                          </form>
                        </div>
                      </li>
@@ -416,8 +398,9 @@ $user_grade=$_SESSION["user_grade"];
                 <!-- 작업대 -->
 
                 <h2><?=$shop?></h2>
-                <form class="" action="pick_db.php?mode=cart_insert" method="post">
-                  <h3><span id="h_pay"></span></h3>
+                <form class="" action="#" method="post">
+                  <h3><span id="h_pay">0</span>원</h3>
+                  <input type="hidden" id="input_h_pay" name="" value="">
                   <p>
                     <?=$subject?><br/>
                     <?=$content?><br/>
@@ -439,8 +422,7 @@ $user_grade=$_SESSION["user_grade"];
                     $file_type     = $row["file_type"]; //이미지파일에 타입
                     if(!($choose==="선택")){
                    ?>
-                     <option value="<?=$shop?>,<?=$type?>,<?=$choose?>,<?=$price?>"><?=$choose?> : <?=$price?>원</option>
-
+                     <option value="<?=$price?>"><?=$choose?> : <?=$price?>원</option>
                     <?php
                     }
                   }
@@ -458,16 +440,51 @@ $user_grade=$_SESSION["user_grade"];
                       return false;
                     });
                     function pay(x){
+                      document.getElementById("h_pay").innerHTML=x;
+                      document.getElementById("input_h_pay").value=x;
+                    }
+                    function program_purchase(){
+                      let price = document.getElementById("input_h_pay").value;
+                      location.href='./program_purchase.php?o_key=<?=$o_key?>&shop=<?=$shop?>&type=<?=$type?>&price='+price;
                       // var op_split = x.split(',');
                       // document.getElementById("h_pay").innerHTML=op_split[0];
                       document.getElementById("h_pay").innerHTML= x;
                     }
-
+                    function program_pick_db(){
+                      let price = document.getElementById("input_h_pay").value;
+                      location.href='./pick_db.php?mode=cart_insert&shop=<?=$shop?>&type=<?=$type?>&price='+price;
+                    }
+                    function review_update(num,contenttext){
+                      document.getElementById('mode').value="update";
+                      document.getElementById('num').value=num;
+                      document.getElementById('reviwe_content').value=contenttext;
+                    }
+                  function qna_mode(modetype,key,num) {
+                     if(modetype==="delete"){
+                         location.href="./p_qna_db.php?mode="+modetype+"&num="+num+"&o_key="+key;
+                     }
+                      window.open(
+                          "http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/program/p_qna.php?mode="+modetype+"&o_key="+key+"&num="+num,
+                          "QnA",
+                          "_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
+                                  "ft=100px , width=500px, height=250px"
+                      );
+                  }
+                  function review_insert(){
+                    let mode=document.getElementById('mode').value;
+                    if(mode==="update"){
+                      document.getElementById('mode').value="update";
+                    }else{
+                      document.getElementById('mode').value="insert";
+                    }
+                    document.form_review.submit();
+                  }
                   </script>
                   <br/>
                   <div class="">
                     <img src="" alt="">작업일 : 123 &nbsp;&nbsp; <img src="" alt="">수정 횟수 : 제한 없음
                   </div>
+
                   <?php
                   $sql4 = "select num from pick where id ='$user_id' and o_key = $o_key";
                   $result4 = mysqli_query($conn, $sql4);
@@ -480,9 +497,8 @@ $user_grade=$_SESSION["user_grade"];
                    echo "<input type='button' value='이미찜' onclick=\"location.href='pick_db.php?mode=delete&o_key=$o_key&shop=$shop';\"><br>";
                  }
                    ?>
-                  <input type="submit" name="" value="장바구니" onclick="location.href='./pick_db.php?mode=cart_insert'" >
-                  <input type="button" name="" value="구매하기" onclick="location.href='./program_purchase.php'">
-
+                  <input type="button" name="" value="장바구니" onclick="program_pick_db();">
+                  <input type="button" name="" value="구매하기" onclick="program_purchase();">
                 </form>
               </div>
             </aside>

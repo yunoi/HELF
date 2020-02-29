@@ -78,7 +78,7 @@ session_start();
                 <div class="col2">
                   <?php
                     if($mode=="insert"){
-                      echo '<input type="file" name="upfile" >이미지(2MB)파일(0.5MB)';
+                      echo '<input type="file" name="upfile">이미지(2MB)파일(0.5MB)';
                     }else{
                   ?>
                     <input type="file" name="upfile" onclick='document.getElementById("del_file").checked=true; document.getElementById("del_file").disabled=true'>

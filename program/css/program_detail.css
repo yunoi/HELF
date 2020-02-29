@@ -142,17 +142,17 @@ p{
 }
 .qna_subject{
   display: inline-block;
-  width: 50%;
+  width: 51%;
   text-align: left;
 }
 .qna_id{
   display: inline-block;
-  width: 24%;
+  width: 20%;
   text-align: right;
 }
 .qna_regist_day  {
   display: inline-block;
-  width: 24%;
+  width: 26%;
   text-align: right;
 }
 .qna_body{

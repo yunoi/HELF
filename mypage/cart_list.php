@@ -31,6 +31,11 @@
         // url에서 get 값 지워줌;
         history.pushState(null, null, "http://localhost/helf/mypage/cart_list.php");
 
+        setTimeout(function() {
+          $("input[type=checkbox]").prop("checked",true);
+          $("input[type=checkbox]").trigger("click");
+        }, 10);
+
         // 전체 선택
         $("#all_agree").change(function() {
           if($("#all_agree").prop("checked")) {
@@ -149,7 +154,7 @@
               <div id="all_check">
                 <input type="checkbox" id="all_agree" value="0">
                 <span>전체선택</span>
-                <input type="submit" id="btn_submit" value="선택 상품 삭제">
+                <input type="button" id="btn_submit" onclick="delete_cart();" value="선택 상품 삭제">
               </div>
             <ul id="program_list">
             <?php
@@ -193,12 +198,12 @@
                               <div class="program_price">
                                 <p><?=$price?><span> 원</span>
                                 <div class="buttons">
-                                  <button type="button" id="buy_btn">구매하기</button> <br>
+                                  <button type="button" id="buy_btn" onclick="location.href='../program/program_purchase.php?num=<?=$num?>'">구매하기</button> <br>
                                   <button type="button" id="delete_btn" onclick="location.href='cart_list.php?num=<?=$num?>&page=<?=$page?>'">삭제</button>
                                 </div>
                               </div>
                               <div class="checkbox_div">
-                                <input type="checkbox" class="checked_num" name="no[]" value="<?=$num?>">
+                                <input type="checkbox" id="checked_num" name="no[]" value="<?=$num?>">
                               </div>
                             </div>
                           </li>
@@ -224,6 +229,17 @@
                     </ul>
 
                   </form>
+                  <script type="text/javascript">
+                    function delete_cart() {
+                      $("#delete_cart_form").prop("action","cart_list.php?page=<?=$page?>");
+                      $("#delete_cart_form").submit();
+                    }
+
+                    function go_purchase() {
+                      $("#delete_cart_form").prop("action","../program/program_purchase.php");
+                      $("#delete_cart_form").submit();
+                    }
+                  </script>
           </div>
           <div id="calculate_price">
             <div id="price_div">
@@ -231,8 +247,8 @@
             </div>
           </div>
           <div id="calculate_buttons">
-            <button type="button" id="shopping_btn">계속 쇼핑하기</button>
-            <button type="button" id="select_buy_btn">구매하기</button>
+            <button type="button" id="shopping_btn" onclick="location.href='../program/program.php'">계속 쇼핑하기</button>
+            <button type="button" id="select_buy_btn" onclick="go_purchase();">구매하기</button>
           </div>
         </div>
       </section>

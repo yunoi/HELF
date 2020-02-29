@@ -22,7 +22,7 @@ function create_table($conn, $table_name){
               phone char(13) not null,
               email char(40) not null,
               address char(50),
-              grade char(10),
+              grade char(10) not null default 'user',
               primary key(id)
            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
@@ -215,8 +215,8 @@ function create_table($conn, $table_name){
               primary key(address)
            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
-            case 'rating_info' :
-            $sql = "CREATE TABLE `rating_info` (
+            case 'rating_health_info' :
+            $sql = "CREATE TABLE `rating_health_info` (
               `num` int not null primary key auto_increment,
               `user_id` char(20) NOT NULL,
               `post_id` int(11) NOT NULL,
@@ -225,12 +225,35 @@ function create_table($conn, $table_name){
                CONSTRAINT UC_rating_info UNIQUE (user_id, post_id)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
+            case 'rating_together_info' :
+              $sql = "CREATE TABLE `rating_together_info` (
+                `num` int not null primary key auto_increment,
+                `user_id` char(20) NOT NULL,
+                `post_id` int(11) NOT NULL,
+                `b_code` char(20) not null,
+                `rating_action` varchar(30) NOT NULL,
+                 CONSTRAINT UC_rating_info UNIQUE (user_id, post_id)
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+              ";
+              break;
+              case 'rating_community_info' :
+                $sql = "CREATE TABLE `rating_community_info` (
+                  `num` int not null primary key auto_increment,
+                  `user_id` char(20) NOT NULL,
+                  `post_id` int(11) NOT NULL,
+                  `b_code` char(20) not null,
+                  `rating_action` varchar(30) NOT NULL,
+                   CONSTRAINT UC_rating_info UNIQUE (user_id, post_id)
+                   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+                ";
+                break;
             case 'sales' :
               $sql = "CREATE TABLE sales(
                 num int not null auto_increment,
+                ord_num char(25) not null,
                 id char(20) not null,
                 o_key int not null,
-                sales_day char(15) not null,
+                sales_day char(20) not null,
                 primary key (num),
                  
                constraint sales_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,

@@ -15,11 +15,25 @@ session_start();
     <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <script type="text/javascript">
     function check_delete(num) {
-      var result=confirm("삭제하시겠습니까?\n Either OK or Cancel.");
+      var result=confirm("삭제하시겠습니까?");
       if(result){
             window.location.href='./dml_board.php?mode=delete&num='+num;
       }
     }
+window.onload = function()
+{
+ // div height 설정
+ //sibling div의 길이가 늘어날 때 같이 길이가 늘어날 수 있도록
+ setDivHeight('content_col1','content_col2'); // 매개변수(heigth값 가져올 대상 div id, 변경할 div id)
+}
+
+function setDivHeight(objSet, objTar)// objSet : 변경할 div id, objTar : height값을 구할 대상 div id
+{
+  var objSet   = document.getElementById(objSet);
+  var objTarHeight= document.getElementById(objTar).offsetHeight;
+  objSet.style.height  = objTarHeight + "px";
+}
+
     </script>
   </head>
   <body>
@@ -65,7 +79,7 @@ session_start();
                 $file_copied=$row['file_copied'];
                 $file_type=$row['file_type'];
 
-                if (!empty($file_copied)&&$file_type =="image/png") {
+                if (!empty($file_copied)&&$file_type =="image") {
                     //이미지 정보를 가져오기 위한 함수 width, height, type
                     $image_info=getimagesize("./data/".$file_copied);
                     $image_width=$image_info[0];
@@ -76,6 +90,7 @@ session_start();
                     }
                 } else {
                     $image_width=0;
+                    
                     $image_height=0;
                     $image_type="";
                 }
@@ -98,17 +113,15 @@ session_start();
               <div class="write_line"></div>
 
               <div id="write_row3">
-                <div class="col1">내&nbsp;&nbsp;용</div>
-                <div class="col2"><p><?=$content?> <br/>
-                <img src='./data/<?=$file_copied?>' width='<?=$image_width?>'>;</p></div>
+                <div class="col1" id="content_col1">내&nbsp;&nbsp;용</div>
+                <div class="col2" id="content_col2"><?=$content?> <br/>
+                <img src='./data/<?=$file_copied?>' width='<?=$image_width?>'></div>
               </div><!--end of write_row3  -->
               <div class="write_line">
                 <div class="clear">
                 <div class="col2">
                   <?php
-                    if ($file_type =="image") {
-                        echo "<img src='./data/$file_copied' width='$image_width'><br>";
-                    } else if (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
+                    if (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
                         $file_path = "./data/".$file_copied;
                         $file_size = filesize($file_path);
                         //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
@@ -119,7 +132,8 @@ session_start();
                     }
                   ?>
                 </div><!--end of col2  -->
-              </div><!--end of view_content  --></div>
+              </div><!--end of view_content  -->
+            </div>
             </div><!--end of write_form  -->
 
             <div id="write_button">

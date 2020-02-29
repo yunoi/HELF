@@ -48,7 +48,7 @@
                   <option value="축구">축구</option>
                   <option value="복싱">복싱</option>
                   <option value="등산">등산</option>
-                  <option value="수영">클라이밍</option>
+                  <option value="클라이밍">클라이밍</option>
                   <option value="요가/필라테스">요가/필라테스</option>
                   <option value="기타">기타</option>
                 </select>
@@ -205,6 +205,8 @@
             }
 
              $s_area = $s_area1.",".$s_area2;
+
+             echo "<script>alert($s_area)</script>";
 
              if($s_area == ","){
                $s_area = "";

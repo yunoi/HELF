@@ -98,7 +98,13 @@
               <td><?=$phone ?></td>
               <td><?=$email?></td>
               <td><?=$address?></td>
-              <td><input class="grade" type="text" name="grade" value="<?=$grade?>"></td>
+              <td>
+                <select class="grade" name="grade" style="width:70px;">
+                  <option value="master" <?php if ($grade === 'master') echo "selected";?>>master</option>
+                  <option value="admin" <?php if ($grade === 'admin') echo "selected";?>>admin</option>
+                  <option value="user" <?php if ($grade === 'user') echo "selected";?>>user</option>
+                </select>
+              </td>
               <td><button type="submit">수정</button></td>
               <td><button type="button" onclick="location.href='user_curd.php?id=<?=$id?>&mode=delete'">탈퇴</button></td>
             </form>

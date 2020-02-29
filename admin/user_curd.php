@@ -53,6 +53,8 @@
     $sql = "update members set grade ='$grade' where id = '$id'";
     mysqli_query($conn, $sql);
     mysqli_close($conn);
+
+    echo "<script>alert('회원등급 수정완료')</script>";
   }
 
 

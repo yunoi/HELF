@@ -110,7 +110,8 @@ https://kmong.com/order/2518542 참고한 사이트 화면
           }
           $pay="post";
         }else{
-          echo "<script>alert('접속 오류 발생');</script>";
+          echo "<script>alert('프로그램을 선택해주세요!');</script>";
+          echo "<script>history.go(-1);</script>";
           return;
         }
         ?>

@@ -215,7 +215,7 @@ function create_table($conn, $table_name){
               primary key(address)
            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
-            case '`rating_health_info' :
+            case 'rating_health_info' :
             $sql = "CREATE TABLE `rating_health_info` (
               `num` int not null primary key auto_increment,
               `user_id` char(20) NOT NULL,
@@ -244,6 +244,7 @@ function create_table($conn, $table_name){
                   `b_code` char(20) not null,
                   `rating_action` varchar(30) NOT NULL,
                    CONSTRAINT UC_rating_info UNIQUE (user_id, post_id)
+                   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
                 ";
                 break;
             case 'sales' :

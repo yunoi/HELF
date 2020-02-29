@@ -30,7 +30,7 @@
     <h4>인기게시글</h4>
     <ul>
 <?php
-  $sql = "SELECT post_id, COUNT(post_id) AS likeit FROM rating_info where rating_action='like'
+  $sql = "SELECT post_id, COUNT(post_id) AS likeit FROM rating_community_info where rating_action='like'
   Group by post_id
   HAVING COUNT(post_id) > 0 order by likeit desc limit 5;";
   $result = mysqli_query($conn, $sql);

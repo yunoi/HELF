@@ -31,6 +31,11 @@
         // url에서 get 값 지워줌;
         history.pushState(null, null, "http://localhost/helf/mypage/cart_list.php");
 
+        setTimeout(function() {
+          $("input[type=checkbox]").prop("checked",true);
+          $("input[type=checkbox]").trigger("click");
+        }, 10);
+
         // 전체 선택
         $("#all_agree").change(function() {
           if($("#all_agree").prop("checked")) {

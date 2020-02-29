@@ -38,10 +38,13 @@ if($choose === "선택") {
 
   $sql2 = "select * from cart where id='$id' and o_key=$o_key;";
   $result2 = mysqli_query($conn, $sql2);
+  $row = mysqli_fetch_array($result2);
 
-  if($result2) {
+  if($row) {
+
     echo "<script>alert('이미 장바구니에 들어있는 옵션입니다!');</script>";
     echo "<script>history.go(-1);</script>";
+
   } else {
 
     $sql3 = "insert into cart values (null, '$id', $o_key);";

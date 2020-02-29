@@ -79,10 +79,14 @@ function getRating($id)
     $likes_query = "SELECT COUNT(*) FROM rating_info WHERE b_code='다이어트후기' and post_id = $id AND rating_action='like'";
     $dislikes_query = "SELECT COUNT(*) FROM rating_info
                  WHERE b_code='다이어트후기' and post_id = $id AND rating_action='dislike'";
+
+
     $likes_rs = mysqli_query($conn, $likes_query);
     $dislikes_rs = mysqli_query($conn, $dislikes_query);
+
     $likes = mysqli_fetch_array($likes_rs);
     $dislikes = mysqli_fetch_array($dislikes_rs);
+
     $rating = [
     'likes' => $likes[0],
     'dislikes' => $dislikes[0]
@@ -121,8 +125,6 @@ function userDisliked($post_id)
 }
 
 $num = test_input($_GET["num"]);
-$post_id = $_POST['post_id'];
-echo "$post_id";
 
 $sql = "SELECT * FROM community where b_code='다이어트후기' and num=$num"; //커뮤니티의 게시판 번호
 $result_com = mysqli_query($conn, $sql);

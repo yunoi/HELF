@@ -204,10 +204,8 @@
                                   <?php
                                     $sql2 = "select * from program where shop='$shop' and type='$type' order by price";
                                     $result2 = mysqli_query($conn, $sql2);
-                                    for ($i=0; $i < 3 ; $i++) { //여기 물어바야함,,
-                                      $row2 = mysqli_fetch_array($result2);
+                                    while($row2 = mysqli_fetch_array($result2)) { 
                                       $option = $row2["choose"];
-                                      $price2 = $row2["price"];
                                       ?>
                                       <option value="<?=$option?>"><?=$option?></option>
                                     <?php

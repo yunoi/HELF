@@ -28,7 +28,7 @@
     <script src="./chart/export-data.js"></script>
     <script src="./chart/accessibility.js"></script>
     <header>
-      <?php include "../common/lib/header.php";?>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
     </header>
     <section>
       <?php

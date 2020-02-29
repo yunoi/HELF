@@ -9,9 +9,10 @@
    return;
  }
  define('SCALE', 5);
+ $mode="insert";
+ $update="";
 $user_id=$_SESSION['user_id'];
 $user_grade=$_SESSION["user_grade"];
- $mode="insert";
  if(!isset($_COOKIE['today_view'])){
  	setcookie('today_view', $o_key, time() + 21600, "/");
  } else {
@@ -24,26 +25,6 @@ $user_grade=$_SESSION["user_grade"];
    //   }
  }
  ?>
- <script type="text/javascript">
-       function review_update(num,contenttext){
-         <?php
-         $mode="update";
-         ?>
-         document.getElementById('num').value=num;
-         document.getElementById('reviwe_content').value=contenttext;
-       }
-     function qna_mode(modetype,key,num) {
-        if(modetype==="delete"){
-            location.href="./p_qna_db.php?mode="+modetype+"&num="+num+"&o_key="+key;
-        }
-         window.open(
-             "http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/program/p_qna.php?mode="+modetype+"&o_key="+key+"&num="+num,
-             "QnA",
-             "_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
-                     "ft=100px , width=500px, height=250px"
-         );
-     }
- </script>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -365,8 +346,9 @@ $user_grade=$_SESSION["user_grade"];
                        </div>
                       <div class="review_content"><?=$review_content?></div>
                       <?php if ($review_id===$user_id ||$user_grade==="admin"){ ?>
-                        <form class="" action="program_review.php?mode=delete&num=<?=$num?>" method="post">
+                        <form class="" action="program_review.php?mode=delete" method="post">
                           <input type="hidden" name="shop" value="<?=$shop?>">
+                          <input type="hidden" name="num" value="<?=$num?>">
                           <input type="hidden" name="type" value="<?=$type?>">
                           <input type="hidden" name="o_key" value="<?=$o_key?>">
                           <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>
@@ -382,7 +364,7 @@ $user_grade=$_SESSION["user_grade"];
                      <div class="clear"></div><br/>
                      <li>
                        <div class=""><!--댓글 달기 insert-->
-                         <form class="form_review" name="form_review" action="program_review.php?mode=<?=$mode?>" method="post">
+                         <form class="form_review" name="form_review" action="./program_review.php" method="post">
                           <h3>댓글</h3>
                            <textarea name="content" id="reviwe_content" rows="3" cols="30"></textarea>
                            <div class="starRev">
@@ -402,7 +384,8 @@ $user_grade=$_SESSION["user_grade"];
                             <input type="hidden" name="type" value="<?=$type?>">
                             <input type="hidden" name="shop" value="<?=$shop?>">
                             <input type="hidden" name="star" value="<?=$star_score?>">
-                           <input type="submit" value="등록">
+                            <input type="hidden" id="mode" name="mode" value="<?=$mode?>">
+                           <input type="button" value="등록" onclick="review_insert();">
                          </form>
                        </div>
                      </li>
@@ -471,6 +454,31 @@ $user_grade=$_SESSION["user_grade"];
                       let price = document.getElementById("input_h_pay").value;
                       location.href='./pick_db.php?mode=cart_insert&shop=<?=$shop?>&type=<?=$type?>&price='+price;
                     }
+                    function review_update(num,contenttext){
+                      document.getElementById('mode').value="update";
+                      document.getElementById('num').value=num;
+                      document.getElementById('reviwe_content').value=contenttext;
+                    }
+                  function qna_mode(modetype,key,num) {
+                     if(modetype==="delete"){
+                         location.href="./p_qna_db.php?mode="+modetype+"&num="+num+"&o_key="+key;
+                     }
+                      window.open(
+                          "http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/program/p_qna.php?mode="+modetype+"&o_key="+key+"&num="+num,
+                          "QnA",
+                          "_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
+                                  "ft=100px , width=500px, height=250px"
+                      );
+                  }
+                  function review_insert(){
+                    let mode=document.getElementById('mode').value;
+                    if(mode==="update"){
+                      document.getElementById('mode').value="update";
+                    }else{
+                      document.getElementById('mode').value="insert";
+                    }
+                    document.form_review.submit();
+                  }
                   </script>
                   <br/>
                   <div class="">

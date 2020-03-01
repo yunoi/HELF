@@ -179,7 +179,7 @@ $user_grade=$_SESSION["user_grade"];
                            $sql="select * from program where shop='$shop'and type='$type' order by price";
                           $result = mysqli_query($conn, $sql);
                          while($row = mysqli_fetch_array($result)){
-                           $table_choose       = $row["choose"]; //옵션 내용
+                           $table_choose = $row["choose"]; //옵션 내용
                            if(!($table_choose==="선택")){
                           ?>
                           <td><?=$table_choose?>횟수</td>
@@ -320,7 +320,7 @@ $user_grade=$_SESSION["user_grade"];
                     $review_id = $row["id"];
                     $review_content = $row["content"];
                     $review_regist_day = $row["regist_day"];
-                    $review_score = $row["score"];
+                    $review_score = (int)$row["score"];
                     switch ($review_score) {
                       case 0: $width=0;  break;
                       case 0.5: $width=16;  break;
@@ -383,7 +383,7 @@ $user_grade=$_SESSION["user_grade"];
                             <input type="hidden" name="o_key" value="<?=$o_key?>">
                             <input type="hidden" name="type" value="<?=$type?>">
                             <input type="hidden" name="shop" value="<?=$shop?>">
-                            <input type="hidden" name="star" value="<?=$star_score?>">
+                            <input type="hidden" id="star" name="star" value="0">
                             <input type="hidden" id="mode" name="mode" value="<?=$mode?>">
                            <input type="button" value="등록" onclick="review_insert();">
                          </form>
@@ -403,7 +403,7 @@ $user_grade=$_SESSION["user_grade"];
                   <input type="hidden" id="input_h_pay" name="" value="">
                   <p>
                     <?=$subject?><br/>
-                
+
                     1회당 레슨시간 (분) : 30 분<br/>
                     레슨 횟수 : 1 회<br/>
                   </p>
@@ -437,10 +437,7 @@ $user_grade=$_SESSION["user_grade"];
                       $(this).parent().children('span').removeClass('on');
                       $(this).addClass('on').prevAll('span').addClass('on');
                       valr=$(this).text();
-                      <?php
-                      $star_score=0;
-                      $star_score="document.write(valr);";
-                      ?>
+                      document.getElementById("star").value=valr;
                       return false;
                     });
                     function pay(x){
@@ -467,6 +464,7 @@ $user_grade=$_SESSION["user_grade"];
                      if(modetype==="delete"){
                          location.href="./p_qna_db.php?mode="+modetype+"&num="+num+"&o_key="+key;
                      }
+                     alert(modetype);
                       window.open(
                           "http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/program/p_qna.php?mode="+modetype+"&o_key="+key+"&num="+num,
                           "QnA",

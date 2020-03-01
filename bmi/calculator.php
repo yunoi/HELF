@@ -65,11 +65,8 @@
         rel="stylesheet"
         type="text/css"
         href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/css/calcuator.css">
+    <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/css/label.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/js/bmi.js" charset="utf-8"></script>
   </head>
@@ -82,36 +79,36 @@
   <?php
 if($mode==="bmi"){
   ?>
-  <div class="div-bmi">
-      <table>
-        <tr>
-          <th>성별</th>
-          <td><?=$gen?></td>
-        </tr>
-        <tr>
-          <th>나이</th>
-          <td><?=$age?> 세</td>
-        </tr>
-        <tr>
-          <th>신장(cm)</th>
-          <td><?=$cm?> cm</td>
-        </tr>
-        <tr>
-          <th>몸무게</th>
-          <td><?=$kg?> kg</td>
-        </tr>
-        <tr>
-          <th>BMI수치</th>
-          <td><?=$bmi?> BMI</td>
-        </tr>
-      </table>
-  </div>
-  <div class="bmi-wrap r5">
+  <div>
+    <div class="div_bmi">
+    <ul>
+      <li>
+        <label for="gen">성별</label>
+        <span id="gen"><?=$gen?></span>
+      </li>
+      <li>
+        <label for="age">나이(연령)</label>
+        <span id="age"><?=$age?> 세</span>
+      </li>
+      <li>
+        <label for="cm">신장(cm)</label>
+        <span  id="cm"><?=$cm?> cm</span>
+      </li>
+      <li>
+          <label for="kg">몸무게</label>
+          <span id="kg"><?=$kg?>kg</span>
+      </li>
+      <li>
+        <label for="bmi">BMI수치</label>
+        <span id="bmi"><?=$bmi?> BMI</span>
+      </li>
+    </ul>
+    <div class="bmi-wrap">
 				<div class="bmi">
 					<p class="tit"><span class="p-red">비만도(BMI)</span> 검사 결과</p>
 					<div class="graph">
 						<div class="inner">
-							<img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/img/img_bmi.png" alt="">
+							<img id="bar" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/img/img_bmi.png" alt="">
 							<a href="javascript:;" id="grapnavi" class="btn-point">
 								<img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/img/btn_point.png" alt="">
 								<span id="bmicnt"></span>
@@ -123,6 +120,8 @@ if($mode==="bmi"){
 					</ul>
 				</div>
 			</div>
+      </div>
+    </div>
   <?php
   echo ("<script>bmi_fun($bmi)</script>");
 }else{
@@ -170,6 +169,11 @@ if($mode==="bmi"){
    <?php
 }
  ?>
+ <div id="div_aside">
+   <aside>
+     <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+   </aside>
+ </div>
 </div>
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>

@@ -26,20 +26,20 @@ if (isset($_POST['action'])) {
     $action = $_POST['action'];
     switch ($action) {
     case 'like':
-         $sql="INSERT INTO rating_info (user_id, post_id, rating_action, b_code)
+         $sql="INSERT INTO rating_community_info (user_id, post_id, rating_action, b_code)
                VALUES ('$user_id', $post_id, 'like','자유게시판')
                ON DUPLICATE KEY UPDATE rating_action='like'";
          break;
     case 'dislike':
-          $sql="INSERT INTO rating_info (user_id, post_id, rating_action, b_code)
+          $sql="INSERT INTO rating_community_info (user_id, post_id, rating_action, b_code)
                VALUES ('$user_id', $post_id, 'dislike', '자유게시판')
                ON DUPLICATE KEY UPDATE rating_action='dislike'";
          break;
     case 'unlike':
-          $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='자유게시판'";
+          $sql="DELETE FROM rating_community_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='자유게시판'";
           break;
     case 'undislike':
-            $sql="DELETE FROM rating_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='자유게시판'";
+            $sql="DELETE FROM rating_community_info WHERE user_id='$user_id' AND post_id=$post_id AND b_code='자유게시판'";
       break;
     default:
         break;
@@ -52,14 +52,17 @@ if (isset($_POST['action'])) {
 }
 
 // Get total number of likes for a particular post
-function getLikes($id)
+function getLikes($id, $num)
 {
     global $conn;
     // $id=(int)$id;
-    $sql = "SELECT COUNT(*) FROM rating_info
+    $sql = "SELECT COUNT(*) FROM rating_community_info
           WHERE b_code='자유게시판' and post_id = $id AND rating_action='like'";
     $rs = mysqli_query($conn, $sql);
     $result = mysqli_fetch_array($rs);
+
+    $sql2 = "UPDATE community SET likeit=$result[0] WHERE b_code='자유게시판' and num=$num;";
+    mysqli_query($conn, $sql2);
     return $result[0];
 }
 
@@ -67,7 +70,7 @@ function getLikes($id)
 function getDislikes($id)
 {
     global $conn;
-    $sql = "SELECT COUNT(*) FROM rating_info
+    $sql = "SELECT COUNT(*) FROM rating_community_info
           WHERE b_code='자유게시판' and post_id = $id AND rating_action='dislike'";
     $rs = mysqli_query($conn, $sql);
     $result = mysqli_fetch_array($rs);
@@ -79,8 +82,8 @@ function getRating($id)
 {
     global $conn;
     $rating = array();
-    $likes_query = "SELECT COUNT(*) FROM rating_info WHERE b_code='자유게시판' and post_id = $id AND rating_action='like'";
-    $dislikes_query = "SELECT COUNT(*) FROM rating_info
+    $likes_query = "SELECT COUNT(*) FROM rating_community_info WHERE b_code='자유게시판' and post_id = $id AND rating_action='like'";
+    $dislikes_query = "SELECT COUNT(*) FROM rating_community_info
                  WHERE b_code='자유게시판' and post_id = $id AND rating_action='dislike'";
     $likes_rs = mysqli_query($conn, $likes_query);
     $dislikes_rs = mysqli_query($conn, $dislikes_query);
@@ -98,7 +101,7 @@ function userLiked($post_id)
 {
     global $conn;
     global $user_id;
-    $sql = "SELECT * FROM rating_info WHERE user_id='$user_id'
+    $sql = "SELECT * FROM rating_community_info WHERE user_id='$user_id'
           AND b_code='자유게시판' and post_id=$post_id AND rating_action='like'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
@@ -113,7 +116,7 @@ function userDisliked($post_id)
 {
     global $conn;
     global $user_id;
-    $sql = "SELECT * FROM rating_info WHERE b_code='자유게시판' and user_id='$user_id'
+    $sql = "SELECT * FROM rating_community_info WHERE b_code='자유게시판' and user_id='$user_id'
           AND post_id=$post_id AND rating_action='dislike'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {

@@ -41,6 +41,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="new_insert"){
   mysqli_close($conn);
 
 // echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
+echo "<script>alert('QnA가 등록되었습니다.');</script>";
 echo "<script>opener.parent.location.reload();self.close();</script>" ;
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $user_id = $_SESSION["user_id"];
@@ -104,6 +105,7 @@ echo "<script>opener.parent.location.reload();self.close();</script>" ;
 
     // echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
     // echo "<script>location.href='./program_detail.php?o_key=$group_num';</script>";
+    echo "<script>alert('답변이 등록되었습니다.');</script>";
     echo "<script>opener.parent.location.reload();self.close();</script>";
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
     $o_key = $_GET["o_key"];
@@ -117,6 +119,7 @@ echo "<script>opener.parent.location.reload();self.close();</script>" ;
     }
     mysqli_close($conn);
     // echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
+    echo "<script>alert('QnA가 삭제되었습니다.');</script>";
     echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
   $group_num = $_POST["group_num"];
@@ -142,6 +145,7 @@ echo "<script>opener.parent.location.reload();self.close();</script>" ;
     die('Error: ' . mysqli_error($conn));
   }
   // echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
+  echo "<script>alert('QnA가 수정되었습니다.');</script>";
   echo "<script>opener.parent.location.reload();self.close();</script>";
 }
 ?>

@@ -32,7 +32,7 @@
        die('Error: '. mysqli_error($conn));
      }
      mysqli_close($conn);
-
+     echo "<script>alert('평가가 입력되었습니다.');</script>";
      echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
  }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
     $num = $_POST['num'];
@@ -43,6 +43,7 @@
        die('Error: ' . mysqli_error($conn));
      }
      mysqli_close($conn);
+     echo "<script>alert('평가가 삭제되었습니다.');</script>";
      echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
 
  }else if(isset($_POST["mode"])&&$_POST["mode"]=="update"){
@@ -61,6 +62,7 @@
    if (!$result) {
      die('Error: ' . mysqli_error($conn));
    }
+   echo "<script>alert('평가가 수정되었습니다.');</script>";
    echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
  }
  ?>

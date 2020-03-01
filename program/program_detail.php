@@ -448,14 +448,14 @@ $user_grade=$_SESSION["user_grade"];
                   function qna_mode(modetype,key,num) {
                      if(modetype==="delete"){
                          location.href="./p_qna_db.php?mode="+modetype+"&num="+num+"&o_key="+key;
+                     }else{
+                       window.open(
+                         "http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/program/p_qna.php?mode="+modetype+"&o_key="+key+"&num="+num,
+                         "QnA",
+                         "_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
+                         "ft=100px , width=500px, height=250px"
+                       );
                      }
-                     alert(modetype);
-                      window.open(
-                          "http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/program/p_qna.php?mode="+modetype+"&o_key="+key+"&num="+num,
-                          "QnA",
-                          "_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
-                                  "ft=100px , width=500px, height=250px"
-                      );
                   }
                   function review_insert(){
                     let mode=document.getElementById('mode').value;

@@ -130,7 +130,7 @@
                        $file_image = "<img src='./img/file.gif'>";
                    } else {
                        $file_image = " ";
-                   } ?>
+                   }?>
                     <li id="board_content">
                       <span class="col1"><?=$number?></span>
                       <span class="col2"><?=$b_code?></span>

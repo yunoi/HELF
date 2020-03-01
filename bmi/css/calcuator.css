@@ -20,8 +20,9 @@ table td{
 }
 .graph{
   width: 600px;
-height: 75px;
+  height: 100px;
   position: relative;
+  margin: 0px auto;
 }
 .inner{
   position: absolute;
@@ -44,7 +45,7 @@ height: 75px;
 }
 .div_bmi{
   float: left;
-  padding: 20px 0px;
+  padding: 40px 0px 0px;
 }
 .div-bmi span{
     padding-left: 10px;
@@ -54,4 +55,16 @@ height: 75px;
 }
 .div-bmi ul li label{
   width: 220px;
+}
+.bmi{
+  text-align: center;
+}
+#bmi_text{
+  font-size: 18px;
+}
+#div_aside{
+  margin-top: 78px;
+}
+#div_form{
+  margin-top: 40px;
 }

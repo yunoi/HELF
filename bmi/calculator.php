@@ -81,6 +81,7 @@ if($mode==="bmi"){
   ?>
   <div>
     <div class="div_bmi">
+         <h2>BMI수치 결과</h2>
     <ul>
       <li>
         <label for="gen">성별</label>
@@ -115,7 +116,7 @@ if($mode==="bmi"){
 							</a>
 						</div>
 					</div>
-					<ul class="bul-arr-list">
+					<ul class="bul-x-list">
 						<li id="bmi_text"></li>
 					</ul>
 				</div>
@@ -128,7 +129,7 @@ if($mode==="bmi"){
    ?>
    <div id="div_form">
      <div class="div-bmi">
-   <h2>칼로리</h2>
+   <h2>칼로리 처방 결과</h2>
    <ul>
      <li>
        <label for="gen">성별</label>

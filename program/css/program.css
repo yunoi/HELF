@@ -148,15 +148,15 @@ aside{
   display: inline-block;
 }
 
-#btn_pick{
+.btn_pick{
   border: 0.5px solid #F23005;
   background: #F23005;
   color: white;
   border-radius: 8px;
 }
 
-#cancel_pick{
-  border: 0.5px solid #lightgray;
+.cancel_pick{
+  border: 0.5px solid lightgray;
   background: lightgray;
   color: black;
   border-radius: 8px;

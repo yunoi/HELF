@@ -125,15 +125,15 @@
                     $photo = $row['file_copied'];
                     $subject = $row['subject'];
                     $shop = $row['shop']." / ";
-                    $type = $row['type'];                
-                                         
+                    $type = $row['type'];
+
     ?>
         <li>
         <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie_array[$i]?>"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$photo?>"></a>
 <div><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie_array[$i]?>"><?=$shop?><?=$type?><br><?=$subject?></a></div>
         </li>
-    <?php		
-        }	
+    <?php
+        }
             } else {
                 ?>
                   <li>
@@ -145,5 +145,65 @@
             }
     ?>
         </ul>
+    </div>
+    <div id="program_ranking">
+      <div id="p_ranking">
+          <h3>프로그램 인기순위</h3><br>
+            <ul id="ul_ranking">
+              <li id="i9">
+                <p class="r1">랭킹</p>
+                <p class="r2">샵</p>
+                <p class="r3">옵션</p>
+                <p class="r4">판매량</p>
+              </li>
+              <?php
+              $sql="select p.o_key, p.shop, p.choose, count(s.num) as 'sales_rate' from sales s ";
+              $sql.="inner join program p on s.o_key = p.o_key ";
+              $sql.="group by p.o_key order by count(s.num) desc";
+
+              $result = mysqli_query($conn, $sql);
+              $array = array();
+
+              for($i=0;$row=mysqli_fetch_array($result);$i++) {
+                for ($j=0; $j<3; $j++) {
+                  if($j == 0){
+                    $array[$i][$j] = $row["shop"];
+                  }else if($j == 1){
+                    $array[$i][$j] = $row["choose"];
+                  }else if($j == 2){
+                    $array[$i][$j] = $row["sales_rate"];
+                  }
+                }
+              }
+
+                for($i=0; $i<count($array); $i++){
+                  echo "<li>";
+                  $rank=$i + 1;
+              ?>
+                  <p class="r1"><?=$rank?></p>
+                  <p class="r2">
+                  <?php
+                  if(strlen($array[$i][0]) > 15){
+                  ?>
+                  <MARQUEE><?=$array[$i][0]?></MARQUEE>
+                  <?php
+                }else{
+                  ?>
+                  <?=$array[$i][0]?>
+                  <?php
+                    }
+                   ?>
+                    </p>
+                  <p class="r3"><?=$array[$i][1]?></p>
+                  <p class="r4"><?=$array[$i][2]?></p>
+
+               <?php
+
+                 echo "</li>";
+               }
+               ?>
+            </ul>
+          </div>
+
     </div>
 </div>

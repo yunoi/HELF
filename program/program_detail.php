@@ -48,14 +48,28 @@ $user_grade=$_SESSION["user_grade"];
     <header>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
     </header>
+    <?php
+     // ==============================
+     $sql = "select * from program where o_key=$o_key";
+     $result = mysqli_query($conn, $sql);
+     $row = mysqli_fetch_array($result);
+
+     $shop         = $row["shop"];
+     $type          = $row["type"];
+     $subject        = $row["subject"];
+     $end_day     = $row["end_day"];
+     $content = $row["content"];
+     $location         = $row["location"];
+     $file_copied         = $row["file_copied"];
+     $file_type         = $row["file_type"];
+
+     ?>
       <div class="clear"></div>
     <div id="div_main_body">
             <section>
               <div id="div_main">
-                <img id="main" src="./img/hells.jpg" alt="">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                 <img src='../admin/data/<?=$file_copied?>' style="max-height:480px;">
+                 <br><br>
                 <div class="buttons" id="myHeader">
                   <ul>
                     <li><a href="#see">서비스 설명</a> </li>
@@ -65,6 +79,7 @@ $user_grade=$_SESSION["user_grade"];
                     <li><a href="#div_review">서비스 평가</a> </li>
                   </ul>
                 </div>
+                <br><br>
                 <script type="text/javascript">
                 window.onscroll = function() {myFunction()};
                 var header = document.getElementById("myHeader");
@@ -82,28 +97,9 @@ $user_grade=$_SESSION["user_grade"];
                 <div class="" id="see">
                   <h3>서비스 설명</h3>
                   <div class="see_body">
+                    <p><?=$content?></p>
 
-                  <p>운동 하려고 할때마다 무슨운동을 얼마나 해야할지 막막하시죠?<br/><br/>
-                  그동안 크몽 포함 여러 Personal Training 을 서비스해주며,<br/><br/>
-                  온라인과 오프라인 PT를 진행하며 만들어온<br/><br/>
-                  (크몽 온라인코칭 : https://kmong.com/gig/129951)<br/><br/>
 
-                  다이어트용 운동 프로그램, 근육성장용 프로그램 등<br/><br/>
-                  <span>"운동 프로그램"</span> 및 <span>"식단 모음집"</span>을 드립니다.<br/><br/>
-                  <ol>
-                    <li>STANDARD : 운동 프로그램만을 드립니다.</li><br/>
-                    <li>DELUXE : 운동 + 식단 프로그램을 드립니다.</li><br/>
-                    <li>PREMIUM : 스스로 운동 계획하기 노하우 PDF를 드립니다. (약 40p 분량)</li><br/>
-                  </ol>
-                  <br/>
-
-                  기존의 운동 프로그램과는 다른점은,<br/><br/>
-                  다양한 운동 프로그램이 세트로 들어있는 모읍집의 개념이기에,<br/><br/>
-                  여러 시도를 해볼 수 있는 기회가 생깁니다.<br/><br/>
-
-                  <span>파일은<br/><br/>
-                  PDF형식으로 전송드립니다.<br/><br/>
-                  </span>
                   <br/><br/>
                 <h4>**경력사항</h4>
                 <br/>
@@ -146,17 +142,6 @@ $user_grade=$_SESSION["user_grade"];
                         <th>DELUXE</th>
                         <th>PREMIUM</th>
                       </tr>
-                        <?php
-                         // ==============================
-                         $sql = "select * from program where o_key=$o_key";
-                         $result = mysqli_query($conn, $sql);
-                         $row = mysqli_fetch_array($result);
-                         $shop = $row["shop"];
-                         $type = $row["type"];
-                         $subject = $row["subject"];
-                         $content = $row["content"];
-                         $location = $row["location"]; //주소
-                         ?>
                        <tr>
                          <th id="sol">가격</th>
                          <?php

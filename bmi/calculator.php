@@ -170,6 +170,11 @@ if($mode==="bmi"){
    <?php
 }
  ?>
+ <div id="div_aside">
+   <aside>
+     <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+   </aside>
+ </div>
 </div>
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>

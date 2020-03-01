@@ -7,7 +7,7 @@
 #content #col1 {
   margin-top: 35px;
   width: 120px;
-  min-height: 962px;
+  min-height: 1000px;
   float: left;
   border-right: solid 1px #dddddd;
 }
@@ -47,7 +47,7 @@
 }
 
 #content #col2 {
-  width: 807px;
+  width: 810px;
   min-height: 558px;
   float: left;
   margin-left: 15px;
@@ -118,6 +118,7 @@
   background-color: #F23005;
   margin-bottom: 3px;
   color: white;
+  border-radius: 2px;
 }
 
 #list_top_title li {

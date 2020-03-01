@@ -265,26 +265,23 @@ form #write_form #write_row3 {
 }
 
 #write_button button{
-	border:1px solid #F23005;
+	background-color: #cccccc;
 	text-align: center;
-	color: #F23005;
-	background-color: white;
+	color: white;
+	width: 158px;
 	font-size: 15px;
-	width: 38px;
-	height: 23.2px;
+	padding: 4px;
+	border-radius: 2px;
+	height: 30px;
+	box-sizing: border-box;
+	border: 1px solid #cccccc;
   }
   
   
   #write_button a{
-	border:1px solid #cccccc;
-	text-align: center;
+
 	color: white;
-	background-color: #cccccc;
-	font-size: 15px;
-	width: 148px;
-	cursor: default;
-	padding: 4px;
-	border-radius: 2px
+
   }
   
   

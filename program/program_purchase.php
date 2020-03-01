@@ -57,7 +57,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       }
       function bank(){ // 무통장 입금 버튼 누르면 작동할 함수
         document.getElementById('bank').innerHTML="<select id='bank_name' title='무통장은행선택'><option value=''>은행 선택</option><option value='shinhan'>신한 은행</option><option value='hana'>하나 은행</option><option value='woori'>우리 은행</option></select>";
-        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="banked_clik()">주문하기</button> </a>;';
+        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="banked_clik()">주문하기</button> </a>';
       }
       function banked_clik(){
         let bank_name = document.getElementById('bank_name').value;
@@ -72,7 +72,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       }
       function kakao(){
         document.getElementById('bank').innerHTML="";
-        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="payment()">결제하기</button> </a>;';
+        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="payment()">결제하기</button> </a>';
       }
     </script>
   </head>

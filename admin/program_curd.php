@@ -106,7 +106,9 @@
   if (isset($_POST["detail"])) $detail = $_POST["detail"];
   else $detail = "";
 
-  $location = $h_area1.",".$h_area2.",".$detail;
+  if($mode === "insert"){
+    $location = $h_area1.",".$h_area2.",".$detail;
+  }
 
   if (isset($_FILES["upfile"]["name"])) {
       $upfile_name = $_FILES["upfile"]["name"];
@@ -172,6 +174,8 @@
         $copied_file_name = "";
     }
 
+    echo "<script>alert('$type')</script>";
+
  //게시글 등록
   function program_insert($conn, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location,
     $upfile_name, $upfile_type, $copied_file_name, $regist_day)
@@ -221,13 +225,12 @@ function program_delete($conn, $o_key){
 }
 
 //게시글 수정
-function program_modify($conn, $o_key, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location,
-  $upfile_name, $upfile_type, $copied_file_name, $regist_day)
+function program_modify($conn, $o_key, $choose, $price)
   {
+    $choose = $_POST["choose"][0];
+    $price = $_POST["price"][0];
 
-      $sql = "update program set shop='$shop', type='$type', subject = '$subject', content = '$content', personnel = '$personnel', end_day = '$end_day',
-      choose = '$choose', price = '$price', location = '$location', file_name='$upfile_name', file_type='$upfile_type', file_copied='$copied_file_name' ";
-      $sql .= " where o_key=$o_key";
+      $sql = "update program set choose = '$choose', price = '$price' where o_key=$o_key";
       mysqli_query($conn, $sql);
       mysqli_close($conn);
   }
@@ -243,8 +246,7 @@ function program_modify($conn, $o_key, $shop, $type, $subject, $content, $person
        ";
       break;
     case 'modify':
-      program_modify($conn, $o_key, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location,
-        $upfile_name, $upfile_type, $copied_file_name, $regist_day);
+      program_modify($conn, $o_key, $choose, $price);
       echo "
          <script>
              location.href = 'admin_program_manage.php';

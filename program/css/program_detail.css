@@ -81,7 +81,7 @@ p{
 }
 #myHeader ul li{
   display: inline-block;
-  width: 24%;
+  width: 19%;
 }
 #myHeader ul li a{
   width: 100%;
@@ -179,7 +179,7 @@ p{
 
 /* 스크롤 내리면서 상단에 고정버튼 생기기게 하는 부분 */
 .buttons {
-  width: 650px;
+  width: 668px;
   padding: 10px 16px;
   background: #555;
   color: #f1f1f1;

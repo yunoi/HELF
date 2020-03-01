@@ -50,7 +50,7 @@ aside{
 
   width: 620px;
   padding: 30px;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   background-color: white;
   z-index: 100;
 }

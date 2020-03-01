@@ -254,6 +254,7 @@ function create_table($conn, $table_name){
                 id char(20) not null,
                 o_key int not null,
                 sales_day char(20) not null,
+                complete char(10) not null,
                 primary key (num),
                  
                constraint sales_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,

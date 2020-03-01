@@ -10,6 +10,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
   <head>
     <meta charset="utf-8">
     <title>HELF :: 결제페이지</title>
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <link
         rel="stylesheet"
@@ -21,40 +22,12 @@ https://kmong.com/order/2518542 참고한 사이트 화면
 
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="./css/program_purchase.css">
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
     <script src="./js/program_purchase.js" charset="utf-8"></script>
-    <!-- 카카오페이 -->
-    <script>
-      function payment(){
-        var IMP = window.IMP; // 생략가능
-        IMP.init('imp50161639'); // 가맹점 식별코드
 
-        IMP.request_pay({
-    pg : 'kakaopay',
-    pay_method : 'card',
-    merchant_uid : 'merchant_' + new Date().getTime(),
-     name : '구매상품',
-    amount : 1,
-    buyer_name : '구매자이름',
-    m_redirect_url :'../common/lib/payment_complete.php'
-}, function(rsp) {
-    if ( rsp.success ) {
-        var msg = '결제가 완료되었습니다.';
-        // msg += '고유ID : ' + rsp.imp_uid;
-        // msg += '상점 거래ID : ' + rsp.merchant_uid;
-        // msg += '결제 금액 : ' + rsp.paid_amount;
-        // msg += '카드 승인번호 : ' + rsp.apply_num;
+      <script>
 
-        location.href = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php";
-    } else {
-        var msg = '결제에 실패하였습니다.';
-        msg += '에러내용 : ' + rsp.error_msg;
-    }
-    alert(msg);
-});
-      }
       function bank(){ // 무통장 입금 버튼 누르면 작동할 함수
         document.getElementById('bank').innerHTML="<select id='bank_name' title='무통장은행선택'><option value=''>은행 선택</option><option value='shinhan'>신한 은행</option><option value='hana'>하나 은행</option><option value='woori'>우리 은행</option></select>";
         document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="banked_clik()">주문하기</button> </a>';
@@ -73,6 +46,9 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       function kakao(){
         document.getElementById('bank').innerHTML="";
         document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="payment()">결제하기</button> </a>';
+      }
+      function checkd(){
+        alert("결제방법을 선택해주세요");
       }
     </script>
   </head>
@@ -253,14 +229,53 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       <div class="clear"></div>
       <div class="div_item5">
         <div class="div_body">
+          <div class="btn_center">
           <div class="btn" id="btn_pay">
-
+            <a href="#"><button type="button" name="button" onclick="checkd()">결제하기</button></a>
           </div>
           <div id="btn_back">
             <button type="button" name="button" onclick="history.go(-1);">취소하기</button>
           </div>
+        </div>
       </div><!--end of div_body-->
     </div><!--end of item_all-->
+      <!-- 카카오페이 -->
+      <script>
+      function payment(){
+        var IMP = window.IMP; // 생략가능
+        IMP.init('imp50161639'); // 가맹점 식별코드
+        var user_id = '<?=$user_id?>';
+        var name = user_id.substr(0, 3) + new Date().getTime();
+        console.log(name);
+        IMP.request_pay({
+    pg : 'kakaopay',
+    pay_method : 'card',
+    merchant_uid : 'merchant_' + new Date().getTime(),
+    name : name,
+    amount : <?=$price?>,
+    buyer_name : '<?=$user_id?>',
+    m_redirect_url :'../common/lib/payment_complete.php'
+}, function(rsp) {
+    if ( rsp.success ) {
+        var msg = '결제가 완료되었습니다.';
+        // msg += '고유ID : ' + rsp.imp_uid;
+        // msg += '상점 거래ID : ' + rsp.merchant_uid;
+        msg += '결제 금액 : ' + rsp.paid_amount;
+        msg += '주문 번호 : ' + rsp.name;
+        msg += '주문자 : ' + rsp.buyer_name;
+        // msg += '카드 승인번호 : ' + rsp.apply_num;
+        console.log(rsp);
+        location.href = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php";
+
+        
+    } else {
+        var msg = '결제에 실패하였습니다.';
+        msg += '에러내용 : ' + rsp.error_msg;
+    }
+    alert(msg);
+});
+      }
+    </script>
     </section>
 <div class="clear"></div>
     <footer>

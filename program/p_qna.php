@@ -9,7 +9,7 @@ if(isset($_GET['mode'])){
 }
 if(isset($_GET['o_key'])){
   $o_key=(int)$_GET['o_key'];
-  $sql="select * from `p_qna` where o_key=$o_key;";
+  $sql="select * from `program` where o_key=$o_key;";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_array($result);
   $shop=$row['shop'];

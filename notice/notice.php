@@ -144,15 +144,14 @@ session_start();
         }
 
          ?>
-        <br><br><br><br><br><br><br>
       </div><!--end of page num -->
     </div><!--end of page button -->
         <div id="button">
-          <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/notice/notice.php?page=<?=$page?>"> <button type="button">목록</button>&nbsp;</a>
+          <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/notice/notice.php?page=<?=$page?>"> <button type="button" class="button_category">목록</button>&nbsp;</a>
           <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
             if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
               if($_SESSION['user_grade'] ==="master" || $_SESSION['user_grade'] ==="admin"){
-                echo '<a href="./write_edit_form.php"><button type="button">글쓰기</button></a>';
+                echo '<a href="./write_edit_form.php"><button type="button" class="button_write">글쓰기</button></a>';
               }
             }
           ?>

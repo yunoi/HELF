@@ -132,7 +132,6 @@ session_start();
         }
 
          ?>
-        <br><br><br><br><br><br><br>
       </div><!--end of page num -->
     </div><!--end of page button -->
         <div id="button">

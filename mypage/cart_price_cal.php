@@ -29,11 +29,11 @@ if(isset($_POST["shop"]) && isset($_POST["type"]) && isset($_POST["choose"])) {
   $type = $_POST["type"];
   $choose = $_POST["choose"];
 
-  echo "$shop,$type,$choose";
+  // echo "$shop,$type,$choose";
 
   $sql = "select price from program where shop='$shop' and type='$type' and choose='$choose';";
 
-  echo ",$sql";
+  // echo ",$sql";
 
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_array($result);

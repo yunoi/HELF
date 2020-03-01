@@ -165,7 +165,7 @@ select {
   border-radius: 2px;
 }
 
-#cart_btn{
+.cart_btn{
   border: 0.5px solid #F23005;
   background-color: #F23005;
   color: white;

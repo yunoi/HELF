@@ -74,6 +74,9 @@ https://kmong.com/order/2518542 참고한 사이트 화면
         document.getElementById('bank').innerHTML="";
         document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="payment()">결제하기</button> </a>';
       }
+      function checkd(){
+        alert("결제방법을 선택해주세요");
+      }
     </script>
   </head>
   <body>
@@ -253,12 +256,14 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       <div class="clear"></div>
       <div class="div_item5">
         <div class="div_body">
+          <div class="btn_center">
           <div class="btn" id="btn_pay">
-
+            <a href="#"><button type="button" name="button" onclick="checkd()">결제하기</button></a>
           </div>
           <div id="btn_back">
             <button type="button" name="button" onclick="history.go(-1);">취소하기</button>
           </div>
+        </div>
       </div><!--end of div_body-->
     </div><!--end of item_all-->
     </section>

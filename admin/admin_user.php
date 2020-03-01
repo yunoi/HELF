@@ -133,12 +133,12 @@
                    <li>
                      <div class = "collapsible-header"><span><?=$id?></span></div>
                      <div class = "collapsible-body">
-                      <div class="id_div">
-                        <div class="id_div1">
+                      <div id="id_div">
+                        <div class="div1">
                           <span>아이디(이름)</span>
                         </div>
-                        <div class="id_div2">
-
+                        <div class="div2">
+                          <span><?=$id?> (<?=$name?>)</span>
                         </div>
                       </div>
                          <span class="col1"><?=$id?> (<?=$name?>)</span>

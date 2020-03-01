@@ -1,3 +1,6 @@
+* {
+  border-collapse: collapse;
+}
 #content_title p {
   display: inline-block;
   font-size: 14px;
@@ -20,6 +23,7 @@
   border-top: 1px solid #ddd;
   border-right: 1px solid #ddd;
   border-left: 1px solid #ddd;
+  border-radius: 2px;
   margin: 0.5rem 0 1rem 0;
   /* 하늘지정값 */
   width: 847px !important;
@@ -47,6 +51,7 @@
   width: 847px;
   height: 40px;
   border-bottom: 0.5px solid lightgray;
+  border-radius: 2px;
   padding-top: 9px;
 }
 
@@ -56,6 +61,9 @@
 }
 
 .collapsible-header:focus {
+  background-color: #F23005;
+  color: white;
+  border-radius: 2px;
   outline: 0;
 }
 
@@ -74,42 +82,56 @@
   display: none;
   border-bottom: 1px solid #ddd;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
   /* 하늘지정값 */
-  padding: 25px;
-  width: 847px;
+  /* padding: 10px; */
+  width: 848px;
+  font-size: 18px;
+  margin: 0;
 }
 
-.collapsible-body span {
-  display: inline-block;
-  width: 800px;
-  background-color: pink;
-  margin-bottom: 5px;
+table {
+  width: 848px;
+  border-spacing: 0px;
+  border-collapse: collapse;
 }
 
-/* .col1 {
-  font-size: 20px;
+tr, td {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  font-size: 16px;
 }
 
-.col2 {
-  width: 405px;
+.td1 {
+  width: 170px;
+  height: 25px;
+  padding: 5px 10px;
+  background-color: #F2F2F2;
 }
 
-.col3 {
-  width: 130px;
+.td2 {
+  width: 170px;
+  height: 25px;
+  padding: 5px 10px;
 }
 
-.col4 {
-  width: 130px;
+.td3 {
+  padding: 5px 10px;
 }
 
-.col5 {
-  width: 45px;
+.butoon_col {
+  margin: 15px auto;
+  text-align: center;
 }
 
-.col6 {
-  width: 45px;
-} */
+.butoon_col button {
+  width: 100px;
+  height: 27px;
+
+  font-size: 15px;
+  border: 1px solid #F23005;
+  background-color: white;
+  color: #F23005;
+}
 
 .sidenav .collapsible,
 .sidenav.fixed .collapsible {

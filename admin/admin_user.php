@@ -133,20 +133,34 @@
                    <li>
                      <div class = "collapsible-header"><span><?=$id?></span></div>
                      <div class = "collapsible-body">
-                      <div id="id_div">
-                        <div class="div1">
-                          <span>아이디(이름)</span>
-                        </div>
-                        <div class="div2">
-                          <span><?=$id?> (<?=$name?>)</span>
-                        </div>
+                      <table>
+                        <tr>
+                          <td class="td1">아이디 (이름)</td>
+                          <td class="td2"><?=$id?> (<?=$name?>)</td>
+                          <td class="td1">등급</td>
+                          <td class="td2">
+                            <!-- <select id="update_grade_<?=$i?>" name="">
+                              <option value="admin" selected>admin</option>
+                              <option value="master">master</option>
+                              <option value="user">user</option>
+                            </select> -->
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="td1">전화번호</td>
+                          <td class="td2"><?=$phone?></td>
+                          <td class="td1">이메일 주소</td>
+                          <td class="td2"><?=$email?></td>
+                        </tr>
+                        <tr>
+                          <td class="td1">주소</td>
+                          <td colspan="3" class="td3"><?=$address?></td>
+                        </tr>
+                      </table>
+                      <div class="butoon_col">
+                        <button type="button" name="button">수정</button>
+                        <button type="button" name="button" onclick="location.href='user_curd.php?mode=delete&id=<?=$id?>'">탈퇴</button>
                       </div>
-                         <span class="col1"><?=$id?> (<?=$name?>)</span>
-                         <span class="col2"></span>
-                         <span class="col3"><?=$phone?></span>
-                         <span class="col4"><?=$email?></span>
-                         <span class="col5"><?=$address?></span>
-                         <span class="col6"><?=$grade?></span>
                      </div>
                    </li>
             <?php

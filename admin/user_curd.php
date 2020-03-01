@@ -63,7 +63,8 @@
       user_delete($conn, $id);
       echo "
          <script>
-             location.href = 'admin_user.php';
+          alert('탈퇴되었습니다.');
+          location.href = 'admin_user.php';
          </script>
        ";
       break;

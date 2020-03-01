@@ -117,7 +117,7 @@ echo "<script>opener.parent.location.reload();self.close();</script>" ;
     }
     mysqli_close($conn);
     // echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
-echo "<script>opener.parent.location.reload();self.close();</script>";
+    echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
   $group_num = $_POST["group_num"];
   $shop = $_POST["shop"];

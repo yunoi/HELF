@@ -30,14 +30,14 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       function payment(){
         var IMP = window.IMP; // 생략가능
         IMP.init('imp50161639'); // 가맹점 식별코드
-
+        var name = substr(0, 3, <?=$user_id?>)+ new Date().getTime();
         IMP.request_pay({
     pg : 'kakaopay',
     pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
-     name : '구매상품',
-    amount : 1,
-    buyer_name : '구매자이름',
+    name : name,
+    amount : <?=$price?>,
+    buyer_name : '<?=$user_id?>',
     m_redirect_url :'../common/lib/payment_complete.php'
 }, function(rsp) {
     if ( rsp.success ) {
@@ -46,8 +46,10 @@ https://kmong.com/order/2518542 참고한 사이트 화면
         // msg += '상점 거래ID : ' + rsp.merchant_uid;
         // msg += '결제 금액 : ' + rsp.paid_amount;
         // msg += '카드 승인번호 : ' + rsp.apply_num;
-
+        console.log(rsp);
         location.href = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php";
+
+        
     } else {
         var msg = '결제에 실패하였습니다.';
         msg += '에러내용 : ' + rsp.error_msg;

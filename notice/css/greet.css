@@ -195,6 +195,12 @@
 	margin:2px 0 2px 0;
 }
 
+form #write_form #write_row3 {
+	width:99%;
+	overflow:hidden;
+	height:auto;
+	margin:2px 0;
+}
 #write_form #write_row3 {
 	width:99%;
 	overflow:hidden;

@@ -16,9 +16,9 @@ session_start();
   </head>
   <body>
     <div id="wrap">
-      <header>
+    <div id="header">
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
-      </header>
+</div>
       <?php
       include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
       $num=$id=$subject=$content=$day=$hit="";
@@ -55,7 +55,7 @@ session_start();
        ?>
       <div id="content">
        <div id="col2">
-         <div id="title">FAQ</div>
+         <div id="title"><span>FAQ</span></div>
          <div class="clear"></div>
          <form name="board_form" action="dml_board.php?mode=<?=$mode?>" method="post">
           <input type="hidden" name="num" value="<?=$num?>">

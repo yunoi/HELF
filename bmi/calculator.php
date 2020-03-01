@@ -65,10 +65,7 @@
         rel="stylesheet"
         type="text/css"
         href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+    <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/css/label.css">
     <link rel="stylesheet" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/css/calcuator.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/js/bmi.js" charset="utf-8"></script>
@@ -82,94 +79,108 @@
   <?php
 if($mode==="bmi"){
   ?>
-  <div class="div-bmi">
-      <table>
-        <tr>
-          <th>성별</th>
-          <td><?=$gen?></td>
-        </tr>
-        <tr>
-          <th>나이</th>
-          <td><?=$age?> 세</td>
-        </tr>
-        <tr>
-          <th>신장(cm)</th>
-          <td><?=$cm?> cm</td>
-        </tr>
-        <tr>
-          <th>몸무게</th>
-          <td><?=$kg?> kg</td>
-        </tr>
-        <tr>
-          <th>BMI수치</th>
-          <td><?=$bmi?> BMI</td>
-        </tr>
-      </table>
-  </div>
-  <div class="bmi-wrap r5">
+  <div>
+    <div class="div_bmi">
+         <h2>BMI수치 결과</h2>
+    <ul>
+      <li>
+        <label for="gen">성별</label>
+        <span id="gen"><?=$gen?></span>
+      </li>
+      <li>
+        <label for="age">나이(연령)</label>
+        <span id="age"><?=$age?> 세</span>
+      </li>
+      <li>
+        <label for="cm">신장(cm)</label>
+        <span  id="cm"><?=$cm?> cm</span>
+      </li>
+      <li>
+          <label for="kg">몸무게</label>
+          <span id="kg"><?=$kg?>kg</span>
+      </li>
+      <li>
+        <label for="bmi">BMI수치</label>
+        <span id="bmi"><?=$bmi?> BMI</span>
+      </li>
+    </ul>
+    <div class="bmi-wrap">
 				<div class="bmi">
 					<p class="tit"><span class="p-red">비만도(BMI)</span> 검사 결과</p>
 					<div class="graph">
 						<div class="inner">
-							<img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/img/img_bmi.png" alt="">
+							<img id="bar" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/img/img_bmi.png" alt="">
 							<a href="javascript:;" id="grapnavi" class="btn-point">
 								<img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/bmi/img/btn_point.png" alt="">
 								<span id="bmicnt"></span>
 							</a>
 						</div>
 					</div>
-					<ul class="bul-arr-list">
+					<ul class="bul-x-list">
 						<li id="bmi_text"></li>
 					</ul>
 				</div>
 			</div>
+      </div>
+    </div>
   <?php
   echo ("<script>bmi_fun($bmi)</script>");
 }else{
    ?>
-   <div class="div-kcal">
-       <table>
-         <tr>
-           <th>성별</th>
-           <td><?=$gen?></td>
-         </tr>
-         <tr>
-           <th>나이</th>
-           <td><?=$age?> 세</td>
-         </tr>
-         <tr>
-           <th>신장(cm)</th>
-           <td><?=$cm?> cm</td>
-         </tr>
-         <tr>
-           <th>기간</th>
-           <td><?=$term?> 개월</td>
-         </tr>
-         <tr>
-           <th>몸무게</th>
-           <td><?=$kg?> kg</td>
-         </tr>
-         <tr>
-           <th>목표 몸무게</th>
-           <td><?=$goal_kg?> kg</td>
-         </tr>
-         <tr>
-           <th>하루 활동량에 대한 예상대사량</th>
-           <td><?=ceil($all_met)?> kcal</td>
-         </tr>
-         <tr>
-           <th>하루 섭취 권장 음식 칼로리</th>
-           <td><?=$day_eat_cal?> kcal</td>
-         </tr>
-         <tr>
-           <th>하루 추가 운동 소비할 칼로리</th>
-           <td><?=$day_exercise_cal?> kcal</td>
-         </tr>
-       </table>
+   <div id="div_form">
+     <div class="div-bmi">
+   <h2>칼로리 처방 결과</h2>
+   <ul>
+     <li>
+       <label for="gen">성별</label>
+       <span id="gen"><?=$gen?></span>
+     </li>
+     <li>
+       <label for="age">나이(연령)</label>
+       <span id="age"><?=$age?></span>
+     </li>
+     <li>
+       <label for="cm">신장(cm)</label>
+        <span id="cm"><?=$cm?></span>
+     </li>
+     <li>
+       <label for="term">기간(cm)</label>
+        <span id="term"><?=$term?> </span>
+     </li>
+     <li>
+       <label for="kg">몸무게</label>
+        <span id="kg"><?=$kg?></span>
+     </li>
+     <li>
+       <label for="goal_kg">목표 몸무게</label>
+       <span id="goal_kg"><?=$goal_kg?></span>
+     </li>
+     <li>
+       <label for="all_met">하루 활동량에 대한 예상대사량</label>
+       <span id="all_met"><?=ceil($all_met)?> kcal</span>
+     </li>
+     <li>
+       <label for="day_eat_cal">하루 섭취 권장 음식 칼로리</label>
+       <span id="day_eat_cal"><?=$day_eat_cal?> kcal</span>
+     </li>
+     <li>
+       <label for="day_exercise_cal">하루 동안 운동으로 소모해야 할 칼로리</label>
+       <span id="day_exercise_cal"><?=$day_exercise_cal?> kcal</span>
+     </li>
+     <li>
+
+     </li>
+   </ul>
+ </div>
    </div>
    <?php
 }
  ?>
+ <div id="div_aside">
+   <aside>
+     <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+   </aside>
+ </div>
 </div>
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>

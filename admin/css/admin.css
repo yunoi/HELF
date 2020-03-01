@@ -5,9 +5,9 @@
 } */
 
 #admin_border {
-  width: 1180px;
-  margin: 0 auto;
-  border: 1px solid black;
+  width: 1100px;
+  margin: 40px auto;
+  /* border: 1px solid black; */
 
 }
 

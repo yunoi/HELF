@@ -202,9 +202,9 @@
 
                                   <select id="choose_box" name="choose_box" onchange="select_option(this.value);">
                                   <?php
-                                    $sql2 = "select * from program where shop='$shop' and type='$type' order by price";
+                                    $sql2 = "select * from program where shop='$shop' and type='$type' order by price asc";
                                     $result2 = mysqli_query($conn, $sql2);
-                                    while($row2 = mysqli_fetch_array($result2)) { 
+                                    while($row2 = mysqli_fetch_array($result2)) {
                                       $option = $row2["choose"];
                                       ?>
                                       <option value="<?=$option?>"><?=$option?></option>
@@ -213,52 +213,51 @@
                                     ?>
                                   </select>
 
-                                  <script type="text/javascript">
+                                  <!-- <script type="text/javascript">
                                   function select_option(x){
                                     document.getElementById("choose_option").innerHTML= x ;
                                   }
-                                  </script>
+                                  </script> -->
 
                               </div>
                               <div class="program_price">
-                                <script type="text/javascript">
-                                  $("#choose_box").change(function() {
-                                  var selected_option =   $("#choose_box option:selected").val()
-                                    $.ajax({
-                                        url: 'cart_price_cal.php',
-                                        type: 'POST',
-                                        data: {
-                                          "shop": "<?=$shop?>",
-                                          "type": "<?=$type?>",
-                                          "choose": selected_option
-                                        },
-                                        success: function(data) {
-                                          $("#p_price").html(data+"<span> 원</span>");
-                                        }
-                                      })
-                                      .done(function() {
-                                        console.log("done");
-                                      })
-                                      .fail(function() {
-                                        console.log("error");
-                                      })
-                                      .always(function() {
-                                        console.log("complete");
-                                      });
-                                  })
-                                </script>
                                 <p id="p_price">0<span> 원</span></p>
                                 <div class="buttons">
                                   <button type="button" id="cart_btn" onclick="go_cart();">장바구니</button>
                                   <button type="button" id="delete_btn" onclick="location.href='mypage_pick.php?num=<?=$num?>&page=<?=$page?>'">삭제</button>
                                 </div>
                               </div>
+                              <!-- <script type="text/javascript">
+                                $("#choose_box").change(function() {
+                                var selected_option =   $("#choose_box option:selected").val()
+                                  $.ajax({
+                                      url: 'cart_price_cal.php',
+                                      type: 'POST',
+                                      data: {
+                                        "shop": "<?=$shop?>",
+                                        "type": "<?=$type?>",
+                                        "choose": selected_option
+                                      },
+                                      success: function(data) {
+                                        $("#p_price").html(data+"<span> 원</span>");
+                                      }
+                                    })
+                                    .done(function() {
+                                      console.log("done");
+                                    })
+                                    .fail(function() {
+                                      console.log("error");
+                                    })
+                                    .always(function() {
+                                      console.log("complete");
+                                    });
+                                })
+                              </script> -->
                               <div class="checkbox_div">
                                 <input type="checkbox" name="no[]" value="<?=$num?>">
                               </div>
                             </div>
                           </li>
-
                     <?php
                    $number--;
                     }

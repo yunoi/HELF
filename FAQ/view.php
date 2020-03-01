@@ -24,9 +24,9 @@ session_start();
   </head>
   <body>
     <div id="wrap">
-      <header>
+    <div id="header">
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
-      </header>
+      </div><!--end of header  -->
       <?php
       include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
       $num=$id=$subject=$content=$day=$hit="";
@@ -52,15 +52,12 @@ session_start();
           $subject=str_replace(" ", "&nbsp;",$subject);
           $content=str_replace("\n", "<br>",$content);
           $content=str_replace(" ", "&nbsp;",$content);
-          mysqli_close($conn);
       }?>
       <div id="content">
        <div id="col1">
        </div><!--end of col1  -->
        <div id="col2">
-         <div id="title">FAQ</div>
-         <div class="clear"></div>
-         <div id="write_form_title"></div>
+         <div id="title"><span>FAQ</span></div>
          <div class="clear"></div>
             <div id="write_form">
               <div class="write_line"></div>
@@ -70,7 +67,6 @@ session_start();
               </div><!--end of write_row2  -->
               <div class="write_line"></div>
               <div id="write_row3">
-                <div class="col1">내&nbsp;&nbsp;용</div>
                 <div class="col2"><p><?=$content?></p></div>
               </div><!--end of write_row3  -->
               <div class="write_line"></div>
@@ -97,6 +93,9 @@ session_start();
             ?>
             </div><!--end of write_button-->
       </div><!--end of col2  -->
+      <aside>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+</aside>
       </div><!--end of content -->
     </div><!--end of wrap  -->
     <footer>

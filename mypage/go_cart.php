@@ -24,10 +24,11 @@ if(isset($_POST["choose_box"])) {
   $choose = "";
 }
 
+echo "$shop,$type,$choose";
 if($choose === "선택") {
 
   echo "<script>alert('옵션을 선택하세요!');</script>";
-  echo "<script>history.go(-1);</script>";
+  // echo "<script>history.go(-1);</script>";
 
 } else {
 

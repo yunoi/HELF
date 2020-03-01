@@ -464,6 +464,7 @@ $user_grade=$_SESSION["user_grade"];
                      if(modetype==="delete"){
                          location.href="./p_qna_db.php?mode="+modetype+"&num="+num+"&o_key="+key;
                      }
+                     alert(modetype);
                       window.open(
                           "http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/program/p_qna.php?mode="+modetype+"&o_key="+key+"&num="+num,
                           "QnA",

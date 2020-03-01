@@ -81,6 +81,7 @@
     <aside>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
     </aside>
+          </div>            
           </div>
   </section>
   <footer>

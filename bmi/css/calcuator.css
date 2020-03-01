@@ -46,3 +46,12 @@ height: 75px;
   float: left;
   padding: 20px 0px;
 }
+.div-bmi span{
+    padding-left: 10px;
+}
+.div-bmi ul{
+  padding-bottom: 20px;
+}
+.div-bmi ul li label{
+  width: 220px;
+}

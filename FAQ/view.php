@@ -74,20 +74,21 @@ session_start();
 
             <div id="write_button">
               <!--목록보기 -->
-              <a href="./list.php?page=<?=$page?>"><img src="./img/list.png"></a>
+              <a href="./list.php?page=<?=$page?>">목록</a>&nbsp;
 
             <?php
               //세션값이 존재하면 수정기능과 삭제기능부여하기
               if(isset($_SESSION['user_id'])){
-                if($_SESSION['user_grade']=="admin" || $_SESSION['user_grade']=="master"){
-                  echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"><img src="./img/modify.png"></a>&nbsp;');
-                  echo('<img src="./img/delete.png" onclick="check_delete('.$num.')">&nbsp;');
+                if($_SESSION['user_grade']=="admin"){
+                  echo('<a href="./write_edit_form.php?mode=update&num='.$num.'">수정</a>&nbsp;&nbsp;');
+                  echo('<button type="button" id="write_button_delete" onclick="check_delete('.$num.')">삭제</button>&nbsp&nbsp;');
+                  
                 }
               }
               // 세션값이 존재하면 글쓰기 기능부여하기\
               if(isset($_SESSION['user_grade'])){
-              if($_SESSION['user_grade']=="admin" || $_SESSION['user_grade']=="master"){
-                echo '<a href="write_edit_form.php"><img src="./img/write.png"></a>';
+              if($_SESSION['user_grade']=="admin"){
+                echo '<a href="write_edit_form.php">글쓰기</a>';
               }
             }
             ?>

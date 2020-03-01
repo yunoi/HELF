@@ -8,6 +8,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/community.css">
+    <link rel="stylesheet" href="../css/memo.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
     <link rel="stylesheet" type="text/css" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
@@ -133,8 +134,16 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
         ?>
 
         <div id="page_button">
-          <div id="page_num">이전◀ &nbsp;&nbsp;&nbsp;&nbsp;
-          <?php
+
+          <div id="page_num">
+<!-- /////////////////////////////////////////////////// -->
+            <?php
+              if($total_page<2){
+                "";
+              }else{
+                echo "이전◀ &nbsp;&nbsp;&nbsp;&nbsp";
+              }
+
             for ($i=1; $i <= $total_page ; $i++) {
                 if ($page==$i) {
                     echo "<b>&nbsp;$i&nbsp;</b>";
@@ -142,10 +151,18 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
                     echo "<a href='./list.php?page=$i'>&nbsp;$i&nbsp;</a>";
                 }
             }
+
+            if($total_page<2){
+              "";
+            }else{
+              echo "&nbsp;&nbsp;&nbsp;&nbsp;▶ 다음";
+            }
+
           ?>
-          &nbsp;&nbsp;&nbsp;&nbsp;▶ 다음
+<!-- /////////////////////////////////////////////// -->
           <br><br><br><br><br><br><br>
         </div><!--end of page num -->
+
         <div id="button">
           <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
           <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.

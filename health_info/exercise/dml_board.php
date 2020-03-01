@@ -31,7 +31,6 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
     $video_name=$_POST["video_name"];
     $video_name=substr($video_name, -11);
 
-
     //include 파일업로드기능
     include  "../lib/file_upload.php";
     //include $_SERVER['DOCUMENT_ROOT']."/helf/health_info/lib/file_upload.php";
@@ -55,6 +54,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
     $num=$row['num'];
     mysqli_close($conn);
 
+    echo "<script>alert('게시글이 등록되었습니다.');</script>";
     echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
 } elseif (isset($_GET["mode"])&&$_GET["mode"]=="delete") {
     $num = test_input($_GET["num"]);
@@ -147,6 +147,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
         die('Error: ' . mysqli_error($conn));
     }
 
+    echo "<script>alert('수정이 완료되었습니다.');</script>";
     echo "<script>location.href='./view.php?num=$num&page=1&hit=$hit';</script>";
 } elseif (isset($_GET["mode"])&&$_GET["mode"]=="insert_ripple") {
     if (empty($_POST["ripple_content"])) {

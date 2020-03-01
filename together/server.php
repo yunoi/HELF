@@ -60,7 +60,7 @@ function getLikes($id, $num)
     $rs = mysqli_query($conn, $sql);
     $result = mysqli_fetch_array($rs);
 
-    $sql2 =  $sql="UPDATE together SET likeit=$result[0] WHERE b_code='같이할건강' and num=$num;";
+    $sql2 = "UPDATE together SET likeit=$result[0] WHERE b_code='같이할건강' and num=$num;";
     mysqli_query($conn, $sql2);
     return $result[0];
 }

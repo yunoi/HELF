@@ -109,20 +109,32 @@ session_start();
           }//end of for
         ?>
 
-        <div id="page_button">
-          <div id="page_num">이전◀ &nbsp;&nbsp;&nbsp;&nbsp;
+<div id="page_button">
+        <div id="page_num">
           <?php
-            for ($i=1; $i <= $total_page ; $i++) {
-                if ($page==$i) {
-                    echo "<b>&nbsp;$i&nbsp;</b>";
-                } else {
-                    echo "<a href='./list.php?page=$i'>&nbsp;$i&nbsp;</a>";
-                }
-            }
-          ?>
-          &nbsp;&nbsp;&nbsp;&nbsp;▶ 다음
-          <br><br><br><br><br><br><br>
-        </div><!--end of page num -->
+          if($page>1){
+            $val=(int)$page-1;
+            echo "<a href='./map.php?page=$val'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
+          }?>
+        <?php
+          for ($i=1; $i <= $total_page ; $i++) {
+              if ($page==$i) {
+                  echo "<b>&nbsp;$i&nbsp;</b>";
+              } else {
+                  echo "<a href='./map.php?page=$i'>&nbsp;$i&nbsp;</a>";
+              }
+          }
+        ?>
+        <?php
+        if($page>=1 && $total_page!=$page){
+          $val=(int)$page+1;
+          echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./map.php?page=$val'>▶ 다음</a>";
+        }
+
+         ?>
+        <br><br><br><br><br><br><br>
+      </div><!--end of page num -->
+    </div><!--end of page button -->
         <div id="button">
           <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
           <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/HELF/notice/notice.php?page=<?=$page?>"> <button type="button">목록</button>&nbsp;</a>

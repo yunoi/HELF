@@ -3,32 +3,32 @@ session_start();
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 $id = $_SESSION["user_id"];
 
-if(isset($_GET["shop"])) {
-  $shop = $_GET["shop"];
+if(isset($_POST["shop"])) {
+  $shop = $_POST["shop"];
 
 } else {
   $shop = "";
 }
 
-if(isset($_GET["type"])) {
-  $type = $_GET["type"];
+if(isset($_POST["type"])) {
+  $type = $_POST["type"];
 
 } else {
   $type = "";
 }
 
-if(isset($_POST["choose_box"])) {
-  $choose = $_POST["choose_box"];
+if(isset($_POST["choose"])) {
+  $choose = $_POST["choose"];
 
 } else {
   $choose = "";
 }
 
-echo "$shop,$type,$choose";
+// echo "$shop,$type,$choose,";
+
 if($choose === "선택") {
 
-  echo "<script>alert('옵션을 선택하세요!');</script>";
-  // echo "<script>history.go(-1);</script>";
+  echo "옵션 선택 요망";
 
 } else {
 
@@ -43,8 +43,7 @@ if($choose === "선택") {
 
   if($row) {
 
-    echo "<script>alert('이미 장바구니에 들어있는 옵션입니다!');</script>";
-    echo "<script>history.go(-1);</script>";
+    echo "이미 존재";
 
   } else {
 
@@ -52,11 +51,13 @@ if($choose === "선택") {
     $result3 = mysqli_query($conn, $sql3);
 
     if($result3) {
-      echo "<script>alert('장바구니에 추가되었습니다!');</script>";
-      echo "<script>history.go(-1);</script>";
+
+      echo "장바구니 성공";
+
     } else {
-      echo "<script>alert('오류 발생!');</script>";
-      echo "<script>history.go(-1);</script>";
+
+      echo "오류 발생";
+
     }
 
   }

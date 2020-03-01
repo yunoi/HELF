@@ -6,7 +6,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 // 삽입하는경우
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="new_insert"){
-  $user_id = $_SESSION['user_id'];
+  $user_id = $_SESSION["user_id"];
   $o_key = $_POST["o_key"];
   $group_num = $_POST["group_num"];
   $shop = $_POST["shop"];

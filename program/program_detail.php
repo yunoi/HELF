@@ -179,7 +179,7 @@ $user_grade=$_SESSION["user_grade"];
                            $sql="select * from program where shop='$shop'and type='$type' order by price";
                           $result = mysqli_query($conn, $sql);
                          while($row = mysqli_fetch_array($result)){
-                           $table_choose       = $row["choose"]; //옵션 내용
+                           $table_choose = $row["choose"]; //옵션 내용
                            if(!($table_choose==="선택")){
                           ?>
                           <td><?=$table_choose?>횟수</td>
@@ -320,7 +320,7 @@ $user_grade=$_SESSION["user_grade"];
                     $review_id = $row["id"];
                     $review_content = $row["content"];
                     $review_regist_day = $row["regist_day"];
-                    $review_score = $row["score"];
+                    $review_score = (int)$row["score"];
                     switch ($review_score) {
                       case 0: $width=0;  break;
                       case 0.5: $width=16;  break;
@@ -383,7 +383,7 @@ $user_grade=$_SESSION["user_grade"];
                             <input type="hidden" name="o_key" value="<?=$o_key?>">
                             <input type="hidden" name="type" value="<?=$type?>">
                             <input type="hidden" name="shop" value="<?=$shop?>">
-                            <input type="hidden" name="star" value="<?=$star_score?>">
+                            <input type="hidden" id="star" name="star" value="0">
                             <input type="hidden" id="mode" name="mode" value="<?=$mode?>">
                            <input type="button" value="등록" onclick="review_insert();">
                          </form>
@@ -403,13 +403,14 @@ $user_grade=$_SESSION["user_grade"];
                   <input type="hidden" id="input_h_pay" name="" value="">
                   <p>
                     <?=$subject?><br/>
-                    <?=$content?><br/>
+
                     1회당 레슨시간 (분) : 30 분<br/>
                     레슨 횟수 : 1 회<br/>
                   </p>
                   <select class="" name="option" id="choose" onchange="pay(this.value);">
                     <option value="0">옵션선택</option>
                   <?php
+                  $minimum_price=0; //최소가격
                   $sql="select * from program where shop='$shop'and type='$type' order by price";
                   $result = mysqli_query($conn, $sql);
                   while($row = mysqli_fetch_array($result)){
@@ -421,8 +422,11 @@ $user_grade=$_SESSION["user_grade"];
                     $file_copied   = $row["file_copied"]; //이미지파일 이름
                     $file_type     = $row["file_type"]; //이미지파일에 타입
                     if(!($choose==="선택")){
+                      if($minimum_price===0){
+                        $minimum_price=$price;
+                      }
                    ?>
-                     <option value="<?=$price?>"><?=$choose?> : <?=$price?>원</option>
+                     <option value="<?=$price?>" <?php if ($minimum_price === $price) echo "selected";?> ><?=$choose?> : <?=$price?>원</option>
                     <?php
                     }
                   }
@@ -433,10 +437,7 @@ $user_grade=$_SESSION["user_grade"];
                       $(this).parent().children('span').removeClass('on');
                       $(this).addClass('on').prevAll('span').addClass('on');
                       valr=$(this).text();
-                      <?php
-                      $star_score=0;
-                      $star_score="document.write(valr);";
-                      ?>
+                      document.getElementById("star").value=valr;
                       return false;
                     });
                     function pay(x){
@@ -463,6 +464,7 @@ $user_grade=$_SESSION["user_grade"];
                      if(modetype==="delete"){
                          location.href="./p_qna_db.php?mode="+modetype+"&num="+num+"&o_key="+key;
                      }
+                     alert(modetype);
                       window.open(
                           "http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/program/p_qna.php?mode="+modetype+"&o_key="+key+"&num="+num,
                           "QnA",
@@ -479,6 +481,10 @@ $user_grade=$_SESSION["user_grade"];
                     }
                     document.form_review.submit();
                   }
+                  $(window).load(function(){
+                    document.getElementById("h_pay").innerHTML=<?=$minimum_price?>;
+                    document.getElementById("input_h_pay").value=<?=$minimum_price?>;
+                  });
                   </script>
                   <br/>
                   <div class="">
@@ -492,9 +498,9 @@ $user_grade=$_SESSION["user_grade"];
                   $pick  = $row4["num"];
 
                   if($pick==""){
-                   echo "<input type='button' value='찜하기' onclick=\"location.href='pick_db.php?mode=insert&o_key=$o_key&shop=$shop';\"><br>";
+                   echo "<input type='button' value='찜하기' onclick=\"location.href='pick_db.php?detail=ok&mode=insert&o_key=$o_key&shop=$shop';\"><br>";
                  }else{
-                   echo "<input type='button' value='이미찜' onclick=\"location.href='pick_db.php?mode=delete&o_key=$o_key&shop=$shop';\"><br>";
+                   echo "<input type='button' value='이미찜' onclick=\"location.href='pick_db.php?detail=ok&mode=delete&o_key=$o_key&shop=$shop';\"><br>";
                  }
                    ?>
                   <input type="button" name="" value="장바구니" onclick="program_pick_db();">

@@ -43,7 +43,7 @@ if (isset($_POST['action'])) {
 }
 
 // Get total number of likes for a particular post
-function getLikes($id)
+function getLikes($id, $num)
 {
     global $conn;
     // $id=(int)$id;
@@ -51,6 +51,10 @@ function getLikes($id)
           WHERE b_code='레시피' and post_id = $id AND rating_action='like'";
     $rs = mysqli_query($conn, $sql);
     $result = mysqli_fetch_array($rs);
+
+    $sql2 =  $sql="UPDATE health_info SET likeit=$result[0] WHERE b_code='레시피' and num=$num;";
+    mysqli_query($conn, $sql2);
+
     return $result[0];
 }
 

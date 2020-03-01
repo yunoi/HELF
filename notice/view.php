@@ -20,26 +20,25 @@ session_start();
             window.location.href='./dml_board.php?mode=delete&num='+num;
       }
     }
-window.onload = function()
-{
- // div height 설정
- //sibling div의 길이가 늘어날 때 같이 길이가 늘어날 수 있도록
- setDivHeight('content_col1','content_col2'); // 매개변수(heigth값 가져올 대상 div id, 변경할 div id)
-}
+// window.onload = function()
+// {
+//  // div height 설정
+//  //sibling div의 길이가 늘어날 때 같이 길이가 늘어날 수 있도록
+//  setDivHeight('content_col1','content_col2'); // 매개변수(heigth값 가져올 대상 div id, 변경할 div id)
+// }
 
-function setDivHeight(objSet, objTar)// objSet : 변경할 div id, objTar : height값을 구할 대상 div id
-{
-  var objSet   = document.getElementById(objSet);
-  var objTarHeight= document.getElementById(objTar).offsetHeight;
-  objSet.style.height  = objTarHeight + "px";
-}
+// function setDivHeight(objSet, objTar)// objSet : 변경할 div id, objTar : height값을 구할 대상 div id
+// {
+//   var objSet   = document.getElementById(objSet);
+//   var objTarHeight= document.getElementById(objTar).offsetHeight;
+//   objSet.style.height  = objTarHeight + "px";
+// }
 
     </script>
   </head>
   <body>
     <div id="wrap">
       <div id="header">
-        <header>
             <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
             <?php
             include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
@@ -96,13 +95,11 @@ function setDivHeight(objSet, objTar)// objSet : 변경할 div id, objTar : heig
                 }
             }
             ?>
-        </header>
       </div><!--end of header  -->
       <div id="content">
        <div id="col2">
-         <div id="title">공지사항</div>
+         <div id="title"><span>공지사항</span></div>
          <div class="clear"></div>
-         <div id="write_form_title"></div>
          <div class="clear"></div>
             <div id="write_form">
               <div class="write_line"></div>
@@ -113,7 +110,6 @@ function setDivHeight(objSet, objTar)// objSet : 변경할 div id, objTar : heig
               <div class="write_line"></div>
 
               <div id="write_row3">
-                <div class="col1" id="content_col1">내&nbsp;&nbsp;용</div>
                 <div class="col2" id="content_col2"><?=$content?> <br/>
                 <img src='./data/<?=$file_copied?>' width='<?=$image_width?>'></div>
               </div><!--end of write_row3  -->

@@ -36,9 +36,10 @@
     <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/js/materialize.js"></script>
 
     <script>
-      // document.addEventListener('DOMContentLoaded', function() {
-      // var elems = document.querySelectorAll('.collapsible');
-      // var instances = M.Collapsible.init(elems, options);
+  //     document.addEventListener('DOMContentLoaded', function() {
+  //   var elems = document.querySelectorAll('.collapsible');
+  //   var instances = M.Collapsible.init(elems, options);
+
   // });
 
   // Or with jQuery
@@ -137,7 +138,7 @@
                           <span>아이디(이름)</span>
                         </div>
                         <div class="id_div2">
-                          
+
                         </div>
                       </div>
                          <span class="col1"><?=$id?> (<?=$name?>)</span>

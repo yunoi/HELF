@@ -208,7 +208,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    <?php endif ?>
                    data-id="<?php echo $post['num'] ?>">
                  </i>
-                 <span class="likes"><?php echo getLikes($post['num']); ?></span>
+                 <span class="likes"><?php echo getLikes($post['num'], $q_num); ?></span>
 
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -223,8 +223,9 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    <?php endif ?>
                    data-id="<?php echo $post['num'] ?>"></i>
                  <span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
+
 <!-- ///////////////////////////// -->
-             <script>
+             <!-- <script>
              var value1;
              var value2;
              var like_result;
@@ -233,7 +234,8 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
 
              like_result=value1[0].innerText - value2[0].innerText;
              console.log(like_result);
-             </script>
+              // window.location.href='./server.php?likeit='+like_result;
+             </script> -->
 <!-- ///////////////////////////////////////// -->
 
               </div>
@@ -243,16 +245,16 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
           <script src="scripts.js"></script>
 
 <!-- ////////////////////// -->
-          <?php
-           $like_result = "<script>document.write(like_result);</script>";
-           echo "$like_result";
-
+          <!-- <?php
+           // $like_result = "<script>document.write(like_result);</script>";
+           // echo "$like_result";
+           //
            // $sql="UPDATE together SET likeit=$like_result WHERE b_code='같이할건강' and num=$num;";
            // $result = mysqli_query($conn, $sql);
            // if (!$result) {
            //     die('Error: ' . mysqli_error($conn));
            // }
-           ?>
+           ?> -->
 
 <!-- ////////////////////////////// -->
 

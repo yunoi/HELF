@@ -17,7 +17,7 @@ if(!isset($_SESSION['user_id'])){
 $user_id = $_SESSION['user_id'];
 
 
-// echo "<script>alert('server.php에서 접속한 게시판 아이디{$num}, 접속아이디: {$_SESSION['user_id']} ');</script>";
+// echo "<script>alert('server.php에서 접속한 게시판 아이디{$q_num}, 접속아이디: {$_SESSION['user_id']} ');</script>";
 
 // 사용자가 좋아요 혹은 싫어요 버튼을 눌렀을 경우
 if (isset($_POST['action'])) {
@@ -44,7 +44,6 @@ if (isset($_POST['action'])) {
     default:
         break;
   }
-
     // execute query to effect changes in the database ...
     mysqli_query($conn, $sql);
     echo getRating($post_id);
@@ -52,7 +51,7 @@ if (isset($_POST['action'])) {
 }
 
 // Get total number of likes for a particular post
-function getLikes($id)
+function getLikes($id, $num)
 {
     global $conn;
     // $id=(int)$id;
@@ -60,6 +59,9 @@ function getLikes($id)
           WHERE b_code='같이할건강' and post_id = $id AND rating_action='like'";
     $rs = mysqli_query($conn, $sql);
     $result = mysqli_fetch_array($rs);
+
+    $sql2 = "UPDATE together SET likeit=$result[0] WHERE b_code='같이할건강' and num=$num;";
+    mysqli_query($conn, $sql2);
     return $result[0];
 }
 

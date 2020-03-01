@@ -16,10 +16,7 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $num = test_input($_GET["num"]);
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
-
-
 // echo "<script>alert('게시판 번호 : {$num}');</script>";
-
     $sql="UPDATE `health_info` SET `hit`=$hit WHERE b_code='운동' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
@@ -203,7 +200,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    <?php endif ?>
                    data-id="<?php echo $post['num'] ?>">
                  </i>
-                 <span class="likes"><?php echo getLikes($post['num']); ?></span>
+                 <span class="likes"><?php echo getLikes($post['num'], $q_num); ?></span>
 
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

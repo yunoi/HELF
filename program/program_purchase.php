@@ -61,10 +61,14 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       }
       function banked_clik(){
         let bank_name = document.getElementById('bank_name').value;
-        <?php
-        $user_id=$_SESSION['user_id'];
-        ?>
-        location.href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php?bank="+bank_name+"&id=<?=$user_id?>";
+        if(bank_name!==""){
+          <?php
+          $user_id=$_SESSION['user_id'];
+          ?>
+          location.href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php?bank="+bank_name+"&id=<?=$user_id?>";
+        }else{
+          alert("은행을 선택해주세요");
+        }
       }
       function kakao(){
         document.getElementById('bank').innerHTML="";
@@ -249,15 +253,11 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       <div class="clear"></div>
       <div class="div_item5">
         <div class="div_body">
-          <div class="position-relative">
-                <img src="" alt="">
-                <ul class="list-unstyled inline-block">
-                    <li><strong><b>HELF</b>은 에스크로 결제 서비스를 이용하여 안전한 거래 환경을 제공합니다.</strong></li>
-                    <li><b>HELF</b>을 통해 결제 진행 시 관련 정책에 의해 보호 받을 수 있습니다.</li>
-                </ul>
-            </div>
           <div class="btn" id="btn_pay">
 
+          </div>
+          <div id="btn_back">
+            <button type="button" name="button" onclick="history.go(-1);">취소하기</button>
           </div>
       </div><!--end of div_body-->
     </div><!--end of item_all-->

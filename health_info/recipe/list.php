@@ -132,7 +132,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
                      <!-- <div id="list_item1"><em>번호</em><span><?=$number?></span></div> -->
                      <div id="list_item5"><em>조회수</em><span><?=$hit?></span></div>
                      <div id="list_item4"><em>날짜</em><span><?=$date?></span></div>
-                     <div id="list_item2"><img src="../pic/exercise_icon.png" alt=""><?=$subject?></div>
+                     <div id="list_item2"><img src="../pic/recipe.png" alt=""><?=$subject?></div>
                    </div>
                  </div><!--end of list_item -->
          <?php
@@ -141,27 +141,43 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
          ?>
 
           <div id="page_button">
-            <div id="page_num">이전◀ &nbsp;&nbsp;&nbsp;&nbsp;
+            <div id="page_num">
+  <!-- /////////////////////////////////////////////////// -->
               <?php
-                for ($i=1; $i <= $total_page ; $i++) {
-                    if ($page==$i) {
-                        echo "<b>&nbsp;$i&nbsp;</b>";
-                    } else {
-                        echo "<a href='./list.php?page=$i'>&nbsp;$i&nbsp;</a>";
-                    }
+                if($total_page<2){
+                  "";
+                }else{
+                  echo "이전◀ &nbsp;&nbsp;&nbsp;&nbsp";
                 }
-              ?>
-            &nbsp;&nbsp;&nbsp;&nbsp;▶ 다음
+
+              for ($i=1; $i <= $total_page ; $i++) {
+                  if ($page==$i) {
+                      echo "<b>&nbsp;$i&nbsp;</b>";
+                  } else {
+                      echo "<a href='./list.php?page=$i'>&nbsp;$i&nbsp;</a>";
+                  }
+              }
+
+              if($total_page<2){
+                "";
+              }else{
+                echo "&nbsp;&nbsp;&nbsp;&nbsp;▶ 다음";
+              }
+
+            ?>
+  <!-- /////////////////////////////////////////////// -->
             <br><br><br><br><br><br><br>
           </div><!--end of page num -->
 
           <div id="button">
-            <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
             <?php //세션아디가 있으면 글쓰기 버튼을 보여줌.
             if (!empty($_SESSION['user_id'])) { //login에서 저장한 세션값을 가져옴
-              echo '<a href="write_edit_form.php"><button type="button" class="button_write">글쓰기</button></a>';
+              if ($_SESSION["user_grade"]==="admin" || $_SESSION["user_grade"]==="master") {
+                echo '<a href="write_edit_form.php"><button type="button" class="button_write">글쓰기</button></a>';
+              }
             }
             ?>
+            <!-- <a href="write_edit_form.php"><button type="button">글쓰기 테스트</button></a> -->
             <a href="./list.php?page=<?=$page?>"><button type="button" class="button_category">목록</button></a>
           </div><!--end of button -->
         </div><!--end of page button -->

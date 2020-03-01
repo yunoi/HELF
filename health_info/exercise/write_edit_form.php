@@ -100,7 +100,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
               <!-- <div class="write_line"></div> -->
 
               <div id="write_row3_video">
-                <div class="col1">첨부 동영상 소스</div>
+                <div class="col1">첨부 동영상 URL</div>
                 <div class="col2"><input type="text" name="video_name" value=<?=$video_name?>></div>
               </div><!--end of write_row3_video  -->
               <div class="write_line"></div>

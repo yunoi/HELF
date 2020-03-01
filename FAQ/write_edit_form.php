@@ -16,9 +16,9 @@ session_start();
   </head>
   <body>
     <div id="wrap">
-      <header>
+    <div id="header">
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
-      </header>
+</div>
       <?php
       include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
       $num=$id=$subject=$content=$day=$hit="";
@@ -55,7 +55,7 @@ session_start();
        ?>
       <div id="content">
        <div id="col2">
-         <div id="title">FAQ</div>
+         <div id="title"><span>FAQ</span></div>
          <div class="clear"></div>
          <form name="board_form" action="dml_board.php?mode=<?=$mode?>" method="post">
           <input type="hidden" name="num" value="<?=$num?>">
@@ -78,8 +78,8 @@ session_start();
 
             <div id="write_button">
               <!-- 완료버튼 및 목록버튼 -->
-              <input type="image" src="./img/ok.png" onclick="document.getElementById("is_html_ok").disabled=false">&nbsp;
-              <a href="./list.php"><img src="./img/list.png"></a>
+              <input type="submit" value="완료"></input>
+              <a href="./list.php">목록</a>
             </div><!--end of write_button-->
          </form>
       </div><!--end of col2  -->

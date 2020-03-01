@@ -39,7 +39,7 @@
   } else {
     while($row = mysqli_fetch_array($result)){
       $best_number = $row['post_id'];
-      $sql = "select distinct name, subject, regist_day, community.num, hit, community.b_code from community inner join rating_info on community.num=rating_info.post_id where community.num=$best_number;";
+      $sql = "select distinct name, subject, regist_day, community.num, hit, community.b_code from community inner join rating_community_info on community.num=rating_community_info.post_id where community.num=$best_number;";
       $result2 = mysqli_query($conn, $sql);
       if(!$result2){
         echo "게시판 DB 테이블이 생성 전이거나 아직 게시글이 없습니다.";

@@ -392,6 +392,19 @@ header {
   z-index: 100;
 }
 
+#container #program_ranking {
+  position: relative;
+  box-sizing: border-box;
+  width: 252px;
+  height: 300px;
+  margin: 36px 0;
+  border: 1px solid #dbdbdb;
+  padding: 5px 10px 5px 10px;
+  background: #fff;
+  z-index: 100;
+}
+
+
 #keyword_area {
   margin: 0 20px;
   padding-top: 6px;
@@ -524,4 +537,30 @@ footer {
   position: absolute;
   top: 20px;
   left: 700px;
+}
+
+#ul_ranking{
+  text-align: center;
+}
+
+#ul_ranking li{
+  margin-bottom: 5px;
+}
+
+
+#ul_ranking p{
+  display: inline-block;
+}
+
+#ul_ranking .r1{
+  width: 30px;
+}
+#ul_ranking .r2{
+  width: 90px;
+}
+#ul_ranking .r3{
+  width: 50px;
+}
+#ul_ranking .r4{
+  width: 45px;
 }

@@ -35,7 +35,8 @@
 
      echo "<script>location.href='./program.php';</script>";
  }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
-    $num = $_GET['num'];
+    $num = $_POST['num'];
+    $o_key = $_POST['o_key'];
      $sql ="DELETE FROM `p_review` WHERE num='$num';";
      $result = mysqli_query($conn,$sql);
      if (!$result) {

@@ -3,6 +3,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
  -->
 <?php
   session_start();
+  $id = $_SESSION["user_id"];
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -88,8 +89,29 @@ https://kmong.com/order/2518542 참고한 사이트 화면
         }else if(isset($_POST['o_key'])){
           $o_key=(int)$_POST['o_key'];
           $pay="post";
+        }else if($_GET['num']){
+          $num = (int)$_GET['num'];
+
+          $sql="select B.o_key from cart A inner join program B on A.o_key = B.o_key where id = '$id' and num=$num;";
+          $result = mysqli_query($conn, $sql);
+          $row = mysqli_fetch_array($result);
+
+          $o_key=$row['o_key'];
+          $pay="get";
+        }else if($_POST['no']){
+          $no = $_POST['no'];
+
+          $o_key = array();
+          for ($i=0; $i<count($no); $i++) {
+            $sql="select B.o_key from cart A inner join program B on A.o_key = B.o_key where id = '$id' and num=$no[$i];";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($result);
+            array_push($o_key, $row['o_key']);
+          }
+          $pay="post";
         }else{
-          echo "<script>alert('접속 오류 발생');</script>";
+          echo "<script>alert('프로그램을 선택해주세요!');</script>";
+          echo "<script>history.go(-1);</script>";
           return;
         }
         ?>
@@ -128,28 +150,31 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                   $file_copied = $row["file_copied"]; //파일 이름
                   $total_pay=$total_pay+$price;
                    ?>
-                  <tr>
-                    <td id="program">
-                      <!-- 판매 프로그램 이름 자리 -->
-                      <div class="div_img">
-                        <img src='../admin/data/<?=$file_copied?>'>
-                      </div>
-                      <strong><?=$subject?></strong>
-                      <ul>
-                        <!-- 설명 -->
-                        <li><?=$location?></li>
-                      </ul></td>
-                    <td><div class="">
-                      <!-- 옶션이 넣어질 자리 -->
-                        <b><?=$choose?></b>
-                      </div></td>
-                    <td>
-                        <span id="item3"><?=$end_day?></span>
-                    </td>
-                    <td>
-                      <span id="pay"><?=$price?></span>원
-                    </td>
-                  </tr>
+                   <tr>
+                     <td id="program">
+                       <!-- 판매 프로그램 이름 자리 -->
+                       <div class="div_img">
+                         <img src='../admin/data/<?=$file_copied?>'>
+                       </div>
+                       </td>
+                       <td>
+                       <div class="content">
+                         <span><?=$subject?></span><br/>
+                         <span><?=$location?></span>
+                       </div>
+                     </td>
+                     <td>
+                       <div class="">
+                       <!-- 옶션이 넣어질 자리 -->
+                         <b><?=$choose?></b>
+                       </div></td>
+                     <td>
+                         <span id="item3"><?=$end_day?></span>
+                     </td>
+                     <td>
+                       <span id="pay"><?=$price?></span>원
+                     </td>
+                   </tr>
               <?php
                 }
               }else{

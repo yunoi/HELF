@@ -14,7 +14,7 @@
  <link rel="stylesheet" href="../mypage/css/program.css">
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
  <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
- <!-- <script src="./scroll.js?ver=3"></script> -->
+ <script src="./js/program_list.js"></script>
 
  </head>
  <body>
@@ -48,7 +48,7 @@
                   <option value="축구">축구</option>
                   <option value="복싱">복싱</option>
                   <option value="등산">등산</option>
-                  <option value="수영">클라이밍</option>
+                  <option value="클라이밍">클라이밍</option>
                   <option value="요가/필라테스">요가/필라테스</option>
                   <option value="기타">기타</option>
                 </select>
@@ -206,6 +206,8 @@
 
              $s_area = $s_area1.",".$s_area2;
 
+             echo "<script>alert($s_area)</script>";
+
              if($s_area == ","){
                $s_area = "";
              }
@@ -302,11 +304,15 @@
 
                        <?php
                        if($pick==""){
-                        echo "<button type='button' id='btn_pick' onclick=\"location.href='pick_db.php?mode=insert&o_key=$o_key&shop=$shop';\">찜하기</button><br>";
+                        // echo "<button type='button' id='btn_pick' value='$o_key' onclick=\"location.href='pick_db.php?mode=insert&o_key=$o_key&shop=$shop';\">찜하기</button><br>";
+                        echo "<button type='button' id='$o_key' class='btn_pick' onclick=\"pick_insert('$o_key');\">찜하기</button><br>";
                       }else{
-                        echo "<button type='button' id='cancel_pick' onclick=\"location.href='pick_db.php?mode=delete&o_key=$o_key&shop=$shop';\">이미찜</button><br>";
+                        // echo "<button type='button' id='cancel_pick' onclick=\"location.href='pick_db.php?mode=delete&o_key=$o_key&shop=$shop';\">이미찜</button><br>";
+                        echo "<button type='button' id='$o_key' class='cancel_pick' onclick=\"pick_delete('$o_key')\">이미찜</button><br>";
+
                       }
                       ?>
+
                      </div>
                    </div>
                  </div>

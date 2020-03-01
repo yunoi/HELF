@@ -1,4 +1,7 @@
-/* 게시판 목록보기(board_list.php) */
+button, input[type=button], input[type=submit] {
+  cursor: pointer;
+}
+
 #board_list li { padding: 10px 0; border-bottom: solid 1px #dddddd; }
 #board_list span { display: inline-block; text-align: center;}
 #board_list .col1 { width: 45px; }

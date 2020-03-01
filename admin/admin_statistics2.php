@@ -29,7 +29,7 @@
     <header>
       <?php include "../common/lib/header.php";?>
     </header>
-    <section>
+    <section id="sec1">
       <?php
       $sql="select p.type , count(s.o_key) as 'count' from sales s ";
       $sql.="inner join program p on s.o_key = p.o_key ";
@@ -78,6 +78,7 @@
       console.log(arr1);
       </script>
       <div id="admin_border">
+
         <div id="snb">
           <div id="snb_title">
             <h1>관리자 페이지</h1>
@@ -112,7 +113,7 @@
         <div id="content">
           <div id="hot_program">
             <h3>통계 > 인기 프로그램</h3><br>
-              <div id="container" style="min-width: 550px; height: 400px; max-width: 500px; margin-left:20px; border:1px solid blue; float:left;">
+              <div id="container_pie">
               </div>
           </div>
           <script type="text/javascript">
@@ -134,7 +135,7 @@
                 });
 
                 // Build the chart
-                Highcharts.chart('container', {
+                Highcharts.chart('container_pie', {
                     chart: {
                         plotBackgroundColor: null,
                         plotBorderWidth: null,
@@ -178,34 +179,32 @@
               </script>
           <div id="p_ranking">
               <h3>유저 구매 랭킹</h3><br>
-                <table id="tb_ranking">
-                  <tr id="i9">
-                    <td>랭킹</td>
-                    <td>아이디</td>
-                    <td>이름</td>
-                    <td>구매액</td>
-                  </tr>
+                <ul id="ul_ranking">
+                  <li id="i9">
+                    <p class="r1">랭킹</p>
+                    <p class="r2">아이디</p>
+                    <p class="r3">이름</p>
+                    <p class="r4">구매액</p>
+                  </li>
                   <?php
                     for($i=0; $i<count($array2); $i++){
-                      echo "<tr>";
-                      $r=$i + 1;
-                      for($j=0; $j<4; $j++){
-                        $d = $j-1;
-                        if($j==0){
-                          echo "<td>$r</td>";
-                        }else{
+                      echo "<li>";
+                      $rank=$i + 1;
                   ?>
-                         <td><?=$array2[$i][$d]?></td>
+                      <p class="r1"><?=$rank?></p>
+                      <p class="r2"><?=$array2[$i][0]?></p>
+                      <p class="r3"><?=$array2[$i][1]?></p>
+                      <p class="r4"><?=$array2[$i][2]?></p>
 
-                         <?php
-                        }
-                      }
-                     echo "</tr>";
+                   <?php
+
+                     echo "</li>";
                    }
                    ?>
-                </table>
+                </ul>
               </div>
         </div><!-- //content -->
+
       </div>
     </section>
   <footer>

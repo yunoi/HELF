@@ -117,13 +117,18 @@
 }
 
 .info_3 {
-  margin-bottom: 12px !important;
+  margin-bottom: 10px !important;
 }
 
 .info_4 {
+  width: 270px;
   font-weight: bold;
 }
 
+select {
+  width: 100px;
+  height: 23px;
+}
 .program_buy_day {
   margin-top: -5px;
   font-size: 13px;

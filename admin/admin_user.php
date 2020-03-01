@@ -31,31 +31,22 @@
 
     <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+
     <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
     <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/js/materialize.js"></script>
 
-    <!-- <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js" ></script> -->
-    <!-- <script type="text/javascript">
-      $(document).ready(function() {
-        $(".collapsible-header").click(function() {
-          alert("클ㄹ기");
-          $(".collapsible-body").attr("style","display:block");
-        })
-
-      })
-    </script> -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.collapsible');
-    var instances = M.Collapsible.init(elems, options);
-  });
+      // document.addEventListener('DOMContentLoaded', function() {
+      // var elems = document.querySelectorAll('.collapsible');
+      // var instances = M.Collapsible.init(elems, options);
+  // });
 
   // Or with jQuery
 
-  $(document).ready(function(){
-    M.AutoInit();
-    $('.collapsible').collapsible();
-  });
+    $(document).ready(function(){
+      M.AutoInit();
+      $('.collapsible').collapsible();
+    });
 </script>
   </head>
   <body>
@@ -139,13 +130,21 @@
 
                    ?>
                    <li>
-                     <div class = "collapsible-header"><?=$id?></div>
-                     <div class = "collapsible-body" style="display:none;">
-                         <span class="col1"><?=$id?>/</span>
-                         <span class="col2"><?=$name?>/</span>
-                         <span class="col3"><?=$phone?>/</span>
-                         <span class="col4"><?=$email?>/</span>
-                         <span class="col5"><?=$address?>/</span>
+                     <div class = "collapsible-header"><span><?=$id?></span></div>
+                     <div class = "collapsible-body">
+                      <div class="id_div">
+                        <div class="id_div1">
+                          <span>아이디(이름)</span>
+                        </div>
+                        <div class="id_div2">
+                          
+                        </div>
+                      </div>
+                         <span class="col1"><?=$id?> (<?=$name?>)</span>
+                         <span class="col2"></span>
+                         <span class="col3"><?=$phone?></span>
+                         <span class="col4"><?=$email?></span>
+                         <span class="col5"><?=$address?></span>
                          <span class="col6"><?=$grade?></span>
                      </div>
                    </li>

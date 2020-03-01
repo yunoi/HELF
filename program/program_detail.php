@@ -410,6 +410,7 @@ $user_grade=$_SESSION["user_grade"];
                   <select class="" name="option" id="choose" onchange="pay(this.value);">
                     <option value="0">옵션선택</option>
                   <?php
+                  $minimum_price=0; //최소가격
                   $sql="select * from program where shop='$shop'and type='$type' order by price";
                   $result = mysqli_query($conn, $sql);
                   while($row = mysqli_fetch_array($result)){
@@ -421,8 +422,11 @@ $user_grade=$_SESSION["user_grade"];
                     $file_copied   = $row["file_copied"]; //이미지파일 이름
                     $file_type     = $row["file_type"]; //이미지파일에 타입
                     if(!($choose==="선택")){
+                      if($minimum_price===0){
+                        $minimum_price=$price;
+                      }
                    ?>
-                     <option value="<?=$price?>"><?=$choose?> : <?=$price?>원</option>
+                     <option value="<?=$price?>" <?php if ($minimum_price === $price) echo "selected";?> ><?=$choose?> : <?=$price?>원</option>
                     <?php
                     }
                   }
@@ -479,6 +483,10 @@ $user_grade=$_SESSION["user_grade"];
                     }
                     document.form_review.submit();
                   }
+                  $(window).load(function(){
+                    document.getElementById("h_pay").innerHTML=<?=$minimum_price?>;
+                    document.getElementById("input_h_pay").value=<?=$minimum_price?>;
+                  });
                   </script>
                   <br/>
                   <div class="">

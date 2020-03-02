@@ -5,10 +5,13 @@
     $amount   = $_POST["paid_amount"];
     $program_num = $_POST["name"];
     $paid_date = $_POST["paid_at"];
+    $o_key = $_POST["o_key"];
   } else {
-    $amount   = $_POST["paid_amount"];
-    $program_num = $_POST["name"];
-    $paid_date = $_POST["paid_at"];
+    $amount   = "";
+    $program_num = "";
+    $paid_date = "";
+    $subject = "";
+    $o_key ="";
   }
 
  ?>
@@ -37,7 +40,7 @@
   </head>
   <body>
   	<header>
-      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php"; ?>
     </header>
     <section>
      <div id="admin_border">
@@ -45,6 +48,19 @@
        <div id="content">
             <?php
             if(isset($_POST['bank'])&&($_POST['bank']!=="")){
+              if(is_array($o_key) == 1) {
+                foreach($o_key as $value) {
+                  $sql = "insert into sales values (null, '$program_num', '$user_id', $value, $amount, '$paid_date', '결제대기')";
+                  $result = mysqli_query($conn, $sql);
+                  $sql = "delete from cart where o_key=$value;";
+                  mysqli_query($conn, $sql);
+                }
+              } else {
+                $sql = "insert into sales values (null, '$program_num', '$user_id', $o_key, $amount, '$paid_date', '결제대기')";
+                $result = mysqli_query($conn, $sql);
+                $sql = "delete from cart where o_key=$o_key;";
+                mysqli_query($conn, $sql);
+              }
                 ?>
                          <h1>주문 완료</h1><br>
          <p>주문 내용을 확인하신 후 결제 진행 바랍니다.</p>
@@ -91,6 +107,19 @@
                 </tr>
                 <?php
           } else {
+            if(is_array($o_key) == 1) {
+              for($i=0; $i<sizeof($o_key); $i++){
+                $sql = "insert into sales values (null, '$program_num', '$user_id', $o_key[$i], $amount, '$paid_date', '결제완료')";
+                $result = mysqli_query($conn, $sql);
+                $sql = "delete from cart where o_key=$o_key[$i];";
+                mysqli_query($conn, $sql);
+              }    
+            } else {
+              $sql = "insert into sales values (null, '$program_num', '$user_id', $o_key, $amount, '$paid_date', '결제완료')";
+              $result = mysqli_query($conn, $sql);
+              $sql = "delete from cart where o_key=$o_key;";
+              mysqli_query($conn, $sql);
+            }
             ?>
                      <h1>결제 완료</h1><br>
          <p>결제 내용을 확인해 주시기 바랍니다.</p>

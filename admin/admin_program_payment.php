@@ -92,16 +92,15 @@
           $total_record = mysqli_num_rows($result);
 
           $number = $total_record;
-          $row = mysqli_fetch_array($result);
-
            for ($i=0; $i<$number; $i++){
+            $row = mysqli_fetch_array($result);
             $o_key        = $row["o_key"];
             $ord_num      = $row["ord_num"];
             $id     = $row["id"];
             $sales_day     = $row["sales_day"];
             $complete     = $row["complete"];
             
-            $sql = "select * from sales where o_key=$o_key";
+            $sql = "select * from program where o_key=$o_key";
             $result2 = mysqli_query($conn, $sql);
             $row2 = mysqli_fetch_array($result2);
             
@@ -120,6 +119,7 @@
               <td><?=$subject?></td>
               <td><?=$option?></td>
               <td><?=$price?></td>
+              <td><?=$sales_day?></td>
               <td><select id="payment_status_<?=$i?>" class="no-autoinit">
               <?php if($complete === "결제완료") { ?>
                 <option value='결제완료' selected>결제완료</option>

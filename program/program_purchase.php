@@ -92,11 +92,11 @@ https://kmong.com/order/2518542 참고한 사이트 화면
               if($pay==="post"){
                 for ($i=0; $i < count($o_key); $i++) {
                   $sql = "select * from `program` where o_key=".$o_key[$i].";";
-                  $result = mysqli_query($conn, $sql);
+                  $result = mysqli_query($conn, $sql); 
                   $row = mysqli_fetch_array($result);
                   $shop = $row["shop"];
                   $type = $row["type"];
-                  $subject = $row["subject"]; //프로그램 이름
+                  $subject = $row["subject"]; //프로그램 이름 
                   $content = $row["content"]; //내용
                   $location = $row["location"]; //주소
                   $price = $row["price"]; //가격
@@ -221,6 +221,15 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       <input type="hidden" name="paid_amount" value=""/>
       <input type="hidden" name="name" value=""/>
       <input type="hidden" name="paid_at" value=""/>
+      <?php 
+        if(is_array($o_key) == 1){
+          for($i=0; $i < sizeof($o_key); $i++){
+          echo ("<input type='hidden' name='o_key[]' value='$o_key[$i]'/>");
+          } 
+        } else {
+          echo ("<input type='hidden' name='o_key' value=''/>");
+        }
+      ?>
     </form>
     </section>
 <div class="clear"></div>
@@ -240,7 +249,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
               pay_method : 'card',
               merchant_uid : 'merchant_' + new Date().getTime(),
               name : name,
-              amount : <?=$price?>,
+              amount : <?=$total_pay?>,
               buyer_name : '<?=$user_id?>',
               m_redirect_url :'../common/lib/payment_complete.php'
           }, function(rsp) {
@@ -255,9 +264,16 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                 // msg += '카드 승인번호 : ' + rsp.apply_num;
                 document.kakao_value.paid_amount.value=rsp.paid_amount;
                 document.kakao_value.name.value=rsp.name;
-                document.kakao_value.paid_at.value=rsp.paid_at;
+                document.kakao_value.paid_at.value='<?=date("Y-m-d h:i:s")?>';
                 document.kakao_value.user_id.value=rsp.buyer_name;
                 document.kakao_value.subject.value="<?=$subject?>";
+                <?php
+                if(is_array($o_key) == 1){
+                  echo("");
+              } else {
+                echo("document.kakao_value.o_key.value='$o_key';");
+              }
+        ?>
                 document.kakao_value.submit();
                 alert(msg);
             } else {
@@ -279,10 +295,17 @@ https://kmong.com/order/2518542 참고한 사이트 화면
         if(bank_name!==""){
           document.kakao_value.bank.value=bank_name;
           document.kakao_value.user_id.value="<?=$user_id?>";
-          document.kakao_value.paid_amount.value=<?=$price?>;
+          document.kakao_value.paid_amount.value=<?=$total_pay?>;
           document.kakao_value.name.value=name;
           document.kakao_value.paid_at.value="<?=date("Y-m-d h:i:s")?>"
           document.kakao_value.subject.value="<?=$subject?>";
+          <?php
+          if(is_array($o_key) == 1){
+            echo("");
+        } else {
+          echo("document.kakao_value.o_key.value='$o_key';");
+        }
+        ?>
           document.kakao_value.submit();
         }else{
           alert("은행을 선택해주세요");

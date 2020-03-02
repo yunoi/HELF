@@ -63,58 +63,79 @@
          </div><!--  end of sub -->
 
          <div id="content">
-            <h1>프로그램 관리 > 관리</h1><br>
+            <h1>프로그램 관리 > 결제 관리</h1><br>
             <div id="admin_box">
 
             <table id="manage_table">
               <tr>
-                <td>번호</td>
-                <td>샵이름</td>
-                <td>운동종류</td>
-                <td>제목</td>
-                <td>모집마감일</td>
+                <td>주문번호</td>
+                <td>주문자</td>
+                <td>샵</td>
+                <td>구분</td>
+                <td>프로그램명</td>
                 <td>옵션</td>
                 <td>가격</td>
+                <td>주문일</td>
+                <td>결제상태</td>
                 <td>수정</td>
-                <td>삭제</td>
               </tr>
 
-
-
       <?php
-        $sql = "select * from program order by o_key desc";
+        $sql = "select * from sales where complete='결제대기'";
         $result = mysqli_query($conn, $sql);
-        $total_record = mysqli_num_rows($result); // 전체 회원 수
+        if(!$result){
+          echo ("<tr><td colspan='10'>처리할 결제 내역이 없습니다.<td></tr>");
+        } else {
+          $total_record = mysqli_num_rows($result);
 
-        $number = $total_record;
+          $number = $total_record;
+          $row = mysqli_fetch_array($result);
 
-         while ($row = mysqli_fetch_array($result)){
-          $o_key        = $row["o_key"];
-          $shop      = $row["shop"];
-          $type     = $row["type"];
-          $subject     = $row["subject"];
-          $end_day     = $row["end_day"];
-          $choose     = $row["choose"];
-          $price     = $row["price"];
-      ?>
+           for ($i=0; $i<$number; $i++){
+            $o_key        = $row["o_key"];
+            $ord_num      = $row["ord_num"];
+            $id     = $row["id"];
+            $sales_day     = $row["sales_day"];
+            $complete     = $row["complete"];
+            
+            $sql = "select * from sales where o_key=$o_key";
+            $result2 = mysqli_query($conn, $sql);
+            $row2 = mysqli_fetch_array($result2);
+            
+            $shop = $row2['shop'];
+            $type = $row2['type'];
+            $subject = $row2['subject'];
+            $option = $row2['choose'];
+            $price = $row2['price'];
+  
+        ?>
+  
+            <tr>
+              <td><?=$ord_num?></td>
+              <td><?=$id?></td>
+              <td><?=$shop ?></td>
+              <td><?=$type?></td>
+              <td><?=$subject?></td>
+              <td><?=$option?></td>
+              <td><?=$price?></td>
+              <td><select id="payment_status_<?=$i?>">
+                <option value='결제완료'>결제완료</option>
+                <option value='결제대기'>결제대기</option>
+                <option value='주문취소'>주문취소</option>
+              </select></td>
+              <td><button type="button" id="btn_modify">수정</button></td>
+           </tr>
+           <script>
+     
+     $('#btn_modify').click(function() {
+ var selected = $('#payment_status_<?=$i?> option:selected');
+});​
 
-          <tr>
-          <form method="post" action="admin_program_regist.php?o_key=<?=$o_key?>">
-            <td><?=$o_key?></td>
-            <td><?=$shop?></td>
-            <td><?=$type ?></td>
-            <td><?=$subject?></td>
-            <td><?=$end_day?></td>
-            <td><?=$choose?></td>
-            <td><?=$price?></td>
-            <td><button type="submit">수정</button></td>
-            <td><button type="button" onclick="location.href='program_curd.php?o_key=<?=$o_key?>&mode=delete'">삭제</button></td>
-          </form>
-         </tr>
-
-      <?php
-             $number--;
-         }
+ </script>
+        <?php
+           }
+        }
+       
       ?>
             </table>
 

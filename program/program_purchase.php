@@ -293,7 +293,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
           <input type="hidden" name="paid_at" value=""/>
         </form>
 
-        document.kakao_value.submit();
+        document.bank_value.submit();
           location.href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php?bank="+bank_name+"&id=<?=$user_id?>";
         }else{
           alert("은행을 선택해주세요");

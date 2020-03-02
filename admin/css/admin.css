@@ -81,20 +81,17 @@ a:hover {
   color: lightblue;
 }
 
-#user_table {
+/* #user_table {
   width: 870px;
   text-align: center;
 }
 #user_table td{
   height: 30px;
-}
+} */
 
-#manage_table {
-  width: 825px;
-  text-align: center;
-}
 
-#user_table td {
+
+/* #user_table td {
   border: 1px solid black;
 }
 
@@ -104,17 +101,7 @@ a:hover {
 
 #board1_table td {
   border: 1px solid black;
-}
-
-}
-
-#regist_table td {
-}
-
-#manage_table td {
-  height: 30px;
-
-}
+} */
 
 #hot_program {
   width: 600px;

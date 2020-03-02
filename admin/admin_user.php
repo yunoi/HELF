@@ -136,7 +136,7 @@
                      <div class = "collapsible-header"><span><?=$id?></span></div>
                      <div class = "collapsible-body">
                       <table>
-                        <tr>
+                        <tr id="first_tr">
                           <td class="td1">아이디 (이름)</td>
                           <td class="td2"><?=$id?> (<?=$name?>)</td>
                           <td class="td1">등급</td>

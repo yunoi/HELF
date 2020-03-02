@@ -114,7 +114,7 @@
            </div><!--  end of sub -->
 
            <div id="content">
-             <h1>게시글 관리 > 같이할건강 </h1><br>
+             <h1 id="content_title">게시글 관리 > 같이할건강 </h1><br>
              <form id="delete_board_form" action="admin_board_together.php?page=<?=$page?>" method="post">
                <div id="all_check">
                  <input type="checkbox" id="all_agree">

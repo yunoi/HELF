@@ -50,12 +50,14 @@ if($mode==="update"){
       <div id="write_row1">
         <div class="col1">아이디</div>
         <div class="col2"><?=$user_id?></div>
-        </div>
+        <br>
+      </div>
       </div><!--end of write_row1  -->
       <div class="write_line"></div>
       <div id="write_row2">
         <div class="col1">제&nbsp;&nbsp;목</div>
-        <div class="col2"><input type="text" name="subject" value=<?=$qna_subject?>></div>
+        <div class="col2"><input type="text" style="width:585px" name="subject" value=<?=$qna_subject?>></div>
+        <br>
       </div><!--end of write_row2  -->
       <div class="write_line"></div>
 

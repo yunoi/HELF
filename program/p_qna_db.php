@@ -37,6 +37,19 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="new_insert"){
     alert_back('Error:5 ' . mysqli_error($conn));
     // die('Error: ' . mysqli_error($conn));
   }
+  //현재 최대큰번호를 가져와서 그룹번호로 저장하기
+  $sql="SELECT max(num) from p_qna;";
+  $result = mysqli_query($conn, $sql);
+  if (!$result) {
+      die('Error: ' . mysqli_error($conn));
+  }
+  $row=mysqli_fetch_array($result);
+  $max_num=$row['max(num)'];
+  $sql="UPDATE `p_qna` SET `group_num`= $max_num WHERE `num`=$max_num;";
+  $result = mysqli_query($conn, $sql);
+  if (!$result) {
+      die('Error: ' . mysqli_error($conn));
+  }
 
   mysqli_close($conn);
 
@@ -88,19 +101,7 @@ echo "<script>opener.parent.location.reload();self.close();</script>" ;
     if (!$result) {
       die('Error: '. mysqli_error($conn));
     }
-    //현재 최대큰번호를 가져와서 그룹번호로 저장하기
-    $sql="SELECT max(num) from p_qna;";
-    $result = mysqli_query($conn, $sql);
-    if (!$result) {
-        die('Error: ' . mysqli_error($conn));
-    }
-    $row=mysqli_fetch_array($result);
-    $max_num=$row['max(num)'];
-    // $sql="UPDATE `p_qna` SET `group_num`= $max_num WHERE `num`=$max_num;";
-    // $result = mysqli_query($conn, $sql);
-    // if (!$result) {
-    //     die('Error: ' . mysqli_error($conn));
-    // }
+
     mysqli_close($conn);
 
     // echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";

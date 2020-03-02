@@ -7,7 +7,8 @@
 
   echo("
        <script>
-          location.href = '../index.php';
+          alert('로그아웃 되었습니다^오^')
+          history.go(-1);
          </script>
        ");
 ?>

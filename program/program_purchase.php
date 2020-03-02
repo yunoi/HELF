@@ -3,7 +3,8 @@ https://kmong.com/order/2518542 참고한 사이트 화면
  -->
 <?php
   session_start();
-  $id = $_SESSION["user_id"];
+  $user_id = $_SESSION["user_id"];
+  $price=$subject="";
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -46,7 +47,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
         }else if($_GET['num']){
           $num = (int)$_GET['num'];
 
-          $sql="select B.o_key from cart A inner join program B on A.o_key = B.o_key where id = '$id' and num=$num;";
+          $sql="select B.o_key from cart A inner join program B on A.o_key = B.o_key where id = '$user_id' and num=$num;";
           $result = mysqli_query($conn, $sql);
           $row = mysqli_fetch_array($result);
 
@@ -57,7 +58,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
 
           $o_key = array();
           for ($i=0; $i<count($no); $i++) {
-            $sql="select B.o_key from cart A inner join program B on A.o_key = B.o_key where id = '$id' and num=$no[$i];";
+            $sql="select B.o_key from cart A inner join program B on A.o_key = B.o_key where id = '$user_id' and num=$no[$i];";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($result);
             array_push($o_key, $row['o_key']);
@@ -91,11 +92,11 @@ https://kmong.com/order/2518542 참고한 사이트 화면
               if($pay==="post"){
                 for ($i=0; $i < count($o_key); $i++) {
                   $sql = "select * from `program` where o_key=".$o_key[$i].";";
-                  $result = mysqli_query($conn, $sql);
+                  $result = mysqli_query($conn, $sql); 
                   $row = mysqli_fetch_array($result);
                   $shop = $row["shop"];
                   $type = $row["type"];
-                  $subject = $row["subject"]; //프로그램 이름
+                  $subject = $row["subject"]; //프로그램 이름 
                   $content = $row["content"]; //내용
                   $location = $row["location"]; //주소
                   $price = $row["price"]; //가격
@@ -213,6 +214,23 @@ https://kmong.com/order/2518542 참고한 사이트 화면
         </div>
       </div><!--end of div_body-->
     </div><!--end of item_all-->
+    <form name="kakao_value" method="post">
+      <input type="hidden" name="bank" value=""/>
+      <input type="hidden" name="user_id" value=""/>
+      <input type="hidden" name="subject" value=""/>
+      <input type="hidden" name="paid_amount" value=""/>
+      <input type="hidden" name="name" value=""/>
+      <input type="hidden" name="paid_at" value=""/>
+      <?php 
+        if(is_array($o_key) == 1){
+          for($i=0; $i < sizeof($o_key); $i++){
+          echo ("<input type='hidden' name='o_key[]' value='$o_key[$i]'/>");
+          } 
+        } else {
+          echo ("<input type='hidden' name='o_key' value=''/>");
+        }
+      ?>
+    </form>
     </section>
 <div class="clear"></div>
     <footer>
@@ -221,51 +239,54 @@ https://kmong.com/order/2518542 참고한 사이트 화면
   <!-- 카카오페이 -->
   <script>
       function payment(){
-        var IMP = window.IMP; // 생략가능
-        IMP.init('imp50161639'); // 가맹점 식별코드
-        var user_id = '<?=$user_id?>';
-        var name = user_id.substr(0, 3) + new Date().getTime();
-        console.log(name);
-        IMP.request_pay({
-    pg : 'kakaopay',
-    pay_method : 'card',
-    merchant_uid : 'merchant_' + new Date().getTime(),
-    name : name,
-    amount : <?=$price?>,
-    buyer_name : '<?=$user_id?>',
-    m_redirect_url :'../common/lib/payment_complete.php'
-}, function(rsp) {
-    if ( rsp.success ) {
-        var msg = '결제가 완료되었습니다.';
-        // msg += '고유ID : ' + rsp.imp_uid;
-        // msg += '상점 거래ID : ' + rsp.merchant_uid;
-        msg += '결제 금액 : ' + rsp.paid_amount;
-        msg += '주문 번호 : ' + rsp.name;
-        msg += '주문자 : ' + rsp.buyer_name;
-        msg += '결제 일자 : ' + rsp.paid_at;
-        // msg += '카드 승인번호 : ' + rsp.apply_num;
+          var IMP = window.IMP; // 생략가능
+          IMP.init('imp50161639'); // 가맹점 식별코드
+          var user_id = '<?=$user_id?>';
+          var name = user_id.substr(0, 3) + new Date().getTime();
+          console.log(name);
+          IMP.request_pay({
+              pg : 'kakaopay',
+              pay_method : 'card',
+              merchant_uid : 'merchant_' + new Date().getTime(),
+              name : name,
+              amount : <?=$total_pay?>,
+              buyer_name : '<?=$user_id?>',
+              m_redirect_url :'../common/lib/payment_complete.php'
+          }, function(rsp) {
+            if ( rsp.success ) {
+                var msg = '결제가 완료되었습니다.';
+                // msg += '고유ID : ' + rsp.imp_uid;
+                // msg += '상점 거래ID : ' + rsp.merchant_uid;
+                msg += '결제 금액 : ' + rsp.paid_amount;
+                msg += '주문 번호 : ' + rsp.name;
+                msg += '주문자 : ' + rsp.buyer_name;
+                msg += '결제 일자 : ' + rsp.paid_at;
+                // msg += '카드 승인번호 : ' + rsp.apply_num;
+                document.kakao_value.paid_amount.value=rsp.paid_amount;
+                document.kakao_value.name.value=rsp.name;
+                document.kakao_value.paid_at.value='<?=date("Y-m-d h:i:s")?>';
+                document.kakao_value.user_id.value=rsp.buyer_name;
+                document.kakao_value.subject.value="<?=$subject?>";
+                <?php
+                if(is_array($o_key) == 1){
+                  echo("");
+              } else {
+                echo("document.kakao_value.o_key.value='$o_key';");
+              }
+        ?>
+                document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete_curd.php"
+                document.kakao_value.submit();
 
-        document.kakao_value.paid_amount.value=rsp.paid_amount;
-        document.kakao_value.name.value=rsp.name;
-        document.kakao_value.buyer_name.value=rsp.paid_at;
-        document.kakao_value.subject.value=<?=$subject?>;
+                document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete.php"
+                document.kakao_value.submit();
 
-        <form name="kakao_value" method="post" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php">
-          <input type="hidden" name="subject" value=""/>
-          <input type="hidden" name="paid_amount" value=""/>
-          <input type="hidden" name="name" value=""/>
-          <input type="hidden" name="paid_at" value=""/>
-        </form>
-
-        document.kakao_value.submit();
-        location.href = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php";
-
-    } else {
-        var msg = '결제에 실패하였습니다.';
-        msg += '에러내용 : ' + rsp.error_msg;
-    }
-    alert(msg);
-});
+                alert(msg);
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+                alert(msg);
+            }
+        });
       }
 
       function bank(){ // 무통장 입금 버튼 누르면 작동할 함수
@@ -277,31 +298,31 @@ https://kmong.com/order/2518542 참고한 사이트 화면
         var name = user_id.substr(0, 3) + new Date().getTime();
         let bank_name = document.getElementById('bank_name').value;
         if(bank_name!==""){
+          document.kakao_value.bank.value=bank_name;
+          document.kakao_value.user_id.value="<?=$user_id?>";
+          document.kakao_value.paid_amount.value=<?=$total_pay?>;
+          document.kakao_value.name.value=name;
+          document.kakao_value.paid_at.value="<?=date("Y-m-d h:i:s")?>"
+          document.kakao_value.subject.value="<?=$subject?>";
           <?php
-          $user_id=$_SESSION['user_id'];
-          ?>
+          if(is_array($o_key) == 1){
+            echo("");
+        } else {
+          echo("document.kakao_value.o_key.value='$o_key';");
+        }
+        ?>
+          document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete_curd.php"
+                document.kakao_value.submit();
 
-        document.bank_value.paid_amount.value=<?=$price?>;
-        document.bank_value.name.value=name;
-        document.bank_value.paid_at.value= <?=date("Y-m-d h:i:s")?>
-        document.bank_value.subject.value=<?=$subject?>;
-
-        <form name="bank_value" method="post" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php">
-          <input type="hidden" name="subject" value=""/>
-          <input type="hidden" name="paid_amount" value=""/>
-          <input type="hidden" name="name" value=""/>
-          <input type="hidden" name="paid_at" value=""/>
-        </form>
-
-        document.kakao_value.submit();
-          location.href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php?bank="+bank_name+"&id=<?=$user_id?>";
+                document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete.php"
+                document.kakao_value.submit();
         }else{
           alert("은행을 선택해주세요");
         }
       }
       function kakao(){
         document.getElementById('bank').innerHTML="";
-        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="payment()">결제하기</button> </a>';
+        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="payment()">결제하기</button></a>';
       }
       function checkd(){
         alert("결제방법을 선택해주세요");

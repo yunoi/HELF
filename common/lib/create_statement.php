@@ -253,6 +253,7 @@ function create_table($conn, $table_name){
                 ord_num char(25) not null,
                 id char(20) not null,
                 o_key int not null,
+                total_price int not null,
                 sales_day char(20) not null,
                 complete char(10) not null,
                 primary key (num),

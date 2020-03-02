@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -51,6 +52,7 @@
                <ul>
                  <li><a href="admin_program_regist.php">프로그램 등록</a></li>
                  <li><a href="admin_program_manage.php">프로그램 관리</a></li>
+                 <li><a href="admin_program_payment.php">결제 관리</a></li>
                </ul>
 
              <h2>통계</h2>

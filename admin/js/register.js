@@ -8,9 +8,9 @@ $(document).ready(function() {
 
   $("#option_plus").click(function(){
     console.dir('들어옴');
-    
-    var html = `<li>옵션명: <input type="text" name="choose[]" value=""> &
-    가격: <input type="number" name="price[]" value=""> 원</li>`;
+
+    var html = `<li><input type="text" name="choose[]" id="option_choose" value="" placeholder=" 옵션명을 입력하세요. "> &
+    <input type="number" name="price[]" value="" placeholder=" 가격을 입력하세요. "> 원</li>`;
     $("#ul_plus").append(html);
     child++;
 

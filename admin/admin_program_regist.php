@@ -1,3 +1,6 @@
+<?php
+  session_start();
+ ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -49,6 +52,8 @@
                <ul>
                  <li><a href="admin_program_regist.php">프로그램 등록</a></li>
                  <li><a href="admin_program_manage.php">프로그램 관리</a></li>
+                 <li><a href="admin_program_payment.php">결제 관리</a></li>
+
                </ul>
 
              <h2>통계</h2>
@@ -106,17 +111,17 @@
       ?>
 
          <div id="content">
-              <h1>프로그램 관리 > 등록</h1><br>
+              <h1 id="content_title">프로그램 관리 > 등록</h1><br>
               <form name="program_regist" class="" action="program_curd.php?mode=<?=$mod?>&o_key=<?=$o_key?>" method="post" enctype="multipart/form-data">
                 <table id="regist_table">
                   <tr>
-                    <td id="td_width" >샵 이름</td>
+                    <td class="td_width">상호명</td>
                     <td>
-                      <input id="input_shop" type="text" name="shop" value=<?=$shop?> <?php if ($mod === 'modify') echo "disabled";?>>
+                      <input id="input_shop" type="text" name="shop" value="<?=$shop?>" placeholder=" 상호명을 입력하세요. "<?php if ($mod === 'modify') echo "disabled";?>>
                     </td>
-                  </tr>
-                  <tr>
-                    <td>운동 종류</td>
+                  <!-- </tr>
+                  <tr> -->
+                    <td class="td_width">종류</td>
                     <td>
                       <select name="type" class="kind_sel" <?php if ($mod === 'modify') echo "disabled";?>>
                         <option value="pt" <?php if ($type === 'pt') echo "selected";?>>pt</option>
@@ -132,41 +137,39 @@
                     </td>
                   </tr>
                   <tr>
-                    <td>제목</td>
-                    <td>
-                      <input id="input_subject" type="text" name="subject" value=<?=$subject?> <?php if ($mod === 'modify') echo "disabled";?>>
+                    <td class="td_width">프로그램명</td>
+                    <td colspan="3">
+                      <input id="input_subject" type="text" name="subject" value="<?=$subject?>" placeholder=" 프로그램명을 입력하세요. "<?php if ($mod === 'modify') echo "disabled";?>>
                     </td>
                   </tr>
                   <tr>
-                    <td>내용</td>
-                    <td>
-                      <textarea name="content" rows="10" cols="87"  value="" <?php if ($mod === 'modify') echo "disabled";?>><?=$content?></textarea>
+                    <td class="td_width">내용</td>
+                    <td colspan="3">
+                      <textarea name="content" value="" placeholder=" 내용을 입력하세요. "<?php if ($mod === 'modify') echo "disabled";?> ><?=$content?></textarea>
                     </td>
                   </tr>
                   <tr>
-                    <td>모집인원</td>
+                    <td class="td_width">모집인원</td>
                     <td>
-                      <input id="input_num" type="number" name="personnel" value=<?=$personnel?> <?php if ($mod === 'modify') echo "disabled";?>> 명
+                      <input id="input_num" type="number" name="personnel" placeholder=" 모집인원을 입력하세요. " value=<?=$personnel?> <?php if ($mod === 'modify') echo "disabled";?>>
                     </td>
-                  </tr>
-                  <tr>
-                    <td>모집 마감일</td>
+                    <td class="td_width">모집 마감일</td>
                     <td>
                       <input type="date" name="end_day" value=<?=$end_day?> <?php if ($mod === 'modify') echo "disabled";?>>
                     </td>
                   </tr>
                   <tr>
-                    <td>옵션</td>
-                    <td id="td_plus">
+                    <td class="td_width">옵션</td>
+                    <td id="td_plus" colspan="3">
                       <ul id="ul_plus">
                         <li>
-                          옵션명: <input type="text" name="choose[]" value=<?=$choose?>> &
-                          가격: <input type="number" name="price[]" value=<?=$price?>> 원
+                          <input type="text" name="choose[]" id="option_choose" value="<?=$choose?>" placeholder=" 옵션명을 입력하세요. "> &
+                          <input type="number" name="price[]" value="<?=$price?>" placeholder=" 가격을 입력하세요. "> 원
                           <?php
                           if($mod === "insert"){
                           ?>
-                          &nbsp| &nbsp &nbsp<button id="option_plus" type="button" name="button">옵션추가</button>
-                          <button id="option_minus" type="button" name="button">옵션삭제</button>
+                          <button id="option_plus" type="button" name="button">추가</button>
+                          <button id="option_minus" type="button" name="button">삭제</button>
                           <?php
                           }
                           ?>
@@ -179,30 +182,25 @@
                   if($mod === "modify"){
                   ?>
                   <tr>
-                    <td>주소</td>
+                    <td class="td_width">주소</td>
                     <td><?=$location?></td>
                   </tr>
                   <?php
                 }else{
                   ?>
                   <tr>
-                    <td>지역
-                    <td>
+                    <td class="td_width">지역
+                    <td id="select_location" colspan="3">
                       <?php include "../program/select_location.php";?>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>상세주소
-                    <td>
-                      <input id="input_location" type="text" name="detail" value="">
+                      <input id="input_location" type="text" name="detail" value="" placeholder=" 상세 주소 ">
                     </td>
                   </tr>
                   <?php
                   }
                    ?>
                   <tr>
-                    <td>이미지</td>
-                    <td>
+                    <td class="td_width">이미지</td>
+                    <td colspan="3">
                       <?=$file_name?>
                       <?php
                       if($mod === "insert"){
@@ -213,23 +211,17 @@
                       ?>
                     </td>
                   </tr>
-                  <tr>
-                    <td> </td>
-                    <td>
-                      <?php
-                        if(isset($_GET["o_key"])){
-                          echo "<input type='submit' value='수정'>";
-                        }else{
-                          echo "<input type='submit' value='등록'>";
-                        }
-
-                       ?>
-                       <!-- <input type="button" name="" value="취소"> -->
-
-                    </td>
-                  </tr>
                 </table>
+                <div id="submit_div">
+                  <?php
+                    if(isset($_GET["o_key"])){
+                      echo "<input type='submit' value='수정'>";
+                    }else{
+                      echo "<input type='submit' value='등록'>";
+                    }
 
+                   ?>
+                </div>
               </form>
             </div><!--  end of content-->
        </div><!--  end of admin_board -->

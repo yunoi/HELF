@@ -1,3 +1,6 @@
+<?php
+  session_start();
+ ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -81,7 +84,7 @@
               </tr>
 
       <?php
-        $sql = "select * from sales where complete='결제대기'";
+        $sql = "select * from sales order by complete asc";
         $result = mysqli_query($conn, $sql);
         if(!$result){
           echo ("<tr><td colspan='10'>처리할 결제 내역이 없습니다.<td></tr>");
@@ -109,7 +112,6 @@
             $price = $row2['price'];
   
         ?>
-  
             <tr>
               <td><?=$ord_num?></td>
               <td><?=$id?></td>
@@ -118,20 +120,55 @@
               <td><?=$subject?></td>
               <td><?=$option?></td>
               <td><?=$price?></td>
-              <td><select id="payment_status_<?=$i?>">
-                <option value='결제완료'>결제완료</option>
+              <td><select id="payment_status_<?=$i?>" class="no-autoinit">
+              <?php if($complete === "결제완료") { ?>
+                <option value='결제완료' selected>결제완료</option>
                 <option value='결제대기'>결제대기</option>
                 <option value='주문취소'>주문취소</option>
-              </select></td>
-              <td><button type="button" id="btn_modify">수정</button></td>
-           </tr>
-           <script>
-     
-     $('#btn_modify').click(function() {
- var selected = $('#payment_status_<?=$i?> option:selected');
-});​
 
- </script>
+                              <?php } else if($complete === "결제대기") {?>
+                                <option value='결제완료'>결제완료</option>
+                <option value='결제대기' selected>결제대기</option>
+                <option value='주문취소'>주문취소</option>
+                              <?php } else { ?>
+                                <option value='결제완료'>결제완료</option>
+                <option value='결제대기'>결제대기</option>
+                <option value='주문취소' selected>주문취소</option>
+                              <?php } ?>
+              </select></td>
+
+              <td><button type="button" id="btn_modify_<?=$i?>">수정</button></td>
+           </tr>
+           <script type="text/javascript">
+                        $("#btn_modify_<?=$i?>").click(function () {
+                          var selected_option =   $("#payment_status_<?=$i?> option:selected").val();
+                          $.ajax({
+                              url: 'payment_curd.php',
+                              type: 'POST',
+                              data: {
+                                "ord_num": "<?=$ord_num?>",
+                                "complete": selected_option
+                              },
+                              success: function(data) {
+                                console.log(data);
+                                if(data === "수정 완료") {
+                                  alert("결제정보 수정 완료!");
+                                }else if(data === "수정 실패") {
+                                  alert("결제정보 수정 실패!");
+                                }
+                              }
+                            })
+                            .done(function() {
+                              console.log("done");
+                            })
+                            .fail(function() {
+                              console.log("error");
+                            })
+                            .always(function() {
+                              console.log("complete");
+                            });
+                        })
+                      </script>
         <?php
            }
         }

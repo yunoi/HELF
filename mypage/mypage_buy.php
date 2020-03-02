@@ -182,6 +182,7 @@
                    $price        = $row["price"];
                    $choose       = $row["choose"];
                    $location     = $row["location"];
+                   $payment_status = $row["complete"];
                    $file_copied  = $row["file_copied"];
                    $file_type    = $row["file_type"];
 
@@ -201,6 +202,7 @@
                                   <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
                                   <div class="info_4">선택한 옵션 : <?=$choose?></div>
                                   <div class="program_buy_day">구매일 : <?=$sales_day?></div>
+                                  <div class="status">결제상태 : <?=$payment_status?></div>
                                 </a>
                               </div>
                               <div class="program_price">

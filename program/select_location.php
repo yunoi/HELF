@@ -22,7 +22,7 @@
 
   &nbsp
   <select name="s_area2" >
-    <option value ='' selected>-선택-</option>
+    <option value ='' selected>선택</option>
   </select>
 <script language=javascript>
 
@@ -127,7 +127,7 @@ function cat1_change(key,sel){
    sel.options[i] = null;
  }
  //옵션의 첫번째 항목을 -선택-으로 세팅
- sel.options[0] = new Option('-선택-','', '', 'true');
+ sel.options[0] = new Option('선택','', '', 'true');
 
  //해당 지역의 상세지역을 세팅
  for(i=0; i<name.length; i++){

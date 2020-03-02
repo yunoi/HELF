@@ -1,5 +1,16 @@
 <?php
   session_start();
+  if(isset($_GET['bank'])){
+    $subject =  $_POST["subject"];
+    $amount   = $_POST["paid_amount"];
+    $program_num = $_POST["name"];
+    $paid_date = $_POST["paid_at"];
+  } else {
+    $amount   = $_POST["paid_amount"];
+    $program_num = $_POST["name"];
+    $paid_date = $_POST["paid_at"];
+  }
+
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -32,11 +43,14 @@
      <div id="admin_border">
 
        <div id="content">
-         <h1>결제 완료</h1><br>
-         <p>결제 내용을 확인해 주시기 바랍니다.</p>
+            <?php 
+            if(isset($_GET['bank'])){
+                ?>
+                         <h1>주문 완료</h1><br>
+         <p>주문 내용을 확인하신 후 결제 진행 바랍니다.</p>
          <table>
             <tr>
-                 <th>주문일자</th><td>&nbsp;</td>
+                 <th>주문일자</th><td>&nbsp;<?=$paid_date?></td>
             </tr>
             <tr>
                  <th>주문번호</th><td>&nbsp;</td>
@@ -47,9 +61,6 @@
             <tr>
                  <th>주문금액</th><td>&nbsp;</td>
 </tr>
-            <?php 
-            if(isset($_GET['bank'])){
-                ?>
                 <tr>
                  <th>결제은행</th>
                  <?php
@@ -79,11 +90,30 @@
                  <th>진행상태</th><td>&nbsp;결제대기</td>
                 </tr>
                 <?php 
-          }
+          } else {
             ?>
-                <tr>
+                     <h1>결제 완료</h1><br>
+         <p>결제 내용을 확인해 주시기 바랍니다.</p>
+         <table>
+            <tr>
+                 <th>주문일자</th><td>&nbsp;<?=$paid_date?></td>
+            </tr>
+            <tr>
+                 <th>주문번호</th><td>&nbsp;<?=$program_num?></td>
+            </tr>
+             <tr>
+                 <th>상품명</th><td>&nbsp;</td>
+            </tr>
+            <tr>
+                 <th>주문금액</th><td>&nbsp;<?=$amount?></td>
+</tr>
+            <tr>
                  <th>진행상태</th><td>&nbsp;결제완료</td>
                 </tr>
+                <?php 
+          }
+          ?>
+                
          </table>
          <div class="buttons">
          <button type="botton" onclick="location.href='../../index.php'">메인으로 돌아가기</button>

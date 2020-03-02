@@ -20,20 +20,6 @@ session_start();
             window.location.href='./dml_board.php?mode=delete&num='+num;
       }
     }
-// window.onload = function()
-// {
-//  // div height 설정
-//  //sibling div의 길이가 늘어날 때 같이 길이가 늘어날 수 있도록
-//  setDivHeight('content_col1','content_col2'); // 매개변수(heigth값 가져올 대상 div id, 변경할 div id)
-// }
-
-// function setDivHeight(objSet, objTar)// objSet : 변경할 div id, objTar : height값을 구할 대상 div id
-// {
-//   var objSet   = document.getElementById(objSet);
-//   var objTarHeight= document.getElementById(objTar).offsetHeight;
-//   objSet.style.height  = objTarHeight + "px";
-// }
-
     </script>
   </head>
   <body>
@@ -134,16 +120,22 @@ session_start();
 
             <div id="write_button">
               <!--목록보기 -->
-              <a href="./notice.php?page=<?=$page?>"><img src="./img/list.png"></a>
-
-            <?php
+              <button type="button"><a href="./notice.php?page=<?=$page?>">목록</a></button>&nbsp;
+              <?php
               //세션값이 존재하면 수정기능과 삭제기능부여하기
-              if(isset($_SESSION['user_grade'])){
-                if($_SESSION['user_grade']=="master" || $_SESSION['user_grade']=="admin"){
-                  echo('<a href="./write_edit_form.php?mode=update&num='.$num.'"><img src="./img/modify.png"></a>&nbsp;');
-                  echo('<img src="./img/delete.png" onclick="check_delete('.$num.')">&nbsp;');
+              if(isset($_SESSION['user_id'])){
+                if($_SESSION['user_grade']=="admin"){
+                  echo('<button type="button"><a href="./write_edit_form.php?mode=update&num='.$num.'">수정</a></button>&nbsp;&nbsp;');
+                  echo('<button type="button" id="write_button_delete" onclick="check_delete('.$num.')"><a>삭제</a></button>&nbsp');
+                  
                 }
               }
+              // 세션값이 존재하면 글쓰기 기능부여하기\
+              if(isset($_SESSION['user_grade'])){
+              if($_SESSION['user_grade']=="admin"){
+                echo ' <button type="button"><a href="write_edit_form.php">글쓰기</a></button>';
+              }
+            }
             ?>
             </div><!--end of write_button-->
       </div><!--end of col2  -->

@@ -53,7 +53,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
          <div id="left_menu">
            <div id="sub_title"><span>&nbsp</span></div>
            <ul>
-             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동</a></li>
+             <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/exercise/list.php">운동 정보</a></li>
              <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/health_info/recipe/list.php">요리 레시피</a></li>
            </ul>
          </div>
@@ -137,17 +137,31 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
              }//end of for
          ?>
           <div id="page_button">
-            <div id="page_num">이전◀ &nbsp;&nbsp;&nbsp;&nbsp;
+            <div id="page_num">
+  <!-- /////////////////////////////////////////////////// -->
               <?php
-                for ($i=1; $i <= $total_page ; $i++) {
-                    if ($page==$i) {
-                        echo "<b>&nbsp;$i&nbsp;</b>";
-                    } else {
-                        echo "<a href='./list.php?page=$i'>&nbsp;$i&nbsp;</a>";
-                    }
+                if($total_page<2){
+                  "";
+                }else{
+                  echo "이전◀ &nbsp;&nbsp;&nbsp;&nbsp";
                 }
-              ?>
-            &nbsp;&nbsp;&nbsp;&nbsp;▶ 다음
+
+              for ($i=1; $i <= $total_page ; $i++) {
+                  if ($page==$i) {
+                      echo "<b>&nbsp;$i&nbsp;</b>";
+                  } else {
+                      echo "<a href='./list.php?page=$i'>&nbsp;$i&nbsp;</a>";
+                  }
+              }
+
+              if($total_page<2){
+                "";
+              }else{
+                echo "&nbsp;&nbsp;&nbsp;&nbsp;▶ 다음";
+              }
+
+            ?>
+  <!-- /////////////////////////////////////////////// -->
             <br><br><br><br><br><br><br>
           </div><!--end of page num -->
 

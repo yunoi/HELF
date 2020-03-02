@@ -78,7 +78,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
         '<form style="display:inline" action="'.$page1.'?mode=delete_ripple&page='.$page.'&hit='.$hit.'" method="post">
           <input type="hidden" name="num" value="'.$num1.'">
           <input type="hidden" name="parent" value="'.$parent.'">
-          <input type="submit" value="삭제">
+          <input type="submit" style="border:1px solid #F23005; color:#F23005; background-color:white;" value="&nbsp&nbsp삭제&nbsp&nbsp">
         </form>';
         }
         return $message;

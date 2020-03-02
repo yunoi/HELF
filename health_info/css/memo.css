@@ -118,17 +118,22 @@
 
 #ripple_textarea {
 	float:left;
+	position: relative;
 }
 
 #ripple_textarea textarea{
 	border:solid 1px #cccccc;
 }
 #ripple_textarea input{
-	border:1px solid #F23005;
-	text-align: center;
-	color: #F23005;
-	background-color: white;
-	margin-left: 15px;
+	border: 1px solid #F23005;
+  text-align: center;
+  color: white;
+  background-color: #F23005;
+  margin-left: 15px;
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
 }
 
 #ripple_button {

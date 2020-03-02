@@ -10,6 +10,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
   <head>
     <meta charset="utf-8">
     <title>HELF :: 결제페이지</title>
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <link
         rel="stylesheet"
@@ -21,56 +22,9 @@ https://kmong.com/order/2518542 참고한 사이트 화면
 
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="./css/program_purchase.css">
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
     <script src="./js/program_purchase.js" charset="utf-8"></script>
-    <!-- 카카오페이 -->
-    <script>
-      function payment(){
-        var IMP = window.IMP; // 생략가능
-        IMP.init('imp50161639'); // 가맹점 식별코드
-
-        IMP.request_pay({
-    pg : 'kakaopay',
-    pay_method : 'card',
-    merchant_uid : 'merchant_' + new Date().getTime(),
-     name : '구매상품',
-    amount : 1,
-    buyer_name : '구매자이름',
-    m_redirect_url :'../common/lib/payment_complete.php'
-}, function(rsp) {
-    if ( rsp.success ) {
-        var msg = '결제가 완료되었습니다.';
-        // msg += '고유ID : ' + rsp.imp_uid;
-        // msg += '상점 거래ID : ' + rsp.merchant_uid;
-        // msg += '결제 금액 : ' + rsp.paid_amount;
-        // msg += '카드 승인번호 : ' + rsp.apply_num;
-
-        location.href = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php";
-    } else {
-        var msg = '결제에 실패하였습니다.';
-        msg += '에러내용 : ' + rsp.error_msg;
-    }
-    alert(msg);
-});
-      }
-      function bank(){ // 무통장 입금 버튼 누르면 작동할 함수
-        document.getElementById('bank').innerHTML="<select id='bank_name' title='무통장은행선택'><option value=''>은행 선택</option><option value='shinhan'>신한 은행</option><option value='hana'>하나 은행</option><option value='woori'>우리 은행</option></select>";
-        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="banked_clik()">주문하기</button> </a>;';
-      }
-      function banked_clik(){
-        let bank_name = document.getElementById('bank_name').value;
-        <?php
-        $user_id=$_SESSION['user_id'];
-        ?>
-        location.href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php?bank="+bank_name+"&id=<?=$user_id?>";
-      }
-      function kakao(){
-        document.getElementById('bank').innerHTML="";
-        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="payment()">결제하기</button> </a>;';
-      }
-    </script>
   </head>
   <body>
     <header>
@@ -249,16 +203,14 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       <div class="clear"></div>
       <div class="div_item5">
         <div class="div_body">
-          <div class="position-relative">
-                <img src="" alt="">
-                <ul class="list-unstyled inline-block">
-                    <li><strong><b>HELF</b>은 에스크로 결제 서비스를 이용하여 안전한 거래 환경을 제공합니다.</strong></li>
-                    <li><b>HELF</b>을 통해 결제 진행 시 관련 정책에 의해 보호 받을 수 있습니다.</li>
-                </ul>
-            </div>
+          <div class="btn_center">
           <div class="btn" id="btn_pay">
-
+            <a href="#"><button type="button" name="button" onclick="checkd()">결제하기</button></a>
           </div>
+          <div id="btn_back">
+            <button type="button" name="button" onclick="history.go(-1);">취소하기</button>
+          </div>
+        </div>
       </div><!--end of div_body-->
     </div><!--end of item_all-->
     </section>
@@ -266,6 +218,94 @@ https://kmong.com/order/2518542 참고한 사이트 화면
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
     </footer>
+  <!-- 카카오페이 -->
+  <script>
+      function payment(){
+        var IMP = window.IMP; // 생략가능
+        IMP.init('imp50161639'); // 가맹점 식별코드
+        var user_id = '<?=$user_id?>';
+        var name = user_id.substr(0, 3) + new Date().getTime();
+        console.log(name);
+        IMP.request_pay({
+    pg : 'kakaopay',
+    pay_method : 'card',
+    merchant_uid : 'merchant_' + new Date().getTime(),
+    name : name,
+    amount : <?=$price?>,
+    buyer_name : '<?=$user_id?>',
+    m_redirect_url :'../common/lib/payment_complete.php'
+}, function(rsp) {
+    if ( rsp.success ) {
+        var msg = '결제가 완료되었습니다.';
+        // msg += '고유ID : ' + rsp.imp_uid;
+        // msg += '상점 거래ID : ' + rsp.merchant_uid;
+        msg += '결제 금액 : ' + rsp.paid_amount;
+        msg += '주문 번호 : ' + rsp.name;
+        msg += '주문자 : ' + rsp.buyer_name;
+        msg += '결제 일자 : ' + rsp.paid_at;
+        // msg += '카드 승인번호 : ' + rsp.apply_num;
 
+        document.kakao_value.paid_amount.value=rsp.paid_amount;
+        document.kakao_value.name.value=rsp.name;
+        document.kakao_value.buyer_name.value=rsp.paid_at;
+        document.kakao_value.subject.value=<?=$subject?>;
+
+        <form name="kakao_value" method="post" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php">
+          <input type="hidden" name="subject" value=""/>
+          <input type="hidden" name="paid_amount" value=""/>
+          <input type="hidden" name="name" value=""/>
+          <input type="hidden" name="paid_at" value=""/>
+        </form>
+
+        document.kakao_value.submit();
+        location.href = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php";
+
+    } else {
+        var msg = '결제에 실패하였습니다.';
+        msg += '에러내용 : ' + rsp.error_msg;
+    }
+    alert(msg);
+});
+      }
+
+      function bank(){ // 무통장 입금 버튼 누르면 작동할 함수
+        document.getElementById('bank').innerHTML="<select id='bank_name' title='무통장은행선택'><option value=''>은행 선택</option><option value='shinhan'>신한 은행</option><option value='hana'>하나 은행</option><option value='woori'>우리 은행</option></select>";
+        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="banked_clik()">주문하기</button> </a>';
+      }
+      function banked_clik(){
+        var user_id = '<?=$user_id?>';
+        var name = user_id.substr(0, 3) + new Date().getTime();
+        let bank_name = document.getElementById('bank_name').value;
+        if(bank_name!==""){
+          <?php
+          $user_id=$_SESSION['user_id'];
+          ?>
+
+        document.bank_value.paid_amount.value=<?=$price?>;
+        document.bank_value.name.value=name;
+        document.bank_value.paid_at.value= <?=date("Y-m-d h:i:s")?>
+        document.bank_value.subject.value=<?=$subject?>;
+
+        <form name="bank_value" method="post" action="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php">
+          <input type="hidden" name="subject" value=""/>
+          <input type="hidden" name="paid_amount" value=""/>
+          <input type="hidden" name="name" value=""/>
+          <input type="hidden" name="paid_at" value=""/>
+        </form>
+
+        document.kakao_value.submit();
+          location.href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/payment_complete.php?bank="+bank_name+"&id=<?=$user_id?>";
+        }else{
+          alert("은행을 선택해주세요");
+        }
+      }
+      function kakao(){
+        document.getElementById('bank').innerHTML="";
+        document.getElementById('btn_pay').innerHTML='<a href="#"><button type="button" name="button" onclick="payment()">결제하기</button> </a>';
+      }
+      function checkd(){
+        alert("결제방법을 선택해주세요");
+      }
+    </script>
   </body>
 </html>

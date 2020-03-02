@@ -6,7 +6,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 ?>
 <?php
 if(!isset($_SESSION['user_id'])){
-  echo "<script>alert('권한이 없습니다.');history.go(-1);</script>";
+  echo "<script>alert('로그인 후 이용해주세요.');history.go(-1);</script>";
   exit;
 }
 ?>
@@ -56,6 +56,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $num=$row['num'];
     mysqli_close($conn);
 
+    echo "<script>alert('게시글이 등록되었습니다.');</script>";
     echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
 
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
@@ -151,6 +152,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     die('Error: ' . mysqli_error($conn));
   }
 
+  echo "<script>alert('수정이 완료되었습니다.');</script>";
   echo "<script>location.href='./view.php?num=$num&page=1&hit=$hit';</script>";
 
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="insert_ripple"){

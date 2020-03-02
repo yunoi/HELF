@@ -273,10 +273,16 @@ form #write_form #write_row3 {
 	padding: 4px;
 	border-radius: 2px;
 	height: 30px;
+	box-sizing: border-box;
 	border: 1px solid #cccccc;
   }
-   
+  #write_button a{
+
+	color: white;
+
+  }
   
+
   #write_button input{
 	border:1px solid #F23005;
 	text-align: center;

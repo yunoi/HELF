@@ -1,5 +1,16 @@
 <?php
   session_start();
+  if(isset($_GET['bank'])){
+    $subject =  $_POST["subject"];
+    $amount   = $_POST["paid_amount"];
+    $program_num = $_POST["name"];
+    $paid_date = $_POST["paid_at"];
+  } else {
+    $amount   = $_POST["paid_amount"];
+    $program_num = $_POST["name"];
+    $paid_date = $_POST["paid_at"];
+  }
+
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -39,7 +50,7 @@
          <p>주문 내용을 확인하신 후 결제 진행 바랍니다.</p>
          <table>
             <tr>
-                 <th>주문일자</th><td>&nbsp;</td>
+                 <th>주문일자</th><td>&nbsp;<?=$paid_date?></td>
             </tr>
             <tr>
                  <th>주문번호</th><td>&nbsp;</td>
@@ -85,16 +96,16 @@
          <p>결제 내용을 확인해 주시기 바랍니다.</p>
          <table>
             <tr>
-                 <th>주문일자</th><td>&nbsp;</td>
+                 <th>주문일자</th><td>&nbsp;<?=$paid_date?></td>
             </tr>
             <tr>
-                 <th>주문번호</th><td>&nbsp;</td>
+                 <th>주문번호</th><td>&nbsp;<?=$program_num?></td>
             </tr>
              <tr>
                  <th>상품명</th><td>&nbsp;</td>
             </tr>
             <tr>
-                 <th>주문금액</th><td>&nbsp;</td>
+                 <th>주문금액</th><td>&nbsp;<?=$amount?></td>
 </tr>
             <tr>
                  <th>진행상태</th><td>&nbsp;결제완료</td>

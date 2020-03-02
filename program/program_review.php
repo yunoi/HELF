@@ -33,7 +33,8 @@
      }
      mysqli_close($conn);
 
-     echo "<script>location.href='./program.php';</script>";
+     echo "<script>location.href='./program_detail.php?o_key=".$o_key."';</script>";
+
  }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
     $num = $_POST['num'];
     $o_key = $_POST['o_key'];

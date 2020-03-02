@@ -22,6 +22,9 @@
      $type=$_POST["type"];
      $shop=$_POST["shop"];
      $star=(int)$_POST["star"];
+     if($star == 0){
+       $star = 1;
+     }
      $regist_day=date("Y-m-d (H:i)");
      $content = test_input($_POST["content"]);
      $q_content = mysqli_real_escape_string($conn, $content);
@@ -32,14 +35,8 @@
        die('Error: '. mysqli_error($conn));
      }
      mysqli_close($conn);
-<<<<<<< HEAD
-
-     echo "<script>location.href='./program_detail.php?o_key=".$o_key."';</script>";
-
-=======
      echo "<script>alert('평가가 입력되었습니다.');</script>";
      echo "<script>location.href='./program_detail.php?o_key=$o_key';</script>";
->>>>>>> 3e07bdb63a69e02877d0e9ba12fbeb2596c40b76
  }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
     $num = $_POST['num'];
     $o_key = $_POST['o_key'];

@@ -5,10 +5,13 @@
     $amount   = $_POST["paid_amount"];
     $program_num = $_POST["name"];
     $paid_date = $_POST["paid_at"];
+    $o_key = $_POST["o_key"];
   } else {
-    $amount   = $_POST["paid_amount"];
-    $program_num = $_POST["name"];
-    $paid_date = $_POST["paid_at"];
+    $amount   = "";
+    $program_num = "";
+    $paid_date = "";
+    $subject = "";
+    $o_key ="";
   }
 
  ?>
@@ -37,7 +40,7 @@
   </head>
   <body>
   	<header>
-      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php"; ?>
     </header>
     <section>
      <div id="admin_border">
@@ -45,6 +48,7 @@
        <div id="content">
             <?php
             if(isset($_POST['bank'])&&($_POST['bank']!=="")){
+          
                 ?>
                          <h1>주문 완료</h1><br>
          <p>주문 내용을 확인하신 후 결제 진행 바랍니다.</p>
@@ -56,10 +60,17 @@
                  <th>주문번호</th><td>&nbsp;<?=$program_num?></td>
             </tr>
              <tr>
-                 <th>상품명</th><td>&nbsp;<?=$subject?></td>
+               <?php 
+                if(is_array($o_key) == 1) {
+                    $paid_num = sizeof($o_key) - 1;
+                    echo("<th>상품명</th><td>&nbsp;$subject 외 $paid_num 개</td>");
+                } else {
+                  echo("<th>상품명</th><td>&nbsp;$subject</td>");
+                }
+               ?>
             </tr>
             <tr>
-                 <th>주문금액</th><td>&nbsp;<?=$amount?></td>
+                 <th>주문금액</th><td>&nbsp;<?=$amount?>원</td>
 </tr>
                 <tr>
                  <th>결제은행</th>
@@ -91,6 +102,7 @@
                 </tr>
                 <?php
           } else {
+           
             ?>
                      <h1>결제 완료</h1><br>
          <p>결제 내용을 확인해 주시기 바랍니다.</p>
@@ -102,10 +114,17 @@
                  <th>주문번호</th><td>&nbsp;<?=$program_num?></td>
             </tr>
              <tr>
-                 <th>상품명</th><td>&nbsp;<?=$subject?></td>
+             <?php 
+                if(is_array($o_key) == 1) {
+                    $paid_num = sizeof($o_key) - 1;
+                    echo("<th>상품명</th><td>&nbsp;$subject 외 $paid_num 개</td>");
+                } else {
+                  echo("<th>상품명</th><td>&nbsp;$subject</td>");
+                }
+               ?>
             </tr>
             <tr>
-                 <th>주문금액</th><td>&nbsp;<?=$amount?></td>
+                 <th>주문금액</th><td>&nbsp;<?=$amount?>원</td>
 </tr>
             <tr>
                  <th>진행상태</th><td>&nbsp;결제완료</td>

@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <title>HELF :: 관리자페이지</title>
   <link rel="stylesheet" type="text/css" href="./css/admin.css">
-  <link rel="stylesheet" href="./css/program_regist.css">
+  <link rel="stylesheet" href="./css/program_manager.css">
   <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
   <script src="./js/register.js"></script>
   <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
@@ -66,10 +66,9 @@
          </div><!--  end of sub -->
 
          <div id="content">
-            <h1>프로그램 관리 > 결제 관리</h1><br>
+            <h1 id="content_title">프로그램 관리 > 결제 관리</h1><br>
             <div id="admin_box">
-
-            <table id="manage_table">
+            <table id="pay_table">
               <tr>
                 <td>주문번호</td>
                 <td>주문자</td>
@@ -99,17 +98,17 @@
             $id     = $row["id"];
             $sales_day     = $row["sales_day"];
             $complete     = $row["complete"];
-            
+
             $sql = "select * from program where o_key=$o_key";
             $result2 = mysqli_query($conn, $sql);
             $row2 = mysqli_fetch_array($result2);
-            
+
             $shop = $row2['shop'];
             $type = $row2['type'];
             $subject = $row2['subject'];
             $option = $row2['choose'];
             $price = $row2['price'];
-  
+
         ?>
             <tr>
               <td><?=$ord_num?></td>
@@ -172,7 +171,7 @@
         <?php
            }
         }
-       
+
       ?>
             </table>
 

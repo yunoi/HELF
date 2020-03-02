@@ -139,11 +139,20 @@
                           <td class="td2"><?=$id?> (<?=$name?>)</td>
                           <td class="td1">등급</td>
                           <td class="td2">
-                            <!-- <select id="update_grade_<?=$i?>" name="">
-                              <option value="admin" selected>admin</option>
-                              <option value="master">master</option>
-                              <option value="user">user</option>
-                            </select> -->
+                            <select id="update_grade_<?=$i?>" name="" class="no-autoinit">
+                              <?php if($grade === "admin") { ?>
+                                <option value="admin" selected>admin</option>
+                                <option value="master">master</option>
+                                <option value="user">user</option>
+                              <?php } else if($grade === "master") {?>
+                                <option value="admin">admin</option>
+                                <option value="master" selected>master</option>
+                                <option value="user">user</option>
+                              <?php } else { ?>
+                                <option value="admin">admin</option>
+                                <option value="master">master</option>
+                                <option value="user" selected>user</option>
+                              <?php } ?>
                           </td>
                         </tr>
                         <tr>
@@ -158,9 +167,39 @@
                         </tr>
                       </table>
                       <div class="butoon_col">
-                        <button type="button" name="button">수정</button>
+                        <button type="button" name="button" id="modify_btn_<?=$i?>">수정</button>
                         <button type="button" name="button" onclick="location.href='user_curd.php?mode=delete&id=<?=$id?>'">탈퇴</button>
                       </div>
+                      <script type="text/javascript">
+                        $("#modify_btn_<?=$i?>").click(function () {
+                          var selected_option =   $("#update_grade_<?=$i?> option:selected").val();
+                          $.ajax({
+                              url: 'user_curd.php?mode=modify',
+                              type: 'POST',
+                              data: {
+                                "id": "<?=$id?>",
+                                "grade": selected_option
+                              },
+                              success: function(data) {
+                                console.log(data);
+                                if(data === "수정 완료") {
+                                  alert("회원등급 수정 완료!");
+                                }else if(data === "수정 실패") {
+                                  alert("회원등급 수정 실패!");
+                                }
+                              }
+                            })
+                            .done(function() {
+                              console.log("done");
+                            })
+                            .fail(function() {
+                              console.log("error");
+                            })
+                            .always(function() {
+                              console.log("complete");
+                            });
+                        })
+                      </script>
                      </div>
                    </li>
             <?php

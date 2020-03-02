@@ -62,8 +62,6 @@
 }
 
 .collapsible-header:focus {
-  background-color: #F23005;
-  color: white;
   border-radius: 2px;
   outline: 0;
 }

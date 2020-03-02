@@ -89,36 +89,6 @@ a:hover {
   height: 30px;
 }
 
-
-#regist_table {
-  width: 850px;
-}
-
-#regist_table tr {
-  margin: 5px;
-}
-
-#regist_table * {
-  padding: 5px;
-}
-
-#td_plus {
-  padding: 0;
-  margin: 0;
-}
-
-#td_plus li {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 4px;
-}
-
-#regist_table {
-  padding: 5px;
-  border:1px solid black;
-  border-radius: 10px;
-}
-
 #manage_table {
   width: 825px;
   text-align: center;

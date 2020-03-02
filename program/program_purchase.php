@@ -214,7 +214,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
         </div>
       </div><!--end of div_body-->
     </div><!--end of item_all-->
-    <form name="kakao_value" method="post" action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete.php">
+    <form name="kakao_value" method="post">
       <input type="hidden" name="bank" value=""/>
       <input type="hidden" name="user_id" value=""/>
       <input type="hidden" name="subject" value=""/>
@@ -274,7 +274,12 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                 echo("document.kakao_value.o_key.value='$o_key';");
               }
         ?>
+                document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete_curd.php"
                 document.kakao_value.submit();
+
+                document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete.php"
+                document.kakao_value.submit();
+
                 alert(msg);
             } else {
                 var msg = '결제에 실패하였습니다.';
@@ -306,7 +311,11 @@ https://kmong.com/order/2518542 참고한 사이트 화면
           echo("document.kakao_value.o_key.value='$o_key';");
         }
         ?>
-          document.kakao_value.submit();
+          document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete_curd.php"
+                document.kakao_value.submit();
+
+                document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete.php"
+                document.kakao_value.submit();
         }else{
           alert("은행을 선택해주세요");
         }

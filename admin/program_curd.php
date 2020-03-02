@@ -191,7 +191,7 @@
       mysqli_query($conn, $sql);
     }
     $choose = "선택";
-    $price = 10000000;
+    $price = 0;
 
     $sql = "insert into program (shop , type, subject, content, personnel, end_day, choose, price, location, file_name, file_type, file_copied, regist_day) ";
     $sql .= "values('$shop', '$type', '$subject', '$content', $personnel,'$end_day','$choose', $price,'$location', ";

@@ -258,15 +258,12 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                 document.kakao_value.paid_at.value=rsp.paid_at;
                 document.kakao_value.user_id.value=rsp.buyer_name;
                 document.kakao_value.subject.value="<?=$subject?>";
-
                 document.kakao_value.submit();
                 alert(msg);
-
             } else {
                 var msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 alert(msg);
-
             }
         });
       }
@@ -286,7 +283,6 @@ https://kmong.com/order/2518542 참고한 사이트 화면
           document.kakao_value.name.value=name;
           document.kakao_value.paid_at.value="<?=date("Y-m-d h:i:s")?>"
           document.kakao_value.subject.value="<?=$subject?>";
-
           document.kakao_value.submit();
         }else{
           alert("은행을 선택해주세요");

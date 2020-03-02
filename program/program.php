@@ -244,6 +244,10 @@
               $result = mysqli_query($conn, $sql);
               $total_record = mysqli_num_rows($result); // 전체 글 수
 
+              if($total_record == 0){
+                echo "<img src='../admin/data/no_search.jpg' style='width:680px;'>";
+              }
+
               $scale = 10;
 
               // 전체 페이지 수($total_page) 계산
@@ -272,7 +276,7 @@
                  $file_copied         = $row["file_copied"];
                  $file_type         = $row["file_type"];
 
-                 $sql2 = "select price from program where shop='".$shop."' and type='".$type."' order by price asc";
+                 $sql2 = "select price from program where shop='$shop' and type='$type' and price > 1 order by price asc";
                  $result2 = mysqli_query($conn, $sql2);
                  $row2 = mysqli_fetch_array($result2);
                  $price  = $row2["price"];

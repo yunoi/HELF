@@ -110,7 +110,7 @@ function cart_insert($conn, $user_id, $shop, $type, $price){
       echo "<script>history.go(-1);</script>";
     }else{
       echo "<script>alert('이미 장바구니에 들어있는 상품입니다');</script>";
-      echo "<script>history.go(-1);</script>";
+      echo "<script>location.href='program_detail.php?o_key=".$o_key."';</script>";
     }
 
   }else{

@@ -11,8 +11,14 @@
  define('SCALE', 5);
  $mode="insert";
  $update="";
-$user_id=$_SESSION['user_id'];
-$user_grade=$_SESSION["user_grade"];
+
+ if(isset($_SESSION['user_id'])){
+   $user_id=$_SESSION['user_id'];
+ }
+ if(isset($_SESSION["user_grade"])){
+   $user_grade=$_SESSION["user_grade"];
+ }
+
  if(!isset($_COOKIE['today_view'])){
  	setcookie('today_view', $o_key, time() + 21600, "/");
  } else {
@@ -63,20 +69,45 @@ $user_grade=$_SESSION["user_grade"];
      $file_copied= $row["file_copied"];
      $file_type  = $row["file_type"];
 
+
+     $sql2 = "select price from program where shop='$shop' and type='$type' and price > 150000 order by price asc ";
+     $result2 = mysqli_query($conn, $sql2);
+     $row2 = mysqli_fetch_array($result2);
+     $min_price = $row2["price"];
+
+
      ?>
       <div class="clear"></div>
     <div id="div_main_body">
             <section>
+              <script type="text/javascript">
+              function move1(){
+                window.scrollTo(0, 500);
+              }
+              function move2(){
+                window.scrollTo(0, 1200);
+              }
+              function move3(){
+                window.scrollTo(0, 1720);
+              }
+              function move4(){
+                window.scrollTo(0, 2230);
+              }
+              function move5(){
+                window.scrollTo(0, 2990);
+              }
+
+              </script>
               <div id="div_main">
-                 <img src='../admin/data/<?=$file_copied?>' style="max-height:480px;">
+                 <img src='../admin/data/<?=$file_copied?>' style="max-height:475px;">
                  <br><br>
                 <div class="buttons" id="myHeader">
                   <ul>
-                    <li><a href="#see">서비스 설명</a> </li>
-                    <li><a href="#pay">가격정보</a></li>
-                    <li><a href="#cansel">취소및환불규정</a> </li>
-                    <li><a href="#program_qna">QnA</a> </li>
-                    <li><a href="#div_review">서비스 평가</a> </li>
+                    <li><a onclick="move1()">서비스 설명</a> </li>
+                    <li><a onclick="move2()">가격정보</a></li>
+                    <li><a onclick="move3()">취소및환불규정</a> </li>
+                    <li><a onclick="move4()">QnA</a> </li>
+                    <li><a onclick="move5()">서비스 평가</a> </li>
                   </ul>
                 </div>
                 <br><br>
@@ -351,26 +382,27 @@ $user_grade=$_SESSION["user_grade"];
                        <div class=""><!--댓글 달기 insert-->
                          <form class="form_review" name="form_review" action="./program_review.php" method="post">
                           <h3>댓글</h3>
-                           <textarea name="content" id="reviwe_content" rows="3" cols="30"></textarea>
-                           <div class="starRev">
-                             <span class="starR1" >0.5</span>
-                             <span class="starR2" >1</span>
-                             <span class="starR1" >1.5</span>
-                             <span class="starR2" >2</span>
-                             <span class="starR1" >2.5</span>
-                             <span class="starR2" >3</span>
-                             <span class="starR1" >3.5</span>
-                             <span class="starR2" >4</span>
-                             <span class="starR1" >4.5</span>
-                             <span class="starR2" >5</span>
-                            </div>
+                          <div class="starRev">
+                            <span class="starR1" >0.5</span>
+                            <span class="starR2" >1</span>
+                            <span class="starR1" >1.5</span>
+                            <span class="starR2" >2</span>
+                            <span class="starR1" >2.5</span>
+                            <span class="starR2" >3</span>
+                            <span class="starR1" >3.5</span>
+                            <span class="starR2" >4</span>
+                            <span class="starR1" >4.5</span>
+                            <span class="starR2" >5</span>
+                           </div>
+                           <textarea name="content" id="reviwe_content" rows="3" cols="60"></textarea>
+
                             <input type="hidden" id="num" name="num" value="">
                             <input type="hidden" name="o_key" value="<?=$o_key?>">
                             <input type="hidden" name="type" value="<?=$type?>">
                             <input type="hidden" name="shop" value="<?=$shop?>">
                             <input type="hidden" id="star" name="star" value="0">
                             <input type="hidden" id="mode" name="mode" value="<?=$mode?>">
-                           <input type="button" value="등록" onclick="review_insert();">
+                           <input type="button" value="등록" onclick="review_insert();" style="margin-left:20px;">
                          </form>
                        </div>
                      </li>
@@ -384,16 +416,13 @@ $user_grade=$_SESSION["user_grade"];
 
                 <h2><?=$shop?></h2>
                 <form class="" action="#" method="post">
-                  <h3><span id="h_pay">0</span>원</h3>
-                  <input type="hidden" id="input_h_pay" name="" value="">
                   <p>
                     <?=$subject?><br/>
-
-                    1회당 레슨시간 (분) : 30 분<br/>
-                    레슨 횟수 : 1 회<br/>
                   </p>
+                  <h3><span><?=$min_price?></span>원 부터~</h3>
+                  <input type="hidden" id="input_h_pay" name="" value="">
                   <select class="" name="option" id="choose" onchange="pay(this.value);">
-                    <option value="0">옵션선택</option>
+                    <option name ="basic" value="없음">옵션선택</option>
                   <?php
                   $minimum_price=0; //최소가격
                   $sql="select * from program where shop='$shop'and type='$type' order by price";
@@ -411,12 +440,13 @@ $user_grade=$_SESSION["user_grade"];
                         $minimum_price=$price;
                       }
                    ?>
-                     <option value="<?=$price?>" <?php if ($minimum_price === $price) echo "selected";?> ><?=$choose?> : <?=$price?>원</option>
+                     <option value="<?=$choose?>,<?=$price?>원" ><?=$choose?> : <?=$price?>원</option>
                     <?php
                     }
                   }
                      ?>
                   </select>
+
                   <script type="text/javascript">
                     $('.starRev span').click(function(){
                       $(this).parent().children('span').removeClass('on');
@@ -426,8 +456,10 @@ $user_grade=$_SESSION["user_grade"];
                       return false;
                     });
                     function pay(x){
-                      document.getElementById("h_pay").innerHTML=x;
-                      document.getElementById("input_h_pay").value=x;
+                      var pick_option = x.split(",");
+                      document.getElementById("h_pay").innerHTML= x;
+                      var rprice = pick_option[1].replace("원","");
+                      document.getElementById("input_h_pay").value=rprice;
                     }
                     function program_purchase(){
                       let price = document.getElementById("input_h_pay").value;
@@ -471,13 +503,15 @@ $user_grade=$_SESSION["user_grade"];
                     document.form_review.submit();
                   }
                   $(window).load(function(){
-                    document.getElementById("h_pay").innerHTML=<?=$minimum_price?>;
+                    document.
                     document.getElementById("input_h_pay").value=<?=$minimum_price?>;
                   });
                   </script>
                   <br/>
                   <div class="">
-                    <img src="" alt="">작업일 : 123 &nbsp;&nbsp; <img src="" alt="">수정 횟수 : 제한 없음
+                    <p>선택옵션:</p>
+                    <h3><span id="h_pay">없음</span></h3>
+
                   </div>
 
                   <?php

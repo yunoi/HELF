@@ -5,9 +5,7 @@
 .clear{
   display:block;
 }
-p{
-  margin-bottom: 30px;
-}
+
 /* 전체를 감싸는 몸체 */
 #div_main_body{
   position: relative;
@@ -54,13 +52,22 @@ p{
   margin-left: 30px;
   margin-top: 19px;
 }
-#div_aside *{
+#div_aside input,form,h2{
   padding: 10px;
 }
+
+#div_aside p,h3,select,div{
+  margin-bottom: 30px;
+}
+
+#div_aside h2{
+  margin-bottom: 20px;
+}
+
+
 #div_aside h3{
   width: 100%;
   height: 20px;
-  padding: 22px 30px;
 }
 #div_aside input{
   width: 100%;
@@ -217,3 +224,19 @@ p{
 }
 .starR1.on{background-position:0 0;}
 .starR2.on{background-position:-13px 0;}
+
+#h_pay{
+  padding: 0px;
+  margin: 0px;
+}
+
+.purchase_form{
+  padding: 0px;
+  margin: 0px;
+}
+
+.starRev{
+  width: 140px;
+  margin-bottom: 8px;
+  display: inline-block;
+}

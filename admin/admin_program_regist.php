@@ -205,7 +205,7 @@
                       <?php
                       if($mod === "insert"){
                       ?>
-                      <input type="file" name="upfile" value="">
+                      <input  multiple="multiple" type="file" name="upfile[]" value="">
                       <?php
                       }
                       ?>

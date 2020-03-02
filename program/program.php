@@ -73,12 +73,6 @@
                 <?php include "select_location.php";?>
               </li>
               <br><br>
-              <!-- <li>
-                <p>인원수</p>
-                <p class="people_num">개인</p> : <input type="radio" name="gender" value="개인">&nbsp&nbsp&nbsp
-                <p class="people_num">그룹</p> : <input type="radio" name="gender" value="그룹">
-              </li>
-              <br><br> -->
               <li>
                 <h2>가격</h2>
                 <input type="number" name="s_min_price" value="" style="width:100px;"> 원 부터<br>
@@ -221,7 +215,6 @@
 
              $s_area = $s_area1.",".$s_area2;
 
-             echo "<script>alert($s_area)</script>";
 
              if($s_area == ","){
                $s_area = "";
@@ -253,7 +246,6 @@
               $s_max_price = 10000000;
             }
 
-              // $conn = mysqli_connect("localhost", "root", "123456", "helf");
               $sql = "select * from program ";
               $sql .= "where choose = '선택' and type like '".$s_type."%' and location like '".$s_area."%' and price between ".$s_min_price." and ".$s_max_price." and end_day between '".$today."' and '".$s_date."' order by ".$order;
               $result = mysqli_query($conn, $sql);
@@ -263,7 +255,7 @@
                 echo "<img src='../admin/data/no_search.jpg' style='width:680px;'>";
               }
 
-              $scale = 10;
+              $scale = 5;
 
               // 전체 페이지 수($total_page) 계산
               if ($total_record % $scale == 0) {
@@ -289,6 +281,7 @@
                  $end_day     = $row["end_day"];
                  $location         = $row["location"];
                  $file_copied         = $row["file_copied"];
+                 $image               = explode(",",$file_copied);
                  $file_type         = $row["file_type"];
 
                  $sql2 = "select price from program where shop='$shop' and type='$type' and price > 1 order by price asc";
@@ -307,7 +300,7 @@
                  <div class="program_li">
                    <div class="program_image">
                      <a href="../program/program_detail.php?o_key=<?=$o_key?>">
-                     <img src='../admin/data/<?=$file_copied?>'>
+                     <img src='../admin/data/<?=$image[0]?>'>
                      </a>
                    </div>
                    <div class="program_detail">

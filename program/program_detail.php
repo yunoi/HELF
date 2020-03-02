@@ -68,6 +68,7 @@
      $location  = $row["location"];
      $personnel = $row["personnel"];
      $file_copied= $row["file_copied"];
+     $image               = explode(",",$file_copied);
      $file_type  = $row["file_type"];
 
 
@@ -97,7 +98,7 @@
 
               </script>
               <div id="div_main">
-                 <img src='../admin/data/<?=$file_copied?>' style="max-height:475px; max-width:640px;">
+                 <img src='../admin/data/<?=$image[0]?>' style="height:477px; width:640px;">
                  <br><br>
                 <div class="buttons" id="myHeader">
                   <ul>
@@ -156,9 +157,17 @@
                   <li>모집 인원수</li><br/>
                   <li><b><?=$personnel?></b></li>
                 </ul><br/>
-                </p>
                 </div>
                 </div>
+                <?php
+                for($i=1;$i<count($image);$i++){
+                ?>
+                  <img src='../admin/data/<?=$image[$i]?>' style="height:280px; width:400px;">
+                <?php
+                }
+                ?>
+
+
                     <div class="clear"></div><br/><br/>
                 <div class="" id="pay">
                   <h3>가격정보</h3>
@@ -348,7 +357,7 @@
                        }
                      ?>
                      <?php
-                     if($page>=1 && $total_page!=$page){
+                     if($total_page>=1 && $total_page!=$page){
                        $val=(int)$page+1;
                        echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./program_detail.php?page=$val&o_key=$o_key'>▶ 다음</a>";
                      }

@@ -6,7 +6,7 @@
   <title>HELF :: 관리자페이지</title>
   <link rel="stylesheet" type="text/css" href="./css/admin.css">
   <link rel="stylesheet" href="./css/program_manager.css">
-      <link rel="stylesheet" type="text/css" href="./css/admin_user.css">
+  <link rel="stylesheet" type="text/css" href="./css/admin_user.css">
 
 
   <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
@@ -110,7 +110,7 @@
                    // 가져올 레코드로 위치(포인터) 이동
                    $row = mysqli_fetch_array($result);
                    // 하나의 레코드 가져오기
-                    $o_key        = $row["o_key"];
+
                     $shop         = $row["shop"];
                     $type         = $row["type"];
                     $subject      = $row["subject"];
@@ -122,7 +122,16 @@
                     $location = str_replace(","," ",$location);
                     ?>
                    <li>
-                     <div class = "collapsible-header"><span><?=$shop?> | <?=$type?> | <?=$subject?></span></div>
+                     <div class = "collapsible-header">
+                       <span>
+                         <div id="subjects">
+                           <?=$subject?>
+                         </div>
+                         <div id="shop_type">
+                           <?=$shop?> | <?=$type?>
+                         </div>
+                       </span>
+                     </div>
                      <div class = "collapsible-body">
                       <table>
                         <tr id="first_tr">
@@ -153,54 +162,48 @@
                           <td class="td1">옵션</td>
                           <td class="td2" colspan="3">
                             <ul>
+
                               <?php
-                                $sql2 = "select choose,price from program where shop='$shop' and type='$type' and subject='$subject';";
+                                $sql2 = "select o_key,choose,price from program where shop='$shop' and type='$type' and subject='$subject';";
                                 $result2 = mysqli_query($conn, $sql2);
+
                                 while($row2 = mysqli_fetch_array($result2)) {
+                                  $o_key        = $row2["o_key"];
                                   $choose = $row2["choose"];
                                   $price  = $row2["price"];
                                   ?>
-                                  <input type="text" value="<?=$choose?>" > &
-                                  <input type="number"  value="<?=$price?>" > 원
-                                  <button id="option_plus" type="button" name="button">수정</button>
-                                  <button id="option_minus" type="button" name="button">삭제</button> <br>
+
+                                  <li>
+                                    <form class="program_modify_form" id="program_modify_form_<?=$o_key?>" action="program_curd.php?mode=modify&o_key=<?=$o_key?>" method="post">
+                                        <input type="hidden" name="shop" value="<?=$shop?>">
+                                        <input type="hidden" name="type" value="<?=$type?>">
+                                        <input type="hidden" name="subject" value="<?=$subject?>">
+                                        <input id="options" type="text" name="choose[]" value="<?=$choose?>" > &
+                                        <input id="prices" type="number" name="price[]" value="<?=(int)$price?>" > 원
+                                        <?php if(!($choose === "선택")) { ?>
+                                        <button id="modify_btn_<?=$o_key?>" type="button" name="button" >수정</button>
+                                        <?php } ?>
+                                        <button id="delete_btn_<?=$o_key?>" type="button" name="button">삭제</button>
+                                    </form>
+                                  </li>
+                                  <script type="text/javascript">
+                                      $("#modify_btn_<?=$o_key?>").click(function() {
+                                        $("#program_modify_form_<?=$o_key?>").submit();
+                                      });
+                                      $("#delete_btn_<?=$o_key?>").click(function() {
+                                        location.href = 'program_curd.php?mode=delete&o_key=<?=$o_key?>';
+                                      });
+                                  </script>
+
                               <?php
+
                                  }
                               ?>
                             </ul>
+
                           </td>
                         </tr>
                       </table>
-                      <script type="text/javascript">
-                        $("#modify_btn_<?=$i?>").click(function () {
-                          var selected_option =   $("#update_grade_<?=$i?> option:selected").val();
-                          $.ajax({
-                              url: 'user_curd.php?mode=modify',
-                              type: 'POST',
-                              data: {
-                                "id": "<?=$id?>",
-                                "grade": selected_option
-                              },
-                              success: function(data) {
-                                console.log(data);
-                                if(data === "수정 완료") {
-                                  alert("회원등급 수정 완료!");
-                                }else if(data === "수정 실패") {
-                                  alert("회원등급 수정 실패!");
-                                }
-                              }
-                            })
-                            .done(function() {
-                              console.log("done");
-                            })
-                            .fail(function() {
-                              console.log("error");
-                            })
-                            .always(function() {
-                              console.log("complete");
-                            });
-                        })
-                      </script>
                      </div>
                    </li>
             <?php

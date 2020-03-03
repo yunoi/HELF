@@ -14,7 +14,34 @@ function insert_init_data($conn, $table_name){
     switch($table_name){
           case 'members' :
             $sql = "
-            insert into members values ('admin', 'aaa123', '관리자', '010-1234-5678', 'admin@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'admin'), ('yunhae', 'aaa123', '강유내', '010-1111-1111', 'yunhae@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'master'), ('pangyu', 'aaa123', '김팡규', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user');";
+            insert into members values ('admin', 'aaa123', '관리자', '010-1234-5678', 'admin@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'admin'), ('yunhae', 'aaa123', '강유내', '010-1111-1111', 'yunhae@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'master'), ('pangyu', 'aaa123', '김팡규', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+            ('ckgns', 'aa123', '차훈', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('qkrdmsgP', 'aaa123', '박은혜', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('rlagksmf', 'aaa123', '김하늘', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('rkddbsgo', 'aaa123', '강윤해', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('rlavksrb', 'aaa123', '김판규', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('dbtpal', 'aaa123', '유세미', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('tjwhdwn', 'aaa123', '서종주', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('tjdusdn', 'aaa123', '서연우', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('wkdgksskfla', 'aaa123', '장한나림', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('dksthdud', 'aaa123', '안소영', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('rladusdn', 'aaa123', '김연우', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('rlawltn', 'aaa123', '김지수', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('dlanrnjs', 'aaa123', '이무권', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('rlathwls', 'aaa123', '김소진', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('skacogus', 'aaa123', '남채현', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('dlrkdgus', 'aaa123', '이강현', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('dlxotjd', 'aaa123', '이태성', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('dbdudtka', 'aaa123', '유영삼', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('gkehddns', 'aaa123', '하동운', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('skadustj', 'aaa123', '남연서', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('gksgudrb', 'aaa123', '한형규', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('wjdalswl', 'aaa123', '정민지', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('rlawlgP', 'aaa123', '김지혜', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('tlawoals', 'aaa123', '심재민', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('dlacoals', 'aaa123', '임채민', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user'),
+('qkrwogns', 'aaa123', '박재훈', '010-2222-2222', 'pangyu@naver.com', '04751\$서울 성동구 왕십리로 지하 300\$왕십리역사', 'user');
+            ";
             break;
           case 'program' :
             $sql = "insert into program values(null, '판규헬스장', 'PT', '판규헬스장에서 피티받으실분 모집합니다', '먼저 현대인의 가장 큰 문제점인 불균형한 자세 체크 후 앞으로의 방향을 제시합니다.

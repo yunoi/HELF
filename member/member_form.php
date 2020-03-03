@@ -62,6 +62,12 @@
             src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
         <script>
+            //전화번호 최대길이
+            function maxLengthCheck(object){
+                if (object.value.length > object.maxLength){
+                    object.value = object.value.slice(0, object.maxLength);
+                }    
+            }
             // 우편번호 api
             function address_input() {
                 new daum
@@ -299,9 +305,9 @@
                                     <option value="011">011</option>
                                 </select>
                                 -
-                                <input type="number" name="phone_two" id="phone_two" placeholder=" 0000 ">
+                                <input type="number" name="phone_two" id="phone_two" placeholder=" 0000 " maxlength="4" oninput="max_length_check(this)">
                                 -
-                                <input type="number" name="phone_three" id="phone_three" placeholder=" 0000 ">
+                                <input type="number" name="phone_three" id="phone_three" placeholder=" 0000 " maxlength="4" oninput="max_length_check(this)">
                             <?php
 									} else {
 								?>
@@ -310,9 +316,9 @@
                                     <option value="011">011</option>
                                 </select>
                                 -
-                                <input type="number" name="phone_two" id="phone_two" value="<?=$phone2?>">
+                                <input type="number" name="phone_two" id="phone_two" maxlength="4" onkeyup="max_length_check(this)" value="<?=$phone2?>">
                                 -
-                                <input type="number" name="phone_three" id="phone_three" value="<?=$phone3?>">
+                                <input type="number" name="phone_three" id="phone_three" maxlength="4" onkeyup="max_length_check(this)" value="<?=$phone3?>">
                                 <?php
 								}
 								?>

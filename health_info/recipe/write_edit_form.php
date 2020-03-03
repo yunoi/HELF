@@ -105,11 +105,11 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
               <div class="write_line"></div>
 
               <div id="write_row4">
-                <div class="col1">파일업로드</div>
+                <div class="col1">메인사진</div>
                 <div class="col2">
                   <?php
                     if ($mode=="insert") {
-                        echo '<input type="file" name="upfile" >이미지(2MB)파일(0.5MB)';
+                        echo '<input type="file" name="upfile" >';
                     } else {
                         ?>
                     <input type="file" name="upfile" onclick='document.getElementById("del_file").checked=true; document.getElementById("del_file").disabled=true'>

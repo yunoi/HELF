@@ -43,28 +43,24 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $video_name=str_replace("\n", "<br>", $video_name);
     $video_name=str_replace(" ", "&nbsp;", $video_name);
     $video_name=substr($video_name, -11);
+
     $file_name=$row['file_name'];
+    $file_name=explode(",",$file_name);
+
     $file_copied=$row['file_copied'];
+    $file_copied=explode(",",$file_copied);
+
     $file_type=$row['file_type'];
-    $day=$row['regist_day'];
+    $file_type=explode(",", $file_type);
 
-    $file_type_tok=explode('/', $file_type);
-    $file_type=$file_type_tok[0];
+    $file_type_cut=array();
 
-    if (!empty($file_copied)&&$file_type =="image") {
-        //이미지 정보를 가져오기 위한 함수 width, height, type
-        $image_info=getimagesize("./data/".$file_copied);
-        $image_width=$image_info[0];
-        $image_height=$image_info[1];
-        $image_type=$image_info[2];
-        if ($image_width>400) {
-            $image_width = 400;
-        }
-    } else {
-        $image_width=0;
-        $image_height=0;
-        $image_type="";
+    for($i=0;$i<count($file_type);$i++){
+      $file_type_cut_cut=explode("/", $file_type[$i]);
+      $file_type_cut[$i]=$file_type_cut_cut[0];
+      //echo "<script>alert('{$file_type_cut[$i]}');</script>";
     }
+
 }
 ?>
 <!DOCTYPE html>
@@ -147,31 +143,28 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                 <div class="col2"> <input type="text" name="subject" value="<?=$subject?>" readonly></div>
               </div><!--end of write_row2  -->
               <div class="write_line"></div>
-
               <div id="view_content">
                 <div class="col2">
-                  <!-- 여기선 이미지 보일 필요 없으니 주석처리 -->
                   <?php
-                    if ($file_type =="image") {
-                        $file_path = "./data/".$file_copied;
-                        $file_size = filesize($file_path);
-                        //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
-                        echo("
-                      ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
+                  for($i=0;$i<count($file_name);$i++){
+                    if ($file_type_cut[$i] =="image") {
+                      echo("
+                      ▷ 메인 사진 : $file_name[$i] &nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href='download.php?mode=download&num=$q_num'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br><br>
+                      ");
+                      //echo "<img src='./data/$file_copied[$i]' style='max-height:200px; max-width:200px;'><br>";
+                    } elseif (!empty($file_copied[$i])) {
+                      $file_path = "./data/".$file_copied[$i];
+                      //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
+                      echo("
+                      ▷ 첨부파일 : $file_name[$i] &nbsp;
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
-                    ");
-                        echo "<img src='./data/$file_copied' width='$image_width'><br>";
-                    } elseif (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
-                        $file_path = "./data/".$file_copied;
-                        $file_size = filesize($file_path);
-                        //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
-                        echo("
-                        ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
                       ");
                     }
+                  }
+
                   ?>
                   <!-- 첨부한 동영상 보기 -->
                     <p align="middle">
@@ -190,7 +183,6 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
            <?php foreach ($communities as $post): ?>
              <!-- foreach($array as $value)  value 값만 가져오기-->
               <div class="post">
-              <!-- <?php echo $post['text']; ?> -->
               <div class="post-info">
                <!-- if user likes post, style button differently -->
                  <i <?php if (userLiked($post['num'])): ?>

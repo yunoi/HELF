@@ -93,14 +93,23 @@
                 <div id="content">
                     <h1 id="content_title">프로그램 관리 > 결제 관리</h1><br>
                     <div id="admin_box">
+                    <form name="board_form" action="./admin_program_payment.php?mode=search" method="post">
+           <div id="list_search">
+               <select  name="find">
+                 <option value="number">주문번호</option>
+                 <option value="id">아이디</option>
+               </select>
+             <div id="list_search4"><input type="text" name="search"></div>
+             <div id="list_search5"><input type="submit" value="검색"></div>
+             <div id="list_search6"><input type="button" value="목록" onclick="location.href='admin_program_payment.php'"></div>
+
+           </div><!--end of list_search  -->
+         </form>
                         <table id="pay_table">
                             <tr>
                                 <td>주문번호</td>
                                 <td>주문자</td>
-                                <td>샵</td>
-                                <td>구분</td>
-                                <td>프로그램명</td>
-                                <td>옵션</td>
+                                <td>주문개수</td>
                                 <td>가격</td>
                                 <td>주문일</td>
                                 <td>결제상태</td>
@@ -108,96 +117,97 @@
                             </tr>
 
                         <?php
-        $sql = "select * from sales order by complete asc";
+                          if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
+                            //제목, 내용, 아이디
+                            $find = $_POST["find"];
+                            $search = $_POST["search"];
+                            $q_search = mysqli_real_escape_string($conn, $search);
+                            if($find==="number"){
+                              $sql="SELECT * from `sales` where ord_num like '%$q_search%' order by num desc";
+                            }else{
+                              $sql="SELECT * from `sales` where id like '%$q_search%' order by num desc";
+                            }
+                        } else {
+                          $sql = "select * from sales group by ord_num order by complete asc";
+                        }
         $result = mysqli_query($conn, $sql);
+        $number = mysqli_num_rows($result);
         if(!$result){
           echo ("<tr><td colspan='10'>처리할 결제 내역이 없습니다.<td></tr>");
         } else {
-          $total_record = mysqli_num_rows($result);
-
-          $number = $total_record;
-
-                for ($i=0; $i<$number; $i++){
-
+          for($i=0; $i < $number; $i++){
                 $row = mysqli_fetch_array($result);
-                $o_key        = $row["o_key"];
                 $ord_num      = $row["ord_num"];
                 $id     = $row["id"];
                 $total_price     = $row["total_price"];
                 $sales_day     = $row["sales_day"];
                 $complete     = $row["complete"];
-
-                $sql = "select * from program where o_key=$o_key";
-                $result2 = mysqli_query($conn, $sql);
-                $row2 = mysqli_fetch_array($result2);
-
-                $shop = $row2['shop'];
-                $type = $row2['type'];
-                $subject = $row2['subject'];
-                $option = $row2['choose'];
-                $price = $row2['price'];
+                $sql = "select * from sales where ord_num='$ord_num'";
+                $result_for_num = mysqli_query($conn, $sql);
+                $total_record = mysqli_num_rows($result_for_num);
+            
               ?>
+                            <tr>
+                                <td><?=$ord_num?></td>
+                                <td><?=$id?></td>
+                                <td><?=$total_record?>종류</td>
+                                <td><?=$total_price?>원</td>
+                                <td><?=$sales_day?></td>
+                                <td>
+                                    <select id="payment_status_<?=$i?>" class="no-autoinit">
+                                        <?php if($complete === "결제완료") { ?>
+                                        <option value='결제완료' selected="selected">결제완료</option>
+                                        <option value='결제대기'>결제대기</option>
+                                        <option value='주문취소'>주문취소</option>
 
-              <tr>
-                <td><?=$ord_num?></td>
-                <td><?=$id?></td>
-                <td><?=$shop ?></td>
-                <td><?=$type?></td>
-                <td><?=$subject?></td>
-                <td><?=$option?></td>
-                <td><?=$total_price?></td>
-                <td><?=$sales_day?></td>
-                <td><select id="payment_status_<?=$i?>" class="no-autoinit">
-                <?php if($complete === "결제완료") { ?>
-                  <option value='결제완료' selected>결제완료</option>
-                  <option value='결제대기'>결제대기</option>
-                  <option value='주문취소'>주문취소</option>
+                                    <?php } else if($complete === "결제대기") {?>
+                                        <option value='결제완료'>결제완료</option>
+                                        <option value='결제대기' selected="selected">결제대기</option>
+                                        <option value='주문취소'>주문취소</option>
+                                    <?php } else { ?>
+                                        <option value='결제완료'>결제완료</option>
+                                        <option value='결제대기'>결제대기</option>
+                                        <option value='주문취소' selected="selected">주문취소</option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
 
-                                <?php } else if($complete === "결제대기") {?>
-                                  <option value='결제완료'>결제완료</option>
-                  <option value='결제대기' selected>결제대기</option>
-                  <option value='주문취소'>주문취소</option>
-                                <?php } else { ?>
-                                  <option value='결제완료'>결제완료</option>
-                  <option value='결제대기'>결제대기</option>
-                  <option value='주문취소' selected>주문취소</option>
-                                <?php } ?>
-                </select></td>
-
-                <td><button type="button" id="btn_modify_<?=$i?>">수정</button></td>
-             </tr>
-             <script type="text/javascript">
-                          $("#btn_modify_<?=$i?>").click(function () {
-                            var selected_option =   $("#payment_status_<?=$i?> option:selected").val();
-                            $.ajax({
-                                url: 'payment_curd.php',
-                                type: 'POST',
-                                data: {
-                                  "ord_num": "<?=$ord_num?>",
-                                  "complete": selected_option
-                                },
-                                success: function(data) {
-                                  console.log(data);
-                                  if(data === "수정 완료") {
-                                    alert("결제정보 수정 완료!");
-                                  }else if(data === "수정 실패") {
-                                    alert("결제정보 수정 실패!");
-                                  }
-                                }
-                              })
-                              .done(function() {
-                                console.log("done");
-                              })
-                              .fail(function() {
-                                console.log("error");
-                              })
-                              .always(function() {
-                                console.log("complete");
-                              });
-                          })
-                        </script>
-
-              <?php
+                                <td>
+                                    <button type="button" id="btn_modify_<?=$i?>">수정</button>
+                                </td>
+                            </tr>
+                            <script type="text/javascript">
+                                $("#btn_modify_<?=$i?>").click(function () {
+                                    var selected_option = $("#payment_status_<?=$i?> option:selected").val();
+                                    $
+                                        .ajax({
+                                            url: 'payment_curd.php',
+                                            type: 'POST',
+                                            data: {
+                                                "ord_num": "<?=$ord_num?>",
+                                                "complete": selected_option
+                                            },
+                                            success: function (data) {
+                                                console.log(data);
+                                                if (data === "수정 완료") {
+                                                    alert("결제정보 수정 완료!");
+                                                } else if (data === "수정 실패") {
+                                                    alert("결제정보 수정 실패!");
+                                                }
+                                            }
+                                        })
+                                        .done(function () {
+                                            console.log("done");
+                                        })
+                                        .fail(function () {
+                                            console.log("error");
+                                        })
+                                        .always(function () {
+                                            console.log("complete");
+                                        });
+                                })
+                            </script>
+                            <?php 
 
     }
 

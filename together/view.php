@@ -53,8 +53,10 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     for($i=0;$i<count($file_type);$i++){
       $file_type_cut_cut=explode("/", $file_type[$i]);
       $file_type_cut[$i]=$file_type_cut_cut[0];
-      //echo "<script>alert('{$file_type_cut[$i]}');</script>";
     }
+
+    // $countcount=count($file_type_cut);
+    // echo "<script>alert('{$countcount}');</script>";
 
     $day=$row['regist_day'];
     $area=$row['area'];
@@ -173,16 +175,16 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                       echo("
                       ▷ 첨부파일 : $file_name[$i] &nbsp;
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br>
+                      <a href='download.php?mode=download&num=$q_num&file_num=$i'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br><br>
                       ");
-                      echo "<img src='./data/$file_copied[$i]' style='max-height:200px; max-width:200px;'><br>";
+                      echo "<img src='./data/$file_copied[$i]'><br>";
                     } elseif (!empty($file_copied[$i])) {
                       $file_path = "./data/".$file_copied[$i];
                       //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
                       echo("
                       ▷ 첨부파일 : $file_name[$i] &nbsp;
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
+                      <a href='download.php?mode=download&num=$q_num&file_num=$i'>저장</a><br><br>
                       ");
                     }
                   }

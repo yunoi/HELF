@@ -91,7 +91,7 @@
       $hit = $row['hit'];
 ?>
             <li>
-                <span><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/notice/view.php?num=<?=$num?>&hit=<?=$hit+1?>"><?= $row["subject"]?></a></span>
+                <span><nobr><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/notice/view.php?num=<?=$num?>&hit=<?=$hit+1?>"><?= $row["subject"]?></a></nobr></span>
             </li>
             <?php
     }

@@ -4,7 +4,7 @@
 				"http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/lib/partner.php",
 				"제휴문의",
 				"_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
-								"ft=100px , width=350px, height=200px"
+								"ft=100px , width=480px, height=370px"
 		);
 	}
 </script>

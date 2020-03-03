@@ -4,10 +4,9 @@
   margin: 0px auto;
 }
 section{
-  float: left;
   margin: 0px auto;
   margin-top: 20px;
-  width: 800px;
+  width: 1100px;
   position: relative;
 }
 #div_introduction{
@@ -29,20 +28,23 @@ section{
   color: #F23005;
   font-weight: bold;
   font-size: 20px;
-  font-family: monospace;
   font-style: italic;
 }
 .one{
-  font-family: monospace;
   color: coral;
   font-size: 20px;
 }
 .one b{
-  font-family: monospace;
   font-style: italic;
+  font-weight: bold;
 }
 .two,#div_header b span{
   font-size: 40px;
+  font-weight: bold;
+}
+.two{
+  margin-top: 24px;
+  font-family: '휴먼명조';
 }
 .master{
   margin: 150px 0px;

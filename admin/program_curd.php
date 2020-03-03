@@ -110,6 +110,9 @@
     $location = $h_area1.",".$h_area2.",".$detail;
   }
   $db_name = "";
+
+
+
   if (isset($_FILES["upfile"]["name"])) {
       $upfile_name = $_FILES["upfile"]["name"];
       for($i=0; $i<count($upfile_name);$i++){

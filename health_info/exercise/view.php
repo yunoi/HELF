@@ -151,7 +151,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
               <div id="view_content">
                 <div class="col2">
                   <!-- 여기선 이미지 보일 필요 없으니 주석처리 -->
-                  <!-- <?php
+                  <?php
                     if ($file_type =="image") {
                         $file_path = "./data/".$file_copied;
                         $file_size = filesize($file_path);
@@ -172,7 +172,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                         <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
                       ");
                     }
-                  ?> -->
+                  ?>
                   <!-- 첨부한 동영상 보기 -->
                     <p align="middle">
                     <iframe width="740" height="432" src="https://www.youtube.com/embed/<?=$video_name?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

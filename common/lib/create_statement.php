@@ -74,9 +74,9 @@ function create_table($conn, $table_name){
               choose char(20) not null,
               price int not null,
               location char(50) not null,
-              file_name char(50),
-              file_type char(30),
-              file_copied char(30),
+              file_name char(100),
+              file_type char(100),
+              file_copied char(200),
               regist_day char(15),
               primary key(o_key)
           )ENGINE=InnoDB DEFAULT CHARSET=utf8;";

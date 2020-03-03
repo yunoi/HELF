@@ -98,9 +98,11 @@
 }
 #myHeader ul li a{
   width: 100%;
-  border: 1px solid white;
+
   color: white;
 }
+
+
 #cancel{
   text-align: left;
   height: 500px;

@@ -3,12 +3,14 @@
   include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
   $user_id = $_SESSION['user_id'];
   if(isset($_POST['bank'])){
+    $bank = $_POST['bank'];
     $subject =  $_POST["subject"];
     $amount   = $_POST["paid_amount"];
     $program_num = $_POST["name"];
     $paid_date = $_POST["paid_at"];
     $o_key = $_POST["o_key"];
   } else {
+    $bank = "";
     $amount   = "";
     $program_num = "";
     $paid_date = "";
@@ -46,6 +48,6 @@
     }
   }
   
-    echo ("<script>location.href = ./payment_complete.php</script>");
-  mysqli_close($conn);
+    mysqli_close($conn);
+    echo ("<script>location.href = 'payment_complete.php?ord_num=$program_num&bank=$bank'</script>");
  ?>

@@ -1,11 +1,4 @@
 <?php
-// //1. $_FILES['upfile']로부터 5가지 배열명을 가져와서 저장한다.
-// $upfile = $_FILES['upfile'];//한개파일업로드정보(5가지정보배열로들어있음)
-// $upfile_name= $_FILES['upfile']['name'];//f03.jpg
-// $upfile_type= $_FILES['upfile']['type'];
-// $upfile_tmp_name= $_FILES['upfile']['tmp_name'];
-// $upfile_error= $_FILES['upfile']['error'];
-// $upfile_size= $_FILES['upfile']['size'];
 
 if (isset($_FILES["upfile"]["name"])) {
     $upfile_name = $_FILES["upfile"]["name"];
@@ -65,7 +58,6 @@ if ($upfile_name[0]) {
         } else {
             $copied_file_name = $copied_file_name.",".$copied_file_named;
         }
-
         if ($upfile_size[$i]  > 1000000) {
             echo("
     <script>

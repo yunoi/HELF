@@ -392,31 +392,6 @@ header {
   z-index: 100;
 }
 
-#container #program_ranking {
-  position: relative;
-  box-sizing: border-box;
-  width: 252px;
-  height: 300px;
-  margin: 36px 0;
-  border: 1px solid #dbdbdb;
-  padding: 5px 10px 5px 10px;
-  background: #fff;
-  z-index: 100;
-}
-
-#program_ranking {
-  position: relative;
-  box-sizing: border-box;
-  width: 252px;
-  height: 300px;
-  margin: 36px 0;
-  border: 1px solid #dbdbdb;
-  padding: 5px 10px 5px 10px;
-  background: #fff;
-  z-index: 100;
-}
-
-
 #keyword_area {
   margin: 0 20px;
   padding-top: 6px;
@@ -551,28 +526,42 @@ footer {
   left: 700px;
 }
 
-#ul_ranking{
+#program_ranking {
+  position: relative;
+  box-sizing: border-box;
+  width: 252px;
+  height: 300px;
+  margin: 36px 0;
+  padding: 15px 10px 5px 0px;
+  background: #fff;
+  z-index: 100;
+}
+
+#r_menu{
+  background: #69caca;
+}
+#ul_program{
   text-align: center;
 }
 
-#ul_ranking li{
-  margin-bottom: 5px;
+#ul_program li{
+  padding: 10px 0;
 }
 
 
-#ul_ranking p{
+#ul_program p{
   display: inline-block;
 }
 
-#ul_ranking .r1{
+#ul_program .pr1{
   width: 30px;
 }
-#ul_ranking .r2{
+#ul_program .pr2{
   width: 90px;
 }
-#ul_ranking .r3{
-  width: 60px;
+#ul_program .pr3{
+  width: 50px;
 }
-#ul_ranking .r4{
-  width: 70px;
+#ul_program .pr4{
+  width: 45px;
 }

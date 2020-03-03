@@ -38,7 +38,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     include  "./lib/file_upload.php";
 
     //8 파일의 실제명과 저장되는 명을 삽입한다.
-    $sql="INSERT INTO `community` VALUES (null,'$q_userid','$q_username','$q_subject','$q_content','$regist_day',0,'$upfile_name', '$upfile_type','$copied_file_name',0,'다이어트후기');";
+    $sql="INSERT INTO `community` VALUES (null,'$q_userid','$q_username','$q_subject','$q_content','$regist_day',0,'$db_name', '$db_type','$copied_file_name',0,'다이어트후기');";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       alert_back('Error:5 ' . mysqli_error($conn));
@@ -138,7 +138,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     //include 파일업로드기능
     include  "./lib/file_upload.php";
 
-    $sql="UPDATE `community` SET `file_name`= '$upfile_name', `file_copied` ='$copied_file_name', `file_type` ='$type[0]' WHERE `num`=$q_num;";
+    $sql="UPDATE `community` SET `file_name`= '$db_name', `file_copied` ='$copied_file_name', `file_type` ='$db_type' WHERE `num`=$q_num;";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));

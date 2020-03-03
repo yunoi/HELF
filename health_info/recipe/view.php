@@ -165,7 +165,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
                     ");
-                        echo "<img src='./data/$file_copied' width='$image_width'><br>";
+                        // echo "<img src='./data/$file_copied' width='$image_width'><br>";
 
                     } elseif (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
                         $file_path = "./data/".$file_copied;

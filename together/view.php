@@ -45,10 +45,8 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $file_copied=$row['file_copied'];
     $file_copied=explode(",",$file_copied);
 
-
     $file_type=$row['file_type'];
     $file_type=explode(",", $file_type);
-     echo "<script>alert('{$file_type[0]}');</script>";
 
     $file_type_cut=array();
 
@@ -58,26 +56,9 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
       //echo "<script>alert('{$file_type_cut[$i]}');</script>";
     }
 
-
-
     $day=$row['regist_day'];
     $area=$row['area'];
 
-
-    // if (!empty($file_copied)&&$file_type =="image") {
-    //     //이미지 정보를 가져오기 위한 함수 width, height, type
-    //     $image_info=getimagesize("./data/".$file_copied);
-    //     $image_width=$image_info[0];
-    //     $image_height=$image_info[1];
-    //     $image_type=$image_info[2];
-    //     if ($image_width>400) {
-    //         $image_width = 400;
-    //     }
-    // } else {
-    //     $image_width=0;
-    //     $image_height=0;
-    //     $image_type="";
-    // }
 }
 
 ?>
@@ -187,21 +168,15 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
               <div id="view_content">
                 <div class="col2">
                   <?php
-
                   for($i=0;$i<count($file_name);$i++){
                     if ($file_type_cut[$i] =="image") {
-                      //$file_path = "./data/".$file_copied[$i];
-                      //$file_size = filesize($file_path);
-                      //echo "<script>alert('{$file_copied[$i]}');</script>";
-                      //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
                       echo("
                       ▷ 첨부파일 : $file_name[$i] &nbsp;
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br><br>
+                      <a href='download.php?mode=download&num=$q_num'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br>
                       ");
-                      echo "<img src='./data/$file_copied[$i]'><br>";
+                      echo "<img src='./data/$file_copied[$i]' style='max-height:200px; max-width:200px;'><br>";
                     } elseif (!empty($file_copied[$i])) {
-// echo "<script>alert('{$file_type[$i]}');</script>";
                       $file_path = "./data/".$file_copied[$i];
                       //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
                       echo("
@@ -244,39 +219,12 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                    data-id="<?php echo $post['num'] ?>"></i>
                  <span class="dislikes"><?php echo getDislikes($post['num']); ?></span>
 
-<!-- ///////////////////////////// -->
-             <!-- <script>
-             var value1;
-             var value2;
-             var like_result;
-             value1=document.getElementsByClassName('likes');
-             value2=document.getElementsByClassName('dislikes');
-
-             like_result=value1[0].innerText - value2[0].innerText;
-             console.log(like_result);
-              // window.location.href='./server.php?likeit='+like_result;
-             </script> -->
-<!-- ///////////////////////////////////////// -->
-
               </div>
               </div>
            <?php endforeach ?>
           </div>
           <script src="scripts.js"></script>
 
-<!-- ////////////////////// -->
-          <!-- <?php
-           // $like_result = "<script>document.write(like_result);</script>";
-           // echo "$like_result";
-           //
-           // $sql="UPDATE together SET likeit=$like_result WHERE b_code='같이할건강' and num=$num;";
-           // $result = mysqli_query($conn, $sql);
-           // if (!$result) {
-           //     die('Error: ' . mysqli_error($conn));
-           // }
-           ?> -->
-
-<!-- ////////////////////////////// -->
 
 
 <!--덧글내용시작  -->

@@ -29,13 +29,18 @@ section{
 #div_introduction span,#div_header span{
   color: #F23005;
   font-size: 20px;
-  font-family: cursive;
+  font-family: monospace;
+  font-style: italic;
 }
 .one{
   color: coral;
   font-family: cursive;
   font-size: 20px;
 }
-.two{
+.one b{
+  font-family: monospace;
+  font-style: italic;
+}
+.two,#div_header b span{
   font-size: 40px;
 }

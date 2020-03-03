@@ -127,7 +127,7 @@
                     <td class="td_width">종류</td>
                     <td>
                       <select name="type" class="kind_sel" <?php if ($mod === 'modify') echo "disabled";?>>
-                        <option value="pt" <?php if ($type === 'pt') echo "selected";?>>pt</option>
+                        <option value="헬스" <?php if ($type === '헬스') echo "selected";?>>헬스</option>
                         <option value="수영" <?php if ($type === '수영') echo "selected";?>>수영</option>
                         <option value="자전거" <?php if ($type === '자전거') echo "selected";?>>자전거</option>
                         <option value="요가/필라테스" <?php if ($type === '요가/필라테스') echo "selected";?>>요가/필라테스</option>
@@ -154,13 +154,15 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="td_width">모집인원</td>
+                    <td class="td_width">전화번호</td>
                     <td>
-                      <input id="input_num" min="1" max="99" value="1" type="number" name="personnel" placeholder=" 모집인원을 입력하세요. " value=<?=$personnel?> <?php if ($mod === 'modify') echo "disabled";?>>
+                    <input id="input_num" type="text" name="personnel" placeholder=" 전화번호를 입력하세요. " value=<?=$personnel?> <?php if ($mod === 'modify') echo "disabled";?>>
+                    <p id="sub_num"></p>
                     </td>
                     <td class="td_width">모집 마감일</td>
                     <td>
-                      <input type="date" name="end_day" value=<?=$end_day?> <?php if ($mod === 'modify') echo "disabled";?>>
+                      <input id="input_end_day" type="date" name="end_day" value=<?=$end_day?> <?php if ($mod === 'modify') echo "disabled";?>>
+                      <p id="sub_end_day"></p>
                     </td>
                   </tr>
                   <tr>
@@ -168,12 +170,12 @@
                     <td id="td_plus" colspan="3">
                       <ul id="ul_plus">
                         <li>
-                          <input type="text" name="choose[]" id="option_choose" value="<?=$choose?>" placeholder=" 옵션명을 입력하세요. "> &
-                          <input type="number" name="price[]" value="<?=$price?>" placeholder=" 가격을 입력하세요. "> 원
+                          <input type="text" name="choose[]" class="option_choose" value="<?=$choose?>" placeholder=" 옵션명을 입력하세요. "> &
+                          <input type="number" name="price[]" class="price_choose" value="<?=$price?>" placeholder=" 가격을 입력하세요. "> 원
                           <?php
                           if($mod === "insert"){
                           ?>
-                          <button id="option_plus" type="button" name="button">추가</button>
+                          <button id="option_plus" type="button" name="button" >추가</button>
                           <button id="option_minus" type="button" name="button">삭제</button>
                           <?php
                           }
@@ -181,6 +183,7 @@
 
                         </li>
                       </ul>
+                      <p id="sub_option"></p>
                     </td>
                   </tr>
                   <?php
@@ -197,7 +200,8 @@
                     <td class="td_width">지역
                     <td id="select_location" colspan="3">
                       <?php include "../program/select_location.php";?>
-                      <input id="input_location" type="text" name="detail" value="" placeholder=" 상세 주소 ">
+                      <input id="input_location3" type="text" name="detail" value="" placeholder=" 상세 주소 ">
+                      <p id="sub_location"></p>
                     </td>
                   </tr>
                   <?php
@@ -210,7 +214,7 @@
                       <?php
                       if($mod === "insert"){
                       ?>
-                      <input  multiple="multiple" type="file" name="upfile[]" value="">
+                       &nbsp<input  multiple="multiple" type="file" name="upfile[]" value="">
                       <?php
                       }
                       ?>
@@ -220,9 +224,9 @@
                 <div id="submit_div">
                   <?php
                     if(isset($_GET["o_key"])){
-                      echo "<input type='submit' value='수정'>";
+                      echo "<input id='btn_regist' type='button' value='수정'>";
                     }else{
-                      echo "<input type='submit' value='등록'>";
+                      echo "<input id='btn_regist' type='button' value='등록'>";
                     }
 
                    ?>

@@ -11,11 +11,11 @@
     $o_key = $_POST["o_key"];
   } else {
     $bank = "";
-    $amount   = "";
-    $program_num = "";
-    $paid_date = "";
-    $subject = "";
-    $o_key ="";
+    $subject =  $_POST["subject"];
+    $amount   = $_POST["paid_amount"];
+    $program_num = $_POST["name"];
+    $paid_date = $_POST["paid_at"];
+    $o_key = $_POST["o_key"];
   }
 
   if(isset($_POST['bank'])&&($_POST['bank']!=="")){

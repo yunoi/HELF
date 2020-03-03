@@ -24,4 +24,18 @@ section{
 }
 #aside_introduction{
   padding-top: 71px;
+  background-color: white;
+}
+#div_introduction span,#div_header span{
+  color: #F23005;
+  font-size: 20px;
+  font-family: cursive;
+}
+.one{
+  color: coral;
+  font-family: cursive;
+  font-size: 20px;
+}
+.two{
+  font-size: 40px;
 }

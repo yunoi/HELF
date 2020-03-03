@@ -17,8 +17,6 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    // echo "<script>alert('게시판 번호 : {$num}');</script>";
-
     $sql="UPDATE `health_info` SET `hit`=$hit WHERE b_code='레시피' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
@@ -70,7 +68,6 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
         $image_type="";
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -87,7 +84,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
               <input type="hidden" name="parent" value="'.$parent.'">
               <input type="submit" style="border:1px solid #F23005; color:#F23005; background-color:white;" value="&nbsp&nbsp삭제&nbsp&nbsp">
             </form>';
-            }
+        }
         return $message;
     }
 }
@@ -152,32 +149,8 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                 <div class="col2"> <input type="text" name="subject" value="<?=$subject?>" readonly></div>
               </div><!--end of write_row2  -->
               <div class="write_line"></div>
-
               <div id="view_content">
                 <div class="col2">
-                  <?php
-                    if ($file_type =="image") {
-                      $file_path = "./data/".$file_copied;
-                      $file_size = filesize($file_path);
-                      //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
-                      echo("
-                      ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
-                    ");
-                        // echo "<img src='./data/$file_copied' width='$image_width'><br>";
-
-                    } elseif (!empty($_SESSION['user_id'])&&!empty($file_copied)) {
-                        $file_path = "./data/".$file_copied;
-                        $file_size = filesize($file_path);
-                        //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
-                        echo("
-                        ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
-                      ");
-                    }
-                  ?>
                   <p align="middle">
                   <iframe width="740" height="432" src="https://www.youtube.com/embed/<?=$video_name?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </p>
@@ -255,7 +228,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
         </div>
     <?php
       }//end of while
-      mysqli_close($conn);
+      //mysqli_close($conn);
     ?>
     <form name="ripple_form" action="dml_board.php?mode=insert_ripple" method="post">
       <input type="hidden" name="parent" value="<?=$q_num?>">

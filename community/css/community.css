@@ -362,6 +362,11 @@
   color: #F23005;
 }
 
+#view_content img{
+  max-width: 600px;
+  max-height: 400px;
+}
+
 #view_button {
   width: 98%;
   text-align: right;

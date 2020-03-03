@@ -367,6 +367,11 @@
   border-radius: 2px
 }
 
+#view_content .col2 a{
+  text-align: center;
+  border: solid 1px #F23005;
+  color: #F23005;
+}
 
 #write_button input{
   border:1px solid #F23005;
@@ -414,6 +419,10 @@
   margin: auto;
 }
 
+#view_content img{
+  max-width: 600px;
+  max-height: 400px;
+}
 
 #view_button {
 	width:98%;

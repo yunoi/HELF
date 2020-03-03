@@ -263,13 +263,23 @@ function program_delete($conn, $o_key){
 }
 
 //게시글 수정
-function program_modify($conn, $o_key, $choose, $price)
-  {
+function program_modify($conn, $o_key, $choose, $price, $s_key, $shop, $type, $subject){
+
     $choose = $_POST["choose"][0];
     $price = $_POST["price"][0];
 
-      $sql = "update program set choose = '$choose', price = '$price' where o_key=$o_key";
-      mysqli_query($conn, $sql);
+      $sql = "update program set choose = '$choose', price = '$price' where o_key=$o_key;";
+      $result = mysqli_query($conn, $sql);
+
+      $sql2 = "select price from program where shop='$shop' and type='$type' and subject='$subject' and choose not in('선택') order by price;";
+      $result2 = mysqli_query($conn, $sql2);
+      $row2 = mysqli_fetch_array($result2);
+
+      $low_price = $row2["price"];
+
+      $sql3 = "update program set price = '$low_price' where o_key=$s_key;";
+      $result3 = mysqli_query($conn, $sql3);
+
       mysqli_close($conn);
   }
 
@@ -279,15 +289,24 @@ function program_modify($conn, $o_key, $choose, $price)
       program_delete($conn , $o_key);
       echo "
          <script>
+              alert('삭제되었습니다.');
              location.href = 'admin_program_manage.php';
          </script>
        ";
       break;
     case 'modify':
-      program_modify($conn, $o_key, $choose, $price);
+
+      $sql = "select o_key from program where shop='$shop' and type='$type' and subject='$subject' and choose='선택';";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_array($result);
+
+      $s_key = $row["o_key"];
+
+      program_modify($conn, $o_key, $choose, $price, $s_key, $shop, $type, $subject);
       echo "
          <script>
-             location.href = 'admin_program_manage.php';
+              alert('수정되었습니다.');
+              location.href = 'admin_program_manage.php';
          </script>
        ";
       break;

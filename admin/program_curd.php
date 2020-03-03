@@ -11,6 +11,8 @@
   if (isset($_GET["o_key"])) $o_key = $_GET["o_key"];
   else $o_key = "";
 
+
+
   if (isset($_POST["shop"])) $shop = $_POST["shop"];
   else $shop = "";
 
@@ -197,7 +199,7 @@ if($mode === "insert"){
         }
 
     }
-    echo "<script>alert('$copied_file_name')</script>";
+  //  echo "<script>alert('$copied_file_name')</script>";
     }else {
       echo("
     <script>

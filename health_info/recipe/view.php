@@ -163,7 +163,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                       echo("
                       ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
+                      <a href='download.php?mode=download&num=$q_num'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br><br>
                     ");
                         // echo "<img src='./data/$file_copied' width='$image_width'><br>";
 
@@ -174,7 +174,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                         echo("
                         ▷ 첨부파일 : $file_name &nbsp; [ $file_size Byte ]
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
+                        <a href='download.php?mode=download&num=$q_num'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br><br>
                       ");
                     }
                   ?>

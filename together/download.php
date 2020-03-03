@@ -1,6 +1,8 @@
 <?php
 
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
+
 $row=$file_name=$file_copied=$file_type="";
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="download"){
@@ -22,7 +24,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="download"){
 }
 
 // 1. 테이블에서 파일명이 있는지 점검
-
 
 if(empty($file_copied)|| $file_type =="image"){
     alert_back(' 테이블에 파일명이 존재하지 않거나 이미지 파일입니다.!');

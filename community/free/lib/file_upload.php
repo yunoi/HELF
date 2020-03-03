@@ -2,7 +2,7 @@
 //1. $_FILES['upfile']로부터 5가지 배열명을 가져와서 저장한다.
 $upfile = $_FILES['upfile'];//한개파일업로드정보(5가지정보배열로들어있음)
 $upfile_name= $_FILES['upfile']['name'];//f03.jpg
-$upfile_type= $_FILES['upfile']['type'];//image/gif  file/txt
+$upfile_type= $_FILES['upfile']['type'];
 $upfile_tmp_name= $_FILES['upfile']['tmp_name'];
 $upfile_error= $_FILES['upfile']['error'];
 $upfile_size= $_FILES['upfile']['size'];
@@ -26,25 +26,10 @@ $upload_dir ="./data/"; //업로드된파일을 저장하는장소지정
         // $uploaded_file = "./data/2019_04_22_15_09_30_0.jpg";
     }
 
-    //5 업로드된 파일확장자를 체크한다.  "image/gif"
-    $type=explode("/", $upfile_type);
+    //6 업로드된 파일확장자를 체크한다.  "image/gif"
+    // $type=explode("/", $upfile_type);
+    $file_type = $upfile_type;
 
-    if ($type[0]=='image') {
-        switch ($type[1]) {
-    case 'gif': case 'jpg': case 'png': case 'jpeg':
-      case 'pjpeg': break;
-      default:alert_back('3. gif jpg png 확장자가아닙니다.');
-    }
-        //6 업로드된 파일사이즈(2mb)를 체크해서 넘어버리면 돌려보낸다.
-        if ($upfile_size>2000000) {
-            alert_back('2. 이미지파일사이즈가 2MB이상입니다.');
-        }
-    } else {
-        //5 업로드된 파일사이즈(500kb)를 체크해서 넘어버리면 돌려보낸다.
-        if ($upfile_size>500000) {
-            alert_back('2. 파일사이즈가 500KB이상입니다.');
-        }
-    }
 
     //7. 임시저장소에 있는 파일을 서버에 지정한 위치로 이동한다.
     if (!move_uploaded_file($upfile_tmp_name, $uploaded_file)) {

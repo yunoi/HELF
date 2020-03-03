@@ -34,7 +34,7 @@
       position: absolute;
   }
   
-  #carousel_section > ul > li >img{
+  #carousel_section > ul > li img{
     width: 100%;
       height: 100%;
       cursor: pointer;

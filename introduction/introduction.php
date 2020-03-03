@@ -80,9 +80,7 @@
         </div>
       </article>
     </section>
-    <aside id="aside_introduction">
-      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
-    </aside>
+  
   </div>
   <footer>
   <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>

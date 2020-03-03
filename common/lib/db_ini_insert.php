@@ -31,7 +31,8 @@ function insert_init_data($conn, $table_name){
             break;
             case 'notice' :
               $sql = "INSERT INTO `notice` (`num` , `subject` , `content` , `regist_day` , `hit` , `file_name` , `file_type` , `file_copied`)
-              VALUES(null,'3월 수료한다','3월에 수료하는데 살빼서 멋진 정장입자','2020-02-17',0,null,null,null);";
+              VALUES(null,'안녕하세요. HELF입니다.',' 안녕하세요. HELF입니다. HELF는 회원제로 운영되는 건강 프로그램 구매 및 운동 커뮤니티 사이트입니다.
+                많은 이용 바랍니다.','2020-02-17',0,null,null,null);";
               break;
               case 'faq' :
                 $sql = "INSERT INTO `faq`(`num` , `subject` , `content`)

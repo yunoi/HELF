@@ -11,8 +11,14 @@
  define('SCALE', 5);
  $mode="insert";
  $update="";
-$user_id=$_SESSION['user_id'];
-$user_grade=$_SESSION["user_grade"];
+
+ if(isset($_SESSION['user_id'])){
+   $user_id=$_SESSION['user_id'];
+ }
+ if(isset($_SESSION["user_grade"])){
+   $user_grade=$_SESSION["user_grade"];
+ }
+
  if(!isset($_COOKIE['today_view'])){
  	setcookie('today_view', $o_key, time() + 21600, "/");
  } else {
@@ -60,23 +66,46 @@ $user_grade=$_SESSION["user_grade"];
      $end_day   = $row["end_day"];
      $content = $row["content"];
      $location  = $row["location"];
+     $personnel = $row["personnel"];
      $file_copied= $row["file_copied"];
+     $image               = explode(",",$file_copied);
      $file_type  = $row["file_type"];
+
+
+     $sql2 = "select price from program where shop='$shop' and type='$type' and price > 150000 order by price asc ";
+     $result2 = mysqli_query($conn, $sql2);
+     $row2 = mysqli_fetch_array($result2);
+     $min_price = $row2["price"];
+
 
      ?>
       <div class="clear"></div>
     <div id="div_main_body">
             <section>
+              <script type="text/javascript">
+              function move1(){
+                window.scrollTo(0, 500);
+              }
+              function move2(){
+                window.scrollTo(0, 1260);
+              }
+              function move3(){
+                window.scrollTo(0, 1680);
+              }
+              function move4(){
+                window.scrollTo(0, 2250);
+              }
+
+              </script>
               <div id="div_main">
-                 <img src='../admin/data/<?=$file_copied?>' style="max-height:480px;">
+                 <img src='../admin/data/<?=$image[0]?>' style="height:477px; width:640px;">
                  <br><br>
                 <div class="buttons" id="myHeader">
                   <ul>
-                    <li><a href="#see">서비스 설명</a> </li>
-                    <li><a href="#pay">가격정보</a></li>
-                    <li><a href="#cansel">취소및환불규정</a> </li>
-                    <li><a href="#program_qna">QnA</a> </li>
-                    <li><a href="#div_review">서비스 평가</a> </li>
+                    <li><a onclick="move1()">서비스 설명</a> </li>
+                    <li><a onclick="move2()">가격정보</a></li>
+                    <li><a onclick="move3()">취소및환불규정</a> </li>
+                    <li><a onclick="move4()">QnA/후기</a> </li>
                   </ul>
                 </div>
                 <br><br>
@@ -114,71 +143,63 @@ $user_grade=$_SESSION["user_grade"];
                 <br/>
                 <ul>
                   <li>지역</li><br/>
-                  <li><b>비대면</b></li>
+                  <li><b><?=$location?></b></li>
                 </ul><br/>
                 <ul>
                   <li>분야</li><br/>
-                  <li><b>피트니스</b></li>
+                  <li><b><?=$type?></b></li>
                 </ul><br/>
                 <ul>
-                    <li>모집 형태</li><br/>
-                    <li><b>개인레슨</b></li>
+                    <li>등록 마감일</li><br/>
+                    <li><b><?=$end_day?></b></li>
                 </ul><br/>
                 <ul>
-                  <li>교육 횟수</li><br/>
-                  <li><b>원데이클래스</b></li>
+                  <li>모집 인원수</li><br/>
+                  <li><b><?=$personnel?></b></li>
                 </ul><br/>
-                </p>
                 </div>
                 </div>
+                <?php
+                for($i=1;$i<count($image);$i++){
+                ?>
+                  <img src='../admin/data/<?=$image[$i]?>' style="height:280px; width:400px;">
+                <?php
+                }
+                ?>
+
+
                     <div class="clear"></div><br/><br/>
                 <div class="" id="pay">
                   <h3>가격정보</h3>
                   <div class="pay_table">
                     <table>
                       <tr>
-                        <th id="sol">&nbsp;</th>
-                        <th>STANDARD</th>
-                        <th>DELUXE</th>
-                        <th>PREMIUM</th>
+                        <th>옵션</th>
+                        <th>가격</th>
                       </tr>
-                       <tr>
-                         <th id="sol">가격</th>
-                         <?php
-                           $sql="select * from program where shop='$shop'and type='$type' order by price";
-                           $result = mysqli_query($conn, $sql);
-                         while($row = mysqli_fetch_array($result)){
-                           $table_choose = $row["choose"]; //옵션 내용
-                           $table_price = (int)$row["price"]; //옵션에 대한 가격
-                           if(!($table_choose==="선택")){
-                          ?>
+                       <?php
+                         $sql="select * from program where shop='$shop'and type='$type' order by price";
+                         $result = mysqli_query($conn, $sql);
+                       while($row = mysqli_fetch_array($result)){
+                         $table_choose = $row["choose"]; //옵션 내용
+                         $table_price = (int)$row["price"]; //옵션에 대한 가격
+                         if(!($table_choose==="선택")){
+                        ?>
+                        <tr>
+                          <td><?=$table_choose?></td>
                           <td><?=$table_price?>원</td>
-                           <?php
-                         }
-                         }
-                            ?>
-                      </tr>
-                       <tr>
-                         <th id="sol">옵션</th>
-                         <?php
-                           $sql="select * from program where shop='$shop'and type='$type' order by price";
-                          $result = mysqli_query($conn, $sql);
-                         while($row = mysqli_fetch_array($result)){
-                           $table_choose = $row["choose"]; //옵션 내용
-                           if(!($table_choose==="선택")){
-                          ?>
-                          <td><?=$table_choose?>횟수</td>
-                           <?php
-                          }
-                         }
-                            ?>
                         </tr>
+
+                         <?php
+                         }
+                         }
+                            ?>
                     </table>
 
                   </div>
                 </div>
                   <div class="clear"></div><br/><br/>
-                <div class="" id="cansel">
+                <div class="" id="cancel">
               <h3>취소 및 환불 규정</h3>
 <p>가. 레슨 환불기준 원칙<br/>
 학원의 설립/운영 및 과외교습에 관한 법률 제 18조(교습비 등의 반환 등)<br/>
@@ -202,8 +223,9 @@ $user_grade=$_SESSION["user_grade"];
                 <div class="clear"></div><br/><br/>
                 <div id="program_qna"> <!--프로그램 qna 게시판이 들어갈 자리-->
                   <h3>QnA</h3>
-                  <p>구매하시려는 상품에 대해 궁금하신 점이 있으신 경우 문의해주세요.</p>
+                  <p style="text-align:left; display:inline-block;">구매하시려는 상품에 대해 궁금하신 점이 있으신 경우 문의해주세요.</p>&nbsp
                   <button type="button" onclick="qna_mode(this.value,<?=$o_key?>,null)" name="button" value="new_insert">문의하기</button>
+                  <br><br>
                   <?php
                   $sql="select * from `p_qna` where `shop`='$shop' and `type`='$type' order by group_num desc, ord asc;";
                   $result = mysqli_query($conn, $sql);
@@ -228,44 +250,96 @@ $user_grade=$_SESSION["user_grade"];
                       $qna_content=$row['content'];
                       $qna_depth=(int)$row['depth'];
                       $space="";
-                      for ($j=0;$j<$qna_depth;$j++) {
-                          $space="&nbsp;&nbsp;".$space;
-                      }
-                      if(!($space==="")){
-                        $space=$space."[답변]";
-                      }
+                      if($qna_depth == 0){
                       ?>
-                    <div class="div_qna">
-                      <div class="qna_head"><!--제목 머릿부분-->
-                        <div class="qna_subject">
-                          <span>제목&nbsp;:&nbsp;<?=$space.$qna_subject?></span>
+                      <div class="if_queation">
+                        <div class="qna_image">
+                          <img src="./img/question.png" alt="">
                         </div>
-                        <div class="qna_id">
-                          <span>작성자&nbsp;:&nbsp;<?=$qna_id?></span>
+                        <div id="div_question">
+                          <div class="qna_head"><!--제목 머릿부분-->
+                            <div style="display:inline-block">
+                              <span>&nbsp&nbsp<?=$space.$qna_subject?></span>
+                            </div>
+
+                          </div>
+                          <div class="qna_body"><!--내용부분-->
+                            <div class="qna_content">
+                              &nbsp&nbsp<?=$qna_content?>
+                            </div>
+                          </div>
+                          <div class="qna_buttons">
+                            <div style="display:inline-block; width:120px">
+                              <span>작성자&nbsp;:&nbsp;<?=$qna_id?></span>
+                            </div>
+                            <div style="display:inline-block; width:180px">
+                              <span>작성일&nbsp;:&nbsp;<?=$qna_regist_day?></span>
+                            </div>
+                            <div class="ta_right" style="width:340px">
+                            <?php
+                            if($user_id =="admin"){
+                            ?>
+                              <button type="button" onclick="qna_mode(this.value,<?=$o_key?>,<?=$qna_num?>)" name="button" value="insert">답글달기</button>
+                            <?php
+                             }
+                             ?>
+
+                            <?php
+                            if($qna_id===$user_id || $user_grade ==="admin"){
+                              echo '<button type="button" onclick="qna_mode(this.value,'.$o_key.','.$qna_num.')" name="button" value="delete">삭제</button>&nbsp';
+                              echo '<button type="button" onclick="qna_mode(this.value,'.$o_key.','.$qna_num.')" name="button" value="update">수정</button>';
+                            }
+                            ?>
+                            </div>
+                          </div>
                         </div>
-                        <div class="qna_regist_day">
-                          <span>작성일&nbsp;:&nbsp;<?=$qna_regist_day?></span>
+                      </div><!--end of if_question-->
+
+                      <?php
+                    }else{
+                      ?>
+                      <div class="if_answer">
+                        <div class="qna_image">
+                          <img src="./img/answer.png" alt="" style="margin-left:30px;">
                         </div>
-                      </div>
-                      <div class="qna_body"><!--내용부분-->
-                        <div class="qna_content">
-                          내용&nbsp;:&nbsp;<?=$qna_content?>
+                        <div id="div_answer">
+                          <div class="qna_head"><!--제목 머릿부분-->
+                            <div style="display:inline-block">
+                              <span>&nbsp&nbsp<?=$space.$qna_subject?></span>
+                            </div>
+                          </div>
+                          <div class="qna_body"><!--내용부분-->
+                            <div class="qna_content">
+                              &nbsp&nbsp<?=$qna_content?>
+                            </div>
+                          </div>
+                          <div class="qna_buttons">
+                            <div style="display:inline-block; width:120px">
+                              <span>작성자&nbsp;:&nbsp;<?=$qna_id?></span>
+                            </div>
+                            <div style="display:inline-block; width:180px;">
+                              <span>작성일&nbsp;:&nbsp;<?=$qna_regist_day?></span>
+                            </div>
+                            <div class="ta_right" style="width:285px">
+                            <?php
+                            if($qna_id===$user_id || $user_grade ==="admin"){
+                              echo '<button type="button" onclick="qna_mode(this.value,'.$o_key.','.$qna_num.')" name="button" value="delete">삭제</button>&nbsp';
+                              echo '<button type="button" onclick="qna_mode(this.value,'.$o_key.','.$qna_num.')" name="button" value="update">수정</button>';
+                            }
+                            ?>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="qna_buttons">
-                        <button type="button" onclick="qna_mode(this.value,<?=$o_key?>,<?=$qna_num?>)" name="button" value="insert">답글달기</button>
-                        <?php
-                        if($qna_id===$user_id || $user_grade ==="admin"){
-                          echo '<button type="button" onclick="qna_mode(this.value,'.$o_key.','.$qna_num.')" name="button" value="delete">삭제</button>';
-                          echo '<button type="button" onclick="qna_mode(this.value,'.$o_key.','.$qna_num.')" name="button" value="update">수정</button>';
-                        }
-                        ?>
-                      </div>
-                    </div>
+
+                      </div><!--end of if_answer-->
+                    <?php
+                     }
+                     ?>
                     <?php
                       $number--;
                     }
                    ?>
+
                    <div id="page_button">
                      <div id="page_num">
                        <?php
@@ -283,22 +357,53 @@ $user_grade=$_SESSION["user_grade"];
                        }
                      ?>
                      <?php
-                     if($page>=1 && $total_page!=$page){
+                     if($total_page>=1 && $total_page!=$page){
                        $val=(int)$page+1;
                        echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./program_detail.php?page=$val&o_key=$o_key'>▶ 다음</a>";
                      }
-
                       ?>
-                      <a href="./program_detail.php?page=1&o_key=<?=$o_key?>"> <button type="button"> 목록</button></a>
-                     <br><br><br><br><br><br><br>
-                   </div>
-                </div>
+                     <br><br><br><br><br>
+                   </div><!--end of page_num-->
+                 </div><!--end of page_button-->
                 <div class="clear"></div><br/>
                 <div id="div_review">
-                  <h3>서비스 평가</h3>
+                  <h3>후기작성</h3>
+                  <ul>
+                  <li style="height: 150px; border-bottom:1px solid lightgray">
+                    <div class=""><!--댓글 달기 insert-->
+                      <form class="form_review" name="form_review" action="./program_review.php" method="post">
+                       <div class="" style="text-align:left; margin:20px;">
+
+
+                       <div class="starRev" style="text">
+                         <!-- <span class="starR1" >0.5</span> -->
+                         <span class="starR2 on" >1</span>
+                         <!-- <span class="starR1" >1.5</span> -->
+                         <span class="starR2" >2</span>
+                         <!-- <span class="starR1" >2.5</span> -->
+                         <span class="starR2" >3</span>
+                         <!-- <span class="starR1" >3.5</span> -->
+                         <span class="starR2" >4</span>
+                         <!-- <span class="starR1" >4.5</span> -->
+                         <span class="starR2" >5</span>
+                        </div>
+                        <textarea name="content" id="reviwe_content" rows="3" cols="58" style="float:left"></textarea>
+
+                         <input type="hidden" id="num" name="num" value="">
+                         <input type="hidden" name="o_key" value="<?=$o_key?>">
+                         <input type="hidden" name="type" value="<?=$type?>">
+                         <input type="hidden" name="shop" value="<?=$shop?>">
+                         <input type="hidden" id="star" name="star" value="0">
+                         <input type="hidden" id="mode" name="mode" value="<?=$mode?>">
+                        <input type="button" value="등록" onclick="review_insert();" style="margin-left:20px; float:left; margin-top:12px;">
+                        </div>
+                      </form>
+                    </div>
+                  </li>
+                </ul>
                   <ul>
                   <?php
-                    $sql="select * from `p_review` where `shop`='$shop' and `type`='$type'";
+                    $sql="select * from `p_review` where `shop`='$shop' and `type`='$type' order by num desc";
                     $result = mysqli_query($conn, $sql);
                   while($row = mysqli_fetch_array($result)){
                     $num=$row['num'];
@@ -308,37 +413,51 @@ $user_grade=$_SESSION["user_grade"];
                     $review_score = (int)$row["score"];
                     switch ($review_score) {
                       case 0: $width=0;  break;
-                      case 0.5: $width=16;  break;
-                      case 1: $width=31;  break;
-                      case 1.5: $width=46;  break;
-                      case 2: $width=61;  break;
-                      case 2.5: $width=75;  break;
-                      case 3: $width=89;  break;
-                      case 3.5: $width=102;  break;
-                      case 4: $width=118;  break;
-                      case 4.5: $width=131;  break;
-                      case 5: $width=147;  break;
+                      case 1: $width=25;  break;
+                      case 2: $width=50;  break;
+                      case 3: $width=75;  break;
+                      case 4: $width=98;  break;
+                      case 5: $width=123;  break;
                       default: break;
                     }
                    ?>
-                   <li>
-                     <div class="review">
-                       <div class="h_review">
-                         <div class="review_start_img">
-                           <img id="user_star" width="<?=$width?>"/>
-                         </div>
-                         <span>ID&nbsp;:&nbsp;<?=$review_id?></span>&nbsp;&nbsp;<span><?=$review_regist_day?></span>
+
+                   <li class="review_main">
+                     <form class="" action="program_review.php?mode=delete" method="post">
+                     <div class="review" style="margin:10px 20px;">
+                       <div class="h_review" style="text-align:left; height:70px; margin-bottom:20px;">
+                         <span class="review_start_img" style="width:150px;" >
+                           <img id="user_star" width="<?=$width?>" style="height:25px;">
+                         </span>
+                         <span class="review_content" style="display:inline-block; padding-bottom:10px; width:380px; height:65px;">
+                             <?=$review_content?>
+                         </span>
+
                        </div>
-                      <div class="review_content"><?=$review_content?></div>
+                       <div class="h_review2" style="text-align:left; margin-left:150px;">
+                         <span style="display: inline-block; width:150px">
+                            &nbsp글작성자&nbsp;:&nbsp;<?=$review_id?>&nbsp&nbsp
+                         </span>
+                         <span style="display: inline-block; width:250px">
+                           작성시간&nbsp;:&nbsp;<?=$review_regist_day?>
+                         </span>
+                         <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>
+                         <input type="submit" value="삭제">&nbsp&nbsp
+
+                       </div>
+
+
+
+
+
                       <?php if ($review_id===$user_id ||$user_grade==="admin"){ ?>
-                        <form class="" action="program_review.php?mode=delete" method="post">
+
                           <input type="hidden" name="shop" value="<?=$shop?>">
                           <input type="hidden" name="num" value="<?=$num?>">
                           <input type="hidden" name="type" value="<?=$type?>">
                           <input type="hidden" name="o_key" value="<?=$o_key?>">
-                          <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>
-                          <input type="submit" value="삭제">
-                        </form>
+
+                     </form>
                       <?php } ?>
                      </div>
                    </li>
@@ -347,36 +466,10 @@ $user_grade=$_SESSION["user_grade"];
                      ?>
 
                      <div class="clear"></div><br/>
-                     <li>
-                       <div class=""><!--댓글 달기 insert-->
-                         <form class="form_review" name="form_review" action="./program_review.php" method="post">
-                          <h3>댓글</h3>
-                           <textarea name="content" id="reviwe_content" rows="3" cols="30"></textarea>
-                           <div class="starRev">
-                             <span class="starR1" >0.5</span>
-                             <span class="starR2" >1</span>
-                             <span class="starR1" >1.5</span>
-                             <span class="starR2" >2</span>
-                             <span class="starR1" >2.5</span>
-                             <span class="starR2" >3</span>
-                             <span class="starR1" >3.5</span>
-                             <span class="starR2" >4</span>
-                             <span class="starR1" >4.5</span>
-                             <span class="starR2" >5</span>
-                            </div>
-                            <input type="hidden" id="num" name="num" value="">
-                            <input type="hidden" name="o_key" value="<?=$o_key?>">
-                            <input type="hidden" name="type" value="<?=$type?>">
-                            <input type="hidden" name="shop" value="<?=$shop?>">
-                            <input type="hidden" id="star" name="star" value="0">
-                            <input type="hidden" id="mode" name="mode" value="<?=$mode?>">
-                           <input type="button" value="등록" onclick="review_insert();">
-                         </form>
-                       </div>
-                     </li>
+
                    </ul>
-                </div>
-              </div><!--main-->
+                </div><!--end of div_review-->
+              </div><!--end of program_qna-->
             </section>
             <aside>
               <div id="div_aside">
@@ -384,16 +477,13 @@ $user_grade=$_SESSION["user_grade"];
 
                 <h2><?=$shop?></h2>
                 <form class="" action="#" method="post">
-                  <h3><span id="h_pay">0</span>원</h3>
-                  <input type="hidden" id="input_h_pay" name="" value="">
                   <p>
                     <?=$subject?><br/>
-
-                    1회당 레슨시간 (분) : 30 분<br/>
-                    레슨 횟수 : 1 회<br/>
                   </p>
+                  <h3><span><?=$min_price?></span>원 부터~</h3>
+                  <input type="hidden" id="input_h_pay" name="" value="">
                   <select class="" name="option" id="choose" onchange="pay(this.value);">
-                    <option value="0">옵션선택</option>
+                    <option name ="basic" value="없음">옵션선택</option>
                   <?php
                   $minimum_price=0; //최소가격
                   $sql="select * from program where shop='$shop'and type='$type' order by price";
@@ -411,12 +501,13 @@ $user_grade=$_SESSION["user_grade"];
                         $minimum_price=$price;
                       }
                    ?>
-                     <option value="<?=$price?>" <?php if ($minimum_price === $price) echo "selected";?> ><?=$choose?> : <?=$price?>원</option>
+                     <option value="<?=$choose?>,<?=$price?>원" ><?=$choose?> : <?=$price?>원</option>
                     <?php
                     }
                   }
                      ?>
                   </select>
+
                   <script type="text/javascript">
                     $('.starRev span').click(function(){
                       $(this).parent().children('span').removeClass('on');
@@ -426,8 +517,10 @@ $user_grade=$_SESSION["user_grade"];
                       return false;
                     });
                     function pay(x){
-                      document.getElementById("h_pay").innerHTML=x;
-                      document.getElementById("input_h_pay").value=x;
+                      var pick_option = x.split(",");
+                      document.getElementById("h_pay").innerHTML= x;
+                      var rprice = pick_option[1].replace("원","");
+                      document.getElementById("input_h_pay").value=rprice;
                     }
                     function program_purchase(){
                       let price = document.getElementById("input_h_pay").value;
@@ -457,7 +550,7 @@ $user_grade=$_SESSION["user_grade"];
                          "http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/program/p_qna.php?mode="+modetype+"&o_key="+key+"&num="+num,
                          "QnA",
                          "_blanck,resizable=no,menubar=no,status=no,toolbar=no,location=no,top=100px, le" +
-                         "ft=100px , width=500px, height=250px"
+                         "ft=100px , width=600px, height=450px"
                        );
                      }
                   }
@@ -471,13 +564,15 @@ $user_grade=$_SESSION["user_grade"];
                     document.form_review.submit();
                   }
                   $(window).load(function(){
-                    document.getElementById("h_pay").innerHTML=<?=$minimum_price?>;
+                    document.
                     document.getElementById("input_h_pay").value=<?=$minimum_price?>;
                   });
                   </script>
                   <br/>
                   <div class="">
-                    <img src="" alt="">작업일 : 123 &nbsp;&nbsp; <img src="" alt="">수정 횟수 : 제한 없음
+                    <p>선택옵션:</p>
+                    <h3><span id="h_pay">없음</span></h3>
+
                   </div>
 
                   <?php

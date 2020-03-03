@@ -1,4 +1,3 @@
-<meta charset="utf-8">
 <?php
   session_start();
   include $_SERVER['DOCUMENT_ROOT']."/helf//common/lib/db_connector.php";
@@ -7,6 +6,9 @@
   else $mode = "";
 
   if (isset($_GET["id"])) $id = $_GET["id"];
+  else $id = "";
+
+  if (isset($_POST["id"])) $id = $_POST["id"];
   else $id = "";
 
   if (isset($_POST["name"])) $type = $_POST["name"];
@@ -51,12 +53,16 @@
   function user_modify($conn, $id, $grade)
   {
     $sql = "update members set grade ='$grade' where id = '$id'";
-    mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+      echo "수정 완료";
+    } else {
+      echo "수정 실패";
+    }
+    // echo "<script>alert('회원등급 수정완료')</script>";
     mysqli_close($conn);
-
-    echo "<script>alert('회원등급 수정완료')</script>";
   }
-
 
   switch ($mode) {
     case 'delete':
@@ -70,11 +76,11 @@
       break;
     case 'modify':
         user_modify($conn, $id, $grade);
-      echo "
-         <script>
-             location.href = 'admin_user.php';
-         </script>
-       ";
+      // echo "
+      //    <script>
+      //        location.href = 'admin_user.php';
+      //    </script>
+      //  ";
       break;
     case 'insert':
      program_insert($conn, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location, $upfile_name, $upfile_type, $copied_file_name, $regist_day);

@@ -5,9 +5,7 @@
 .clear{
   display:block;
 }
-p{
-  margin-bottom: 30px;
-}
+
 /* 전체를 감싸는 몸체 */
 #div_main_body{
   position: relative;
@@ -30,6 +28,7 @@ p{
 /* 설명란 또는 구매후기나 평가 적는 부분 */
 #see{
   text-align: left;
+  height: 700px;
 }
 #see h3{
   font-size: 18px;
@@ -54,13 +53,22 @@ p{
   margin-left: 30px;
   margin-top: 19px;
 }
-#div_aside *{
+#div_aside input,form,h2{
   padding: 10px;
 }
+
+#div_aside p,h3,select,div{
+  margin-bottom: 30px;
+}
+
+#div_aside h2{
+  margin-bottom: 20px;
+}
+
+
 #div_aside h3{
   width: 100%;
   height: 20px;
-  padding: 22px 30px;
 }
 #div_aside input{
   width: 100%;
@@ -73,34 +81,45 @@ p{
 }
 #pay{
   width: 100%;
-  height: 450px;
-  border: 1px solid #F23005;
+  height: 350px;
 }
+
+#pay h3{
+  text-align: left;
+  font-size: 18px;
+}
+
 #myHeader ul{
   list-style: none;
 }
 #myHeader ul li{
   display: inline-block;
-  width: 19%;
+  width: 23%;
 }
 #myHeader ul li a{
   width: 100%;
   border: 1px solid white;
   color: white;
 }
-#cansel{
-  border: 1px solid gray;
+#cancel{
+  text-align: left;
+  height: 500px;
 }
+
+#cancel h3{
+  font-size: 18px;
+}
+
 .see_body ol{
   list-style: decimal;
   padding-left: 10px;
 }
 .pay_table table{
-  width: 100%;
+  width: 80%;
   border: 1px solid black;
 }
 .pay_table table th,.pay_table table td{
-  border: 1px solid blue;
+
 
 }
 .pay_table table th,.pay_table table td{
@@ -108,36 +127,42 @@ p{
 }
 .pay_table table th{
   width: 30%;
-  height: 80px;
+  height: 50px;
+  background: #F23005;
 }
 #sol{
   width: 9%;
 }
 .h_review{
   height: 32px;
-  border: 1px solid #F23005;
 }
 .review_content{
-  width: 96.3%;
-  height: 100px;
-  border: 1px solid gray;
-  text-align: left;
-  padding: 0px 12px;
+  list-style: none;
 }
 #program_qna{
+  text-align: left;
   width: 100%;
-  border: 1px solid black;
+}
 
+#page_num{
+  text-align: center;
+}
+
+#program_qna h3{
+  text-align: left;
+  font-size: 18px;
 }
 .div_qna{
-  width: 100%;
-  border:1px solid #F23005;
+  width: 650px;;
+
 }
 .qna_head{
   width: 100%;
     height: 20px;
+    vertical-align: middle;
     text-align: initial;
-    background: lightgray;
+    background: #F23005;
+    color: white;
     margin-bottom: 4px;
 }
 .qna_subject{
@@ -157,12 +182,13 @@ p{
 }
 .qna_body{
   text-align: left;
-    width: 100%;
-    height: 100px;
+  width: 640px;
+  height: 80px;
+  margin: 0px;
 }
 .qna_buttons{
   width: 100%;
-  text-align: right;
+  text-align: left;
 }
 #div_review #user_star{
   background: url('http://localhost/HELF/program/img/five_star.png') no-repeat;
@@ -207,13 +233,79 @@ p{
     cursor: pointer;
 }
 .starR2{
-    background: url('http://localhost/HELF/program/img/star.jpg') no-repeat -62px 0;
+    background: url('http://localhost/HELF/program/img/star.jpg') no-repeat -49px 0;
     background-size: auto 100%;
-    width: 13px;
+    width: 26px;
     height: 30px;
     float:left;
     text-indent: -9999px;
     cursor: pointer;
 }
 .starR1.on{background-position:0 0;}
-.starR2.on{background-position:-13px 0;}
+.starR2.on{background-position:0 0;}
+
+#h_pay{
+  padding: 0px;
+  margin: 0px;
+}
+
+.purchase_form{
+  padding: 0px;
+  margin: 0px;
+}
+
+.starRev{
+  width: 140px;
+  margin-top: 8px;
+  float: left;
+}
+
+#div_question{
+  float: left;
+  width: 660px;
+  margin:5px 0 10px 0;
+
+}
+#div_question div{
+  margin: 0;
+
+}
+
+#div_answer{
+  float: left;
+  width: 607px;
+  margin:5px 0 20px 0;
+
+
+}
+#div_answer div{
+  margin: 0;
+
+
+}
+
+
+.qna_image{
+  float: left;
+}
+.qna_image img{
+  height: 30px;
+}
+
+.qna_content{
+  margin: 0px;
+}
+
+.ta_right{
+  display: inline-block;
+  text-align: right;
+}
+
+.review_main{
+  border-bottom: 1px solid lightgray;
+
+}
+.review_main div{
+  margin: 0;
+
+}

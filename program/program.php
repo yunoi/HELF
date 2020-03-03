@@ -7,40 +7,54 @@
  <head>
  <meta charset="utf-8">
  <title>HELF :: 프로그램</title>
- <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
- <link rel="stylesheet" type="text/css" href="../common/css/common.css">
- <link rel="stylesheet" type="text/css" href="../common/css/main.css">
  <link rel="stylesheet" type="text/css" href="./css/program.css?ver=1">
  <link rel="stylesheet" href="../mypage/css/program.css">
- <script src="http://code.jquery.com/jquery-latest.min.js"></script>
- <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
  <script src="./js/program_list.js"></script>
+
+ <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+ <link
+     rel="stylesheet"
+     type="text/css"
+     href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/common.css">
+ <link
+     rel="stylesheet"
+     type="text/css"
+     href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/css/main.css">
+ <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+
+ <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+ <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+ <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
 
  </head>
  <body>
- <header>
-     <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php";?>
- </header>
-
- <script type="text/javascript">
- function search(date)
- {
-   date.action = "./program.php";
-   date.submit();
- }
-
- </script>
+   <header>
+     <?php include "../common/lib/header.php";?>
+   </header>
+   <script type="text/javascript">
+   function search(date)
+   {
+     date.action = "./program.php";
+     date.submit();
+   }
+   </script>
 
  <section>
     <div class="div_program">
+
+
       <div class="div_program_category">
-        <br>
-        <h3 class="search_title">-카테고리 상세검색-</h2>
+        <div class="search_title">
+          <h1>프로그램 검색</h1>
+        </div>
+        <div class="search_menu_bar">
           <form name="frm" action="program.php" method="post">
             <ul id="detail_search">
               <br>
               <li>
-                <p>운동종류</p>
+                <h2>운동종류</h2>
                 <select name="s_type" class="kind_sel">
                   <option value="">전체</option>
                   <option value="pt">pt</option>
@@ -55,24 +69,18 @@
               </li>
               <br><br>
               <li>
-                <p>지역선택</p>
+                <h2>지역선택</h2>
                 <?php include "select_location.php";?>
               </li>
               <br><br>
-              <!-- <li>
-                <p>인원수</p>
-                <p class="people_num">개인</p> : <input type="radio" name="gender" value="개인">&nbsp&nbsp&nbsp
-                <p class="people_num">그룹</p> : <input type="radio" name="gender" value="그룹">
-              </li>
-              <br><br> -->
               <li>
-                <p>가격</p>
+                <h2>가격</h2>
                 <input type="number" name="s_min_price" value="" style="width:100px;"> 원 부터<br>
                 <input type="number" name="s_max_price" value="" style="width:100px;"> 원 까지
               </li>
               <br><br>
-              <li>
-                <p>마감날짜</p>
+              <li id="last_li">
+                <h2>마감날짜</h2>
                 <input type="date" name="s_date" value="">
               </li>
               <br><br>
@@ -81,9 +89,10 @@
               </li>
             </ul>
           </form>
-
-
+        </div>
       </div>
+
+
       <div class="div_program_list">
         <div class="div_program_list_top">
           <ul>
@@ -206,7 +215,6 @@
 
              $s_area = $s_area1.",".$s_area2;
 
-             echo "<script>alert($s_area)</script>";
 
              if($s_area == ","){
                $s_area = "";
@@ -238,13 +246,16 @@
               $s_max_price = 10000000;
             }
 
-              // $conn = mysqli_connect("localhost", "root", "123456", "helf");
               $sql = "select * from program ";
               $sql .= "where choose = '선택' and type like '".$s_type."%' and location like '".$s_area."%' and price between ".$s_min_price." and ".$s_max_price." and end_day between '".$today."' and '".$s_date."' order by ".$order;
               $result = mysqli_query($conn, $sql);
               $total_record = mysqli_num_rows($result); // 전체 글 수
 
-              $scale = 10;
+              if($total_record == 0){
+                echo "<img src='../admin/data/no_search.jpg' style='width:680px;'>";
+              }
+
+              $scale = 5;
 
               // 전체 페이지 수($total_page) 계산
               if ($total_record % $scale == 0) {
@@ -270,9 +281,10 @@
                  $end_day     = $row["end_day"];
                  $location         = $row["location"];
                  $file_copied         = $row["file_copied"];
+                 $image               = explode(",",$file_copied);
                  $file_type         = $row["file_type"];
 
-                 $sql2 = "select price from program where shop='".$shop."' and type='".$type."' order by price asc";
+                 $sql2 = "select price from program where shop='$shop' and type='$type' and price > 1 order by price asc";
                  $result2 = mysqli_query($conn, $sql2);
                  $row2 = mysqli_fetch_array($result2);
                  $price  = $row2["price"];
@@ -288,7 +300,7 @@
                  <div class="program_li">
                    <div class="program_image">
                      <a href="../program/program_detail.php?o_key=<?=$o_key?>">
-                     <img src='../admin/data/<?=$file_copied?>'>
+                     <img src='../admin/data/<?=$image[0]?>'>
                      </a>
                    </div>
                    <div class="program_detail">
@@ -319,10 +331,10 @@
                    </div>
                  </div>
                </li>
-<?php
-$number--;
-}
-?>
+              <?php
+              $number--;
+              }
+              ?>
           </ul>
           <ul id="page_num">
             <?php
@@ -356,7 +368,9 @@ $number--;
           <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
       </aside>
     </div><!-- endof div_program	 -->
-
  </section>
+ <footer>
+     <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+ </footer>
  </body>
  </html>

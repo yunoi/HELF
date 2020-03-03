@@ -1,10 +1,11 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
   <title>HELF :: 관리자페이지</title>
   <link rel="stylesheet" type="text/css" href="./css/admin.css">
-  <link rel="stylesheet" href="./css/program_regist.css">
+  <link rel="stylesheet" href="./css/program_manager.css">
   <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
   <script src="./js/register.js"></script>
   <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
@@ -51,6 +52,7 @@
                <ul>
                  <li><a href="admin_program_regist.php">프로그램 등록</a></li>
                  <li><a href="admin_program_manage.php">프로그램 관리</a></li>
+                 <li><a href="admin_program_payment.php">결제 관리</a></li>
                </ul>
 
              <h2>통계</h2>
@@ -62,7 +64,7 @@
          </div><!--  end of sub -->
 
          <div id="content">
-            <h1>프로그램 관리 > 관리</h1><br>
+            <h1 id="content_title">프로그램 관리 > 관리</h1><br>
             <div id="admin_box">
 
             <table id="manage_table">
@@ -77,8 +79,6 @@
                 <td>수정</td>
                 <td>삭제</td>
               </tr>
-
-
 
       <?php
         $sql = "select * from program order by o_key desc";

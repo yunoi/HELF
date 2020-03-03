@@ -28,42 +28,26 @@
           <b>HELF 소개</b>
         </div>
         <div id="div_introduction">
+          <!-- 운동과 친구 라이프  -->
           <p>안녕하세요 대표자 <b><?=$mater?></b> 입니다. <br/>
-            저희 HELF는 2020년 2월에 설립이 된 회사입니다.<br/>
-            当 HELFは 2020年 2月 に設立された会社です。 <br/>
-            HELF is a company established in February 2020. <br/>
+            저희 <span>HELF</span>는 건강한 몸을 원하시고 윤택한 삶을 사시는 여러분에 <br/>
+            보다 좋은 생활에 활력을 불어 넣어주기 위한 목표를 가지고 모여서 설립하였고,<br/>
+            "Health" "Life" "Friends" 이 세가지가 모여서 만들어 졌습니다.
+            <span>HELF</span>에 뜻은 이름그대로 운동 활력 친구 <br/>
+            운동을하는 같이 함계 활력있게 도와주는 곁에 있는 친구 입니다.<br/>
 
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo <br/>
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum <br/>
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat <br/>
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br/>
-          </p>
-          <p>Lorem ipsum dolor sit <br/>
-            amet, consectetur adipisicing elit, sed do <br/>
-            eiusmod tempor incididunt ut labore et dolore <br/>
-            magna aliqua. Ut enim ad minim veniam, quis nostrud <br/>
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo <br/>
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum <br/>
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat <br/>
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br/>
-          </p>
-          <p>Lorem ipsum dolor sit <br/>
-            amet, consectetur adipisicing elit, sed do <br/>
-            eiusmod tempor incididunt ut labore et dolore <br/>
-            magna aliqua. Ut enim ad minim veniam, quis nostrud <br/>
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo <br/>
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum <br/>
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat <br/>
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br/>
-          </p>
-          <p>Lorem ipsum dolor sit <br/>
-            amet, consectetur adipisicing elit, sed do <br/>
-            eiusmod tempor incididunt ut labore et dolore <br/>
-            magna aliqua. Ut enim ad minim veniam, quis nostrud <br/>
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo <br/>
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum <br/>
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat <br/>
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br/>
+            운동을 하는데 같이 시작할 친구를 찾기 힘들고,<br/>
+            원하는 시간에 원하는 장소에 맞추어서 같이 운동을 해줄 친구를 만들<br/>
+            그러한 장소를 찾았지만 처음 접하는 입문자분들에게는 그러한 손길이 도착하는것은 드물었습니다.<br/>
+            장소가 없어서 만들었고 같은 입장에 배움을 하고자하는분들 한테는 경험자를 연결해주는 <br/>
+            만남이 이루어지는 장소를 만들고 가르쳐주고 가르침을 받는게 아닌 친구처럼 다가와<br/>
+            친근감있게 애기하며 정보를 주고 받는 모습을 담아 만들었습니다.<br/>
+            <span>HELF</span>는 설립한 그 모습 그대로 여러분 곁에 오랜 친구처럼 같이 함께 생활에 활력이 되면서 <br/>
+            항상 처음 마음가짐 그대로 같이 함께 하겠습니다.<br/>
+
+            <!-- 저희에 자그만하게 꿈을 품고 바르는 목표는 모든분들이 3대500을 하게 하는게 최종적인 목표를 두고 있습니다.<br/> -->
+            감사합니다. 오늘도 좋은 건강, 좋은 활력, 좋은 운동과 함꼐 힘차하루되시기 바랍니다. <br/>
+            대표자 <b><?=$mater?></b><br/>
           </p>
         </div>
       </article>

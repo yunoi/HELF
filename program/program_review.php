@@ -22,6 +22,9 @@
      $type=$_POST["type"];
      $shop=$_POST["shop"];
      $star=(int)$_POST["star"];
+     if($star == 0){
+       $star = 1;
+     }
      $regist_day=date("Y-m-d (H:i)");
      $content = test_input($_POST["content"]);
      $q_content = mysqli_real_escape_string($conn, $content);

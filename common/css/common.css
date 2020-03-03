@@ -404,6 +404,18 @@ header {
   z-index: 100;
 }
 
+#program_ranking {
+  position: relative;
+  box-sizing: border-box;
+  width: 252px;
+  height: 300px;
+  margin: 36px 0;
+  border: 1px solid #dbdbdb;
+  padding: 5px 10px 5px 10px;
+  background: #fff;
+  z-index: 100;
+}
+
 
 #keyword_area {
   margin: 0 20px;

@@ -116,7 +116,9 @@
           $total_record = mysqli_num_rows($result);
 
           $number = $total_record;
-                      for ($i=0; $i<$number; $i++){
+
+                for ($i=0; $i<$number; $i++){
+
                 $row = mysqli_fetch_array($result);
                 $o_key        = $row["o_key"];
                 $ord_num      = $row["ord_num"];
@@ -124,96 +126,92 @@
                 $total_price     = $row["total_price"];
                 $sales_day     = $row["sales_day"];
                 $complete     = $row["complete"];
-    
+
                 $sql = "select * from program where o_key=$o_key";
                 $result2 = mysqli_query($conn, $sql);
                 $row2 = mysqli_fetch_array($result2);
-    
+
                 $shop = $row2['shop'];
                 $type = $row2['type'];
                 $subject = $row2['subject'];
                 $option = $row2['choose'];
                 $price = $row2['price'];
               ?>
-                            <tr>
-                                <td><?=$ord_num?></td>
-                                <td><?=$id?></td>
-                                <td><?=$shop ?></td>
-                                <td><?=$type?></td>
-                                <td><?=$subject?></td>
-                                <td><?=$option?></td>
-                                <td><?=$total_price?></td>
-                                <td><?=$sales_day?></td>
-                                <td>
-                                    <select id="payment_status_<?=$i?>" class="no-autoinit">
-                                        <?php if($complete === "결제완료") { ?>
-                                        <option value='결제완료' selected="selected">결제완료</option>
-                                        <option value='결제대기'>결제대기</option>
-                                        <option value='주문취소'>주문취소</option>
 
-                                    <?php } else if($complete === "결제대기") {?>
-                                        <option value='결제완료'>결제완료</option>
-                                        <option value='결제대기' selected="selected">결제대기</option>
-                                        <option value='주문취소'>주문취소</option>
-                                    <?php } else { ?>
-                                        <option value='결제완료'>결제완료</option>
-                                        <option value='결제대기'>결제대기</option>
-                                        <option value='주문취소' selected="selected">주문취소</option>
-                                        <?php } ?>
-                                    </select>
-                                </td>
+              <tr>
+                <td><?=$ord_num?></td>
+                <td><?=$id?></td>
+                <td><?=$shop ?></td>
+                <td><?=$type?></td>
+                <td><?=$subject?></td>
+                <td><?=$option?></td>
+                <td><?=$total_price?></td>
+                <td><?=$sales_day?></td>
+                <td><select id="payment_status_<?=$i?>" class="no-autoinit">
+                <?php if($complete === "결제완료") { ?>
+                  <option value='결제완료' selected>결제완료</option>
+                  <option value='결제대기'>결제대기</option>
+                  <option value='주문취소'>주문취소</option>
 
-                                <td>
-                                    <button type="button" id="btn_modify_<?=$i?>">수정</button>
-                                </td>
-                            </tr>
-                            <script type="text/javascript">
-                                $("#btn_modify_<?=$i?>").click(function () {
-                                    var selected_option = $("#payment_status_<?=$i?> option:selected").val();
-                                    $
-                                        .ajax({
-                                            url: 'payment_curd.php',
-                                            type: 'POST',
-                                            data: {
-                                                "ord_num": "<?=$ord_num?>",
-                                                "complete": selected_option
-                                            },
-                                            success: function (data) {
-                                                console.log(data);
-                                                if (data === "수정 완료") {
-                                                    alert("결제정보 수정 완료!");
-                                                } else if (data === "수정 실패") {
-                                                    alert("결제정보 수정 실패!");
-                                                }
-                                            }
-                                        })
-                                        .done(function () {
-                                            console.log("done");
-                                        })
-                                        .fail(function () {
-                                            console.log("error");
-                                        })
-                                        .always(function () {
-                                            console.log("complete");
-                                        });
-                                })
-                            </script>
-                            <?php 
+                                <?php } else if($complete === "결제대기") {?>
+                                  <option value='결제완료'>결제완료</option>
+                  <option value='결제대기' selected>결제대기</option>
+                  <option value='주문취소'>주문취소</option>
+                                <?php } else { ?>
+                                  <option value='결제완료'>결제완료</option>
+                  <option value='결제대기'>결제대기</option>
+                  <option value='주문취소' selected>주문취소</option>
+                                <?php } ?>
+                </select></td>
+
+                <td><button type="button" id="btn_modify_<?=$i?>">수정</button></td>
+             </tr>
+             <script type="text/javascript">
+                          $("#btn_modify_<?=$i?>").click(function () {
+                            var selected_option =   $("#payment_status_<?=$i?> option:selected").val();
+                            $.ajax({
+                                url: 'payment_curd.php',
+                                type: 'POST',
+                                data: {
+                                  "ord_num": "<?=$ord_num?>",
+                                  "complete": selected_option
+                                },
+                                success: function(data) {
+                                  console.log(data);
+                                  if(data === "수정 완료") {
+                                    alert("결제정보 수정 완료!");
+                                  }else if(data === "수정 실패") {
+                                    alert("결제정보 수정 실패!");
+                                  }
+                                }
+                              })
+                              .done(function() {
+                                console.log("done");
+                              })
+                              .fail(function() {
+                                console.log("error");
+                              })
+                              .always(function() {
+                                console.log("complete");
+                              });
+                          })
+                        </script>
+
+              <?php
 
     }
-  }
-        ?>
-                        </table>
 
-                    </div>
-                    <!-- admin_box -->
-                </div>
-                <!-- end of content -->
-            </div>
-            <!-- end of admin_board -->
-        </section>
-        <footer>
-            <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
-        </footer>
-    </body>
+}
+        ?>
+
+            </table>
+
+            </div> <!-- admin_box -->
+          </div>		<!-- end of content -->
+        </div><!--  end of admin_board -->
+    </section>
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+    </footer>
+  </body>
 </html>

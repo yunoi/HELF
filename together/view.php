@@ -40,27 +40,23 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $b_code=$row['b_code'];
 
     $file_name=$row['file_name'];
-    $file_name=explode(",",$file_name);
+    $file_name=explode(",", $file_name);
 
     $file_copied=$row['file_copied'];
-    $file_copied=explode(",",$file_copied);
+    $file_copied=explode(",", $file_copied);
 
     $file_type=$row['file_type'];
     $file_type=explode(",", $file_type);
 
     $file_type_cut=array();
 
-    for($i=0;$i<count($file_type);$i++){
-      $file_type_cut_cut=explode("/", $file_type[$i]);
-      $file_type_cut[$i]=$file_type_cut_cut[0];
+    for ($i=0;$i<count($file_type);$i++) {
+        $file_type_cut_cut=explode("/", $file_type[$i]);
+        $file_type_cut[$i]=$file_type_cut_cut[0];
     }
-
-    // $countcount=count($file_type_cut);
-    // echo "<script>alert('{$countcount}');</script>";
 
     $day=$row['regist_day'];
     $area=$row['area'];
-
 }
 
 ?>
@@ -170,23 +166,12 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
               <div id="view_content">
                 <div class="col2">
                   <?php
-                  for($i=0;$i<count($file_name);$i++){
-                    if ($file_type_cut[$i] =="image") {
-                      echo("
-                      ▷ 첨부파일 : $file_name[$i] &nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num&file_num=$i'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br><br>
-                      ");
-                      echo "<img src='./data/$file_copied[$i]'><br>";
-                    } elseif (!empty($file_copied[$i])) {
-                      $file_path = "./data/".$file_copied[$i];
-                      //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
-                      echo("
-                      ▷ 첨부파일 : $file_name[$i] &nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num&file_num=$i'>저장</a><br><br>
-                      ");
-                    }
+                  for ($i=0;$i<count($file_name);$i++) {
+                      if ($file_type_cut[$i] =="image") {
+                          echo "<img src='./data/$file_copied[$i]'><br>";
+                      } elseif (!empty($file_copied[$i])) {
+                          $file_path = "./data/".$file_copied[$i];
+                      }
                   }
                   ?>
                   <?=$content?>
@@ -227,8 +212,6 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
           </div>
           <script src="scripts.js"></script>
 
-
-
 <!--덧글내용시작  -->
 <div id="ripple">
   <div id="ripple2">
@@ -259,7 +242,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
         </div>
     <?php
       }//end of while
-      mysqli_close($conn);
+      //mysqli_close($conn);
     ?>
     <form name="ripple_form" action="dml_board.php?mode=insert_ripple" method="post">
       <input type="hidden" name="parent" value="<?=$q_num?>">

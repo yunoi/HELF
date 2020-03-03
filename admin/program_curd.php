@@ -197,7 +197,7 @@ if($mode === "insert"){
         }
 
     }
-    echo "<script>alert('$copied_file_name')</script>";
+  //  echo "<script>alert('$copied_file_name')</script>";
     }else {
       echo("
     <script>

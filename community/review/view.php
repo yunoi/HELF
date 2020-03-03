@@ -148,20 +148,9 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
                   <?php
                   for($i=0;$i<count($file_name);$i++){
                     if ($file_type_cut[$i] =="image") {
-                      echo("
-                      ▷ 첨부파일 : $file_name[$i] &nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br><br>
-                      ");
-                      echo "<img src='./data/$file_copied[$i]' style='max-height:200px; max-width:200px;'><br>";
+                      echo "<img src='./data/$file_copied[$i]'><br>";
                     } elseif (!empty($file_copied[$i])) {
                       $file_path = "./data/".$file_copied[$i];
-                      //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
-                      echo("
-                      ▷ 첨부파일 : $file_name[$i] &nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
-                      ");
                     }
                   }
                   ?>
@@ -235,7 +224,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
         </div>
     <?php
       }//end of while
-      mysqli_close($conn);
+      // mysqli_close($conn);
     ?>
     <form name="ripple_form" action="dml_board.php?mode=insert_ripple" method="post">
       <input type="hidden" name="parent" value="<?=$q_num?>">

@@ -154,7 +154,6 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update"||(isset($_GET["mode"])&&$_GET[
                  <?php
                     }
                   ?>
-
                 </div><!--end of col2  -->
               </div><!--end of write_row4  -->
               <div class="clear"></div>

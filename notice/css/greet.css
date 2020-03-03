@@ -12,6 +12,10 @@
 .col2 p{
 	width: 650px;
 }
+
+#aside {
+	float: left;
+}
 #aside_menu{
   margin-left: 25px;
 	margin-top: 61px;

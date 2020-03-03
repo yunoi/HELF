@@ -18,44 +18,55 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="download"){
     }
     $row=mysqli_fetch_array($result);
 
+////////////////////
     $file_name=$row['file_name'];
     $file_name=explode(",", $file_name);
 
+    $file_name_cut=array();
+    for ($i=0;$i<count($file_name);$i++) {
+        $file_name_cut_cut=explode("/", $file_name[$i]);
+        $file_name_cut[$i]=$file_name_cut_cut[0];
+    }
+/////////////////////////////
     $file_copied=$row['file_copied'];
     $file_copied=explode(",", $file_copied);
 
+    $file_copied_cut=array();
+    for ($i=0;$i<count($file_copied);$i++) {
+        $file_copied_cut_cut=explode("/", $file_copied[$i]);
+        $file_copied_cut[$i]=$file_copied_cut_cut[0];
+    }
+//////////////////////////////
     $file_type=$row['file_type'];
     $file_type=explode(",", $file_type);
 
     $file_type_cut=array();
-
     for ($i=0;$i<count($file_type);$i++) {
         $file_type_cut_cut=explode("/", $file_type[$i]);
         $file_type_cut[$i]=$file_type_cut_cut[0];
-        //echo "<script>alert('{$file_type_cut[$i]}');</script>";
     }
+//////////////////////////////
 
     mysqli_close($conn);
 }
 
 // 1. 테이블에서 파일명이 있는지 점검
-
-
-if (empty($file_copied)|| $file_type =="image") {
-    alert_back(' 테이블에 파일명이 존재하지 않거나 이미지 파일입니다.!');
+if (empty($file_copied)) {
+    alert_back(' 테이블에 파일명이 존재하지 않습니다.');
 }
 
-for ($i=0;$i<count($file_type);$i++) {
-    $file_path = "./data/$file_copied[$i]";
+for ($i=0;$i<count($file_name);$i++) {
+    $file_path=array();
+    $file_path[$i] = "./data/$file_copied_cut[$i]";
 
     //2. 서버에 Data영역에 실제 파일이 있는지 점검
     if (file_exists($file_path[$i])) {
-        $fp=fopen($file_path, "rb");  //$fp 파일 핸들값
+        $fp=fopen($file_path[$i], "rb");  //$fp 파일 핸들값
         //지정된 파일타입일경우에는 모든 브라우저 프로토콜 규약이 되어있음.
-        if ($file_type) {
+        if ($file_type_cut[$i]) {
             Header("Content-type: application/x-msdownload");
             Header("Content-Length: ".filesize($file_path[$i]));
-            Header("Content-Disposition: attachment; filename=$file_name[$i]");
+            Header("Content-Disposition: attachment; filename=$file_name_cut[$i]");
             Header("Content-Transfer-Encoding: binary");
             Header("Content-Description: File Transfer");
             Header("Expires: 0");
@@ -65,13 +76,13 @@ for ($i=0;$i<count($file_type);$i++) {
             if (eregi("(MSIE 5.0|MSIE 5.1|MSIE 5.5|MSIE 6.0)", $_SERVER['HTTP_USER_AGENT'])) {
                 Header("Content-type: application/octet-stream");
                 Header("Content-Length: ".filesize($file_path[$i]));
-                Header("Content-Disposition: attachment; filename=$file_name[$i]");
+                Header("Content-Disposition: attachment; filename=$file_name_cut[$i]");
                 Header("Content-Transfer-Encoding: binary");
                 Header("Expires: 0");
             } else {
                 Header("Content-type: file/unknown");
                 Header("Content-Length: ".filesize($file_path[$i]));
-                Header("Content-Disposition: attachment; filename=$file_name[$i]");
+                Header("Content-Disposition: attachment; filename=$file_name_cut[$i]");
                 Header("Content-Description: PHP3 Generated Data");
                 Header("Expires: 0");
             }

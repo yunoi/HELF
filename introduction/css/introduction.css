@@ -20,8 +20,33 @@ section{
   width: 800px;
   height: 50px;
   text-align: center;
-  font-size: 24px;
 }
 #aside_introduction{
   padding-top: 71px;
+  background-color: white;
+}
+#div_introduction span,#div_header span{
+  color: #F23005;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: monospace;
+  font-style: italic;
+}
+.one{
+  font-family: monospace;
+  color: coral;
+  font-size: 20px;
+}
+.one b{
+  font-family: monospace;
+  font-style: italic;
+}
+.two,#div_header b span{
+  font-size: 40px;
+}
+.master{
+  margin: 150px 0px;
+}
+body{
+  font-size: 18px;
 }

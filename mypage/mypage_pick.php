@@ -201,15 +201,18 @@
                                 </a>
 
                                   <select id="choose_box_<?=$i?>" name="choose_box" >
+                                    <option value="선택">선택</option>
                                   <?php
                                     $sql2 = "select * from program where shop='$shop' and type='$type' order by price asc";
                                     $result2 = mysqli_query($conn, $sql2);
                                     while($row2 = mysqli_fetch_array($result2)) {
                                       $option = $row2["choose"];
+                                      if(!($option === "선택")) {
                                       ?>
                                       <option value="<?=$option?>"><?=$option?></option>
                                     <?php
                                     }
+                                  }
                                     ?>
                                   </select>
 

@@ -1,19 +1,11 @@
 <?php
   session_start();
-  if(isset($_POST['bank'])){
-    $subject =  $_POST["subject"];
-    $amount   = $_POST["paid_amount"];
-    $program_num = $_POST["name"];
-    $paid_date = $_POST["paid_at"];
-    $o_key = $_POST["o_key"];
-  } else {
-    $amount   = "";
-    $program_num = "";
-    $paid_date = "";
-    $subject = "";
-    $o_key ="";
-  }
 
+if(isset($_GET['ord_num'])){
+  $ord_num = $_GET['ord_num'];
+} else {
+  $ord_num = "";
+}
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -40,14 +32,30 @@
   </head>
   <body>
   	<header>
-      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php"; ?>
+      <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/header.php"; 
+        $sql = "select * from sales where ord_num='$ord_num'";
+        $result = mysqli_query($conn, $sql);
+        $paid_num = mysqli_num_rows($result);
+        while($row = mysqli_fetch_array($result)){
+          $amount   = $row['total_price'];
+          $program_num = $row['ord_num'];
+          $paid_date = $row['sales_day'];
+          $o_key =$row['o_key'];
+  
+          $sql = "select subject from program where o_key=$o_key";
+          $result2 = mysqli_query($conn, $sql);
+          $row2 = mysqli_fetch_array($result2);
+          $subject = $row2['subject'];
+        } 
+       
+?>
     </header>
     <section>
      <div id="admin_border">
 
        <div id="content">
             <?php
-            if(isset($_POST['bank'])&&($_POST['bank']!=="")){
+            if(isset($_GET['bank'])&&($_GET['bank']!=="")){
           
                 ?>
                          <h1>주문 완료</h1><br>
@@ -61,8 +69,8 @@
             </tr>
              <tr>
                <?php 
-                if(is_array($o_key) == 1) {
-                    $paid_num = sizeof($o_key) - 1;
+                if($paid_num > 1) {
+                    $paid_num -= 1;
                     echo("<th>상품명</th><td>&nbsp;$subject 외 $paid_num 개</td>");
                 } else {
                   echo("<th>상품명</th><td>&nbsp;$subject</td>");
@@ -75,7 +83,7 @@
                 <tr>
                  <th>결제은행</th>
                  <?php
-                 switch($_POST['bank']){
+                 switch($_GET['bank']){
                     case "shinhan":
                         echo("<td>&nbsp;
                             신한은행 <br>
@@ -115,12 +123,12 @@
             </tr>
              <tr>
              <?php 
-                if(is_array($o_key) == 1) {
-                    $paid_num = sizeof($o_key) - 1;
-                    echo("<th>상품명</th><td>&nbsp;$subject 외 $paid_num 개</td>");
-                } else {
-                  echo("<th>상품명</th><td>&nbsp;$subject</td>");
-                }
+              if($paid_num > 1) {
+                $paid_num -= 1;
+                echo("<th>상품명</th><td>&nbsp;$subject 외 $paid_num 개</td>");
+            } else {
+              echo("<th>상품명</th><td>&nbsp;$subject</td>");
+            }
                ?>
             </tr>
             <tr>

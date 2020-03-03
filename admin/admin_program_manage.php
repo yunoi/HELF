@@ -24,6 +24,15 @@
 
   <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
+
+  <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
+  <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/js/materialize.js"></script>
+  <script>
+    $(document).ready(function(){
+      M.AutoInit();
+      $('.collapsible').collapsible();
+    });
+</script>
 </head>
   <body>
     <header>
@@ -64,7 +73,7 @@
          </div><!--  end of sub -->
 
          <div id="content">
-            <h1 id="content_title">프로그램 관리 > 관리</h1><br>
+            <h1 id="content_title">프로그램 관리 > 관리<p>프로그램명을 클릭하시면 해당 프로그램의 상세 정보를 보실 수 있습니다.</p></h1><br>
             <div id="admin_box">
 
             <table id="manage_table">

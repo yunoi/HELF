@@ -30,10 +30,8 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update"||(isset($_GET["mode"])&&$_GET[
     $content=str_replace("\n", "<br>", $content);
     $content=str_replace(" ", "&nbsp;", $content);
     $area=$row['area'];
-
     $file_name=$row['file_name'];
     $file_copied=$row['file_copied'];
-    
     $day=$row['regist_day'];
     $hit=$row['hit'];
     $area=$row['area'];
@@ -149,20 +147,14 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update"||(isset($_GET["mode"])&&$_GET[
                 <div class="col2">
                   <?php
                     if ($mode=="insert") {
-                        echo '<input type="file" name="upfile" >';
+                        echo '<input type="file" name="upfile[]" multiple="multiple" >';
                     } else {
                         ?>
-                    <input type="file" name="upfile" onclick='document.getElementById("del_file").checked=true; document.getElementById("del_file").disabled=true'>
+                    <input type="file" name="upfile[]" multiple="multiple" onclick='document.getElementById("del_file").checked=true; document.getElementById("del_file").disabled=true'>
                  <?php
                     }
                   ?>
-                  <?php
-                    if ($mode=="update" && !empty($file_name)) {
-                        echo "$file_name 파일등록";
-                        echo '<input type="checkbox" id="del_file" name="del_file" value="1">삭제';
-                        echo '<div class="clear"></div>';
-                    }
-                  ?>
+
                 </div><!--end of col2  -->
               </div><!--end of write_row4  -->
               <div class="clear"></div>

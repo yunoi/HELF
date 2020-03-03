@@ -280,14 +280,11 @@
                  $subject        = $row["subject"];
                  $end_day     = $row["end_day"];
                  $location         = $row["location"];
+                 $price         =  $row["price"];
                  $file_copied         = $row["file_copied"];
                  $image               = explode(",",$file_copied);
                  $file_type         = $row["file_type"];
 
-                 $sql2 = "select price from program where shop='$shop' and type='$type' and price > 1 order by price asc";
-                 $result2 = mysqli_query($conn, $sql2);
-                 $row2 = mysqli_fetch_array($result2);
-                 $price  = $row2["price"];
 
                  $sql3 = "select num from pick where id ='".$user_id."' and o_key =".$o_key;
                  $result3 = mysqli_query($conn, $sql3);

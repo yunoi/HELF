@@ -20,11 +20,11 @@ input {
 }
 
 #input_shop {
-  width: 332px;
+  width: 400px;
 }
 
 #input_subject {
-  width: 723px;
+  width: 700px;
 }
 
 #input_num {
@@ -44,7 +44,7 @@ textarea {
 }
 
 #ul_plus input {
-  width: 200px;
+  width: 182.5px;
   height: 28px;
   margin-bottom: 5px;
 }
@@ -59,20 +59,20 @@ textarea {
 
 select {
   height: 32px;
-  width: 193px;
+  width: 150px;
   font-size: 13px;
   border: 0px;
 }
 
 #select_location select {
-  width: 150px;
+  width: 167px;
   height: 30px;
   box-sizing: content-box;
 }
 
 #input_location {
   margin-left: 10px;
-  width: 389px;
+  width: 300px;
   height: 27px;
   font-size: 13px;
 }

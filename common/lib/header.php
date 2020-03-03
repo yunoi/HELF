@@ -93,7 +93,7 @@
     if($user_grade =='admin') {
 ?>
                 <li> | </li>
-                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/admin_page.php">관리자페이지</a></li>
+                <li><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/admin_program_payment.php">관리자페이지</a></li>
 <?php
     }
 ?>

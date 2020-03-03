@@ -1,6 +1,8 @@
 <?php
 
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
+include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
+
 $row=$file_name=$file_copied=$file_type="";
 
 if(isset($_GET["mode"])&&$_GET["mode"]=="download"){

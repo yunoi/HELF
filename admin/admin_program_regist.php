@@ -168,12 +168,12 @@
                     <td id="td_plus" colspan="3">
                       <ul id="ul_plus">
                         <li>
-                          <input type="text" name="choose[]" id="option_choose" value="<?=$choose?>" placeholder=" 옵션명을 입력하세요. "> &
-                          <input type="number" name="price[]" value="<?=$price?>" placeholder=" 가격을 입력하세요. "> 원
+                          <input type="text" name="choose[]" class="option_choose" value="<?=$choose?>" placeholder=" 옵션명을 입력하세요. "> &
+                          <input type="number" name="price[]" class="price_choose" value="<?=$price?>" placeholder=" 가격을 입력하세요. "> 원
                           <?php
                           if($mod === "insert"){
                           ?>
-                          <button id="option_plus" type="button" name="button">추가</button>
+                          <button id="option_plus" type="button" name="button" disabled>추가</button>
                           <button id="option_minus" type="button" name="button">삭제</button>
                           <?php
                           }
@@ -220,9 +220,9 @@
                 <div id="submit_div">
                   <?php
                     if(isset($_GET["o_key"])){
-                      echo "<input type='submit' value='수정'>";
+                      echo "<input id='btn_regist' type='submit' value='수정' disabled>";
                     }else{
-                      echo "<input type='submit' value='등록'>";
+                      echo "<input id='btn_regist' type='submit' value='등록'disabled>";
                     }
 
                    ?>

@@ -123,9 +123,9 @@
         $search = $_POST["search"];
         $q_search = mysqli_real_escape_string($conn, $search);
         if($find==="number"){
-            $sql="SELECT * from `sales` where ord_num like '%$q_search%' order by num desc";
+            $sql="SELECT * from `sales` where ord_num like '%$q_search%' group by ord_num order by num desc";
         }else{
-            $sql="SELECT * from `sales` where id like '%$q_search%' order by num desc";
+            $sql="SELECT * from `sales` where id like '%$q_search%' group by ord_num order by num desc";
         }
     } else {
         $sql = "select * from sales group by ord_num order by complete asc";

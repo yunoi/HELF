@@ -91,23 +91,62 @@
           $total_record = mysqli_num_rows($result);
 
           $number = $total_record;
-           for ($i=0; $i<$number; $i++){
-            $row = mysqli_fetch_array($result);
-            $o_key        = $row["o_key"];
-            $ord_num      = $row["ord_num"];
-            $id     = $row["id"];
-            $sales_day     = $row["sales_day"];
-            $complete     = $row["complete"];
+        
+            if($number > 1){
+              for ($i=0; $i<$number; $i++){
+                $row = mysqli_fetch_array($result);
+                $o_key        = $row["o_key"];
+                $ord_num      = $row["ord_num"];
+                $id     = $row["id"];
+                $total_price     = $row["total_price"];
+                $sales_day     = $row["sales_day"];
+                $complete     = $row["complete"];
+    
+                $sql = "select * from program where o_key=$o_key";
+                $result2 = mysqli_query($conn, $sql);
+                $row2 = mysqli_fetch_array($result2);
+    
+                $shop = $row2['shop'];
+                $type = $row2['type'];
+                $subject = $row2['subject'];
+                $option = $row2['choose'];
+                $price = $row2['price'];
+              ?>
+               <tr>
+              <td><?=$ord_num?></td>
+              <td><?=$id?></td>
+              <td><?=$shop ?></td>
+              <td><?=$type?></td>
+              <td><?=$subject?></td>
+              <td><?=$option?></td>
+              <td><?=$total_price?></td>
+              <td><?=$sales_day?></td>
+              <td><select id="payment_status_<?=$i?>" class="no-autoinit">
+              <?php if($complete === "결제완료") { ?>
+                <option value='결제완료' selected>결제완료</option>
+                <option value='결제대기'>결제대기</option>
+                <option value='주문취소'>주문취소</option>
 
-            $sql = "select * from program where o_key=$o_key";
-            $result2 = mysqli_query($conn, $sql);
-            $row2 = mysqli_fetch_array($result2);
+                              <?php } else if($complete === "결제대기") {?>
+                                <option value='결제완료'>결제완료</option>
+                <option value='결제대기' selected>결제대기</option>
+                <option value='주문취소'>주문취소</option>
+                              <?php } else { ?>
+                                <option value='결제완료'>결제완료</option>
+                <option value='결제대기'>결제대기</option>
+                <option value='주문취소' selected>주문취소</option>
+                              <?php } ?>
+              </select></td>
 
-            $shop = $row2['shop'];
-            $type = $row2['type'];
-            $subject = $row2['subject'];
-            $option = $row2['choose'];
-            $price = $row2['price'];
+              <td><button type="button" id="btn_modify_<?=$i?>">수정</button></td>
+           </tr>
+              <?php 
+
+    }
+ } else {
+   
+ }
+
 
         ?>
             <tr>
@@ -117,7 +156,7 @@
               <td><?=$type?></td>
               <td><?=$subject?></td>
               <td><?=$option?></td>
-              <td><?=$price?></td>
+              <td><?=$total_price?></td>
               <td><?=$sales_day?></td>
               <td><select id="payment_status_<?=$i?>" class="no-autoinit">
               <?php if($complete === "결제완료") { ?>
@@ -168,11 +207,7 @@
                             });
                         })
                       </script>
-        <?php
-           }
-        }
-
-      ?>
+   
             </table>
 
             </div> <!-- admin_box -->

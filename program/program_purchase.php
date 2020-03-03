@@ -277,8 +277,8 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                 document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete_curd.php"
                 document.kakao_value.submit();
 
-                document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete.php"
-                document.kakao_value.submit();
+                // document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete.php"
+                // document.kakao_value.submit();
 
                 alert(msg);
             } else {
@@ -314,8 +314,8 @@ https://kmong.com/order/2518542 참고한 사이트 화면
           document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete_curd.php"
                 document.kakao_value.submit();
 
-                document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete.php"
-                document.kakao_value.submit();
+                // document.kakao_value.action="http://<?php echo $_SERVER['HTTP_HOST'];?>/helf/common/lib/payment_complete.php"
+                // document.kakao_value.submit();
         }else{
           alert("은행을 선택해주세요");
         }

@@ -68,15 +68,9 @@
      $location  = $row["location"];
      $personnel = $row["personnel"];
      $file_copied= $row["file_copied"];
+     $min_price = $row["price"];
      $image               = explode(",",$file_copied);
      $file_type  = $row["file_type"];
-
-
-     $sql2 = "select price from program where shop='$shop' and type='$type' and price > 150000 order by price asc ";
-     $result2 = mysqli_query($conn, $sql2);
-     $row2 = mysqli_fetch_array($result2);
-     $min_price = $row2["price"];
-
 
      ?>
       <div class="clear"></div>
@@ -102,9 +96,9 @@
                  <br><br>
                 <div class="buttons" id="myHeader">
                   <ul>
-                    <li><a onclick="move1()">서비스 설명</a> </li>
-                    <li><a onclick="move2()">가격정보</a></li>
-                    <li><a onclick="move3()">취소및환불규정</a> </li>
+                    <li><a onclick="move1()">서비스 설명</a></li> |
+                    <li><a onclick="move2()">가격정보</a></li> |
+                    <li><a onclick="move3()">취소및환불규정</a> </li> |
                     <li><a onclick="move4()">QnA/후기</a> </li>
                   </ul>
                 </div>
@@ -481,9 +475,9 @@
                     <?=$subject?><br/>
                   </p>
                   <h3><span><?=$min_price?></span>원 부터~</h3>
-                  <input type="hidden" id="input_h_pay" name="" value="">
+                  <input type="hidden" id="input_h_pay" name="" value="0">
                   <select class="" name="option" id="choose" onchange="pay(this.value);">
-                    <option name ="basic" value="없음">옵션선택</option>
+                    <option name ="basic" value="없음,0원">옵션선택</option>
                   <?php
                   $minimum_price=0; //최소가격
                   $sql="select * from program where shop='$shop'and type='$type' order by price";
@@ -518,8 +512,12 @@
                     });
                     function pay(x){
                       var pick_option = x.split(",");
-                      document.getElementById("h_pay").innerHTML= x;
                       var rprice = pick_option[1].replace("원","");
+                      if(pick_option[0] == "없음"){
+                        document.getElementById("h_pay").innerHTML= "없음";
+                      }else{
+                        document.getElementById("h_pay").innerHTML= x;
+                      }
                       document.getElementById("input_h_pay").value=rprice;
                     }
                     function program_purchase(){
@@ -563,10 +561,7 @@
                     }
                     document.form_review.submit();
                   }
-                  $(window).load(function(){
-                    document.
-                    document.getElementById("input_h_pay").value=<?=$minimum_price?>;
-                  });
+
                   </script>
                   <br/>
                   <div class="">

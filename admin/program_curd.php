@@ -161,6 +161,7 @@
 
   $upload_dir = './data/';
 
+if($mode === "insert"){
   if ($upfile_name[0]) {
     for($i=0; $i<count($upfile_name);$i++){
       $file = explode(".", $upfile_name[$i]);
@@ -208,6 +209,7 @@
   ");
       exit;
     }
+}
 
 
  //게시글 등록

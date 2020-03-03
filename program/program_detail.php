@@ -149,7 +149,7 @@
                     <li><b><?=$end_day?></b></li>
                 </ul><br/>
                 <ul>
-                  <li>모집 인원수</li><br/>
+                  <li>전화번호</li><br/>
                   <li><b><?=$personnel?></b></li>
                 </ul><br/>
                 </div>

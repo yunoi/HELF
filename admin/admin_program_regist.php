@@ -82,7 +82,7 @@
         $price = $row["price"];
 
         $location = str_replace(","," ",$location);
-        
+
         if(isset($row["file_name"])){
           $file_name = $row["file_name"];
         }else{
@@ -102,7 +102,7 @@
         $subject = "";
         $content = "";
         $personnel = "";
-        $end_day = "";
+        $end_day = "2020-12-31";
         $choose = "";
         $price = "";
         $location = "";
@@ -120,6 +120,7 @@
                     <td class="td_width">상호명</td>
                     <td>
                       <input id="input_shop" type="text" name="shop" value="<?=$shop?>" placeholder=" 상호명을 입력하세요. "<?php if ($mod === 'modify') echo "disabled";?>>
+                      <p id="sub_shop"></p>
                     </td>
                   <!-- </tr>
                   <tr> -->
@@ -142,18 +143,20 @@
                     <td class="td_width">프로그램명</td>
                     <td colspan="3">
                       <input id="input_subject" type="text" name="subject" value="<?=$subject?>" placeholder=" 프로그램명을 입력하세요. "<?php if ($mod === 'modify') echo "disabled";?>>
+                      <p id="sub_subject"></p>
                     </td>
                   </tr>
                   <tr>
                     <td class="td_width">내용</td>
                     <td colspan="3">
-                      <textarea name="content" value="" placeholder=" 내용을 입력하세요. "<?php if ($mod === 'modify') echo "disabled";?> ><?=$content?></textarea>
+                      <textarea id="input_content" name="content" value="" placeholder=" 내용을 입력하세요. "<?php if ($mod === 'modify') echo "disabled";?> ><?=$content?></textarea>
+                      <p  id="sub_content"></p>
                     </td>
                   </tr>
                   <tr>
                     <td class="td_width">모집인원</td>
                     <td>
-                      <input id="input_num" type="number" name="personnel" placeholder=" 모집인원을 입력하세요. " value=<?=$personnel?> <?php if ($mod === 'modify') echo "disabled";?>>
+                      <input id="input_num" min="1" max="99" value="1" type="number" name="personnel" placeholder=" 모집인원을 입력하세요. " value=<?=$personnel?> <?php if ($mod === 'modify') echo "disabled";?>>
                     </td>
                     <td class="td_width">모집 마감일</td>
                     <td>

@@ -79,7 +79,7 @@ if ($total_page <= $end_page) {
        <div id="title">
          <span>인바디 측정 가능 보건소 위치</span>
        </div>
-       <form name="board_form" action="list.php?mode=search" method="post">
+       <form name="board_form" action="map.php?mode=search" method="post">
          <div id="list_search">
            <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
            <div id="list_search_right">

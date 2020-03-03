@@ -64,7 +64,7 @@ session_start();
                 $file_copied=$row['file_copied'];
                 $file_type=$row['file_type'];
 
-                if (!empty($file_copied)&&$file_type =="image") {
+                if ($file_copied ==! "" &&$file_type =="image") {
                     //이미지 정보를 가져오기 위한 함수 width, height, type
                     $image_info=getimagesize("./data/".$file_copied);
                     $image_width=$image_info[0];
@@ -97,9 +97,14 @@ session_start();
 
               <div id="write_row3">
                 <div class="col2" id="content_col2"><?=$content?> <br/>
-                <img src='./data/<?=$file_copied?>' width='<?=$image_width?>'></div>
+                <?php 
+                if ($file_copied ==! "" &&$file_type =="image") {
+                  ?>
+                  <img src='./data/<?=$file_copied?>' width='<?=$image_width?>'></div>
+                  <?php
+                }
+                    ?>
               </div><!--end of write_row3  -->
-              <div class="write_line">
                 <div class="clear">
                 <div class="col2">
                   <?php
@@ -115,7 +120,6 @@ session_start();
                   ?>
                 </div><!--end of col2  -->
               </div><!--end of view_content  -->
-            </div>
             </div><!--end of write_form  -->
 
             <div id="write_button">
@@ -139,11 +143,12 @@ session_start();
             ?>
             </div><!--end of write_button-->
       </div><!--end of col2  -->
-      <aside id="aside">
-        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
-      </aside>
+     
       </div><!--end of content -->
     </div><!--end of wrap  -->
+    <aside id="aside">
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
+      </aside>
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
     </footer>

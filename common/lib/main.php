@@ -3,16 +3,16 @@
 <div id="carousel_section">
 <ul class="slider">
     <li>
-        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/img01.jpg">
+        <a href="http://localhost/helf/notice/view.php?num=6"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/img01.jpg"></a>
     </li>
     <li>
-        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/img02.jpg">
+        <a href="http://localhost/HELF/notice/view.php?num=7"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/img02.jpg"></a>
     </li>
     <li>
-        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/img03.jfif">
+        <a href="http://localhost/helf/health_info/exercise/view.php?num=2&page=1&hit=3"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/img03.jpg"></a>
     </li>
     <li>
-        <img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/img04.jpg">
+        <a href="http://localhost/HELF/notice/view.php?num=8"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/img04.jpg"></a>
     </li>
 </ul>
 <div id="slideshow_nav">

@@ -67,6 +67,7 @@
      $content = $row["content"];
      $location  = $row["location"];
      $personnel = $row["personnel"];
+
      $file_copied= $row["file_copied"];
      $image               = explode(",",$file_copied);
      $file_type  = $row["file_type"];
@@ -160,14 +161,13 @@
                 </div>
                 </div>
                 <?php
+
                 for($i=1;$i<count($image);$i++){
                 ?>
                   <img src='../admin/data/<?=$image[$i]?>' style="height:280px; width:400px;">
                 <?php
                 }
                 ?>
-
-
                     <div class="clear"></div><br/><br/>
                 <div class="" id="pay">
                   <h3>가격정보</h3>

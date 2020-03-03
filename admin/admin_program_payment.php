@@ -91,7 +91,7 @@
           $total_record = mysqli_num_rows($result);
 
           $number = $total_record;
-        
+
             if($number > 1){
               for ($i=0; $i<$number; $i++){
                 $row = mysqli_fetch_array($result);
@@ -101,11 +101,11 @@
                 $total_price     = $row["total_price"];
                 $sales_day     = $row["sales_day"];
                 $complete     = $row["complete"];
-    
+
                 $sql = "select * from program where o_key=$o_key";
                 $result2 = mysqli_query($conn, $sql);
                 $row2 = mysqli_fetch_array($result2);
-    
+
                 $shop = $row2['shop'];
                 $type = $row2['type'];
                 $subject = $row2['subject'];
@@ -140,11 +140,11 @@
 
               <td><button type="button" id="btn_modify_<?=$i?>">수정</button></td>
            </tr>
-              <?php 
+              <?php
 
     }
  } else {
-   
+
  }
 
 
@@ -207,7 +207,7 @@
                             });
                         })
                       </script>
-   
+
             </table>
 
             </div> <!-- admin_box -->

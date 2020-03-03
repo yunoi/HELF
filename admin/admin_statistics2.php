@@ -33,7 +33,7 @@
       <?php
       $sql="select p.type , count(s.o_key) as 'count' from sales s ";
       $sql.="inner join program p on s.o_key = p.o_key ";
-      $sql.="group by s.o_key order by count(s.o_key) desc";
+      $sql.="group by p.type order by count(s.o_key) desc";
 
       $result = mysqli_query($conn, $sql);
       $array = array();
@@ -56,7 +56,7 @@
       $sql2="select m.id, m.name , sum(p.price) as 'Purchase' from sales s ";
       $sql2.="inner join members m on s.id = m.id ";
       $sql2.="inner join program p on s.o_key = p.o_key ";
-      $sql2.="group by m.name order by sum(p.price) desc";
+      $sql2.="group by m.name order by sum(p.price) desc limit 10";
 
       $result2 = mysqli_query($conn, $sql2);
       $array2 = array();
@@ -180,9 +180,9 @@
                 });
               </script>
           <div id="p_ranking">
-              <h3>유저 구매 랭킹</h3><br>
+              <h3>유저 구매 랭킹 Top10!</h3><br>
                 <ul id="ul_ranking">
-                  <li id="i9">
+                  <li id="i9" style="background: #F23005;">
                     <p class="r1">랭킹</p>
                     <p class="r2">아이디</p>
                     <p class="r3">이름</p>

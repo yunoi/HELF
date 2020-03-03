@@ -27,29 +27,29 @@ function create_table($conn, $table_name){
            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             break;
           case 'pick' :
-            $sql = "CREATE TABLE pick( 
+            $sql = "CREATE TABLE pick(
               num int not null auto_increment,
                id char(20) not null,
                o_key int not null,
                primary key (num),
-                
+
               constraint pick_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
                constraint pick_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
          )ENGINE=InnoDB DEFAULT CHARSET=utf8;
          ";
             break;
             case 'cart' :
-              $sql = "CREATE TABLE cart( 
+              $sql = "CREATE TABLE cart(
                 num int not null auto_increment,
                  id char(20) not null,
                  o_key int not null,
                  primary key (num),
-                  
+
                 constraint cart_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
                  constraint cart_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
            )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
               break;
-    
+
           case 'message' :
             $sql = "create table message (
               num int not null auto_increment,
@@ -90,7 +90,7 @@ function create_table($conn, $table_name){
               regist_day char(30) not null,
               type char(20) not null,
               shop char(10) not null,
-              score float not null,        
+              score float not null,
               primary key(num),
              constraint review_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
               constraint review_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
@@ -144,9 +144,9 @@ function create_table($conn, $table_name){
               content text not null,
               regist_day char(20) not null,
               hit int not null,
-              file_name char(40),
-              file_type char(40),
-              file_copied char(40),
+              file_name char(100),
+              file_type char(100),
+              file_copied char(200),
               likeit int not null,
               b_code char(15) NOT NULL,
               primary key(num)
@@ -173,9 +173,9 @@ function create_table($conn, $table_name){
               content text not null,
               regist_day char(20) not null,
               hit int not null,
-              file_name char(40),
-              file_type char(40),
-              file_copied char(40),
+              file_name char(100),
+              file_type char(100),
+              file_copied char(200),
               likeit int not null,
               b_code char(15) not null,
               video_name char(200),
@@ -192,9 +192,9 @@ function create_table($conn, $table_name){
               content text not null,
               regist_day char(20) not null,
               hit int not null,
-              file_name char(40),
-              file_type char(40),
-              file_copied char(40),
+              file_name char(100),
+              file_type char(100),
+              file_copied char(200),
               likeit int not null,
               b_code char(15) not null,
               group_num int UNSIGNED NOT NULL,
@@ -257,7 +257,7 @@ function create_table($conn, $table_name){
                 sales_day char(20) not null,
                 complete char(10) not null,
                 primary key (num),
-                 
+
                constraint sales_members_id FOREIGN KEY (id) REFERENCES members(id) on delete cascade on update cascade,
                 constraint sales_program_o_key FOREIGN KEY (o_key) REFERENCES program(o_key) on delete cascade on update cascade
           )ENGINE=InnoDB DEFAULT CHARSET=utf8;";

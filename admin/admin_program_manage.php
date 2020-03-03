@@ -6,6 +6,9 @@
   <title>HELF :: 관리자페이지</title>
   <link rel="stylesheet" type="text/css" href="./css/admin.css">
   <link rel="stylesheet" href="./css/program_manager.css">
+      <link rel="stylesheet" type="text/css" href="./css/admin_user.css">
+
+
   <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
   <script src="./js/register.js"></script>
   <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
@@ -74,59 +77,165 @@
 
          <div id="content">
             <h1 id="content_title">프로그램 관리 > 관리<p>프로그램명을 클릭하시면 해당 프로그램의 상세 정보를 보실 수 있습니다.</p></h1><br>
-            <div id="admin_box">
+            <ul class = "collapsible" data-collapsible = "accordion">
 
-            <table id="manage_table">
-              <tr>
-                <td>번호</td>
-                <td>샵이름</td>
-                <td>운동종류</td>
-                <td>제목</td>
-                <td>모집마감일</td>
-                <td>옵션</td>
-                <td>가격</td>
-                <td>수정</td>
-                <td>삭제</td>
-              </tr>
+            <?php
+                if (isset($_GET["page"])) {
+                    $page = $_GET["page"];
+                } else {
+                    $page = 1;
+                }
 
-      <?php
-        $sql = "select * from program order by o_key desc";
-        $result = mysqli_query($conn, $sql);
-        $total_record = mysqli_num_rows($result); // 전체 회원 수
+                $sql = "select * from program group by shop, type, subject order by o_key";
+                $result = mysqli_query($conn, $sql);
+                $total_record = mysqli_num_rows($result); // 전체 글 수
 
-        $number = $total_record;
+                $scale = 10;
 
-         while ($row = mysqli_fetch_array($result)){
-          $o_key        = $row["o_key"];
-          $shop      = $row["shop"];
-          $type     = $row["type"];
-          $subject     = $row["subject"];
-          $end_day     = $row["end_day"];
-          $choose     = $row["choose"];
-          $price     = $row["price"];
-      ?>
+                // 전체 페이지 수($total_page) 계산
+                if ($total_record % $scale == 0) {
+                    $total_page = floor($total_record/$scale);
+                } // 소수점 내림, 반올림은 round, 올림은 ceil
+                else {
+                    $total_page = floor($total_record/$scale) + 1;
+                }
 
-          <tr>
-          <form method="post" action="admin_program_regist.php?o_key=<?=$o_key?>">
-            <td><?=$o_key?></td>
-            <td><?=$shop?></td>
-            <td><?=$type ?></td>
-            <td><?=$subject?></td>
-            <td><?=$end_day?></td>
-            <td><?=$choose?></td>
-            <td><?=$price?></td>
-            <td><button type="submit">수정</button></td>
-            <td><button type="button" onclick="location.href='program_curd.php?o_key=<?=$o_key?>&mode=delete'">삭제</button></td>
-          </form>
-         </tr>
+                // 표시할 페이지($page)에 따라 $start 계산
+                $start = ($page - 1) * $scale; // 페이지 세팅 넘버!!!!!
 
-      <?php
-             $number--;
-         }
-      ?>
-            </table>
+                $number = $total_record - $start;
 
-            </div> <!-- admin_box -->
+               for ($i=$start; $i<$start+$scale && $i < $total_record; $i++) {
+                   mysqli_data_seek($result, $i);
+                   // 가져올 레코드로 위치(포인터) 이동
+                   $row = mysqli_fetch_array($result);
+                   // 하나의 레코드 가져오기
+                    $o_key        = $row["o_key"];
+                    $shop         = $row["shop"];
+                    $type         = $row["type"];
+                    $subject      = $row["subject"];
+                    $content      = $row["content"];
+                    $personnel    = $row["personnel"];
+                    $end_day      = $row["end_day"];
+                    $location      = $row["location"];
+
+                    $location = str_replace(","," ",$location);
+                    ?>
+                   <li>
+                     <div class = "collapsible-header"><span><?=$shop?> | <?=$type?> | <?=$subject?></span></div>
+                     <div class = "collapsible-body">
+                      <table>
+                        <tr id="first_tr">
+                          <td class="td1">상호명</td>
+                          <td class="td2"><?=$shop?></td>
+                          <td class="td1">종류</td>
+                          <td class="td2"><?=$type?></td>
+                        </tr>
+                        <tr>
+                          <td class="td1">제목</td>
+                          <td class="td2" colspan="3"><?=$subject?></td>
+                        </tr>
+                        <tr>
+                          <td class="td1">모집인원</td>
+                          <td class="td2"><?=$personnel?></td>
+                          <td class="td1">모집마감일</td>
+                          <td class="td2"><?=$end_day?></td>
+                        </tr>
+                        <tr>
+                          <td class="td1">내용</td>
+                          <td class="td2" colspan="3" style="height:200px"><?=$content?></td>
+                        </tr>
+                        <tr>
+                          <td class="td1">장소</td>
+                          <td class="td2" colspan="3"><?=$location?></td>
+                        </tr>
+                        <tr>
+                          <td class="td1">옵션</td>
+                          <td class="td2" colspan="3">
+                            <ul>
+                              <?php
+                                $sql2 = "select choose,price from program where shop='$shop' and type='$type' and subject='$subject';";
+                                $result2 = mysqli_query($conn, $sql2);
+                                while($row2 = mysqli_fetch_array($result2)) {
+                                  $choose = $row2["choose"];
+                                  $price  = $row2["price"];
+                                  ?>
+                                  <input type="text" value="<?=$choose?>" > &
+                                  <input type="number"  value="<?=$price?>" > 원
+                                  <button id="option_plus" type="button" name="button">수정</button>
+                                  <button id="option_minus" type="button" name="button">삭제</button> <br>
+                              <?php
+                                 }
+                              ?>
+                            </ul>
+                          </td>
+                        </tr>
+                      </table>
+                      <script type="text/javascript">
+                        $("#modify_btn_<?=$i?>").click(function () {
+                          var selected_option =   $("#update_grade_<?=$i?> option:selected").val();
+                          $.ajax({
+                              url: 'user_curd.php?mode=modify',
+                              type: 'POST',
+                              data: {
+                                "id": "<?=$id?>",
+                                "grade": selected_option
+                              },
+                              success: function(data) {
+                                console.log(data);
+                                if(data === "수정 완료") {
+                                  alert("회원등급 수정 완료!");
+                                }else if(data === "수정 실패") {
+                                  alert("회원등급 수정 실패!");
+                                }
+                              }
+                            })
+                            .done(function() {
+                              console.log("done");
+                            })
+                            .fail(function() {
+                              console.log("error");
+                            })
+                            .always(function() {
+                              console.log("complete");
+                            });
+                        })
+                      </script>
+                     </div>
+                   </li>
+            <?php
+                   $number--;
+               }
+
+            ?>
+                    </ul>
+
+                  <ul id="page_num">
+            <?php
+                if ($total_page>=2 && $page >= 2) {
+                    $new_page = $page-1;
+                    echo "<li><a href='admin_user.php?page=$new_page'>◀ 이전</a> </li>";
+                } else {
+                    echo "<li>&nbsp;</li>";
+                }
+
+                // 게시판 목록 하단에 페이지 링크 번호 출력
+                for ($i=1; $i<=$total_page; $i++) {
+                    if ($page == $i) {     // 현재 페이지 번호 링크 안함
+                        echo "<li><b> $i </b></li>";
+                    } else {
+                        echo "<li><a href='admin_user.php?page=$i'>  $i  </a><li>";
+                    }
+                }
+                if ($total_page>=2 && $page != $total_page) {
+                    $new_page = $page+1;
+
+                    echo "<li> <a href='admin_user.php?page=$new_page'>다음 ▶</a> </li>";
+                } else {
+                    echo "<li>&nbsp;</li>";
+                }
+            ?>
+            </ul> <!-- page -->
           </div>		<!-- end of content -->
         </div><!--  end of admin_board -->
     </section>

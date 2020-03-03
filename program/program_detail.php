@@ -67,6 +67,7 @@
      $content = $row["content"];
      $location  = $row["location"];
      $personnel = $row["personnel"];
+
      $file_copied= $row["file_copied"];
      $min_price = $row["price"];
      $image               = explode(",",$file_copied);
@@ -154,14 +155,13 @@
                 </div>
                 </div>
                 <?php
+
                 for($i=1;$i<count($image);$i++){
                 ?>
                   <img src='../admin/data/<?=$image[$i]?>' style="height:280px; width:400px;">
                 <?php
                 }
                 ?>
-
-
                     <div class="clear"></div><br/><br/>
                 <div class="" id="pay">
                   <h3>가격정보</h3>
@@ -180,7 +180,7 @@
                          if(!($table_choose==="선택")){
                         ?>
                         <tr>
-                          <td><?=$table_choose?></td>
+                          <td>♣<?=$table_choose?>♣</td>
                           <td><?=$table_price?>원</td>
                         </tr>
 

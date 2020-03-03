@@ -38,7 +38,7 @@
 
           echo("
             <script>
-              history.go(-3);
+              location.href = '../index.php';
             </script>
           ");
       }

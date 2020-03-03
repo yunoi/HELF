@@ -105,16 +105,18 @@
 
            </div><!--end of list_search  -->
          </form>
-                        <table id="pay_table">
-                            <tr>
-                                <td>주문번호</td>
-                                <td>주문자</td>
-                                <td>주문개수</td>
-                                <td>가격</td>
-                                <td>주문일</td>
-                                <td>결제상태</td>
-                                <td>수정</td>
-                            </tr>
+                        <ul id="pay_table">
+                            <li id="pay_first_tr">
+                              <div id="pay_first_span">
+                                <span class="col1">주문번호</span>
+                                <span class="col2">주문자</span>
+                                <span class="col3">주문개수</span>
+                                <span class="col4">가격</span>
+                                <span class="col5">주문일</span>
+                                <span class="col6">결제상태</span>
+                                <span class="col7"> </span>
+                              </div>
+                            </li>
 
     <?php
         if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
@@ -145,15 +147,15 @@
                 $sql = "select * from sales where ord_num='$ord_num'";
                 $result_for_num = mysqli_query($conn, $sql);
                 $total_record = mysqli_num_rows($result_for_num);
-            
+
               ?>
-                            <tr>
-                                <td><?=$ord_num?></td>
-                                <td><?=$id?></td>
-                                <td><?=$total_record?>종류</td>
-                                <td><?=$total_price?>원</td>
-                                <td><?=$sales_day?></td>
-                                <td>
+                            <li>
+                                <span class="col1"><?=$ord_num?></span>
+                                <span class="col2"><?=$id?></span>
+                                <span class="col3"><?=$total_record?>종류</span>
+                                <span class="col4"><?=$total_price?>원</span>
+                                <span class="col5"><?=$sales_day?></span>
+                                <span class="col6">
                                     <select id="payment_status_<?=$i?>" class="no-autoinit">
                                         <?php if($complete === "결제완료") { ?>
                                         <option value='결제완료' selected="selected">결제완료</option>
@@ -170,12 +172,12 @@
                                         <option value='주문취소' selected="selected">주문취소</option>
                                         <?php } ?>
                                     </select>
-                                </td>
+                                </span>
 
-                                <td>
-                                    <button type="button" id="btn_modify_<?=$i?>">수정</button>
-                                </td>
-                            </tr>
+                                <span class="col7">
+                                    <button type="button" class="btn_modify" id="btn_modify_<?=$i?>">수정</button>
+                                </span>
+                            </li>
                             <script type="text/javascript">
                                 $("#btn_modify_<?=$i?>").click(function () {
                                     var selected_option = $("#payment_status_<?=$i?> option:selected").val();
@@ -208,14 +210,14 @@
                                         });
                                 })
                             </script>
-                            <?php 
+                            <?php
 
     }
 
 }
         ?>
 
-            </table>
+      </ul>
 
             </div> <!-- admin_box -->
           </div>		<!-- end of content -->

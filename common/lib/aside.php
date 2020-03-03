@@ -147,19 +147,19 @@
         </ul>
     </div>
     <div id="program_ranking">
-      <div id="p_ranking">
-          <h3>프로그램 인기순위</h3><br>
-            <ul id="ul_ranking">
-              <li id="i9">
-                <p class="r1">랭킹</p>
-                <p class="r2">샵</p>
-                <p class="r3">옵션</p>
-                <p class="r4">판매량</p>
+
+          <h3>프로그램 인기순위 Top 5!</h3><br>
+            <ul id="ul_program">
+              <li id="r_menu">
+                <p class="pr1">랭킹</p>
+                <p class="pr2">샵</p>
+                <p class="pr3">옵션</p>
+                <p class="pr4">판매량</p>
               </li>
               <?php
               $sql="select p.o_key, p.shop, p.choose, count(s.num) as 'sales_rate' from sales s ";
               $sql.="inner join program p on s.o_key = p.o_key ";
-              $sql.="group by p.o_key order by count(s.num) desc";
+              $sql.="group by p.o_key order by count(s.num) desc limit 5";
 
               $result = mysqli_query($conn, $sql);
               $array = array();
@@ -180,8 +180,8 @@
                   echo "<li>";
                   $rank=$i + 1;
               ?>
-                  <p class="r1"><?=$rank?></p>
-                  <p class="r2">
+                  <p class="pr1"><?=$rank?></p>
+                  <p class="pr2">
                   <?php
                   if(strlen($array[$i][0]) > 15){
                   ?>
@@ -194,8 +194,8 @@
                     }
                    ?>
                     </p>
-                  <p class="r3"><?=$array[$i][1]?></p>
-                  <p class="r4"><?=$array[$i][2]?></p>
+                  <p class="pr3"><?=$array[$i][1]?></p>
+                  <p class="pr4"><?=$array[$i][2]?></p>
 
                <?php
 
@@ -203,7 +203,7 @@
                }
                ?>
             </ul>
-          </div>
+
 
     </div>
 </div>

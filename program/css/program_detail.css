@@ -117,8 +117,7 @@
   padding-left: 10px;
 }
 .pay_table table{
-  width: 80%;
-  border: 1px solid black;
+  width: 90%;
 }
 .pay_table table th,.pay_table table td{
 
@@ -128,8 +127,9 @@
   padding: 10px;
 }
 .pay_table table th{
+  color: white;
   width: 30%;
-  height: 50px;
+  height: 30px;
   background: #F23005;
 }
 #sol{

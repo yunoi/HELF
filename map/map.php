@@ -23,7 +23,6 @@ session_start();
         <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
         <link rel="stylesheet" href="./css/greet.css">
         <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
-        <script type="text/javascript" src="./js/member_form.js"></script>
 </head>
 <body>
   <header>
@@ -39,6 +38,10 @@ session_start();
       if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
           $find = $_POST["find"];
           $search = $_POST["search"];
+          if(isset($_GET["find"])&&isset($_GET["search"])){
+            $find = $_GET["find"];
+            $search = $_GET["search"];
+          }
           $q_search = mysqli_real_escape_string($conn, $search);
           $sql="SELECT * from `carecenter` where $find like '%$q_search%'";
       } else {
@@ -49,10 +52,10 @@ session_start();
       $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
 
       //2.페이지가 없으면 디폴트 페이지 1페이지
-      if (empty($_GET['page'])) {
+       if (empty($_GET['page'])) {
           $page=1;
-      } else {
-          $page=$_GET['page'];
+      }else {
+        $page=$_GET['page'];
       }
 
       $start=($page -1) * SCALE;
@@ -73,29 +76,28 @@ if ($total_page <= $end_page) {
   </header>
 
   <div id="wrap">
-
     <div id="content">
      <div id="col2">
        <div id="title">
          <span>인바디 측정 가능 보건소 위치</span>
        </div>
        <form name="board_form" action="map.php?mode=search" method="post">
+         <input type="hidden" id="page" name="page">
          <div id="list_search">
            <div id="list_search1">총 <?=$total_record?>개의 게시물이 있습니다.</div>
            <div id="list_search_right">
            <div id="list_search3">
-             <select  name="find">
+             <select id="find" name="find">
                <option value="city">지역</option>
                <option value="area">구</option>
                <option value="name">이름</option>
                <option value="address">주소</option>
              </select>
            </div><!--end of list_search3  -->
-           <div id="list_search4"><input type="text" name="search"></div>
+           <div id="list_search4"><input type="text" id="search" name="search"></div>
            <div id="list_search5"><input type="submit" value="검색"></div>
            </div>
          </div><!--end of list_search  -->
-
        </form>
        <div id="clear"></div>
        <div id="list_top_title">
@@ -140,30 +142,47 @@ if ($total_page <= $end_page) {
       <?php
           $number--;
         }//end of for
-      ?>
 
+      ?>
       <div id="page_button">
         <div id="page_num">
           <?php
           if($page>1){
             $val=(int)$page-1;
-            echo "<a href='./map.php?page=$val'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
+            if(isset($_GET["mode"])&&$_GET["mode"]=="search"){
+              ?>
+              <a href="./map.php?mode=search&page=<?=$val?>&find=<?=$find?>&search=<?=$q_search?>">이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <?php
+            }else{
+              echo "<a href='./map.php?page=$val'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
+            }
           }?>
         <?php
           for ($i=$start_page; $i <= $end_page ; $i++) {
               if ($page==$i) {
                   echo "<b>&nbsp;$i&nbsp;</b>";
               } else {
+                if(isset($_GET["mode"])&&$_GET["mode"]=="search"){
+                  ?>
+                  <a href="./map.php?mode=search&page=<?=$i?>&find=<?=$find?>&search=<?=$q_search?>">&nbsp;<?=$i?>&nbsp;</a>
+                  <?php
+                }else{
                   echo "<a href='./map.php?page=$i'>&nbsp;$i&nbsp;</a>";
+                }
               }
           }
         ?>
         <?php
         if($page>=1 && $total_page!=$page){
           $val=(int)$page+1;
-          echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./map.php?page=$val'>▶ 다음</a>";
+          if(isset($_GET["mode"])&&$_GET["mode"]=="search"){
+            ?>
+            &nbsp;&nbsp;&nbsp;&nbsp;<a href="./map.php?mode=search&page=<?=$val?>&find=<?=$find?>&search=<?=$q_search?>">▶ 다음</a>
+              <?php
+          }else{
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./map.php?page=$val'>▶ 다음</a>";
+          }
         }
-
          ?>
         <br><br><br><br><br><br><br>
       </div><!--end of page num -->

@@ -60,7 +60,7 @@
 
 #content {
   display: inline-block;
-  width: 880px;
+  width: 890px;
   height: 1500px;
   margin-left: 30px;
   float: left;
@@ -116,15 +116,15 @@ a:hover {
 }
 
 #p_ranking li{
+  padding-top: 12px;
   padding-bottom: 10px;
   text-align: center;
 }
 
 #ul_ranking {
-  
-  border-radius: 5px;
+  /* border:1px solid black; */
+  text-align: center;
   height: 450px;
-  padding: 10px;
 }
 
 #ul_ranking p{
@@ -132,7 +132,7 @@ a:hover {
 }
 
 #ul_ranking .r1{
-  width: 30px;
+  width: 40px;
 }
 #ul_ranking .r2{
   width: 100px;
@@ -148,7 +148,15 @@ a:hover {
   min-width: 550px;
   height: 470px;
   max-width: 500px;
-
   border-radius: 5px;
   float:left;
+}
+
+#ul_ranking>li:nth-child(2n+1) {
+  background: #e0e0e0;
+}
+
+#i9{
+  color: white;
+  border-bottom: 2px solid black;
 }

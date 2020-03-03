@@ -96,18 +96,11 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
                 <div class="col2">
                   <?php
                     if ($mode=="insert") {
-                        echo '<input type="file" name="upfile" >';
+                        echo '<input type="file" name="upfile[]" multiple="multiple" >';
                     } else {
                         ?>
-                    <input type="file" name="upfile" onclick='document.getElementById("del_file").checked=true; document.getElementById("del_file").disabled=true'>
+                    <input type="file" name="upfile[]" multiple="multiple" onclick='document.getElementById("del_file").checked=true; document.getElementById("del_file").disabled=true'>
                  <?php
-                    }
-                  ?>
-                  <?php
-                    if ($mode=="update" && !empty($file_name)) {
-                        echo "$file_name 파일등록";
-                        echo '<input type="checkbox" id="del_file" name="del_file" value="1">삭제';
-                        echo '<div class="clear"></div>';
                     }
                   ?>
                 </div><!--end of col2  -->

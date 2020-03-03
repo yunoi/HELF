@@ -33,7 +33,7 @@
     $address = mysqli_real_escape_string($conn, $address);
 
     $sql = "insert into members (id, password, name, phone, email, address, grade) ";
-    $sql .= "values('$id', '$password', '$name', '$phone', '$email', '$address', null)";
+    $sql .= "values('$id', '$password', '$name', '$phone', '$email', '$address', 'user')";
 
     mysqli_query($conn, $sql);  // $sql 에 저장된 명령 실행
 

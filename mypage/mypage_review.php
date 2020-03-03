@@ -1,7 +1,12 @@
 <?php
   session_start();
-  $id = $_SESSION["user_id"];
-
+  if(isset($_SESSION["user_id"])){
+    $id = $_SESSION["user_id"];
+  } else {
+    echo ("<script>alert('로그인 후 이용해 주세요!')
+    history.go(-2);
+    </script>");
+  }
   if(isset($_GET["page"])) {
     $page = $_GET["page"];
   } else {

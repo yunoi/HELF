@@ -172,7 +172,7 @@ $(document).ready(function() {
     }
   }); //input_name.blur end
 
-  phone_two.blur(function() {
+  phone_two.keyup(function() {
     var phone_two_value = phone_two.val();
     var exp = /^[0-9]{3,4}$/;
     if (phone_two_value === "") {
@@ -190,7 +190,7 @@ $(document).ready(function() {
     }
   }); //phone_two.blur end
 
-  phone_three.blur(function() {
+  phone_three.keyup(function() {
     var phone_three_value = phone_three.val();
     var exp = /^[0-9]{3,4}$/;
     if (phone_three_value === "") {
@@ -275,7 +275,7 @@ $(document).ready(function() {
     var phone_one_value =  $("#phone_one").val();
     var phone_two_value = $("#phone_two").val();
     var phone_three_value = $("#phone_three").val();
-    if(phone_one_value !== "" && phone_two_value !== "" && phone_two_value !== "") {
+    if(phone_one_value !=="" && phone_two_pass && phone_three_pass) {
       $.ajax({
           url: "./phone_certification.php",
           type: 'POST',

@@ -239,7 +239,6 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
         <div id="page_button">
           <div id="page_num">
-<!-- /////////////////////////////////////////////////// -->
             <?php
               if($total_page<2){
                 "";
@@ -262,7 +261,6 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
             }
 
           ?>
-<!-- /////////////////////////////////////////////// -->
           <br><br><br><br><br><br><br>
         </div><!--end of page num -->
         <div id="button">

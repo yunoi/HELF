@@ -477,7 +477,7 @@
                   <h3><span><?=$min_price?></span>원 부터~</h3>
                   <input type="hidden" id="input_h_pay" name="" value="0">
                   <select class="" name="option" id="choose" onchange="pay(this.value);">
-                    <option name ="basic" value="없음">옵션선택</option>
+                    <option name ="basic" value="없음,0원">옵션선택</option>
                   <?php
                   $minimum_price=0; //최소가격
                   $sql="select * from program where shop='$shop'and type='$type' order by price";
@@ -512,8 +512,12 @@
                     });
                     function pay(x){
                       var pick_option = x.split(",");
-                      document.getElementById("h_pay").innerHTML= x;
                       var rprice = pick_option[1].replace("원","");
+                      if(pick_option[0] == "없음"){
+                        document.getElementById("h_pay").innerHTML= "없음";
+                      }else{
+                        document.getElementById("h_pay").innerHTML= x;
+                      }
                       document.getElementById("input_h_pay").value=rprice;
                     }
                     function program_purchase(){

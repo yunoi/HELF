@@ -180,7 +180,7 @@
                          if(!($table_choose==="선택")){
                         ?>
                         <tr>
-                          <td><?=$table_choose?></td>
+                          <td>♣<?=$table_choose?>♣</td>
                           <td><?=$table_price?>원</td>
                         </tr>
 

@@ -1,18 +1,52 @@
-table, td, tr {
+/* table, td, tr {
   border: 1px solid gray;
   border-collapse: collapse;
-}
+} */
 
 /* 프로그램 관리 css */
-#manage_table {
-  width: 850px;
-  text-align: center;
+.collapsible-header {
+  display: block !important;
+  width: 845px;
+  height: 45px;
+  background-color: pink;
+}
+.collapsible-header #subjects {
+  display: inline-block;
+  float: left;
+  font-size: 17px !important;
+  margin-left: 7px;
+  border-radius: 2px;
 }
 
-#manage_table td {
+.collapsible-header #shop_type {
+  display: inline-block;
+  float: right;
+  font-size: 14px !important;
+  margin-right: 10px;
+  border-radius: 2px;
+}
+
+.program_modify_form #options{
+  width: 275px;
+  height: 28px;
+}
+
+.program_modify_form #prices{
+  width: 140px;
+  height: 28px;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.program_modify_form button {
+  width: 65px;
   height: 30px;
+  border-radius: 2px;
+  border: 1px solid #ddd;
+  background-color: #F2F2F2;
 }
-
 
 /* 결제 관리 css */
 #pay_table {

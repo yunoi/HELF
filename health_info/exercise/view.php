@@ -16,7 +16,7 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $num = test_input($_GET["num"]);
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
-// echo "<script>alert('게시판 번호 : {$num}');</script>";
+    // echo "<script>alert('게시판 번호 : {$num}');</script>";
     $sql="UPDATE `health_info` SET `hit`=$hit WHERE b_code='운동' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
@@ -32,8 +32,8 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $id=$row['id'];
     $name=$row['name'];
     $hit=$row['hit'];
-    $subject= htmlspecialchars($row['subject']);
-    $content= htmlspecialchars($row['content']);
+    $subject= $row['subject'];
+    $content= $row['content'];
     $subject=str_replace("\n", "<br>", $subject);
     $subject=str_replace(" ", "&nbsp;", $subject);
     $content=str_replace("\n", "<br>", $content);
@@ -45,22 +45,27 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $video_name=substr($video_name, -11);
 
     $file_name=$row['file_name'];
-    $file_name=explode(",",$file_name);
-
     $file_copied=$row['file_copied'];
-    $file_copied=explode(",",$file_copied);
-
     $file_type=$row['file_type'];
-    $file_type=explode(",", $file_type);
+    $day=$row['regist_day'];
 
-    $file_type_cut=array();
+    $file_type_tok=explode('/', $file_type);
+    $file_type=$file_type_tok[0];
 
-    for($i=0;$i<count($file_type);$i++){
-      $file_type_cut_cut=explode("/", $file_type[$i]);
-      $file_type_cut[$i]=$file_type_cut_cut[0];
-      //echo "<script>alert('{$file_type_cut[$i]}');</script>";
+    if (!empty($file_copied)&&$file_type =="image") {
+        //이미지 정보를 가져오기 위한 함수 width, height, type
+        $image_info=getimagesize("./data/".$file_copied);
+        $image_width=$image_info[0];
+        $image_height=$image_info[1];
+        $image_type=$image_info[2];
+        if ($image_width>400) {
+            $image_width = 400;
+        }
+    } else {
+        $image_width=0;
+        $image_height=0;
+        $image_type="";
     }
-
 }
 ?>
 <!DOCTYPE html>
@@ -78,7 +83,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
               <input type="hidden" name="parent" value="'.$parent.'">
               <input type="submit" style="border:1px solid #F23005; color:#F23005; background-color:white;" value="&nbsp&nbsp삭제&nbsp&nbsp">
             </form>';
-            }
+        }
         return $message;
     }
 }
@@ -145,27 +150,6 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
               <div class="write_line"></div>
               <div id="view_content">
                 <div class="col2">
-                  <?php
-                  for($i=0;$i<count($file_name);$i++){
-                    if ($file_type_cut[$i] =="image") {
-                      echo("
-                      ▷ 메인 사진 : $file_name[$i] &nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num'>&nbsp;&nbsp;저장&nbsp;&nbsp;</a><br><br>
-                      ");
-                      //echo "<img src='./data/$file_copied[$i]' style='max-height:200px; max-width:200px;'><br>";
-                    } elseif (!empty($file_copied[$i])) {
-                      $file_path = "./data/".$file_copied[$i];
-                      //2. 업로드된 이름을 보여주고 [저장] 할것인지 선택한다.
-                      echo("
-                      ▷ 첨부파일 : $file_name[$i] &nbsp;
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a href='download.php?mode=download&num=$q_num'>저장</a><br><br>
-                      ");
-                    }
-                  }
-
-                  ?>
                   <!-- 첨부한 동영상 보기 -->
                     <p align="middle">
                     <iframe width="740" height="432" src="https://www.youtube.com/embed/<?=$video_name?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -245,7 +229,7 @@ function free_ripple_delete($id1, $num1, $page1, $page, $hit, $parent)
         </div>
     <?php
       }//end of while
-      mysqli_close($conn);
+      //mysqli_close($conn);
     ?>
     <form name="ripple_form" action="dml_board.php?mode=insert_ripple" method="post">
       <input type="hidden" name="parent" value="<?=$q_num?>">

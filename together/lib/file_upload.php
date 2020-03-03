@@ -78,13 +78,15 @@ if ($upfile_name[0]) {
             exit;
         }
     }
-    echo "<script>alert('$copied_file_name')</script>";
+    //echo "<script>alert('$copied_file_name')</script>";
 } else {
-    echo("
-  <script>
-  alert('파일을 선택해주세요.');
-  history.go(-1);
-  </script>
-  ");
-    exit;
+  $copied_file_name="";
+  $db_name="";
+  $db_type="";
+
+  echo "<script>
+          history.go(-1);
+          </script>
+        ";
+
 }

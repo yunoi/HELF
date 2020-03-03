@@ -29,20 +29,22 @@ section{
   color: #F23005;
   font-weight: bold;
   font-size: 20px;
-  font-family: monospace;
   font-style: italic;
 }
 .one{
-  font-family: monospace;
   color: coral;
   font-size: 20px;
 }
 .one b{
-  font-family: monospace;
   font-style: italic;
+  font-weight: bold;
 }
 .two,#div_header b span{
   font-size: 40px;
+  font-weight: bold;
+}
+.two{
+  font-family: '휴먼명조';
 }
 .master{
   margin: 150px 0px;

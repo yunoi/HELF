@@ -116,20 +116,20 @@
                                 <td>수정</td>
                             </tr>
 
-                        <?php
-                          if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
-                            //제목, 내용, 아이디
-                            $find = $_POST["find"];
-                            $search = $_POST["search"];
-                            $q_search = mysqli_real_escape_string($conn, $search);
-                            if($find==="number"){
-                              $sql="SELECT * from `sales` where ord_num like '%$q_search%' order by num desc";
-                            }else{
-                              $sql="SELECT * from `sales` where id like '%$q_search%' order by num desc";
-                            }
-                        } else {
-                          $sql = "select * from sales group by ord_num order by complete asc";
-                        }
+    <?php
+        if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
+        //제목, 내용, 아이디
+        $find = $_POST["find"];
+        $search = $_POST["search"];
+        $q_search = mysqli_real_escape_string($conn, $search);
+        if($find==="number"){
+            $sql="SELECT * from `sales` where ord_num like '%$q_search%' order by num desc";
+        }else{
+            $sql="SELECT * from `sales` where id like '%$q_search%' order by num desc";
+        }
+    } else {
+        $sql = "select * from sales group by ord_num order by complete asc";
+    }
         $result = mysqli_query($conn, $sql);
         $number = mysqli_num_rows($result);
         if(!$result){
@@ -191,6 +191,7 @@
                                                 console.log(data);
                                                 if (data === "수정 완료") {
                                                     alert("결제정보 수정 완료!");
+                                                    location.href='admin_program_payment.php';
                                                 } else if (data === "수정 실패") {
                                                     alert("결제정보 수정 실패!");
                                                 }

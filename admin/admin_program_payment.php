@@ -105,9 +105,8 @@
 
            </div><!--end of list_search  -->
          </form>
-                        <ul id="pay_table">
-                            <li id="pay_first_tr">
-                              <div id="pay_first_span">
+                        <ul id="pay_ul">
+                            <li id="pay_first_li">
                                 <span class="col1">주문번호</span>
                                 <span class="col2">주문자</span>
                                 <span class="col3">주문개수</span>
@@ -115,7 +114,6 @@
                                 <span class="col5">주문일</span>
                                 <span class="col6">결제상태</span>
                                 <span class="col7"> </span>
-                              </div>
                             </li>
 
     <?php

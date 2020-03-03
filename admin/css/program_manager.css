@@ -49,37 +49,44 @@ li {
 }
 
 /* 결제 관리 css */
-#pay_table {
-  padding-top: 50px;
+#pay_ul {
+  clear: both;
+  padding-top: 15px;
   width: 870px;
   text-align: center;
   font-size: 15px;
 }
 
-#pay_table span {
+#pay_ul span {
   height: 30px;
 }
 
-#pay_first_tr {
+#pay_first_li {
   height: 40px;
   background-color: #F23005;
   color: white;
+  padding-bottom: 0px !important;
 }
 
-#pay_first_span {
+#pay_first_li span {
+  padding-top: 10px;
+}
+
+#pay_ul li {
   display: inline-block;
-
-  padding-top: 7px;
+  width: 870px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid lightgray;
 }
 
-#pay_table select {
+#pay_ul select {
   width: 80px;
   height: 28px;
   border: 0px;
 }
 
 .btn_modify {
-  width: 60px;
+  width: 65px;
   height: 27px;
   background-color: white;
   border: 1px solid #F23005;
@@ -89,7 +96,7 @@ li {
 
 /* search */
 #list_search {
-  float: left;
+  float: right;
   height: 30px;
   padding-top: 10px;
 }
@@ -135,33 +142,37 @@ input[type=submit], input[type=button] {
   margin-top: -1px;
 }
 
-#pay_table .col1 {
-  width: 170px !important;
-  background-color: red;
+.col1 {
+  width: 175px;
+  float: left;
 }
 
-#pay_table .col2 {
+.col2 {
   width: 90px;
-  background-color: orange;
+  float: left;
 }
 
 .col3 {
-  width: 90px;
-  background-color: yellow;
+  width: 100px;
+  float: left;
 }
+
 .col4 {
-  width: 90px;
-  background-color: green;
+  width: 120px;
+  float: left;
 }
+
 .col5 {
-  width: 90px;
-  background-color: blue;
+  width: 185px;
+  float: left;
 }
+
 .col6 {
-  width: 90px;
-  background-color: purple;
+  width: 100px;
+  float: left;
 }
+
 .col7 {
-  width: 90px;
-  background-color: red;
+  width: 100px;
+  float: left;
 }

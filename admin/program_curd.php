@@ -132,6 +132,7 @@
   } else {
       $upfile_tmp_name = "";
   }
+
   if (isset($_FILES["upfile"]["type"])) {
       $upfile_type = $_FILES["upfile"]["type"];
       for($i=0; $i<count($upfile_type);$i++){
@@ -174,9 +175,6 @@ if($mode === "insert"){
        }else{
          $copied_file_name = $copied_file_name.",".$copied_file_named;
        }
-
-
-
 
       if ($upfile_size[$i]  > 1000000) {
           echo("

@@ -41,8 +41,11 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     //include 파일업로드기능
     include  "./lib/file_upload.php";
 
+    // echo "<script>alert('{$db_name}');</script>";
+
+
     //8 파일의 실제명과 저장되는 명을 삽입한다.
-    $sql="INSERT INTO `together` VALUES (null,'$q_userid','$q_username','$area','$q_subject','$q_content','$regist_day',0,'$upfile_name', '$upfile_type','$copied_file_name',0,'같이할건강',$group_num,$depth,$ord);";
+    $sql="INSERT INTO `together` VALUES (null,'$q_userid','$q_username','$area','$q_subject','$q_content','$regist_day',0,'$db_name', '$db_type','$copied_file_name',0,'같이할건강',$group_num,$depth,$ord);";
     $result = mysqli_query($conn,$sql);
 
     if (!$result) {

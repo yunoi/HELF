@@ -178,6 +178,8 @@
                    $file_copied  = $row["file_copied"];
                    $file_type    = $row["file_type"];
 
+                   $location = str_replace(","," ",$location);
+
                     ?>
 
                           <li>

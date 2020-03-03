@@ -91,7 +91,7 @@
 
           <div id="content">
             <h1 id="content_title">회원관리 > 회원<p>아이디를 클릭하시면 해당 회원의 상세 정보를 보실 수 있습니다.</p></h1><br>
-            <ul class = "collapsible" data-collapsible = "accordion" style="width:700px;">
+            <ul class = "collapsible" data-collapsible = "accordion">
 
             <?php
                 if (isset($_GET["page"])) {

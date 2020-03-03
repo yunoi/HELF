@@ -299,9 +299,9 @@
                                     <option value="011">011</option>
                                 </select>
                                 -
-                                <input type="number" name="phone_two" id="phone_two" placeholder=" 0000 ">
+                                <input type="number" name="phone_two" id="phone_two" placeholder=" 0000 " min="0" max="9999">
                                 -
-                                <input type="number" name="phone_three" id="phone_three" placeholder=" 0000 ">
+                                <input type="number" name="phone_three" id="phone_three" placeholder=" 0000 " min="0" max="9999">
                             <?php
 									} else {
 								?>
@@ -310,9 +310,9 @@
                                     <option value="011">011</option>
                                 </select>
                                 -
-                                <input type="number" name="phone_two" id="phone_two" value="<?=$phone2?>">
+                                <input type="number" name="phone_two" id="phone_two" value="<?=$phone2?> "min="0" max="9999">
                                 -
-                                <input type="number" name="phone_three" id="phone_three" value="<?=$phone3?>">
+                                <input type="number" name="phone_three" id="phone_three" value="<?=$phone3?>" min="0" max="9999">
                                 <?php
 								}
 								?>

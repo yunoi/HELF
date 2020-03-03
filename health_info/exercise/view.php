@@ -32,8 +32,8 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $id=$row['id'];
     $name=$row['name'];
     $hit=$row['hit'];
-    $subject= htmlspecialchars($row['subject']);
-    $content= htmlspecialchars($row['content']);
+    $subject= $row['subject'];
+    $content= $row['content'];
     $subject=str_replace("\n", "<br>", $subject);
     $subject=str_replace(" ", "&nbsp;", $subject);
     $content=str_replace("\n", "<br>", $content);

@@ -81,6 +81,8 @@
         $choose = $row["choose"];
         $price = $row["price"];
 
+        $location = str_replace(","," ",$location);
+        
         if(isset($row["file_name"])){
           $file_name = $row["file_name"];
         }else{

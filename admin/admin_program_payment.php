@@ -210,19 +210,18 @@
                             <?php 
 
     }
-  }
-        ?>
-                        </table>
 
-                    </div>
-                    <!-- admin_box -->
-                </div>
-                <!-- end of content -->
-            </div>
-            <!-- end of admin_board -->
-        </section>
-        <footer>
-            <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
-        </footer>
-    </body>
+}
+        ?>
+
+            </table>
+
+            </div> <!-- admin_box -->
+          </div>		<!-- end of content -->
+        </div><!--  end of admin_board -->
+    </section>
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>
+    </footer>
+  </body>
 </html>

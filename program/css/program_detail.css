@@ -26,7 +26,7 @@
 
 #main_img {
   width: 700px;
-  height: 389px;
+  height: 432px;
   border-radius: 2px;
 }
 
@@ -37,7 +37,6 @@
 /* 설명란 또는 구매후기나 평가 적는 부분 */
 #see {
   text-align: center;
-  height: 500px;
 }
 
 #see h3 {
@@ -74,7 +73,7 @@
 #div_aside {
   float: left;
   border: 1px solid lightgray;
-  width: 240px;
+  width: 252px;
   margin: 0px auto;
   margin-left: 30px;
   margin-top: 19px;
@@ -431,4 +430,20 @@
   border-radius: 2px;
   margin: 0;
   padding: 0;
+}
+
+#div_aside #program_ranking * {
+  margin-bottom: 0px;
+  padding-right: 0px;
+}
+
+#div_aside #aside_keyword{
+  border: none;
+  margin-left: 10px;
+}
+
+
+#div_aside #keyword_area li img {
+    width: 150px;
+    height: 120px;
 }

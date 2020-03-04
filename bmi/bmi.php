@@ -25,13 +25,13 @@
         alert("성별을 체크해주세요");
         return;
       }else if($age.value===""||$age.value<=0||$age.value>150){
-        alert("나이를 입력해주세요");
+        alert("나이를 입력해주세요 0세이상 150세 이하로 넣어주세요");
         return;
-      }else if($cm.value === ""|| isNaN($cm.value) || $cm.value < 50 || $cm.value > 240){
-        alert("신장(cm)을 입력해주세요");
+      }else if($cm.value === ""|| isNaN($cm.value) || $cm.value < 50 || $cm.value > 300){
+        alert("신장(cm)을 입력해주세요 50cm 이상 300cm이하로 적어주세요");
         return
       }else if($kg.value === "" ||$kg.value<=29||$kg.value>300){
-        alert("몸무게(kg)을 입력해주세요");
+        alert("몸무게(kg)을 입력해주세요 29kg이상 300kg이하로 입력해주세요");
         return
       }
       <?php $mode="bmi"?>

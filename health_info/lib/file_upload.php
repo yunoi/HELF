@@ -33,12 +33,12 @@ $upload_dir ="./data/"; //업로드된파일을 저장하는장소지정
 
     //7. 임시저장소에 있는 파일을 서버에 지정한 위치로 이동한다.
     if (!move_uploaded_file($upfile_tmp_name, $uploaded_file)) {
-        alert_back('4. 서버 전송에러!!');
+        alert_back('서버 전송에러!!');
     }
 } else {
     $upfile_name="";
     $upfile_type="";
     $copied_file_name="";
 
-          echo "<script>location.href='./list.php';</script>";
+    echo "<script>location.href='./list.php';</script>";
 }

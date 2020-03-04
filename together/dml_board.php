@@ -175,7 +175,11 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     mysqli_close($conn);
     echo "<script>alert('게시글이 등록되었습니다.');</script>";
     echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
+<<<<<<< HEAD
+    //echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
+=======
     // echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
+>>>>>>> 68eb66a00fe570835ad7c19ebe83e5bb2a69f3de
     //echo "<script>location.href='./view.php?';</script>";
 
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){

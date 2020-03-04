@@ -15,6 +15,48 @@
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
     <script>
       function btn_kcal(){
+        let $gen=document.getElementsByName('gen');
+        let $work=document.getElementsByName('work');
+        let $age=document.getElementById('age');
+        let $cm=document.getElementById('cm');
+        let $kg=document.getElementById('kg');
+        let $goal_kg=document.getElementById('goal_kg');
+        let $term=document.getElementById('term');
+        var $gen_checkds=false;
+        var $work_checkds=false;
+        for(var i=0;$gen.length;i++){
+          if($gen[i].checked==true){
+            $gen_checkds=true;
+          }
+        }
+        for(var i=0;$work.length;i++){
+          if($work[i].checked==true){
+            $work_checkds=true;
+          }
+        }
+        if($gen_checkds==true){
+          alert("성별을 체크해주세요");
+          return;
+        }else if($work_checkds==false){
+          alert("활동량을 체크해주세요");
+          return;
+        }else if($age.value===""||$age.value<=0||$age.value>150){
+          alert("나이를 입력해주세요");
+          return;
+        }else if($cm.value === ""|| isNaN($cm.value) || $cm.value < 50 || $cm.value > 240){
+          alert("신장(cm)을 입력해주세요");
+          return
+        }else if($kg.value === "" ||$kg.value<=29||$kg.value>300){
+          alert("몸무게(kg)을 입력해주세요");
+          return
+        }else if($goal_kg.value>=$kg.value || $goal_kg.value<=30){
+          alert("정확한 목표 몸무게(kg)을 입력해주세요");
+          return
+        }else if($term.value<=0){
+          alert("감량기간을 입력해주세요");
+          return
+        }
+
         <?php $mode = "kcal"; ?>
         document.form_kcal.submit();
       }
@@ -81,7 +123,7 @@
     <aside>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/aside.php";?>
     </aside>
-          </div>            
+          </div>
           </div>
   </section>
   <footer>

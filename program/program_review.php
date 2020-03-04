@@ -1,6 +1,10 @@
 <?php
 // 후기 작성하는것에 기능만을 구현중
   session_start();
+  if(empty($_SESSION['user_id'])||$_SESSION['user_id']===""){
+    echo "<script>alert('로그인후 이용해주세요');history.go(-1);</script>";
+    exit;
+  }
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/create_table.php";
  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 ?>

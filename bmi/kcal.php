@@ -24,21 +24,19 @@
         let $term=document.getElementById('term');
         var $gen_checkds=false;
         var $work_checkds=false;
-        for(var i=0;$gen.length;i++){
-          if($gen[i].checked==true){
+        for(var i=0;i<$gen.length;i++){
+          if($gen[i].checked){
             $gen_checkds=true;
           }
         }
-        for(var i=0;$work.length;i++){
-          if($work[i].checked==true){
+        for(var i=0;i<$work.length;i++){
+          if($work[i].checked){
             $work_checkds=true;
           }
         }
-        if($gen_checkds==true){
+
+        if($gen_checkds==false){
           alert("성별을 체크해주세요");
-          return;
-        }else if($work_checkds==false){
-          alert("활동량을 체크해주세요");
           return;
         }else if($age.value===""||$age.value<=0||$age.value>150){
           alert("나이를 입력해주세요");
@@ -55,6 +53,9 @@
         }else if($term.value===""||$term.value<=0){
           alert("감량기간을 입력해주세요");
           return
+        }else if($work_checkds==false){
+          alert("활동량을 체크해주세요");
+          return;
         }
 
         <?php $mode = "kcal"; ?>

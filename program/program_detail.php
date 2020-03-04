@@ -11,8 +11,8 @@
  define('SCALE', 5);
  $mode="insert";
  $update="";
-
- if(isset($_SESSION['user_id'])){
+ $user_id="";
+ if(isset($_SESSION['user_id'])&&$_SESSION['user_id']!==""){
    $user_id=$_SESSION['user_id'];
  }
  if(isset($_SESSION["user_grade"])){
@@ -425,7 +425,7 @@
                            작성시간&nbsp;:&nbsp;<?=$review_regist_day?>
                          </span>
                          <?php
-                          if ($user_id==$review_id||$user_id=="admin") {
+                          if ($user_id==$review_id || $user_grade=="admin") {
                           ?>
                             <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>
                             <input type="submit" value="삭제">&nbsp&nbsp

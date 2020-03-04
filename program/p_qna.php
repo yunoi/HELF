@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(empty($_SESSION['user_id'])||$_SESSION['user_id']===""){
+  echo "<script>alert('로그인후 이용해주세요');</script>";
+  echo "<script>opener.parent.location.reload();self.close();</script>";
+}
 include $_SERVER['DOCUMENT_ROOT']."/HELF/common/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 

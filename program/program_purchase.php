@@ -3,7 +3,13 @@ https://kmong.com/order/2518542 참고한 사이트 화면
  -->
 <?php
   session_start();
-  $user_id = $_SESSION["user_id"];
+  if(isset($_SESSION["user_id"])){
+    $user_id = $_SESSION["user_id"];
+  } else {
+    echo "<script>alert('로그인 후 이용해주세요')</script>";
+    echo "<script>location.href='../login/login_form.php';</script>";
+    exit();
+  }
   $price=$subject="";
 ?>
 <!DOCTYPE html>

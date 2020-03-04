@@ -13,8 +13,8 @@ if (!$conn) {
 if(isset($_SESSION["user_id"])){
   $user_id = $_SESSION["user_id"];
 } else {
-  echo "<script>alert('로그인 후 이용해주세요^오^')</script>";
-  echo "<script>history.go(-1);</script>";
+  echo "<script>alert('로그인 후 이용해주세요')</script>";
+  echo "<script>location.href='../login/login_form.php';</script>";
   exit();
 }
 

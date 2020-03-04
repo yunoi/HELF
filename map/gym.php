@@ -17,16 +17,6 @@
         x.innerHTML="no";
       }
     }
-    // $("$btn_map").onclick(function showPosition(position){
-    //   lat=position.coords.latitude;
-    //   log=position.coords.longitude;
-    //   x=lat+","+log; //자기 위치 값에 위도 경도를 합친값
-    //   alert(x);
-    //   function call() {
-    //     let name = document.getElementById('find').value;
-    //     location.href='https://www.google.com/maps/search/?api=1&query='+name;
-    //   }
-    // });
     function getSigunguList(city){
       let gym=document.getElementById("gym");
       switch (city) {
@@ -87,9 +77,11 @@
       var cityval=document.getElementById('city').value;
       var sigungucode=document.getElementById('sigungucode').value;
       if(cityval==="" || sigungucode===""){
+        document.getElementById('message').innerHTML="지역이나 시군구를 선택해주세요";
         return;
       }
       // location.href='https://www.google.com/maps/search/?api=1&query='+cityval+''+document.getElementById('sigungucode').value+'헬스장';
+      document.getElementById('message').innerHTML="";
       window.open('https://www.google.com/maps/search/?api=1&query='+cityval+''+sigungucode+'헬스장');
     }
     function last(){getSigunguList("서울")};
@@ -125,6 +117,7 @@
       </div>
     <br/><br/>
     <input type="button" id="btn_map" name="" value="검색" onclick="hells();">
+    <div id="message"></div>
     </div>
   </body>
 </html>

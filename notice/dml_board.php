@@ -107,6 +107,9 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     echo "<script>location.href='./notice.php?page=1';</script>";
 
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
+  if(isset($_POST['del_file'])&&$_POST['del_file']==1){
+    $del_file=$_POST['del_file'];
+  }
   $content = trim($_POST["content"]);
   $subject = trim($_POST["subject"]);
   if(empty($content)||empty($subject)){
@@ -172,6 +175,12 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
   if($upfile_name==="" || $upfile_type==="" || $copied_file_name===""){
     $sql="UPDATE `notice` SET `subject`='$q_subject',`content`='$q_content',`regist_day`='$regist_day' WHERE `num`=$q_num;";
   }else{
+    $sql="UPDATE `notice` SET `subject`='$q_subject',`content`='$q_content',`regist_day`='$regist_day',`file_name`='$upfile_name',`file_type`='$type[0]',`file_copied`='$copied_file_name' WHERE `num`=$q_num;";
+  }
+  if($del_file==="1"){
+    $upfile_name      = "";
+    $upfile_type      = "";
+    $copied_file_name = "";
     $sql="UPDATE `notice` SET `subject`='$q_subject',`content`='$q_content',`regist_day`='$regist_day',`file_name`='$upfile_name',`file_type`='$type[0]',`file_copied`='$copied_file_name' WHERE `num`=$q_num;";
   }
   $result = mysqli_query($conn,$sql);

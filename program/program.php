@@ -49,7 +49,7 @@
                 <h2>운동종류</h2>
                 <select name="s_type" class="kind_sel">
                   <option value="">전체</option>
-                  <option value="pt">pt</option>
+                  <option value="pt">PT</option>
                   <option value="수영">수영</option>
                   <option value="축구">축구</option>
                   <option value="복싱">복싱</option>

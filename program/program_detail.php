@@ -81,16 +81,20 @@
             <section>
               <script type="text/javascript">
               function move1(){
-                window.scrollTo(0, 440);
+                var offset = $("#program_explain_h3").offset();
+                $('html, body').animate({scrollTop : offset.top-280}, 200);
               }
               function move2(){
-                window.scrollTo(0, 965);
+                var offset = $('#price_h3').offset();
+                $('html').animate({scrollTop : offset.top-280}, 200);
               }
               function move3(){
-                window.scrollTo(0, 1375);
+                var offset = $('#calcel_h3').offset();
+                $('html').animate({scrollTop : offset.top-280}, 200);
               }
               function move4(){
-                window.scrollTo(0, 2250);
+                var offset = $('#qna_h3').offset();
+                $('html').animate({scrollTop : offset.top-280}, 200);
               }
 
               </script>
@@ -112,7 +116,7 @@
                 var sticky = header.offsetTop;
 
                 function myFunction() {
-                  if (window.pageYOffset > sticky-25) {
+                  if (window.pageYOffset > sticky+25) {
                     header.classList.add("sticky");
                   } else {
                     header.classList.remove("sticky");
@@ -121,7 +125,7 @@
 
                 </script>
                 <div class="" id="see">
-                  <h3>프로그램 설명</h3>
+                  <h3 id="program_explain_h3">프로그램 설명</h3>
                   <div class="see_body">
                     <p><?=$content?></p>
                     <div class="clear"></div>
@@ -156,7 +160,7 @@
                 ?>
                     <div class="clear"></div>
                 <div class="" id="pay">
-                  <h3>가격 정보</h3>
+                  <h3 id="price_h3">가격 정보</h3>
                   <div class="pay_table">
                     <table>
                       <tr>
@@ -186,7 +190,7 @@
                 </div>
                   <div class="clear"></div><br/><br/>
                 <div class="" id="cancel">
-              <h3>취소 및 환불 규정</h3>
+              <h3 id="calcel_h3">취소 및 환불 규정</h3>
 <p>가. 레슨 환불기준 원칙<br/>
 학원의 설립/운영 및 과외교습에 관한 법률 제 18조(교습비 등의 반환 등)<br/>
 - 학원설립, 운영자, 교습자 및 개인과외교습자는 학습자가 수강을 계속할 수 없는 경우 또는 학원의 등록말소, 교습소 폐지 등으로 교습을 계속할 수 없는 경우에는 학습자로부터 받은<br/>
@@ -208,7 +212,7 @@
 </p>  </div>
                 <div class="clear"></div><br/><br/>
                 <div id="program_qna"> <!--프로그램 qna 게시판이 들어갈 자리-->
-                  <h3>QnA</h3>
+                  <h3 id="qna_h3">QnA</h3>
                   <p style="text-align:left; display:inline-block;">구매하시려는 상품에 대해 궁금하신 점이 있으신 경우 문의해주세요.</p>&nbsp
                   <br><br><button type="button" id="question_btn" onclick="qna_mode(this.value,<?=$o_key?>,null)" name="button" value="new_insert">문의하기</button>
                   <br><br>
@@ -424,8 +428,14 @@
                          <span style="display: inline-block; width:250px">
                            작성시간&nbsp;:&nbsp;<?=$review_regist_day?>
                          </span>
-                         <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>
-                         <input type="submit" value="삭제">&nbsp&nbsp
+                         <?php
+                          if ($user_id==$review_id||$user_id=="admin") {
+                          ?>
+                            <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>
+                            <input type="submit" value="삭제">&nbsp&nbsp
+                          <?php
+                          }
+                          ?>
 
                        </div>
 

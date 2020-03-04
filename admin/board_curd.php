@@ -7,7 +7,6 @@
   else $mode = "";
 
 
-
 //게시글 삭제
   function board_delete($conn)
   {

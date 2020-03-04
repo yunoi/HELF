@@ -75,6 +75,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $num=$row['num'];
 
     mysqli_close($conn);
+
     echo "<script>alert('게시글이 등록되었습니다.');</script>";
     echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
 
@@ -115,7 +116,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $content = trim($_POST["content"]);
     $subject = trim($_POST["subject"]);
     if (empty($content)||empty($subject)) {
-        echo "<script>alert('내용이나제목입력요망!');history.go(-1);</script>";
+        echo "<script>alert('내용이나 제목을 입력해주세요.');history.go(-1);</script>";
         exit;
     }
     $subject = test_input($_POST["subject"]);
@@ -171,6 +172,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $row=mysqli_fetch_array($result);
     $max_num=$row['max(num)'];
 
+    mysqli_close($conn);
     echo "<script>alert('게시글이 등록되었습니다.');</script>";
     echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
     //echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
@@ -234,6 +236,7 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
   if (!$result) {
     die('Error: ' . mysqli_error($conn));
   }
+  mysqli_close($conn);
 
   echo "<script>alert('수정이 완료되었습니다.');</script>";
   echo "<script>location.href='./view.php?num=$num&page=1&hit=$hit';</script>";
@@ -276,7 +279,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     mysqli_close($conn);
     echo "<script>location.href='./view.php?num=$parent&page=$page&hit=$hit';</script>";
   }//end of if rowcount
-
 
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete_ripple"){
   $page= test_input($_GET["page"]);

@@ -278,6 +278,7 @@
   margin-top: 1px;
   border: solid 1px #cccccc;
   width: 650px;
+  resize: none;
 }
 
 #write_button {

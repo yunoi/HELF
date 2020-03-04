@@ -87,7 +87,7 @@ li {
 }
 
 .btn_modify {
-  width: 65px;
+  width: 55px;
   height: 27px;
   background-color: white;
   border: 1px solid #F23005;
@@ -144,7 +144,7 @@ input[type=submit], input[type=button] {
 }
 
 .col1 {
-  width: 175px;
+  width: 160px;
   float: left;
 }
 
@@ -154,17 +154,17 @@ input[type=submit], input[type=button] {
 }
 
 .col3 {
-  width: 100px;
+  width: 60px;
   float: left;
 }
 
 .col4 {
-  width: 120px;
+  width: 100px;
   float: left;
 }
 
 .col5 {
-  width: 185px;
+  width: 170px;
   float: left;
 }
 
@@ -175,6 +175,11 @@ input[type=submit], input[type=button] {
 
 .col7 {
   width: 100px;
+  float: left;
+}
+
+.col8 {
+  width: 60px;
   float: left;
 }
 #page_button{text-align: center;}

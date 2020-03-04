@@ -179,6 +179,7 @@
                    $row = mysqli_fetch_array($result);
                    // 하나의 레코드 가져오기
                    $sales_day    = $row["sales_day"];
+                   $payment = $row["payment"];
                    $num          = $row["num"];
                    $o_key        = $row["o_key"];
                    $shop         = $row["shop"];
@@ -209,7 +210,7 @@
                                   <div class="info_3">모집기간 : <?=$end_day?> 까지</div>
                                   <div class="info_4">선택한 옵션 : <?=$choose?></div>
                                   <div class="program_buy_day">구매일 : <?=$sales_day?></div>
-                                  <div class="status">결제상태 : <?=$payment_status?></div>
+                                  <div class="status"><?=$payment_status?> (<?=$payment?>)</div>
                                 </a>
                               </div>
                               <div class="program_price">

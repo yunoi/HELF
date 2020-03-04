@@ -96,7 +96,7 @@
                     <form name="board_form" action="./admin_program_payment.php?mode=search" method="post">
            <div id="list_search">
                <select  name="find">
-                 <option value="number">주문번호</option>
+                 <option value="ord_num">주문번호</option>
                  <option value="id">아이디</option>
                  <option value="complete">결제상태</option>
                </select>
@@ -123,18 +123,16 @@
       $total_record=0;
     if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
           //제목, 내용, 아이디
-          $find = $_POST["find"];
-          $search = $_POST["search"];
+
           if(isset($_GET["find"])&&isset($_GET["search"])){
             $find = $_GET["find"];
             $search = $_GET["search"];
+          }else{
+            $find = $_POST["find"];
+            $search = $_POST["search"];
           }
           $q_search = mysqli_real_escape_string($conn, $search);
-          if($find==="number"){
-              $sql="SELECT * from `sales` where ord_num like '%$q_search%' group by ord_num order by num desc";
-          }else{
-              $sql="SELECT * from `sales` where id like '%$q_search%' group by ord_num order by num desc";
-          }
+          $sql="SELECT * from `sales` where $find like '%$q_search%' group by ord_num order by num desc";
     } else {
         $sql = "select * from sales group by ord_num order by complete asc";
     }

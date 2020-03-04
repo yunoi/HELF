@@ -66,7 +66,7 @@
      $end_day   = $row["end_day"];
      $content = $row["content"];
      $location  = $row["location"];
-     $personnel = $row["personnel"];
+     $phone_number = $row["phone_number"];
 
      $file_copied= $row["file_copied"];
      $min_price = $row["price"];
@@ -150,7 +150,7 @@
                 </ul><br/>
                 <ul>
                   <li>전화번호</li><br/>
-                  <li><b><?=$personnel?></b></li>
+                  <li><b><?=$phone_number?></b></li>
                 </ul><br/>
                 </div>
                 </div>

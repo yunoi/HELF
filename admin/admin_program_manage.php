@@ -1,4 +1,4 @@
-<?php session_start(); 
+<?php session_start();
 
 ?>
 <!DOCTYPE html>
@@ -117,7 +117,7 @@
                     $type         = $row["type"];
                     $subject      = $row["subject"];
                     $content      = $row["content"];
-                    $personnel    = $row["personnel"];
+                    $phone_number    = $row["phone_number"];
                     $end_day      = $row["end_day"];
                     $location      = $row["location"];
 
@@ -148,7 +148,7 @@
                         </tr>
                         <tr>
                           <td class="td1">모집인원</td>
-                          <td class="td2"><?=$personnel?></td>
+                          <td class="td2"><?=$phone_number?></td>
                           <td class="td1">모집마감일</td>
                           <td class="td2"><?=$end_day?></td>
                         </tr>

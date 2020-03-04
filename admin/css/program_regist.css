@@ -125,3 +125,13 @@ input[type="date"]::-webkit-inner-spin-button {
 input:-webkit-autofill {
    -webkit-box-shadow: 0 0 0 1000px white inset;
 }
+
+#btn_regist{
+  width: 70px;
+  height: 40px;
+  background: #F23005;
+  font-size: 18px;
+  color: white;
+  border-radius: 5px;
+  margin-top: 40px;
+}

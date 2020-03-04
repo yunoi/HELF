@@ -81,7 +81,7 @@
               <br><br>
               <li id="last_li">
                 <h2>마감날짜</h2>
-                <input type="date" name="s_date" value="">
+                <input type="date" name="s_date" value="" style="width:130px;">
               </li>
               <br><br>
               <li class="li_ok">

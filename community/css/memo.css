@@ -124,6 +124,7 @@
 
 #ripple_textarea textarea{
 	border:solid 1px #cccccc;
+	resize: none;
 }
 #ripple_textarea input{
 	border: 1px solid #F23005;

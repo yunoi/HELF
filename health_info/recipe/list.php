@@ -160,7 +160,7 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 <?php
 if($page>=1 && $total_page!=$page){
   $val=(int)$page+1;
-  echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./notice.php?page=$val'>▶ 다음</a>";
+  echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./list.php?page=$val'>▶ 다음</a>";
 }
 
  ?>

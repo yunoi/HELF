@@ -257,10 +257,10 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                 var msg = '결제가 완료되었습니다.';
                 // msg += '고유ID : ' + rsp.imp_uid;
                 // msg += '상점 거래ID : ' + rsp.merchant_uid;
-                msg += '결제 금액 : ' + rsp.paid_amount;
-                msg += '주문 번호 : ' + rsp.name;
-                msg += '주문자 : ' + rsp.buyer_name;
-                msg += '결제 일자 : ' + rsp.paid_at;
+                // msg += '결제 금액 : ' + rsp.paid_amount;
+                // msg += '주문 번호 : ' + rsp.name;
+                // msg += '주문자 : ' + rsp.buyer_name;
+                // msg += '결제 일자 : ' + rsp.paid_at;
                 // msg += '카드 승인번호 : ' + rsp.apply_num;
                 document.kakao_value.paid_amount.value=rsp.paid_amount;
                 document.kakao_value.name.value=rsp.name;

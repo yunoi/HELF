@@ -5,8 +5,8 @@
   if (isset($_GET["mode"])) $mode = $_GET["mode"];
   else $mode = "";
 
-  if (isset($_GET["id"])) $id = $_GET["id"];
-  else $id = "";
+  if (isset($_GET["delete_id"])) {$delete_id = $_GET["delete_id"]; echo "$delete_id ///";}
+  else {$delete_id = "";}
 
   if (isset($_POST["id"])) $id = $_POST["id"];
   else $id = "";
@@ -41,9 +41,10 @@
   }
 
   //유저삭제
-  function user_delete($conn, $id)
+  function user_delete($conn, $delete_id)
   {
-    $sql = "delete from members where id = '$id'";
+    $sql = "delete from members where id = '$delete_id';";
+
     mysqli_query($conn, $sql);
     mysqli_close($conn);
 
@@ -66,7 +67,7 @@
 
   switch ($mode) {
     case 'delete':
-      user_delete($conn, $id);
+      user_delete($conn, $delete_id);
       echo "
          <script>
           alert('탈퇴되었습니다.');

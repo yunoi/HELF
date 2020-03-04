@@ -74,16 +74,13 @@ session_start();
 
             <div id="write_button">
               <!--목록보기 -->
-              
               <button type="button"><a href="./list.php?page=<?=$page?>">목록</a></button>&nbsp;
-
             <?php
               //세션값이 존재하면 수정기능과 삭제기능부여하기
               if(isset($_SESSION['user_id'])){
                 if($_SESSION['user_grade']=="admin"){
                   echo('<button type="button"><a href="./write_edit_form.php?mode=update&num='.$num.'">수정</a></button>&nbsp;&nbsp;');
                   echo('<button type="button" id="write_button_delete" onclick="check_delete('.$num.')"><a>삭제</a></button>&nbsp');
-                  
                 }
               }
               // 세션값이 존재하면 글쓰기 기능부여하기\

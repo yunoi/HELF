@@ -17,8 +17,6 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
     $hit = test_input($_GET["hit"]);
     $q_num = mysqli_real_escape_string($conn, $num);
 
-    // echo "<script>alert('게시글 번호 : {$num}');</script>";
-
     $sql="UPDATE `community` SET `hit`=$hit WHERE b_code='다이어트후기' and `num`=$q_num;";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
@@ -42,8 +40,6 @@ if (isset($_GET["num"])&&!empty($_GET["num"])) {
 
     $content=str_replace("\n", "<br>", $content);
     $content=str_replace(" ", "&nbsp;", $content);
-
-    echo "$subject";
 
     $b_code=$row['b_code'];
 

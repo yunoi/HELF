@@ -7,7 +7,7 @@
 
   echo("
        <script>
-          alert('로그아웃 되었습니다^오^')
+          alert('로그아웃 되었습니다!')
           history.go(-1);
          </script>
        ");

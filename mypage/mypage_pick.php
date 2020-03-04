@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./css/mypage.css">
     <link rel="stylesheet" href="./css/program.css">
     <link rel="shortcut icon" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/img/favicon.ico">
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <link
         rel="stylesheet"
         type="text/css"
@@ -30,7 +31,6 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700|Nanum+Gothic+Coding:400,700|Nanum+Gothic:400,700,800|Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     <script type="text/javascript" src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/common/js/main.js"></script>
     <script type="text/javascript">

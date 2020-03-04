@@ -119,13 +119,15 @@
                    // 가져올 레코드로 위치(포인터) 이동
                    $row = mysqli_fetch_array($result);
                    // 하나의 레코드 가져오기
+                   $o_key = $row["o_key"];
                    $subject      = $row["subject"];
                    $content     = $row["content"];
                    $regist_day  = $row["regist_day"];
+
                     ?>
             				<li>
             					<span class="col1"><?=str_cutting($subject,25)?></span>
-            					<span class="col2"><a href="board_view.php?num=<?=$num?>&page=<?=$page?>"><?=str_cutting($content,100)?></a></span>
+            					<span class="col2"><a href="../program/program_detail.php?o_key=<?=$o_key?>"><?=str_cutting($content,100)?></a></span>
                       <span class="col3"><?=$regist_day?></span>
             				</li>
             <?php

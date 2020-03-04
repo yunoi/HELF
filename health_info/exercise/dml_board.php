@@ -88,6 +88,7 @@ if (isset($_GET["mode"])&&$_GET["mode"]=="insert") {
     mysqli_close($conn);
 
     echo "<script>location.href='./list.php';</script>";
+
 } elseif (isset($_GET["mode"])&&$_GET["mode"]=="update") {
     $content = trim($_POST["content"]);
     $subject = trim($_POST["subject"]);

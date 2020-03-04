@@ -82,19 +82,19 @@
               <script type="text/javascript">
               function move1(){
                 var offset = $("#program_explain_h3").offset();
-                $('html, body').animate({scrollTop : offset.top-280}, 200);
+                $('html, body').animate({scrollTop : offset.top-220}, 200);
               }
               function move2(){
                 var offset = $('#price_h3').offset();
-                $('html').animate({scrollTop : offset.top-280}, 200);
+                $('html').animate({scrollTop : offset.top-220}, 200);
               }
               function move3(){
                 var offset = $('#calcel_h3').offset();
-                $('html').animate({scrollTop : offset.top-280}, 200);
+                $('html').animate({scrollTop : offset.top-220}, 200);
               }
               function move4(){
                 var offset = $('#qna_h3').offset();
-                $('html').animate({scrollTop : offset.top-280}, 200);
+                $('html').animate({scrollTop : offset.top-220}, 200);
               }
 
               </script>
@@ -125,6 +125,7 @@
 
                 </script>
                 <div class="" id="see">
+                  <br><br><br>
                   <h3 id="program_explain_h3">프로그램 설명</h3>
                   <div class="see_body">
                     <p><?=$content?></p>
@@ -470,7 +471,7 @@
 
                 <h2><?=$shop?></h2>
                 <form class="" action="#" method="post">
-                  <p>
+                  <p style="height:56px;">
                     <?=$subject?><br/>
                   </p>
                   <h3><span><?=$min_price?></span>원 부터~</h3>
@@ -565,7 +566,7 @@
                   <br/>
                   <div class="">
                     <p>선택옵션:</p>
-                    <h3><span id="h_pay">없음</span></h3>
+                    <h3 style="margin-bottom:50px;"><span id="h_pay">없음</span></h3>
 
                   </div>
 
@@ -584,7 +585,128 @@
                   <input type="button" name="" value="장바구니" onclick="program_pick_db();">
                   <input type="button" name="" value="구매하기" onclick="program_purchase();">
                 </form>
+
+
+                <br><br><br>
+
+                <div class="">
+                  <div id="aside_keyword">
+                      <p class="aside_title">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp최근 본 상품</p>
+                      <ol id="keyword_area">
+                      <?
+                    $photo="none.png";
+                    $subject="최근 본 상품이 없습니다.";
+                    $shop=$type="";
+                      if(isset($_COOKIE['today_view'])){
+                          $cookie_array=explode(",", $_COOKIE['today_view']);
+                          $cookie_count=sizeof($cookie_array);
+                          if($cookie_count>3){
+                              $cookie_count = 3;
+                          }
+                          $recent_array=array_reverse($cookie_array);
+                          for($i=0; $i < $cookie_count; $i++){
+
+                                  $sql = "SELECT * from `program` where `o_key`='$recent_array[$i]';";
+                                  $result = mysqli_query($conn, $sql) or die("최근 본 상품 불러오기 실패: ".mysqli_error($conn));
+                                  $row = mysqli_fetch_array($result);
+                                  $photo = $row['file_copied'];
+                                  $photo = explode(",", $photo);
+                                  $subject = $row['subject'];
+                                  $shop = $row['shop']." / ";
+                                  $type = $row['type'];
+
+                  ?>
+                      <li>
+                      <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie_array[$i]?>"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$photo[0]?>"></a>
+              <div><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie_array[$i]?>"><?=$shop?><?=$type?><br><?=$subject?></a></div>
+                      </li>
+                  <?php
+                      }
+                          } else {
+                              ?>
+                                <li>
+                      <a href="#"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$photo?>"></a>
+              <div><a href="#" style="color:gray;"><?=$shop?><?=$type?><?=$subject?></a></div>
+                      </li>
+                              <?php
+
+                          }
+                  ?>
+                      </ul>
+                  </div>
+                  <div id="program_ranking">
+                      <div class="" style="text-align:center;">
+                        <h3>프로그램 인기순위 Top 5!</h3>
+                      </div>
+                      <br>
+
+                          <ul id="ul_program">
+                            <li id="r_menu">
+                              <p class="pr1">랭킹</p>
+                              <p class="pr2">샵</p>
+                              <p class="pr3">옵션</p>
+                              <p class="pr4">판매량</p>
+                            </li>
+                            <?php
+                            $sql="select p.o_key, p.shop, p.choose, count(s.num) as 'sales_rate' from sales s ";
+                            $sql.="inner join program p on s.o_key = p.o_key ";
+                            $sql.="group by p.o_key order by count(s.num) desc limit 5";
+
+                            $result = mysqli_query($conn, $sql);
+                            $array = array();
+
+                            for($i=0;$row=mysqli_fetch_array($result);$i++) {
+                              for ($j=0; $j<3; $j++) {
+                                if($j == 0){
+                                  $array[$i][$j] = $row["shop"];
+                                }else if($j == 1){
+                                  $array[$i][$j] = $row["choose"];
+                                }else if($j == 2){
+                                  $array[$i][$j] = $row["sales_rate"];
+                                }
+                              }
+                            }
+
+                              for($i=0; $i<count($array); $i++){
+                                echo "<li>";
+                                $rank=$i + 1;
+                            ?>
+                                <p class="pr1"><?=$rank?></p>
+                                <p class="pr2">
+                                <?php
+                                if(strlen($array[$i][0]) > 15){
+                                ?>
+                                <MARQUEE><?=$array[$i][0]?></MARQUEE>
+                                <?php
+                              }else{
+                                ?>
+                                <?=$array[$i][0]?>
+                                <?php
+                                  }
+                                 ?>
+                                  </p>
+                                <p class="pr3"><?=$array[$i][1]?></p>
+                                <p class="pr4"><?=$array[$i][2]?></p>
+
+                             <?php
+
+                               echo "</li>";
+                             }
+                             ?>
+                          </ul>
+
+
+                  </div>
+
+                </div>
+
+
+
               </div>
+
+
+
+
             </aside>
           </div>
             <div class="clear"></div>

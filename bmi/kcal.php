@@ -39,19 +39,19 @@
           alert("성별을 체크해주세요");
           return;
         }else if($age.value===""||$age.value<=0||$age.value>150){
-          alert("나이를 입력해주세요");
+          alert("나이를 입력해주세요 0세이상 150세이하로 입력해주세요");
           return;
-        }else if($cm.value === ""|| isNaN($cm.value) || $cm.value < 50 || $cm.value > 240){
-          alert("신장(cm)을 입력해주세요");
+        }else if($cm.value === ""|| isNaN($cm.value) || $cm.value < 50 || $cm.value > 300){
+          alert("신장(cm)을 입력해주세요 50cm이상 300cm이하로 입력해주세요");
           return
         }else if($kg.value === "" ||$kg.value<=29||$kg.value>300){
-          alert("몸무게(kg)을 입력해주세요");
+          alert("몸무게(kg)을 입력해주세요 29kg이상 300kg이하로 입력해주세요");
           return
-        }else if($goal_kg.value===""||$goal_kg.value>=$kg.value || $goal_kg.value<=30){
-          alert("정확한 목표 몸무게(kg)을 입력해주세요");
+        }else if($goal_kg.value===""||$goal_kg.value>=$kg.value || $goal_kg.value<=29){
+          alert("정확한 목표 몸무게(kg)을 입력해주세요 목표몸무게가 29kg이상 지금몸무게보다 적게 입력해주세요");
           return
         }else if($term.value===""||$term.value<=0){
-          alert("감량기간을 입력해주세요");
+          alert("감량기간을 입력해주세요 감량기간을 1개월 이상으로 입력해주세요");
           return
         }else if($work_checkds==false){
           alert("활동량을 체크해주세요");

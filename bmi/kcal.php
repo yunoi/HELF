@@ -49,10 +49,10 @@
         }else if($kg.value === "" ||$kg.value<=29||$kg.value>300){
           alert("몸무게(kg)을 입력해주세요");
           return
-        }else if($goal_kg.value>=$kg.value || $goal_kg.value<=30){
+        }else if($goal_kg.value===""||$goal_kg.value>=$kg.value || $goal_kg.value<=30){
           alert("정확한 목표 몸무게(kg)을 입력해주세요");
           return
-        }else if($term.value<=0){
+        }else if($term.value===""||$term.value<=0){
           alert("감량기간을 입력해주세요");
           return
         }

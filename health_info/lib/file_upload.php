@@ -39,4 +39,6 @@ $upload_dir ="./data/"; //업로드된파일을 저장하는장소지정
     $upfile_name="";
     $upfile_type="";
     $copied_file_name="";
+
+          echo "<script>location.href='./list.php';</script>";
 }

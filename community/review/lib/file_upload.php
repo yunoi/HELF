@@ -84,9 +84,6 @@ if ($upfile_name[0]) {
   $db_name="";
   $db_type="";
 
-  echo "<script>
-          history.go(-1);
-          </script>
-        ";
+  echo "<script>location.href='./list.php';</script>";
 
 }

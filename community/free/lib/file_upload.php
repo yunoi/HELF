@@ -84,9 +84,7 @@ if ($upfile_name[0]) {
     $db_name="";
     $db_type="";
 
-    echo "<script>
-            history.go(-1);
-            </script>
-          ";
+    echo "<script>location.href='./list.php';</script>";
+    echo "<script>alert('게시글이 등록되었습니다.');</script>";
 
 }

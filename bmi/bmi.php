@@ -24,13 +24,13 @@
         document.getElementById('girl').checked==false){
         alert("성별을 체크해주세요");
         return;
-      }else if($age.value===""){
+      }else if($age.value===""||$age.value<=0||$age.value>150){
         alert("나이를 입력해주세요");
         return;
       }else if($cm.value === ""|| isNaN($cm.value) || $cm.value < 50 || $cm.value > 240){
         alert("신장(cm)을 입력해주세요");
         return
-      }else if($kg.value === ""){
+      }else if($kg.value === "" ||$kg.value<=29||$kg.value>300){
         alert("몸무게(kg)을 입력해주세요");
         return
       }

@@ -22,7 +22,7 @@ session_start();
         define('SCALE', 10);
 
         //*****************************************************
-        $sql=$result=$total_record=$total_page=$start="";
+        $sql=$file_name=$result=$total_record=$total_page=$start="";
         $row="";
         $memo_id=$memo_num=$memo_date=$memo_nick=$memo_content="";
         $total_record=0;
@@ -33,7 +33,7 @@ session_start();
             $search = $_POST["search"];
             $q_search = mysqli_real_escape_string($conn, $search);
             if($find==="full"){
-              $sql="SELECT * from `notice` where subject AND content like '%$q_search%' order by num desc";
+              $sql="SELECT * from `notice` where subject or content like '%$q_search%' order by num desc";
             }else{
               $sql="SELECT * from `notice` where $find  like '%$q_search%' order by num desc";
             }
@@ -106,7 +106,7 @@ session_start();
               <div id="list_item2">
                   <a href="./view.php?num=<?=$num?>&page=<?=$page?>&hit=<?=$hit+1?>"><?=$subject?></a>
                   <?php
-                  if(!($file_name==="")){
+                  if(isset($file_name)&&!($file_name==="")){
                     echo "<img src='./img/disk.png' alt='' width='20' height='20'>";
                   }else{
                     echo "";
@@ -126,21 +126,21 @@ session_start();
           <?php
           if($page>1){
             $val=(int)$page-1;
-            echo "<a href='./map.php?page=$val'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
+            echo "<a href='./notice.php?page=$val'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
           }?>
         <?php
           for ($i=1; $i <= $total_page ; $i++) {
               if ($page==$i) {
                   echo "<b>&nbsp;$i&nbsp;</b>";
               } else {
-                  echo "<a href='./map.php?page=$i'>&nbsp;$i&nbsp;</a>";
+                  echo "<a href='./notice.php?page=$i'>&nbsp;$i&nbsp;</a>";
               }
           }
         ?>
         <?php
         if($page>=1 && $total_page!=$page){
           $val=(int)$page+1;
-          echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./map.php?page=$val'>▶ 다음</a>";
+          echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./notice.php?page=$val'>▶ 다음</a>";
         }
 
          ?>

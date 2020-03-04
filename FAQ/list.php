@@ -33,7 +33,7 @@ session_start();
           $search = $_POST["search"];
           $q_search = mysqli_real_escape_string($conn, $search);
           if($find==="full"){
-            $sql="SELECT * from `faq` where subject AND content like '%$q_search%' order by num desc";
+            $sql="SELECT * from `faq` where subject or content like '%$q_search%' order by num desc";
           }else{
             $sql="SELECT * from `faq` where $find  like '%$q_search%' order by num desc";
           }
@@ -114,21 +114,21 @@ session_start();
           <?php
           if($page>1){
             $val=(int)$page-1;
-            echo "<a href='./map.php?page=$val'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
+            echo "<a href='./list.php?page=$val'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
           }?>
         <?php
           for ($i=1; $i <= $total_page ; $i++) {
               if ($page==$i) {
                   echo "<b>&nbsp;$i&nbsp;</b>";
               } else {
-                  echo "<a href='./map.php?page=$i'>&nbsp;$i&nbsp;</a>";
+                  echo "<a href='./list.php?page=$i'>&nbsp;$i&nbsp;</a>";
               }
           }
         ?>
         <?php
         if($page>=1 && $total_page!=$page){
           $val=(int)$page+1;
-          echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./map.php?page=$val'>▶ 다음</a>";
+          echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./list.php?page=$val'>▶ 다음</a>";
         }
 
          ?>

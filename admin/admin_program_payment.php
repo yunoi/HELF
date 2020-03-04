@@ -169,37 +169,38 @@
                 $complete    = $row["complete"];
                 $sql = "select * from sales where ord_num='$ord_num'";
                 $result_for_num = mysqli_query($conn, $sql);
-                $recode = mysqli_num_rows($result_for_num);
-                echo "<script>alert($complete);</script>";
-                ?>
-                        <li>
-                            <span class="col1"><?=$ord_num?></span>
-                            <span class="col2"><?=$id?></span>
-                            <span class="col3"><?=$recode?>종류</span>
-                            <span class="col4"><?=$total_price?>원</span>
-                            <span class="col5"><?=$sales_day?></span>
-                            <span class="col6">
-                                <select id="payment_status_<?=$i?>" class="no-autoinit">
-                                    <?php if($complete === "결제완료") { ?>
-                                    <option value='결제완료' selected="selected">결제완료</option>
-                                    <option value='결제대기'>결제대기</option>
-                                    <option value='주문취소'>주문취소</option>
-                                <?php } else if($complete === "결제대기") {?>
-                                    <option value='결제완료'>결제완료</option>
-                                    <option value='결제대기' selected="selected">결제대기</option>
-                                    <option value='주문취소'>주문취소</option>
-                                <?php } else { ?>
-                                    <option value='결제완료'>결제완료</option>
-                                    <option value='결제대기'>결제대기</option>
-                                    <option value='주문취소' selected="selected">주문취소</option>
-                                    <?php } ?>
-                                </select>
-                            </span>
+                $record = mysqli_num_rows($result_for_num);
 
-                            <span class="col7">
-                                <button type="button" class="btn_modify" id="btn_modify_<?=$i?>">수정</button>
-                            </span>
-                        </li>
+              ?>
+                            <li>
+                                <span class="col1"><?=$ord_num?></span>
+                                <span class="col2"><?=$id?></span>
+                                <span class="col3"><?=$record?>종류</span>
+                                <span class="col4"><?=$total_price?>원</span>
+                                <span class="col5"><?=$sales_day?></span>
+                                <span class="col6">
+                                    <select id="payment_status_<?=$i?>" class="no-autoinit">
+                                        <?php if($complete === "결제완료") { ?>
+                                        <option value='결제완료' selected="selected">결제완료</option>
+                                        <option value='결제대기'>결제대기</option>
+                                        <option value='주문취소'>주문취소</option>
+
+                                    <?php } else if($complete === "결제대기") {?>
+                                        <option value='결제완료'>결제완료</option>
+                                        <option value='결제대기' selected="selected">결제대기</option>
+                                        <option value='주문취소'>주문취소</option>
+                                    <?php } else { ?>
+                                        <option value='결제완료'>결제완료</option>
+                                        <option value='결제대기'>결제대기</option>
+                                        <option value='주문취소' selected="selected">주문취소</option>
+                                        <?php } ?>
+                                    </select>
+                                </span>
+
+                                <span class="col7">
+                                    <button type="button" class="btn_modify" id="btn_modify_<?=$i?>">수정</button>
+                                </span>
+                            </li>
                             <script type="text/javascript">
                                 $("#btn_modify_<?=$i?>").click(function () {
                                     var selected_option = $("#payment_status_<?=$i?> option:selected").val();

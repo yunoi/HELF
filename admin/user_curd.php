@@ -20,8 +20,8 @@
   if (isset($_POST["email"])) $content = $_POST["email"];
   else $content = "";
 
-  if (isset($_POST["address"])) $personnel = $_POST["address"];
-  else $personnel = "";
+  if (isset($_POST["address"])) $phone_number = $_POST["address"];
+  else $phone_number = "";
 
   if (isset($_POST["grade"])) $grade = $_POST["grade"];
   else $grade = "왜안떠";
@@ -29,11 +29,11 @@
 
 
  //게시글 등록
-  function program_insert($conn, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location,
+  function program_insert($conn, $shop, $type, $subject, $content, $phone_number, $end_day, $choose, $price, $location,
     $upfile_name, $upfile_type, $copied_file_name, $regist_day)
   {
-      $sql = "insert into program (shop , type, subject, content, personnel, end_day, choose, price, location, file_name, file_type, file_copied, regist_day) ";
-      $sql .= "values('$shop', '$type', '$subject', '$content', $personnel,'$end_day','$choose', $price,'$location', ";
+      $sql = "insert into program (shop , type, subject, content, phone_number, end_day, choose, price, location, file_name, file_type, file_copied, regist_day) ";
+      $sql .= "values('$shop', '$type', '$subject', '$content', $phone_number,'$end_day','$choose', $price,'$location', ";
       $sql .= "'$upfile_name', '$upfile_type', '$copied_file_name','$regist_day')";
 
       mysqli_query($conn, $sql);
@@ -83,7 +83,7 @@
       //  ";
       break;
     case 'insert':
-     program_insert($conn, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location, $upfile_name, $upfile_type, $copied_file_name, $regist_day);
+     program_insert($conn, $shop, $type, $subject, $content, $phone_number, $end_day, $choose, $price, $location, $upfile_name, $upfile_type, $copied_file_name, $regist_day);
      echo "
    	   <script>
    	    location.href = 'admin_page.php';

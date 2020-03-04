@@ -25,8 +25,8 @@
   if (isset($_POST["content"])) $content = $_POST["content"];
   else $content = "";
 
-  if (isset($_POST["personnel"])) $personnel = $_POST["personnel"];
-  else $personnel = "";
+  if (isset($_POST["phone_number"])) $phone_number = $_POST["phone_number"];
+  else $phone_number = "";
 
   if (isset($_POST["end_day"])) $end_day = $_POST["end_day"];
   else $end_day = "";
@@ -213,7 +213,7 @@ if($mode === "insert"){
 
 
  //게시글 등록
-  function program_insert($conn, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location,
+  function program_insert($conn, $shop, $type, $subject, $content, $phone_number, $end_day, $choose, $price, $location,
     $db_name, $db_type, $copied_file_name, $regist_day)
   {
     $min_price = 10000000;
@@ -224,16 +224,16 @@ if($mode === "insert"){
         $min_price = $price;
       }
 
-      $sql = "insert into program (shop , type, subject, content, personnel, end_day, choose, price, location, file_name, file_type, file_copied, regist_day) ";
-      $sql .= "values('$shop', '$type', '$subject', '$content', $personnel,'$end_day','$choose', $price,'$location', ";
+      $sql = "insert into program (shop , type, subject, content, phone_number, end_day, choose, price, location, file_name, file_type, file_copied, regist_day) ";
+      $sql .= "values('$shop', '$type', '$subject', '$content', $phone_number,'$end_day','$choose', $price,'$location', ";
       $sql .= "'$db_name', '$db_type', '$copied_file_name','$regist_day')";
 
       mysqli_query($conn, $sql);
     }
     $choose = "선택";
 
-    $sql = "insert into program (shop , type, subject, content, personnel, end_day, choose, price, location, file_name, file_type, file_copied, regist_day) ";
-    $sql .= "values('$shop', '$type', '$subject', '$content', $personnel,'$end_day','$choose', $min_price,'$location', ";
+    $sql = "insert into program (shop , type, subject, content, phone_number, end_day, choose, price, location, file_name, file_type, file_copied, regist_day) ";
+    $sql .= "values('$shop', '$type', '$subject', '$content', $phone_number,'$end_day','$choose', $min_price,'$location', ";
     $sql .= "'$db_name', '$db_type', '$copied_file_name','$regist_day')";
 
 
@@ -313,7 +313,7 @@ function program_modify($conn, $o_key, $choose, $price, $s_key, $shop, $type, $s
        ";
       break;
     case 'insert':
-    program_insert($conn, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location, $db_name, $db_type, $copied_file_name, $regist_day);
+    program_insert($conn, $shop, $type, $subject, $content, $phone_number, $end_day, $choose, $price, $location, $db_name, $db_type, $copied_file_name, $regist_day);
      echo "
    	   <script>
    	    location.href = 'admin_program_payment.php';

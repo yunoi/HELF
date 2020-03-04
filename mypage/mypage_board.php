@@ -7,7 +7,7 @@
     history.go(-1);
     </script>");
   }
-  
+
 
   if(isset($_GET["page"])) {
     $page = $_GET["page"];

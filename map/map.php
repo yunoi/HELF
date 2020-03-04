@@ -142,7 +142,6 @@ if ($total_page <= $end_page) {
       <?php
           $number--;
         }//end of for
-
       ?>
       <div id="page_button">
         <div id="page_num">

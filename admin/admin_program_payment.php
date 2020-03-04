@@ -89,23 +89,21 @@
                     </div>
                 </div>
                 <!-- end of sub -->
-
                 <div id="content">
-                    <h1 id="content_title">프로그램 관리 > 결제 관리</h1><br>
-                    <div id="admin_box">
-                    <form name="board_form" action="./admin_program_payment.php?mode=search" method="post">
-           <div id="list_search">
-               <select  name="find">
-                 <option value="ord_num">주문번호</option>
-                 <option value="id">아이디</option>
-                 <option value="complete">결제상태</option>
-               </select>
-             <div id="list_search4"><input type="text" name="search"></div>
-             <div id="list_search5"><input type="submit" value="검색"></div>
-             <div id="list_search6"><input type="button" value="목록" onclick="location.href='admin_program_payment.php'"></div>
-
-           </div><!--end of list_search  -->
-         </form>
+                <h1 id="content_title">프로그램 관리 > 결제 관리</h1><br>
+                <div id="admin_box">
+          <form name="board_form" action="./admin_program_payment.php?mode=search" method="post">
+               <div id="list_search">
+                 <select  name="find">
+                   <option value="ord_num">주문번호</option>
+                   <option value="id">아이디</option>
+                   <option value="complete">결제상태</option>
+                 </select>
+                 <div id="list_search4"><input type="text" name="search"></div>
+                 <div id="list_search5"><input type="submit" value="검색"></div>
+                 <div id="list_search6"><input type="button" value="목록" onclick="location.href='./admin_program_payment.php'"></div>
+             </div><!--end of list_search  -->
+           </form>
               <ul id="pay_ul">
                   <li id="pay_first_li">
                       <span class="col1">주문번호</span>
@@ -123,7 +121,6 @@
       $total_record=0;
     if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
           //제목, 내용, 아이디
-
           if(isset($_GET["find"])&&isset($_GET["search"])){
             $find = $_GET["find"];
             $search = $_GET["search"];
@@ -134,7 +131,7 @@
           $q_search = mysqli_real_escape_string($conn, $search);
           $sql="SELECT * from `sales` where $find like '%$q_search%' group by ord_num order by num desc";
     } else {
-        $sql = "select * from sales group by ord_num order by complete asc";
+          $sql = "SELECT * from sales group by ord_num order by complete asc";
     }
     $result = mysqli_query($conn, $sql);
     $total_record=mysqli_num_rows($result);
@@ -146,9 +143,7 @@
       }else {
           $page=$_GET['page'];
       }
-
-      $start=($page -1) * SCALE;
-      $number = $total_record - $start;
+      $start=($page-1) * SCALE;
       $block_num = ceil($total_page/BLOCK);
       $now_block = ceil($page/BLOCK);
       $start_page = ($now_block * BLOCK) - (BLOCK - 1);
@@ -165,46 +160,46 @@
           echo ("<tr><td colspan='10'>처리할 결제 내역이 없습니다.<td></tr>");
         } else {
           for($i = $start; $i < $start+SCALE && $i<$total_record; $i++){
+                mysqli_data_seek($result, $i);
                 $row = mysqli_fetch_array($result);
-                $ord_num      = $row["ord_num"];
-                $id         = $row["id"];
+                $ord_num     = $row["ord_num"];
+                $id          = $row["id"];
                 $total_price = $row["total_price"];
                 $sales_day   = $row["sales_day"];
                 $complete    = $row["complete"];
                 $sql = "select * from sales where ord_num='$ord_num'";
                 $result_for_num = mysqli_query($conn, $sql);
                 $recode = mysqli_num_rows($result_for_num);
+                echo "<script>alert($complete);</script>";
+                ?>
+                        <li>
+                            <span class="col1"><?=$ord_num?></span>
+                            <span class="col2"><?=$id?></span>
+                            <span class="col3"><?=$recode?>종류</span>
+                            <span class="col4"><?=$total_price?>원</span>
+                            <span class="col5"><?=$sales_day?></span>
+                            <span class="col6">
+                                <select id="payment_status_<?=$i?>" class="no-autoinit">
+                                    <?php if($complete === "결제완료") { ?>
+                                    <option value='결제완료' selected="selected">결제완료</option>
+                                    <option value='결제대기'>결제대기</option>
+                                    <option value='주문취소'>주문취소</option>
+                                <?php } else if($complete === "결제대기") {?>
+                                    <option value='결제완료'>결제완료</option>
+                                    <option value='결제대기' selected="selected">결제대기</option>
+                                    <option value='주문취소'>주문취소</option>
+                                <?php } else { ?>
+                                    <option value='결제완료'>결제완료</option>
+                                    <option value='결제대기'>결제대기</option>
+                                    <option value='주문취소' selected="selected">주문취소</option>
+                                    <?php } ?>
+                                </select>
+                            </span>
 
-              ?>
-                            <li>
-                                <span class="col1"><?=$ord_num?></span>
-                                <span class="col2"><?=$id?></span>
-                                <span class="col3"><?=$recode?>종류</span>
-                                <span class="col4"><?=$total_price?>원</span>
-                                <span class="col5"><?=$sales_day?></span>
-                                <span class="col6">
-                                    <select id="payment_status_<?=$i?>" class="no-autoinit">
-                                        <?php if($complete === "결제완료") { ?>
-                                        <option value='결제완료' selected="selected">결제완료</option>
-                                        <option value='결제대기'>결제대기</option>
-                                        <option value='주문취소'>주문취소</option>
-
-                                    <?php } else if($complete === "결제대기") {?>
-                                        <option value='결제완료'>결제완료</option>
-                                        <option value='결제대기' selected="selected">결제대기</option>
-                                        <option value='주문취소'>주문취소</option>
-                                    <?php } else { ?>
-                                        <option value='결제완료'>결제완료</option>
-                                        <option value='결제대기'>결제대기</option>
-                                        <option value='주문취소' selected="selected">주문취소</option>
-                                        <?php } ?>
-                                    </select>
-                                </span>
-
-                                <span class="col7">
-                                    <button type="button" class="btn_modify" id="btn_modify_<?=$i?>">수정</button>
-                                </span>
-                            </li>
+                            <span class="col7">
+                                <button type="button" class="btn_modify" id="btn_modify_<?=$i?>">수정</button>
+                            </span>
+                        </li>
                             <script type="text/javascript">
                                 $("#btn_modify_<?=$i?>").click(function () {
                                     var selected_option = $("#payment_status_<?=$i?> option:selected").val();
@@ -238,14 +233,11 @@
                                 })
                             </script>
                             <?php
-                              $number--;
                 }//end of for
-
             }
         ?>
       </ul>
-            </div> <!-- admin_box -->
-
+    </div> <!-- admin_box -->
         <div id="page_button">
           <div id="page_num">
             <?php

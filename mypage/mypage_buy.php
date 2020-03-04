@@ -188,6 +188,7 @@
                    $price        = $row["price"];
                    $choose       = $row["choose"];
                    $location     = $row["location"];
+                   $location = str_replace(","," ",$location);
                    $payment_status = $row["complete"];
                    $file_copied  = $row["file_copied"];
                    $file_type    = $row["file_type"];

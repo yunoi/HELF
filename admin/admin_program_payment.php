@@ -165,6 +165,7 @@
           echo ("<tr><td colspan='10'>처리할 결제 내역이 없습니다.<td></tr>");
         } else {
           for($i = $start; $i < $start+SCALE && $i<$total_record; $i++){
+                mysqli_data_seek($result, $i);
                 $row = mysqli_fetch_array($result);
                 $ord_num      = $row["ord_num"];
                 $id         = $row["id"];
@@ -173,13 +174,13 @@
                 $complete    = $row["complete"];
                 $sql = "select * from sales where ord_num='$ord_num'";
                 $result_for_num = mysqli_query($conn, $sql);
-                $recode = mysqli_num_rows($result_for_num);
+                $record = mysqli_num_rows($result_for_num);
 
               ?>
                             <li>
                                 <span class="col1"><?=$ord_num?></span>
                                 <span class="col2"><?=$id?></span>
-                                <span class="col3"><?=$recode?>종류</span>
+                                <span class="col3"><?=$record?>종류</span>
                                 <span class="col4"><?=$total_price?>원</span>
                                 <span class="col5"><?=$sales_day?></span>
                                 <span class="col6">

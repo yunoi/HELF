@@ -75,8 +75,9 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $num=$row['num'];
 
     mysqli_close($conn);
-    echo "<script>alert('게시글이 등록되었습니다.');</script>";
-    echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
+    echo "<script>alert('게시글이 등록되었습니다.');
+    location.href='./list.php';
+    </script>";
 
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="delete"){
     $num = test_input($_GET["num"]);
@@ -171,8 +172,9 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $row=mysqli_fetch_array($result);
     $max_num=$row['max(num)'];
 
-    echo "<script>alert('게시글이 등록되었습니다.');</script>";
-    echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
+    echo "<script>alert('게시글이 등록되었습니다.');
+    location.href='./list.php;
+    </script>";
     //echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
     //echo "<script>location.href='./view.php?';</script>";
 

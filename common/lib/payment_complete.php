@@ -85,21 +85,27 @@ if(isset($_GET['ord_num'])){
                  <?php
                  switch($_GET['bank']){
                     case "shinhan":
+                      $sql = "update sales set payment='신한은행,HELF,000000-000-00000' where o_key=$o_key";
+                      mysqli_query($conn, $sql);
                         echo("<td>&nbsp;
                             신한은행 <br>
                             &nbsp;예금주: HELF, 계좌번호: 000000-000-00000
                         </td>");
                     break;
                     case "hana":
+                      $sql = "update sales set payment='하나은행,HELF,111111-111-11111' where o_key=$o_key";
+                      mysqli_query($conn, $sql);
                         echo("<td>&nbsp;
                         하나은행 <br>
-                        &nbsp;예금주: HELF, 계좌번호: 000000-000-00000
+                        &nbsp;예금주: HELF, 계좌번호: 111111-111-11111
                     </td>");
                     break;
                     case "woori":
+                      $sql = "update sales set payment='우리은행,HELF,222222-222-22222' where o_key=$o_key";
+                      mysqli_query($conn, $sql);
                         echo("<td>&nbsp;
                         우리은행 <br>
-                        &nbsp;예금주: HELF, 계좌번호: 000000-000-00000
+                        &nbsp;예금주: HELF, 계좌번호: 222222-222-22222
                     </td>");
                     break;
                  }

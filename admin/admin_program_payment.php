@@ -112,7 +112,8 @@
                       <span class="col4">가격</span>
                       <span class="col5">주문일</span>
                       <span class="col6">결제상태</span>
-                      <span class="col7"> </span>
+                      <span class="col7">결제방법</span>
+                      <span class="col8"> </span>
                   </li>
 
     <?php
@@ -167,6 +168,8 @@
                 $total_price = $row["total_price"];
                 $sales_day   = $row["sales_day"];
                 $complete    = $row["complete"];
+                $payment = $row["payment"];
+                $payment =explode(',' , $payment);
                 $sql = "select * from sales where ord_num='$ord_num'";
                 $result_for_num = mysqli_query($conn, $sql);
                 $record = mysqli_num_rows($result_for_num);
@@ -196,8 +199,8 @@
                                         <?php } ?>
                                     </select>
                                 </span>
-
-                                <span class="col7">
+                                <span class="col7"><?=$payment[0]?></span>
+                                <span class="col8">
                                     <button type="button" class="btn_modify" id="btn_modify_<?=$i?>">수정</button>
                                 </span>
                             </li>

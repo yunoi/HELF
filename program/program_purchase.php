@@ -267,6 +267,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                 document.kakao_value.paid_at.value='<?=date("Y-m-d h:i:s")?>';
                 document.kakao_value.user_id.value=rsp.buyer_name;
                 document.kakao_value.subject.value="<?=$subject?>";
+                
                 <?php
                 if(is_array($o_key) == 1){
                   echo("");

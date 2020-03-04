@@ -278,7 +278,7 @@
                  $image               = explode(",",$file_copied);
                  $file_type         = $row["file_type"];
 
-                 // $location = str_replace(","," ",$location);
+                 $location = str_replace(","," ",$location);
 
                  $sql3 = "select num from pick where id ='".$user_id."' and o_key =".$o_key;
                  $result3 = mysqli_query($conn, $sql3);

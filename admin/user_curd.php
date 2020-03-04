@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include $_SERVER['DOCUMENT_ROOT']."/helf//common/lib/db_connector.php";
+  include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 
   if (isset($_GET["mode"])) $mode = $_GET["mode"];
   else $mode = "";
@@ -37,7 +37,6 @@
       $sql .= "'$upfile_name', '$upfile_type', '$copied_file_name','$regist_day')";
 
       mysqli_query($conn, $sql);
-      mysqli_close($conn);                // DB 연결 끊기
   }
 
   //유저삭제
@@ -62,7 +61,6 @@
       echo "수정 실패";
     }
     // echo "<script>alert('회원등급 수정완료')</script>";
-    mysqli_close($conn);
   }
 
   switch ($mode) {

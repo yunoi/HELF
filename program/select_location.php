@@ -22,7 +22,7 @@
 
   &nbsp
   <select  id="input_location2" name="s_area2" >
-    <option value="0" selected>-선택-</option>
+    <option value="" selected>-선택-</option>
   </select>
 <script language=javascript>
 

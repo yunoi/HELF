@@ -62,7 +62,7 @@ if ($upfile_name[0]) {
             echo("
     <script>
     alert('업로드 파일 크기가 지정된 용량(1MB)을 초과합니다!<br>파일 크기를 체크해주세요! ');
-    history.go(-1)
+    history.go(-1);
     </script>
     ");
             exit;
@@ -72,7 +72,7 @@ if ($upfile_name[0]) {
             echo("
         <script>
         alert('파일을 지정한 디렉토리에 복사하는데 실패했습니다.');
-        history.go(-1)
+        history.go(-1);
         </script>
       ");
             exit;
@@ -84,9 +84,6 @@ if ($upfile_name[0]) {
   $db_name="";
   $db_type="";
 
-  echo "<script>
-          history.go(-1);
-          </script>
-        ";
+  echo "<script>location.href='./list.php';</script>";
 
 }

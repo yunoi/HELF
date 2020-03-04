@@ -83,7 +83,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
   		$copied_file_name = "";
   	}
 
-
     //그룹번호, 들여쓰기 기본값
     $sql="INSERT INTO `notice` VALUES (null,'$q_subject','$q_content','$regist_day',$hit,'$upfile_name','$type[0]','$copied_file_name');";
     $result = mysqli_query($conn,$sql);

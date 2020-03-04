@@ -171,7 +171,10 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     $row=mysqli_fetch_array($result);
     $max_num=$row['max(num)'];
 
+    echo "<script>alert('게시글이 등록되었습니다.');</script>";
     echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
+    //echo "<script>location.href='./view.php?num=$max_num&hit=$hit';</script>";
+    //echo "<script>location.href='./view.php?';</script>";
 
 }else if(isset($_GET["mode"])&&$_GET["mode"]=="update"){
   $content = trim($_POST["content"]);

@@ -71,7 +71,7 @@ session_start();
 
               <div id="write_row3">
                 <div class="col1">내&nbsp;&nbsp;용</div>
-                <div class="col2"><textarea name="content" rows="15" cols="79"><?=$content?></textarea>  </div>
+                <div class="col2"><textarea style="resize: none;" name="content" rows="15" cols="79"><?=$content?></textarea>  </div>
               </div><!--end of write_row3  -->
               <div class="write_line"></div>
             </div><!--end of write_form  -->

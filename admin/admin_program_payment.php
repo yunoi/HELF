@@ -288,7 +288,6 @@
             }
           }
            ?>
-             <a id="btn_a" href="./admin_program_payment.php"><button type="button" id="btn">목록</button></a>
           <br><br><br><br><br><br><br>
         </div><!--end of page num -->
       </div>

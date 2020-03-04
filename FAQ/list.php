@@ -33,7 +33,7 @@ session_start();
           $search = $_POST["search"];
           $q_search = mysqli_real_escape_string($conn, $search);
           if($find==="full"){
-            $sql="SELECT * from `faq` where subject AND content like '%$q_search%' order by num desc";
+            $sql="SELECT * from `faq` where subject like '%$q_search%' or content like '%$q_search%' order by num desc";
           }else{
             $sql="SELECT * from `faq` where $find  like '%$q_search%' order by num desc";
           }

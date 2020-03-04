@@ -43,6 +43,7 @@ if($mode==="update"){
   <head>
     <meta charset="utf-8">
     <title>HELF :: QnA</title>
+    <link rel="stylesheet" href="./css/p_qna.css">
   </head>
   <body>
     <form class="" action="./p_qna_db.php?mode=<?=$mode?>" method="post">
@@ -51,26 +52,28 @@ if($mode==="update"){
       <input type="hidden" name="group_num" value="<?=$qna_group_num?>">
       <input type="hidden" name="type" value="<?=$type?>">
       <input type="hidden" name="shop" value="<?=$shop?>">
-      <div id="write_row1">
-        <div class="col1">아이디</div>
-        <div class="col2"><?=$user_id?></div>
-        <br>
-      </div>
-      </div><!--end of write_row1  -->
-      <div class="write_line"></div>
-      <div id="write_row2">
-        <div class="col1">제&nbsp;&nbsp;목</div>
-        <div class="col2"><input type="text" style="width:585px" name="subject" value=<?=$qna_subject?>></div>
-        <br>
-      </div><!--end of write_row2  -->
-      <div class="write_line"></div>
+      <div id="qna_content">
+        <h1>프로그램 문의</h1>
+        <div id="write_row1">
+          <div id="qna_id1">아이디 : </div>
+          <div id="qna_id2"><?=$user_id?></div>
+        </div><!--end of write_row1  -->
+        <div class="write_line"></div>
+        <div id="write_row2">
+          <div>제&nbsp;&nbsp;목</div>
+          <div><input type="text" id="qna_subject" name="subject" value=<?=$qna_subject?>></div>
+          <br>
+        </div><!--end of write_row2  -->
+        <div class="write_line"></div>
 
-      <div id="write_row3">
-        <div class="col1">내&nbsp;&nbsp;용</div>
-        <div class="col2"><textarea style="resize: none;" name="content" rows="15" cols="79"><?=$qna_content?></textarea></div>
-      </div><!--end of write_row3  -->
-      <input type="submit" name="" value="등록">
-      <input type="button" name="" value="취소">
+        <div id="write_row3">
+          <div class="col1">내&nbsp;&nbsp;용</div>
+          <div class="col2"><textarea style="resize: none;" name="content" rows="1" cols="1"><?=$qna_content?></textarea></div>
+        </div><!--end of write_row3  -->
+        <input type="submit" name="" value="등록">
+        <input type="button" name="" value="취소">
+      </div>
+      </div>
     </form>
   </body>
 </html>

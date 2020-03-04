@@ -201,6 +201,7 @@
                   ?>
               <p>아이디를 잊어버리셨나요?</p>
               <p>이름과 이메일을 입력해주세요</p>
+              <p class="point_p">가입하실때 입력하셨던 정보여야 합니다!</p>
               <input type="text" id="find_id_name" name="find_id_name" placeholder=" 이름 입력 "> <br>
               <input type="text" id="find_id_email"  name="find_id_email" placeholder=" 이메일 입력"> <br>
               <input id="find_id_button" type="button" value="아이디 찾기">
@@ -209,6 +210,7 @@
                   ?>
              <p>비밀번호를 잊어버리셨나요?</p>
              <p>아이디와 휴대폰번호를 입력해주세요</p>
+             <p class="point_p">가입하실때 입력하셨던 정보여야 합니다!</p>
              <input type="text" id="find_password_id" name="find_password_id" placeholder=" 아이디 입력 "> <br>
              <div id="phone_input">
                <select name="phone_one" id="phone_one">

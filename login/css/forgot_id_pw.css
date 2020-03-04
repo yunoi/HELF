@@ -4,9 +4,14 @@
   text-align: center;
 }
 
+.point_p {
+  color: #F23005;
+  letter-spacing: 1px;
+}
 p {
   font-size: 13px;
 }
+
 
 input {
   width: 200px;
@@ -26,14 +31,14 @@ input {
   font-size: 13px;
 }
 
- #find_password_button {
-   width: 200px;
-   border-radius: 2px;
-   background-color: white;
-   border: 1px solid #F23005;
-   color: #F23005;
-   font-size: 13px;
- }
+#find_password_button {
+  width: 200px;
+  border-radius: 2px;
+  background-color: white;
+  border: 1px solid #F23005;
+  color: #F23005;
+  font-size: 13px;
+}
 
 #password_certification_button {
   width: 200px;

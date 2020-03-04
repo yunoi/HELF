@@ -66,7 +66,9 @@
      $end_day   = $row["end_day"];
      $content = $row["content"];
      $location  = $row["location"];
-     $personnel = $row["personnel"];
+     $phone_number = $row["phone_number"];
+
+     $location = str_replace(",", " ",$location);
 
      $file_copied= $row["file_copied"];
      $min_price = $row["price"];
@@ -79,13 +81,13 @@
             <section>
               <script type="text/javascript">
               function move1(){
-                window.scrollTo(0, 500);
+                window.scrollTo(0, 440);
               }
               function move2(){
-                window.scrollTo(0, 1260);
+                window.scrollTo(0, 965);
               }
               function move3(){
-                window.scrollTo(0, 1680);
+                window.scrollTo(0, 1375);
               }
               function move4(){
                 window.scrollTo(0, 2250);
@@ -93,14 +95,14 @@
 
               </script>
               <div id="div_main">
-                 <img src='../admin/data/<?=$image[0]?>' style="height:477px; width:640px;">
+                 <img id="main_img" src='../admin/data/<?=$image[0]?>'>
                  <br><br>
                 <div class="buttons" id="myHeader">
                   <ul>
-                    <li><a onclick="move1()">서비스 설명</a></li> |
-                    <li><a onclick="move2()">가격정보</a></li> |
-                    <li><a onclick="move3()">취소및환불규정</a> </li> |
-                    <li><a onclick="move4()">QnA/후기</a> </li>
+                    <li><a onclick="move1()">프로그램 설명</a></li> |
+                    <li><a onclick="move2()">가격 정보</a></li> |
+                    <li><a onclick="move3()">취소 및 환불규정</a> </li> |
+                    <li><a onclick="move4()">QnA / 후기</a> </li>
                   </ul>
                 </div>
                 <br><br>
@@ -119,41 +121,31 @@
 
                 </script>
                 <div class="" id="see">
-                  <h3>서비스 설명</h3>
+                  <h3>프로그램 설명</h3>
                   <div class="see_body">
                     <p><?=$content?></p>
-
-
+                    <div class="clear"></div>
+                    <table id="content_table">
+                      <tr>
+                        <td class="content_td1">지역</td>
+                        <td><?=$location?></td>
+                      </tr>
+                      <tr>
+                        <td class="content_td1">분야</td>
+                        <td><?=$type?></td>
+                      </tr>
+                      <tr>
+                        <td class="content_td1">모집 마감일</td>
+                        <td><?=$end_day?></td>
+                      </tr>
+                      <tr>
+                        <td class="content_td1">연락처</td>
+                        <td><?=$phone_number?></td>
+                      </tr>
+                    </table>
                   <br/><br/>
-                <h4>**경력사항</h4>
-                <br/>
-                <br/>
-                <ul>
-                  <li> 온라인 코치 경험 다수(크몽 포함)</li>
-                  <li> 퍼스널 트레이너 3년차</li>
-                  <li> 생활스포츠지도사 (보디빌딩) 자격증</li>
-                  <li> 국제 퍼스널트레이너 자격증(FISAF)</li>
-                </ul>
-                <div class="clear"></div>
-                <br/>
-                <ul>
-                  <li>지역</li><br/>
-                  <li><b><?=$location?></b></li>
-                </ul><br/>
-                <ul>
-                  <li>분야</li><br/>
-                  <li><b><?=$type?></b></li>
-                </ul><br/>
-                <ul>
-                    <li>등록 마감일</li><br/>
-                    <li><b><?=$end_day?></b></li>
-                </ul><br/>
-                <ul>
-                  <li>전화번호</li><br/>
-                  <li><b><?=$personnel?></b></li>
-                </ul><br/>
                 </div>
-                </div>
+              </div>
                 <?php
 
                 for($i=1;$i<count($image);$i++){
@@ -162,9 +154,9 @@
                 <?php
                 }
                 ?>
-                    <div class="clear"></div><br/><br/>
+                    <div class="clear"></div>
                 <div class="" id="pay">
-                  <h3>가격정보</h3>
+                  <h3>가격 정보</h3>
                   <div class="pay_table">
                     <table>
                       <tr>
@@ -180,7 +172,7 @@
                          if(!($table_choose==="선택")){
                         ?>
                         <tr>
-                          <td>♣<?=$table_choose?>♣</td>
+                          <td><?=$table_choose?></td>
                           <td><?=$table_price?>원</td>
                         </tr>
 
@@ -218,7 +210,7 @@
                 <div id="program_qna"> <!--프로그램 qna 게시판이 들어갈 자리-->
                   <h3>QnA</h3>
                   <p style="text-align:left; display:inline-block;">구매하시려는 상품에 대해 궁금하신 점이 있으신 경우 문의해주세요.</p>&nbsp
-                  <button type="button" onclick="qna_mode(this.value,<?=$o_key?>,null)" name="button" value="new_insert">문의하기</button>
+                  <br><br><button type="button" id="question_btn" onclick="qna_mode(this.value,<?=$o_key?>,null)" name="button" value="new_insert">문의하기</button>
                   <br><br>
                   <?php
                   $sql="select * from `p_qna` where `shop`='$shop' and `type`='$type' order by group_num desc, ord asc;";
@@ -363,12 +355,10 @@
                 <div id="div_review">
                   <h3>후기작성</h3>
                   <ul>
-                  <li style="height: 150px; border-bottom:1px solid lightgray">
-                    <div class=""><!--댓글 달기 insert-->
+                  <li >
+                    <div id=""><!--댓글 달기 insert-->
                       <form class="form_review" name="form_review" action="./program_review.php" method="post">
-                       <div class="" style="text-align:left; margin:20px;">
-
-
+                       <div id="star_div" >
                        <div class="starRev" style="text">
                          <!-- <span class="starR1" >0.5</span> -->
                          <span class="starR2 on" >1</span>
@@ -380,16 +370,15 @@
                          <span class="starR2" >4</span>
                          <!-- <span class="starR1" >4.5</span> -->
                          <span class="starR2" >5</span>
-                        </div>
-                        <textarea name="content" id="reviwe_content" rows="3" cols="58" style="float:left"></textarea>
-
+                       </div> <br>
+                        <textarea name="content" id="reviwe_content"></textarea>
                          <input type="hidden" id="num" name="num" value="">
                          <input type="hidden" name="o_key" value="<?=$o_key?>">
                          <input type="hidden" name="type" value="<?=$type?>">
                          <input type="hidden" name="shop" value="<?=$shop?>">
                          <input type="hidden" id="star" name="star" value="0">
                          <input type="hidden" id="mode" name="mode" value="<?=$mode?>">
-                        <input type="button" value="등록" onclick="review_insert();" style="margin-left:20px; float:left; margin-top:12px;">
+                         <input type="button" id="review_btn" value="등록" onclick="review_insert();">
                         </div>
                       </form>
                     </div>
@@ -579,7 +568,7 @@
                   if($pick==""){
                    echo "<input type='button' value='찜하기' onclick=\"location.href='pick_db.php?detail=ok&mode=insert&o_key=$o_key&shop=$shop';\"><br>";
                  }else{
-                   echo "<input type='button' value='이미찜' onclick=\"location.href='pick_db.php?detail=ok&mode=delete&o_key=$o_key&shop=$shop';\"><br>";
+                   echo "<input type='button' id='pick' value='찜한 상품입니다' onclick=\"location.href='pick_db.php?detail=ok&mode=delete&o_key=$o_key&shop=$shop';\"><br>";
                  }
                    ?>
                   <input type="button" name="" value="장바구니" onclick="program_pick_db();">

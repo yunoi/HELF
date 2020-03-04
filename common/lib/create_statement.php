@@ -69,7 +69,7 @@ function create_table($conn, $table_name){
               type char(20) not null,
               subject varchar(50) not null,
               content text not null,
-              personnel int not null,
+              phone_number char(17) not null,
               end_day char(20) not null,
               choose char(20) not null,
               price int not null,

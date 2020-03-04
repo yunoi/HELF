@@ -22,15 +22,15 @@ $(document).ready(function() {
                 data:{'list':count},
                 success:function(data){
                   var data = JSON.parse(data);
-                  console.log(data[0].o_key+","+data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
+                  console.log(data[0].o_key+","+data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].phone_number
                   +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied+","+data[0].pick);
-                  console.log(data[1].o_key+","+data[1].shop+","+data[1].type+","+data[1].subject+","+data[1].personnel
+                  console.log(data[1].o_key+","+data[1].shop+","+data[1].type+","+data[1].subject+","+data[1].phone_number
                   +","+data[1].end_day+","+data[1].choose+","+data[1].price+","+data[1].location+","+data[1].file_copied+","+data[1].pick);
-                  // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
+                  // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].phone_number
                   // +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
-                  // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
+                  // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].phone_number
                   // +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
-                  // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].personnel
+                  // console.log(data[0].shop+","+data[0].type+","+data[0].subject+","+data[0].phone_number
                   // +","+data[0].end_day+","+data[0].choose+","+data[0].price+","+data[0].location+","+data[0].file_copied);
 
                   for(var i=0; i<5; i++){

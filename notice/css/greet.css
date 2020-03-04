@@ -83,7 +83,11 @@
 #list_search #list_search5 {
 	float:left;
 	margin-left:5px;
-	margin-top:1px;
+	margin-top: -3px;
+}
+#list_search #list_search5 input{
+	width: 30px;
+  height: 30px;
 }
 
 #list_top_title {
@@ -285,7 +289,7 @@ form #write_form #write_row3 {
 	color: white;
 
   }
-  
+
 
   #write_button input{
 	border:1px solid #F23005;
@@ -349,7 +353,7 @@ form #write_form #write_row3 {
 	height: 30px;
 	border: 1px solid #cccccc;
   }
-  
+
   .button_write{
 	 background-color: #F23005;
 	 text-align: center;
@@ -361,7 +365,7 @@ form #write_form #write_row3 {
 	 height: 30px;
 	 border: 1px solid #F23005;
    }
-  
+
    #write_button #write_button_delete{
 	 background-color: #cccccc;
 	 text-align: center;

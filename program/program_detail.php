@@ -116,7 +116,7 @@
                 var sticky = header.offsetTop;
 
                 function myFunction() {
-                  if (window.pageYOffset > sticky-25) {
+                  if (window.pageYOffset > sticky+25) {
                     header.classList.add("sticky");
                   } else {
                     header.classList.remove("sticky");
@@ -428,8 +428,14 @@
                          <span style="display: inline-block; width:250px">
                            작성시간&nbsp;:&nbsp;<?=$review_regist_day?>
                          </span>
-                         <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>
-                         <input type="submit" value="삭제">&nbsp&nbsp
+                         <?php
+                          if ($user_id==$review_id||$user_id=="admin") {
+                          ?>
+                            <input type="button" value="수정" onclick="review_update('<?=$num?>','<?=$review_content?>')"/>
+                            <input type="submit" value="삭제">&nbsp&nbsp
+                          <?php
+                          }
+                          ?>
 
                        </div>
 

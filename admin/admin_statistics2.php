@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php session_start(); 
+  if(isset($_SESSION["user_id"])){
+    $id = $_SESSION["user_id"];
+  } else {
+    echo ("<script>alert('로그인 후 이용해 주세요!');
+    history.go(-1);
+    </script>");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>

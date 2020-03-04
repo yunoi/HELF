@@ -441,3 +441,9 @@
   border: none;
   margin-left: 10px;
 }
+
+
+#div_aside #keyword_area li img {
+    width: 150px;
+    height: 120px;
+}

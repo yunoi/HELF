@@ -129,7 +129,7 @@
 }
 
 #list_top_title #list_title3 {
-  margin-left: 290px;
+  margin-left: 280px;
 }
 
 #list_top_title #list_title4 {
@@ -159,13 +159,13 @@
 
 #list_item #list_item2 {
   float: left;
-  width: 530px;
+  width: 500px;
   overflow: hidden;
 }
 
 #list_item #list_item3 {
   float: left;
-  width: 65px;
+  width: 80px;
   text-align: center;
 }
 

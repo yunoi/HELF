@@ -72,7 +72,11 @@
 #list_search #list_search5 {
 	float:left;
 	margin-left:5px;
-	margin-top:1px;
+	margin-top: -3px;
+}
+#list_search #list_search5 input{
+	width: 30px;
+  height: 30px;
 }
 
 #list_top_title {
@@ -108,7 +112,6 @@
 	margin-right: 46px;
 
 }
-
 
 #list_content {
 	height:380px;

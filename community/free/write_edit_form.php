@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
 include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/common_func.php";
 
@@ -7,6 +8,7 @@ $num=$id=$subject=$content=$day=$hit="";
 $mode="insert";
 $checked="";
 $id= $_SESSION['user_id'];
+
 
 if (isset($_GET["mode"])&&$_GET["mode"]=="update") {
     $mode="update";

@@ -95,7 +95,7 @@ if ($total_page <= $end_page) {
              </select>
            </div><!--end of list_search3  -->
            <div id="list_search4"><input type="text" id="search" name="search"></div>
-           <div id="list_search5"><input type="submit" value="검색"></div>
+            <div id="list_search5"><input type="image" src="./img/search.png"></div>
            </div>
          </div><!--end of list_search  -->
        </form>

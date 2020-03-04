@@ -96,8 +96,9 @@
                     <form name="board_form" action="./admin_program_payment.php?mode=search" method="post">
            <div id="list_search">
                <select  name="find">
-                 <option value="number">주문번호</option>
+                 <option value="ord_num">주문번호</option>
                  <option value="id">아이디</option>
+                 <option value="complete">결제상태</option>
                </select>
              <div id="list_search4"><input type="text" name="search"></div>
              <div id="list_search5"><input type="submit" value="검색"></div>
@@ -105,52 +106,80 @@
 
            </div><!--end of list_search  -->
          </form>
-                        <ul id="pay_ul">
-                            <li id="pay_first_li">
-                                <span class="col1">주문번호</span>
-                                <span class="col2">주문자</span>
-                                <span class="col3">주문개수</span>
-                                <span class="col4">가격</span>
-                                <span class="col5">주문일</span>
-                                <span class="col6">결제상태</span>
-                                <span class="col7"> </span>
-                            </li>
+              <ul id="pay_ul">
+                  <li id="pay_first_li">
+                      <span class="col1">주문번호</span>
+                      <span class="col2">주문자</span>
+                      <span class="col3">주문개수</span>
+                      <span class="col4">가격</span>
+                      <span class="col5">주문일</span>
+                      <span class="col6">결제상태</span>
+                      <span class="col7"> </span>
+                  </li>
 
     <?php
-        if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
-        //제목, 내용, 아이디
-        $find = $_POST["find"];
-        $search = $_POST["search"];
-        $q_search = mysqli_real_escape_string($conn, $search);
-        if($find==="number"){
-            $sql="SELECT * from `sales` where ord_num like '%$q_search%' group by ord_num order by num desc";
-        }else{
-            $sql="SELECT * from `sales` where id like '%$q_search%' group by ord_num order by num desc";
-        }
+      define('SCALE', 10);
+      define('BLOCK', 10);
+      $total_record=0;
+    if (isset($_GET["mode"])&&$_GET["mode"]=="search") {
+          //제목, 내용, 아이디
+
+          if(isset($_GET["find"])&&isset($_GET["search"])){
+            $find = $_GET["find"];
+            $search = $_GET["search"];
+          }else{
+            $find = $_POST["find"];
+            $search = $_POST["search"];
+          }
+          $q_search = mysqli_real_escape_string($conn, $search);
+          $sql="SELECT * from `sales` where $find like '%$q_search%' group by ord_num order by num desc";
     } else {
         $sql = "select * from sales group by ord_num order by complete asc";
     }
-        $result = mysqli_query($conn, $sql);
-        $number = mysqli_num_rows($result);
+    $result = mysqli_query($conn, $sql);
+    $total_record=mysqli_num_rows($result);
+    $total_page=($total_record % SCALE == 0)?($total_record/SCALE):(ceil($total_record/SCALE));
+
+      //2.페이지가 없으면 디폴트 페이지 1페이지
+       if (empty($_GET['page'])) {
+          $page=1;
+      }else {
+          $page=$_GET['page'];
+      }
+
+      $start=($page -1) * SCALE;
+      $number = $total_record - $start;
+      $block_num = ceil($total_page/BLOCK);
+      $now_block = ceil($page/BLOCK);
+      $start_page = ($now_block * BLOCK) - (BLOCK - 1);
+
+      if ($start_page <= 1) {
+          $start_page = 1;
+      }
+      $end_page = $now_block*BLOCK;
+      if ($total_page <= $end_page) {
+          $end_page = $total_page;
+      }
+
         if(!$result){
           echo ("<tr><td colspan='10'>처리할 결제 내역이 없습니다.<td></tr>");
         } else {
-          for($i=0; $i < $number; $i++){
+          for($i = $start; $i < $start+SCALE && $i<$total_record; $i++){
                 $row = mysqli_fetch_array($result);
                 $ord_num      = $row["ord_num"];
-                $id     = $row["id"];
-                $total_price     = $row["total_price"];
-                $sales_day     = $row["sales_day"];
-                $complete     = $row["complete"];
+                $id         = $row["id"];
+                $total_price = $row["total_price"];
+                $sales_day   = $row["sales_day"];
+                $complete    = $row["complete"];
                 $sql = "select * from sales where ord_num='$ord_num'";
                 $result_for_num = mysqli_query($conn, $sql);
-                $total_record = mysqli_num_rows($result_for_num);
+                $recode = mysqli_num_rows($result_for_num);
 
               ?>
                             <li>
                                 <span class="col1"><?=$ord_num?></span>
                                 <span class="col2"><?=$id?></span>
-                                <span class="col3"><?=$total_record?>종류</span>
+                                <span class="col3"><?=$recode?>종류</span>
                                 <span class="col4"><?=$total_price?>원</span>
                                 <span class="col5"><?=$sales_day?></span>
                                 <span class="col6">
@@ -209,17 +238,59 @@
                                 })
                             </script>
                             <?php
+                              $number--;
+                }//end of for
 
-    }
-
-}
+            }
         ?>
-
       </ul>
-
             </div> <!-- admin_box -->
-          </div>		<!-- end of content -->
-        </div><!--  end of admin_board -->
+
+        <div id="page_button">
+          <div id="page_num">
+            <?php
+            if($page>1){
+              $val=(int)$page-1;
+              if(isset($_GET["mode"])&&$_GET["mode"]=="search"){
+                ?>
+                <a href="./admin_program_payment.php?mode=search&page=<?=$val?>&find=<?=$find?>&search=<?=$q_search?>">이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <?php
+              }else{
+                echo "<a href='./admin_program_payment.php?page=$val'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
+              }
+            }?>
+          <?php
+            for ($i=$start_page; $i <= $end_page ; $i++) {
+                if ($page==$i) {
+                    echo "<b>&nbsp;$i&nbsp;</b>";
+                } else {
+                  if(isset($_GET["mode"])&&$_GET["mode"]=="search"){
+                    ?>
+                    <a href="./admin_program_payment.php?mode=search&page=<?=$i?>&find=<?=$find?>&search=<?=$q_search?>">&nbsp;<?=$i?>&nbsp;</a>
+                    <?php
+                  }else{
+                    echo "<a href='./admin_program_payment.php?page=$i'>&nbsp;$i&nbsp;</a>";
+                  }
+                }
+            }
+          ?>
+          <?php
+          if($page>=1 && $total_page!=$page){
+            $val=(int)$page+1;
+            if(isset($_GET["mode"])&&$_GET["mode"]=="search"){
+              ?>
+              &nbsp;&nbsp;&nbsp;&nbsp;<a href="./admin_program_payment.php?mode=search&page=<?=$val?>&find=<?=$find?>&search=<?=$q_search?>">▶ 다음</a>
+                <?php
+            }else{
+              echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./admin_program_payment.php?page=$val'>▶ 다음</a>";
+            }
+          }
+           ?>
+          <br><br><br><br><br><br><br>
+        </div><!--end of page num -->
+      </div>
+    </div>		<!-- end of content -->
+  </div><!--  end of admin_board -->
     </section>
     <footer>
         <?php include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/footer.php";?>

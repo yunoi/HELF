@@ -57,8 +57,8 @@ $(document).ready(function() {
     child++;
 
     $("#option_plus").attr("disabled", true);
-    $("#ul_plus li:nth-child("+opeq+") .option_choose").attr("disabled", true);
-    $("#ul_plus li:nth-child("+opeq+") .price_choose").attr("disabled", true);
+    // $("#ul_plus li:nth-child("+opeq+") .option_choose").attr("disabled", true);
+    // $("#ul_plus li:nth-child("+opeq+") .price_choose").attr("disabled", true);
     option_pass = false;
     price_pass = false;
     opeq++;

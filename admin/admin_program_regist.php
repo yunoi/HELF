@@ -76,7 +76,7 @@
         $type = $row["type"];
         $subject = $row["subject"];
         $content = $row["content"];
-        $personnel = $row["personnel"];
+        $phone_number = $row["phone_number"];
         $end_day = $row["end_day"];
         $location = $row["location"];
         $choose = $row["choose"];
@@ -102,7 +102,7 @@
         $type = "";
         $subject = "";
         $content = "";
-        $personnel = "";
+        $phone_number = "";
         $end_day = "";
         $choose = "";
         $price = "";
@@ -157,7 +157,7 @@
                   <tr>
                     <td class="td_width">전화번호</td>
                     <td>
-                    <input id="input_num" type="tel" name="personnel" placeholder=" 전화번호를 입력하세요. " value=<?=$personnel?> <?php if ($mod === 'modify') echo "disabled";?>>
+                    <input id="input_num" type="tel" name="phone_number" placeholder=" 전화번호를 입력하세요. " value=<?=$phone_number?> <?php if ($mod === 'modify') echo "disabled";?>>
                     <p id="sub_num"></p>
                     </td>
                     <td class="td_width">모집 마감일</td>
@@ -176,7 +176,7 @@
                           <?php
                           if($mod === "insert"){
                           ?>
-                          <button id="option_plus" type="button" name="button" >추가</button>
+                          <button id="option_plus" type="button" name="button">추가</button>
                           <button id="option_minus" type="button" name="button">삭제</button>
                           <?php
                           }

@@ -9,6 +9,7 @@ $mode="insert";
 $checked="";
 
 $id= $_SESSION['user_id'];
+
 if (isset($_GET["mode"])&&$_GET["mode"]=="update"||(isset($_GET["mode"])&&$_GET["mode"]=="response")) {
     $mode=$_GET["mode"];
     $num = test_input($_GET["num"]);

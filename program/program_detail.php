@@ -66,7 +66,7 @@
      $end_day   = $row["end_day"];
      $content = $row["content"];
      $location  = $row["location"];
-     $personnel = $row["personnel"];
+     $phone_number = $row["phone_number"];
 
      $location = str_replace(",", " ",$location);
 
@@ -125,22 +125,6 @@
                   <div class="see_body">
                     <p><?=$content?></p>
                     <div class="clear"></div>
-                    <!-- <ul class="content_ul">
-                      <li class="content_li">지역</li>
-                      <li><b><?=$location?></b></li>
-                    </ul><br/>
-                    <ul class="content_ul">
-                      <li class="content_li">분야</li>
-                      <li><b><?=$type?></b></li>
-                    </ul><br/>
-                    <ul class="content_ul">
-                        <li class="content_li">등록 마감일</li>
-                        <li><b><?=$end_day?></b></li>
-                    </ul><br/>
-                    <ul class="content_ul">
-                      <li class="content_li">전화번호</li>
-                      <li><b><?=$personnel?></b></li>
-                    </ul><br/> -->
                     <table id="content_table">
                       <tr>
                         <td class="content_td1">지역</td>
@@ -156,9 +140,10 @@
                       </tr>
                       <tr>
                         <td class="content_td1">연락처</td>
-                        <td><?=$personnel?></td>
+                        <td><?=$phone_number?></td>
                       </tr>
                     </table>
+                  <br/><br/>
                 </div>
               </div>
                 <?php

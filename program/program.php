@@ -33,14 +33,6 @@
    <header>
      <?php include "../common/lib/header.php";?>
    </header>
-   <script type="text/javascript">
-   function search(date)
-   {
-     date.action = "./program.php";
-     date.submit();
-   }
-   </script>
-
  <section>
     <div class="div_program">
 
@@ -81,11 +73,11 @@
               <br><br>
               <li id="last_li">
                 <h2>마감날짜</h2>
-                <input type="date" name="s_date" value="">
+                <input type="date" name="s_date" value="" style="width:130px;">
               </li>
               <br><br>
               <li class="li_ok">
-                <input id="btn_search" type="button" onclick="search(this.form);" name="" value="검색">
+                <input id="btn_search" type="submit" name="" value="검색">
               </li>
             </ul>
           </form>
@@ -246,6 +238,7 @@
               $s_max_price = 10000000;
             }
 
+
               $sql = "select * from program ";
               $sql .= "where choose = '선택' and type like '".$s_type."%' and location like '".$s_area."%' and price between ".$s_min_price." and ".$s_max_price." and end_day between '".$today."' and '".$s_date."' order by ".$order;
               $result = mysqli_query($conn, $sql);
@@ -285,7 +278,7 @@
                  $image               = explode(",",$file_copied);
                  $file_type         = $row["file_type"];
 
-                 $location = str_replace(","," ",$location);
+                 // $location = str_replace(","," ",$location);
 
                  $sql3 = "select num from pick where id ='".$user_id."' and o_key =".$o_key;
                  $result3 = mysqli_query($conn, $sql3);

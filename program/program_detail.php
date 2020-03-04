@@ -110,7 +110,7 @@
                 var sticky = header.offsetTop;
 
                 function myFunction() {
-                  if (window.pageYOffset > sticky-25) {
+                  if (window.pageYOffset > sticky+25) {
                     header.classList.add("sticky");
                   } else {
                     header.classList.remove("sticky");

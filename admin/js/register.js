@@ -113,12 +113,12 @@ $(document).ready(function() {
   input_num.blur(function(){
 
     var numValue = input_num.val();
-    var exp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+    var exp = /^\d{8,15}$/;
     if(numValue === ""){
       sub_num.html("<span style='margin-left:5px; color:red'>필수 정보입니다</span>");
       num_pass = false;
     }else if(!exp.test(numValue)){
-      sub_num.html("<span style='margin-left:5px; color:red'>양식을 확인해주세요 (ex 010-1234-5678)</span>");
+      sub_num.html("<span style='margin-left:5px; color:red'>숫자만 입력해 주세요</span>");
       num_pass = false;
     }else{
       num_pass = true;

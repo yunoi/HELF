@@ -316,7 +316,7 @@ function program_modify($conn, $o_key, $choose, $price, $s_key, $shop, $type, $s
     program_insert($conn, $shop, $type, $subject, $content, $personnel, $end_day, $choose, $price, $location, $db_name, $db_type, $copied_file_name, $regist_day);
      echo "
    	   <script>
-   	    location.href = 'admin_page.php';
+   	    location.href = 'admin_program_payment.php';
    	   </script>
    	";
     break;

@@ -170,7 +170,7 @@
                       </table>
                       <div class="butoon_col">
                         <button type="button" name="button" id="modify_btn_<?=$i?>">수정</button>
-                        <button type="button" name="button" onclick="location.href='user_curd.php?mode=delete&id=<?=$id?>'">탈퇴</button>
+                        <button type="button" name="button" onclick="location.href='user_curd.php?mode=delete&delete_id=<?=$id?>'">탈퇴</button>
                       </div>
                       <script type="text/javascript">
                         $("#modify_btn_<?=$i?>").click(function () {

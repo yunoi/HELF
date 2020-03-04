@@ -3,7 +3,13 @@ https://kmong.com/order/2518542 참고한 사이트 화면
  -->
 <?php
   session_start();
-  $user_id = $_SESSION["user_id"];
+  if(isset($_SESSION["user_id"])){
+    $user_id = $_SESSION["user_id"];
+  } else {
+    echo "<script>alert('로그인 후 이용해주세요')</script>";
+    echo "<script>location.href='../login/login_form.php';</script>";
+    exit();
+  }
   $price=$subject="";
 ?>
 <!DOCTYPE html>
@@ -92,11 +98,11 @@ https://kmong.com/order/2518542 참고한 사이트 화면
               if($pay==="post"){
                 for ($i=0; $i < count($o_key); $i++) {
                   $sql = "select * from `program` where o_key=".$o_key[$i].";";
-                  $result = mysqli_query($conn, $sql); 
+                  $result = mysqli_query($conn, $sql);
                   $row = mysqli_fetch_array($result);
                   $shop = $row["shop"];
                   $type = $row["type"];
-                  $subject = $row["subject"]; //프로그램 이름 
+                  $subject = $row["subject"]; //프로그램 이름
                   $content = $row["content"]; //내용
                   $location = $row["location"]; //주소
                   $price = $row["price"]; //가격
@@ -104,6 +110,9 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                   $end_day = $row["end_day"]; //종료 날짜
                   $file_copied = $row["file_copied"]; //파일 이름
                   $total_pay=$total_pay+$price;
+
+                  $location = str_replace(","," ",$location);
+                  
                    ?>
                    <tr>
                      <td id="program">
@@ -221,11 +230,11 @@ https://kmong.com/order/2518542 참고한 사이트 화면
       <input type="hidden" name="paid_amount" value=""/>
       <input type="hidden" name="name" value=""/>
       <input type="hidden" name="paid_at" value=""/>
-      <?php 
+      <?php
         if(is_array($o_key) == 1){
           for($i=0; $i < sizeof($o_key); $i++){
           echo ("<input type='hidden' name='o_key[]' value='$o_key[$i]'/>");
-          } 
+          }
         } else {
           echo ("<input type='hidden' name='o_key' value=''/>");
         }
@@ -267,7 +276,7 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                 document.kakao_value.paid_at.value='<?=date("Y-m-d h:i:s")?>';
                 document.kakao_value.user_id.value=rsp.buyer_name;
                 document.kakao_value.subject.value="<?=$subject?>";
-                
+
                 <?php
                 if(is_array($o_key) == 1){
                   echo("");

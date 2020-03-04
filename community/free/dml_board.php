@@ -52,7 +52,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     }
     $row=mysqli_fetch_array($result);
     $num=$row['num'];
-    mysqli_close($conn);
 
     echo "<script>alert('게시글이 등록되었습니다.');</script>";
     echo "<script>location.href='./view.php?num=$num&hit=$hit';</script>";
@@ -75,18 +74,17 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
       unlink("./data/".$file_copied);
     }
 
-    $sql ="DELETE FROM `community` WHERE num=$q_num";
+    $sql ="DELETE FROM `community` WHERE num=$q_num;";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
 
-    $sql ="DELETE FROM `community` WHERE parent=$q_num";
+    $sql ="DELETE FROM `rating_community_info` WHERE post_id=$q_num;";
     $result = mysqli_query($conn,$sql);
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
-    mysqli_close($conn);
 
     echo "<script>location.href='./list.php';</script>";
 
@@ -188,7 +186,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
     if (!$result) {
       die('Error: ' . mysqli_error($conn));
     }
-    mysqli_close($conn);
     echo "<script>location.href='./view.php?num=$parent&page=$page&hit=$hit';</script>";
   }//end of if rowcount
 
@@ -205,7 +202,6 @@ if(isset($_GET["mode"])&&$_GET["mode"]=="insert"){
   if (!$result) {
     die('Error: ' . mysqli_error($conn));
   }
-  mysqli_close($conn);
   echo "<script>location.href='./view.php?num=$parent&page=$page&hit=$hit';</script>";
 
 }//end of if insert

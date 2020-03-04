@@ -185,13 +185,17 @@
 
                    $location = str_replace(","," ",$location);
 
+                   $file_copied = explode(",",$file_copied);
+                   $file_copied1 = $file_copied[0];
+
+
                     ?>
 
                           <li>
                             <div class="program_cart_li">
                               <div class="program_image">
                                 <a href="../program/program_detail.php?o_key=<?=$o_key?>">
-                                <img src='../admin/data/<?=$file_copied?>'>
+                                <img src='../admin/data/<?=$file_copied1?>'>
                                 </a>
                               </div>
                               <div class="program_detail">

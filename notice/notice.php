@@ -76,7 +76,7 @@ session_start();
                </select>
              </div><!--end of list_search3  -->
              <div id="list_search4"><input type="text" name="search"></div>
-             <div id="list_search5"><input type="submit" value="검색"></div>
+            <div id="list_search5"><input type="image" src="./img/search.png"></div>
            </div><!--end of list_search  -->
          </form>
          <div id="clear"></div>

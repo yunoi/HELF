@@ -125,6 +125,10 @@
   font-weight: bold;
 }
 
+.status{
+  margin-top: -5px;
+}
+
 select {
   width: 100px;
   height: 23px;

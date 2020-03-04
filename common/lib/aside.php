@@ -123,13 +123,14 @@
                     $result = mysqli_query($conn, $sql) or die("최근 본 상품 불러오기 실패: ".mysqli_error($conn));
                     $row = mysqli_fetch_array($result);
                     $photo = $row['file_copied'];
+                    $photo = explode(",", $photo);
                     $subject = $row['subject'];
                     $shop = $row['shop']." / ";
                     $type = $row['type'];
 
     ?>
         <li>
-        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie_array[$i]?>"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$photo?>"></a>
+        <a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie_array[$i]?>"><img src="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/admin/data/<?=$photo[0]?>"></a>
 <div><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/helf/program/program_detail.php?o_key=<?=$cookie_array[$i]?>"><?=$shop?><?=$type?><br><?=$subject?></a></div>
         </li>
     <?php

@@ -70,8 +70,8 @@ session_start();
                     $image_width=$image_info[0];
                     $image_height=$image_info[1];
                     $image_type=$image_info[2];
-                    if ($image_width>400) {
-                        $image_width = 400;
+                    if ($image_width>700) {
+                        $image_width = 700;
                     }
                 } else {
                     $image_width=0;

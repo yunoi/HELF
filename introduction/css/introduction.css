@@ -26,9 +26,16 @@ section{
 }
 #div_introduction span,#div_header span{
   color: #F23005;
-  font-weight: bold;
+  font-weight: 700;  
   font-size: 20px;
   font-style: italic;
+}
+.span_em{
+  font-family: 'Noto Sans KR';
+  font-weight: 700;
+  color: coral;
+  font-size: 20px;
+
 }
 .one{
   color: coral;

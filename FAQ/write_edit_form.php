@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(empty($_SESSION['user_id'])){
+  echo "<script>history.go(-1);</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">

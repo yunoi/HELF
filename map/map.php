@@ -184,6 +184,7 @@ if ($total_page <= $end_page) {
           }
         }
          ?>
+           <a id="btn_a" href="./map.php"><button type="button" id="btn">목록</button></a>
         <br><br><br><br><br><br><br>
       </div><!--end of page num -->
     </div><!--end of page button -->

@@ -102,7 +102,7 @@
         $subject = "";
         $content = "";
         $personnel = "";
-        $end_day = "2020-12-31";
+        $end_day = "";
         $choose = "";
         $price = "";
         $location = "";
@@ -156,7 +156,7 @@
                   <tr>
                     <td class="td_width">전화번호</td>
                     <td>
-                    <input id="input_num" type="text" name="personnel" placeholder=" 전화번호를 입력하세요. " value=<?=$personnel?> <?php if ($mod === 'modify') echo "disabled";?>>
+                    <input id="input_num" type="tel" name="personnel" placeholder=" 전화번호를 입력하세요. " value=<?=$personnel?> <?php if ($mod === 'modify') echo "disabled";?>>
                     <p id="sub_num"></p>
                     </td>
                     <td class="td_width">모집 마감일</td>
@@ -214,7 +214,8 @@
                       <?php
                       if($mod === "insert"){
                       ?>
-                       &nbsp<input  multiple="multiple" type="file" name="upfile[]" value="">
+                       &nbsp<input id="input_file" multiple="multiple" type="file" name="upfile[]" value="">
+                       <p id="sub_file"></p>
                       <?php
                       }
                       ?>

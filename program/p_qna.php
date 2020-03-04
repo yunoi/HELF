@@ -67,7 +67,7 @@ if($mode==="update"){
 
       <div id="write_row3">
         <div class="col1">내&nbsp;&nbsp;용</div>
-        <div class="col2"><textarea name="content" rows="15" cols="79"><?=$qna_content?></textarea></div>
+        <div class="col2"><textarea style="resize: none;" name="content" rows="15" cols="79"><?=$qna_content?></textarea></div>
       </div><!--end of write_row3  -->
       <input type="submit" name="" value="등록">
       <input type="button" name="" value="취소">

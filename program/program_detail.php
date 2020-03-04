@@ -375,7 +375,7 @@
                          <!-- <span class="starR1" >4.5</span> -->
                          <span class="starR2" >5</span>
                        </div> <br>
-                        <textarea name="content" id="reviwe_content"></textarea>
+                        <textarea style="resize: none;" name="content" id="reviwe_content"></textarea>
                          <input type="hidden" id="num" name="num" value="">
                          <input type="hidden" name="o_key" value="<?=$o_key?>">
                          <input type="hidden" name="type" value="<?=$type?>">

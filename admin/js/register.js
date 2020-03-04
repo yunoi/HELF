@@ -1,14 +1,21 @@
 $(document).ready(function() {
   var child = 2;
-  var opeq = 0;
+  var opeq = 1;
 
   var input_shop = $("#input_shop"); //상호명 체크
   var input_subject = $("#input_subject");  //제목 체크
   var input_content = $("#input_content");  //내용 체크
   var input_num = $("#input_num");  //전화번호 체크
   var input_end_day  =  $("#input_end_day");  //마감일 체크
-  var input_option = $(".option_choose"); //옵션체크
-  var input_price = $(".price_choose");   //가격체크
+  // var input_option = $(".option_choose"); //옵션체크
+  // var input_price = $(".price_choose");   //가격체크
+
+
+  var  input_option = $("#ul_plus li:nth-child("+opeq+") .option_choose"); //옵션체크
+  var  input_price = $("#ul_plus  li:nth-child("+opeq+") .price_choose");   //가격체크
+
+
+
   var input_location1 = $("#input_location1");  //지역1 체크
   var input_location2 = $("#input_location2");  //지역2 체크
   var input_location3 = $("#input_location3");  //상세주소 체크
@@ -44,18 +51,47 @@ $(document).ready(function() {
   });
 
   $("#option_plus").click(function(){
-
     var html = `<li><input type="text" name="choose[]" class="option_choose" value="" placeholder=" 옵션명을 입력하세요. "> &
     <input type="number" name="price[]" class="price_choose" value="" placeholder=" 가격을 입력하세요. "> 원</li>`;
     $("#ul_plus").append(html);
     child++;
 
-    // $("#option_plus").attr("disabled", true);
-    // $(".option_choose:eq("+opeq+")").attr("disabled", true);
-    // $(".price_choose:eq("+opeq+")").attr("disabled", true);
-    // option_pass = false,
-    // price_pass = false,
-    // opeq++;
+    $("#option_plus").attr("disabled", true);
+    $("#ul_plus li:nth-child("+opeq+") .option_choose").attr("disabled", true);
+    $("#ul_plus li:nth-child("+opeq+") .price_choose").attr("disabled", true);
+    option_pass = false;
+    price_pass = false;
+    opeq++;
+
+    $("#ul_plus li:nth-child("+opeq+") .option_choose").blur(function(){
+
+    var optionValue = $("#ul_plus li:nth-child("+opeq+") .option_choose").val();
+    var exp = /^[0-9a-zA-Z가-힣\s]{2,15}$/;
+    if(optionValue === ""){
+      sub_option.html("<span style='margin-left:5px; color:red'>필수 정보입니다</span>");
+      option_pass = false;
+    }else{
+      option_pass = true;
+      sub_option.html("");
+      opPass();
+    }
+  });
+
+    $("#ul_plus li:nth-child("+opeq+") .price_choose").blur(function(){
+  var priceValue =  $("#ul_plus li:nth-child("+opeq+") .price_choose").val();
+  if(priceValue === ""){
+    sub_option.html("<span style='margin-left:5px; color:red'>필수 정보입니다</span>");
+    price_pass = false;
+  }else if(priceValue < 0 || priceValue > 1000000){
+    sub_option.html("<span style='margin-left:5px; color:red'>가격 범위를 확인해주세요 (0~100만원)</span>");
+    price_pass = false;
+  }else{
+    price_pass = true;
+    sub_option.html("");
+    opPass()
+  }
+});
+
 
   });
 
@@ -124,7 +160,6 @@ $(document).ready(function() {
       num_pass = true;
       sub_num.html("");
 
-
     }
   });
 
@@ -143,6 +178,7 @@ $(document).ready(function() {
   });
 
   //옵션 체크
+
     input_option.blur(function(){
 
     var optionValue = input_option.val();
@@ -153,10 +189,17 @@ $(document).ready(function() {
     }else{
       option_pass = true;
       sub_option.html("");
+      opPass();
     }
   });
 
+
+
+
+
   //가격 체크
+
+
     input_price.blur(function(){
     var priceValue =  input_price.val();
     if(priceValue === ""){
@@ -168,8 +211,10 @@ $(document).ready(function() {
     }else{
       price_pass = true;
       sub_option.html("");
+      opPass()
     }
   });
+
 
   //지역1 체크
   input_location1.change(function(){
@@ -220,23 +265,15 @@ $(document).ready(function() {
 
 
 
-  // function opPass() {
-  //   console.log(option_pass+","+price_pass);
-  //   if (option_pass && price_pass) {
-  //     $("#option_plus").attr("disabled", false);
-  //
-  //   } else {
-  //     $("#option_plus").attr("disabled", true);
-  //   }
-  // }
+  function opPass() {
+    console.log(option_pass+","+price_pass);
+    if (option_pass && price_pass) {
+      $("#option_plus").attr("disabled", false);
 
-  // function isAllPass() {
-  //   if (shop_pass && subject_pass && content_pass && num_pass && option_pass && price_pass) {
-  //     $("#btn_regist").attr("disabled", false);
-  //   } else {
-  //     $("#btn_regist").attr("disabled", true);
-  //   }
-  // }
+    } else {
+      $("#option_plus").attr("disabled", true);
+    }
+  }
 
 
   $("#btn_regist").click(function(){

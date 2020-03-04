@@ -175,7 +175,7 @@
                           <?php
                           if($mod === "insert"){
                           ?>
-                          <button id="option_plus" type="button" name="button" >추가</button>
+                          <button id="option_plus" type="button" name="button">추가</button>
                           <button id="option_minus" type="button" name="button">삭제</button>
                           <?php
                           }

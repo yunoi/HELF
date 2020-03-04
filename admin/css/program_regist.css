@@ -121,3 +121,7 @@ input[type="date"]::-webkit-inner-spin-button {
   width: 850px;
   text-align: center;
 }
+
+input:-webkit-autofill {
+   -webkit-box-shadow: 0 0 0 1000px white inset;
+}

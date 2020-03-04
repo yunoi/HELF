@@ -308,3 +308,15 @@
 	text-align: center;
 	margin: 0px auto;
 }
+#btn{
+	background-color: #cccccc;
+    text-align: center;
+    color: white;
+		border: 1px solid white;
+    border-radius: 2px;
+		padding: 8px 12px;
+}
+#btn_a{
+	float: right;
+	margin-right: 7px;
+}

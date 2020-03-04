@@ -41,9 +41,9 @@
               <div class="two">
                 “&nbsp;&nbsp;
               </div>
-              HELF에는<br><br>
-              <b>&nbsp;<span>Health</span>&nbsp;,&nbsp;<span>Life</span>&nbsp;,&nbsp;<span>Friends</span>&nbsp;</b><br><br>
-              세 가지 의미가 담겨 있습니다.
+              <div class="span_em">HELF에는</div><br>
+              <b>&nbsp;<span>Health&nbsp;,&nbsp;Life&nbsp;,&nbsp;Friends</span>&nbsp;</b><br><br>
+              <div class="span_em">세 가지 의미가 담겨 있습니다.</div>
                 <div class="two">
                 &nbsp;”
               </div>

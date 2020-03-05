@@ -48,7 +48,7 @@
     $minus_weight=$kg-$goal_kg; //현재 몸무게 - 목표 몸무게
 	  $target_cal	= 7700*$minus_weight;		//목표감량
 	  $day_cal = $target_cal / ($term*30);		//일일감량 칼로리
-	  $day_target_cal	= $day_cal - $all_met;			//일일 목표칼로리
+	  $day_target_cal	= $all_met - $day_cal;			//일일 목표칼로리
 	  $day_eat_cal = ceil($day_target_cal*1.2);			//음식칼로리
 	  $day_exercise_cal = ceil($day_target_cal * 0.2);		//운동칼로리
       break;

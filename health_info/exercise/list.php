@@ -139,28 +139,27 @@ include $_SERVER['DOCUMENT_ROOT']."/helf/common/lib/db_connector.php";
           <div id="page_button">
             <div id="page_num">
   <!-- /////////////////////////////////////////////////// -->
-              <?php
-                if($total_page<2){
-                  "";
-                }else{
-                  echo "이전◀ &nbsp;&nbsp;&nbsp;&nbsp";
-                }
+  <?php
+  if($page>1){
+    $val=(int)$page-1;
+    echo "<a href='./list.php?page=$val'>이전◀ </a>&nbsp;&nbsp;&nbsp;&nbsp";
+  }?>
+<?php
+  for ($i=1; $i <= $total_page ; $i++) {
+      if ($page==$i) {
+          echo "<b>&nbsp;$i&nbsp;</b>";
+      } else {
+          echo "<a href='./list.php?page=$i'>&nbsp;$i&nbsp;</a>";
+      }
+  }
+?>
+<?php
+if($page>=1 && $total_page!=$page){
+  $val=(int)$page+1;
+  echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href='./list.php?page=$val'>▶ 다음</a>";
+}
 
-              for ($i=1; $i <= $total_page ; $i++) {
-                  if ($page==$i) {
-                      echo "<b>&nbsp;$i&nbsp;</b>";
-                  } else {
-                      echo "<a href='./list.php?page=$i'>&nbsp;$i&nbsp;</a>";
-                  }
-              }
-
-              if($total_page<2){
-                "";
-              }else{
-                echo "&nbsp;&nbsp;&nbsp;&nbsp;▶ 다음";
-              }
-
-            ?>
+ ?>
   <!-- /////////////////////////////////////////////// -->
             <br><br><br><br><br><br><br>
           </div><!--end of page num -->

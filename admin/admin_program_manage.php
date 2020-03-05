@@ -147,7 +147,7 @@
                           <td class="td2" colspan="3"><?=$subject?></td>
                         </tr>
                         <tr>
-                          <td class="td1">모집인원</td>
+                          <td class="td1">전화번호</td>
                           <td class="td2"><?=$phone_number?></td>
                           <td class="td1">모집마감일</td>
                           <td class="td2"><?=$end_day?></td>

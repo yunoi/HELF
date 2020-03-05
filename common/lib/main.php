@@ -32,12 +32,14 @@
 <?php
   $sql = "SELECT post_id, COUNT(post_id) AS likeit FROM rating_community_info where rating_action='like'
   Group by post_id
-  HAVING COUNT(post_id) > 0 order by likeit desc limit 5;";
+  HAVING COUNT(post_id) > 0 order by likeit desc, post_id desc limit 5;";
   $result = mysqli_query($conn, $sql);
+  $like_num = mysqli_num_rows($result);
   if(!$result){
     echo(mysqli_error($result));
   } else {
-    while($row = mysqli_fetch_array($result)){
+    for($i=0;$i<$like_num;$i++){
+      $row = mysqli_fetch_array($result);
       $best_number = $row['post_id'];
       $sql = "select distinct name, subject, regist_day, community.num, hit, community.b_code from community 
       inner join rating_community_info 

@@ -3,13 +3,13 @@ https://kmong.com/order/2518542 참고한 사이트 화면
  -->
 <?php
   session_start();
-  if(empty($_SESSION['user_id'])||$_SESSION['user_id']===""){
-    echo "<script>alert('로그인후 이용해주세요');history.go(-1);</script>";
-    exit;
-  }else{
+  if(isset($_SESSION["user_id"])){
     $user_id = $_SESSION["user_id"];
+  } else {
+    echo "<script>alert('로그인 후 이용해주세요')</script>";
+    echo "<script>location.href='../login/login_form.php';</script>";
+    exit();
   }
-  
   $price=$subject="";
 ?>
 <!DOCTYPE html>
@@ -110,6 +110,9 @@ https://kmong.com/order/2518542 참고한 사이트 화면
                   $end_day = $row["end_day"]; //종료 날짜
                   $file_copied = $row["file_copied"]; //파일 이름
                   $total_pay=$total_pay+$price;
+
+                  $location = str_replace(","," ",$location);
+
                    ?>
                    <tr>
                      <td id="program">
